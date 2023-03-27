@@ -1,0 +1,12 @@
+// variables.scss
+
+@import "colors";
+@import "presets";
+
+// Use the first preset "Default" to set your default colors
+$color-primary: get-preset-color("Default", 'primary');
+$color-secondary: get-preset-color("Default", 'secondary');
+$color-tertiary: get-preset-color("Default", 'tertiary');
+$color-quaternary: get-preset-color("Default", 'quaternary');
+$color-light: get-preset-color("Default", 'light');
+$color-accent: get-preset-color("Default", 'accent');

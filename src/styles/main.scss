@@ -1,0 +1,39 @@
+// src/main.scss
+
+@import './variables.scss';
+
+// Typography
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'Pacifico', cursive;
+
+// Buttons
+$button-border-radius: 4px;
+$button-background-color: $color-primary;
+$button-font-family: $font-primary;
+$button-text-color: $color-secondary;
+$button-hover-background-color: $color-light;
+
+// Toggles
+$toggle-border-radius: 50%;
+$toggle-background-color: $color-tertiary;
+$toggle-knob-color: $color-secondary;
+$toggle-active-background-color: $color-quaternary;
+
+// Input Fields
+$input-border-radius: 4px;
+$input-background-color: $color-secondary;
+$input-border-color: $color-primary;
+$input-font-family: $font-primary;
+$input-text-color: $color-primary;
+
+// Dropdowns
+$dropdown-border-radius: 4px;
+$dropdown-background-color: $color-secondary;
+$dropdown-font-family: $font-primary;
+$dropdown-text-color: $color-primary;
+
+// Tooltips
+$tooltip-border-radius: 4px;
+$tooltip-background-color: $color-light;
+$tooltip-font-family: $font-primary;
+$tooltip-text-color: $color-secondary;
