@@ -12,14 +12,114 @@
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 
-$primary   : #1976D2;
-$secondary : #26A69A;
-$accent    : #9C27B0;
+@import './_colors';
+@import './_crayolanomicon';
 
-$dark      : #1D1D1D;
-$dark-page : #121212;
+$primary: $turquoise-oasis;
+$secondary: $lime-spritz;
+$accent: $emerald-jewel;
 
-$positive  : #21BA45;
-$negative  : #C10015;
-$info      : #31CCEC;
-$warning   : #F2C037;
+$dark: $charcoal-night;
+$dark-page: $midnight-waltz;
+
+$positive: $grasshopper;
+$negative: $wine-red;
+$info: $sky-blue;
+$warning: $golden-yellow;
+
+$presets: (
+  'Default': (
+    primary: $color-primary,
+    secondary: $color-secondary,
+    tertiary: $emerald-jewel,
+    quaternary: $golden-yellow,
+    quinary: $denim-blue,
+    senary: $blush-pink,
+    light: $baby-blue,
+    accent: $sky-blue,
+    dark: $charcoal-night,
+  ),
+  'Whimsical Dream': (
+    primary: $deep-navy,
+    secondary: $angel-white,
+    tertiary: $lime-spritz,
+    quaternary: $sunset-orange,
+    quinary: $blushing-pink,
+    senary: $bright-purple,
+    light: $skyward-blue,
+    accent: $emerald-jewel,
+    dark: $midnight-waltz,
+  ),
+  'Nautical Treasure': (
+    primary: $sapphire-blue,
+    secondary: $golden-rod,
+    tertiary: $amethyst,
+    quaternary: $shiny-silver,
+    quinary: $olive-harvest,
+    senary: $powder-pink,
+    light: $emerald-bay,
+    accent: $coral-reef,
+    dark: $charcoal-night,
+  ),
+  'Celestial Wonder': (
+    primary: $ocean-spray,
+    secondary: $angel-white,
+    tertiary: $cobalt-current,
+    quaternary: $sapphire-skies,
+    light: $baby-blue,
+    accent: $electric-indigo,
+  ),
+  'Enchanted Forest': (
+    primary: $emerald-jewel,
+    secondary: $deep-forest,
+    tertiary: $jungle-depths,
+    quaternary: $sage-whisper,
+    light: $seafoam-surf,
+    accent: $lime-zest,
+  ),
+  'Golden Sunrise': (
+    primary: $sunflower,
+    secondary: $glimmering-gold,
+    tertiary: $autumn-rust,
+    quaternary: $golden-rod,
+    light: $buttercup-yellow,
+    accent: $sunset-orange,
+  ),
+'Eldritch-Whispers': (
+primary: $cthulhu-green,
+secondary: $deep-one-teal,
+tertiary: $shoggoth-black,
+quaternary: $dagon-blue,
+quinary: $deep-one-green,
+senary: $shoggoth-slime-green,
+light: $whippoorwill-white,
+accent: $lovecraft-green,
+dark: $deeper-than-black,
+),
+'Chaos-and-Order': (
+primary: $nyarlathotep-purple,
+secondary: $elder-sign-blue,
+tertiary: $yog-sothoth-yellow,
+quaternary: $azathoth-yellow,
+quinary: $hastur-yellow,
+senary: $yog-sothoth-red,
+light: $mountain-of-madness-white,
+accent: $non-euclidean-blue,
+dark: $nightgaunt-black,
+),
+'Alien-Mysteries': (
+primary: $color-out-of-space-violet,
+secondary: $mi-go-gray,
+tertiary: $yithian-blue,
+quaternary: $elder-thing-blue,
+quinary: $mi-go-pink,
+senary: $yithian-yellow,
+light: $polaris-silver,
+accent: $mi-go-brown,
+dark: $deeper-than-black, 
+);
+
+@function get-preset-color($preset, $color-name) {
+  $color-id: map-get(map-get($presets, $preset), $color-name);
+  @return get-color($color-id);
+}

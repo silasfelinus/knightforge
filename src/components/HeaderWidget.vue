@@ -1,11 +1,21 @@
 <template>
   <div class="header-widget">
-    <q-toolbar class="bg-primary text-white">
-      <q-btn flat dense round icon="menu" @click="toggleSideMenu" />
-      <q-toolbar-title>Knightforge Wonderlab</q-toolbar-title>
+    <q-toolbar class="header-toolbar" color="primary">
+      <q-btn
+        flat
+        dense
+        round
+        icon="menu"
+        aria-label="Toggle side menu"
+        @click="toggleSideMenu"
+      />
+      <q-toolbar-title class="header-title">
+        Knightforge Wonderlab
+      </q-toolbar-title>
       <q-space />
       <div class="header-actions">
-        <!-- Add actions here -->
+        <q-btn label="Login" class="header-button" />
+        <q-btn label="Sign up" color="secondary" class="header-button" />
       </div>
     </q-toolbar>
   </div>
@@ -26,16 +36,27 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .header-widget {
-  .q-toolbar {
-    position: relative;
-    z-index: 999;
+  .header-toolbar {
     height: 64px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+
+  .header-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
   .header-actions {
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+
+  .header-button {
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 }
 </style>
