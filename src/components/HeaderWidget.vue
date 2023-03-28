@@ -36,27 +36,32 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .header-widget {
-  .header-toolbar {
-    height: 64px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 6; // Make sure this value is higher than the z-index of .side-widget
+}
+.header-toolbar {
+  height: 64px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  .header-title {
-    font-size: 24px;
-    font-weight: bold;
-  }
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+}
 
-  .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-  .header-button {
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+.header-button {
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 </style>

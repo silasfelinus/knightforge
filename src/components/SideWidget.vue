@@ -4,14 +4,13 @@
     :class="{ 'side-widget--closed': !drawerOpen }"
     show-if-above
     width="240"
-    :value="drawerOpen"
-    @input="updateDrawerOpen"
+    v-model="drawerOpen"
   >
     <nav class="side-nav">
       <ul class="side-nav-list">
         <li v-for="(item, index) in menuItems" :key="index">
           <a class="side-nav-link" href="#">
-            <q-icon name="{{ item.icon }}" />
+            <q-icon :name="item.icon" />
             <span class="side-nav-label">{{ item.label }}</span>
           </a>
         </li>
@@ -21,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watchEffect } from 'vue';
 
 export default defineComponent({
   name: 'SideWidget',
@@ -34,83 +33,38 @@ export default defineComponent({
   setup(props, { emit }) {
     const drawerOpen = ref(props.value);
     const menuItems = [
-      { label: 'Home', icon: 'home' },
-      { label: 'Settings', icon: 'settings' },
-      { label: 'Help', icon: 'help' },
+      { label: 'Wonderlab', icon: 'home', link: '/wonderlab' },
+      { label: 'Playlab', icon: 'games', link: '/playlab' },
+      { label: 'ChatGPT', icon: 'chat', link: '/chatgpt' },
+      { label: 'Serendipity', icon: 'explore', link: '/serendipity' },
+      { label: 'Cosmos', icon: 'space_bar', link: '/cosmos' },
+      { label: 'Acrocat Ranch', icon: 'pets', link: '/acrocat-ranch' },
+      { label: 'Cafe Purr', icon: 'local_cafe', link: '/cafe-purr' },
+      { label: 'Cafe Fred', icon: 'local_cafe', link: '/cafe-fred' },
+      { label: 'Digital Art', icon: 'brush', link: '/digital-art' },
+      { label: 'Patreon', icon: 'favorite', link: 'https://www.patreon.com' },
+      { label: 'Mermaids', icon: 'pool', link: '/mermaids' },
+      { label: 'Kittens', icon: 'pets', link: '/kittens' },
+      {
+        label: 'Redbubble',
+        icon: 'shopping_cart',
+        link: 'https://www.redbubble.com',
+      },
+      { label: 'Social', icon: 'group', link: '/social' },
+      { label: 'Github', icon: 'code', link: 'https://github.com' },
+      { label: 'Donate', icon: 'donations', link: '/donate' },
+      { label: 'Settings', icon: 'settings', link: '/settings' },
+      { label: 'Help', icon: 'help', link: '/help' },
     ];
 
-    const updateDrawerOpen = (val: boolean) => {
-      drawerOpen.value = val;
-      emit('input', val);
-    };
+    watchEffect(() => {
+      emit('update:value', drawerOpen.value);
+    });
 
     return {
       drawerOpen,
       menuItems,
-      updateDrawerOpen,
     };
   },
 });
 </script>
-
-<style lang="scss" scoped>
-.side-widget {
-  position: fixed;
-  top: 64px;
-  left: 0;
-  width: 240px;
-  height: 100%;
-  background-color: $primary;
-  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  z-index: 5;
-  overflow-y: auto;
-}
-
-.side-widget--closed {
-  transform: translateX(-100%);
-}
-
-.side-nav {
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  height: 100%;
-}
-
-.side-nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.side-nav-link {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  color: $secondary;
-  text-decoration: none;
-  padding: 8px 0;
-  transition: background-color 0.2s ease;
-}
-
-.side-nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.side-nav-link.active {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-.side-nav-label {
-  font-size: 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 140px;
-}
-
-.q-icon {
-  font-size: 24px;
-  color: $secondary;
-}
-</style>
