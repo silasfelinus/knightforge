@@ -1,6 +1,11 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <header-widget @toggle-side-menu="toggleSideMenu"></header-widget>
+    <q-header>
+      <q-toolbar>
+        <q-btn flat dense round @click="toggleSideMenu" icon="menu"></q-btn>
+        <q-toolbar-title> App Title </q-toolbar-title>
+      </q-toolbar>
+    </q-header>
     <q-drawer
       class="side-widget"
       :class="{ 'side-widget--closed': !drawerOpen }"
@@ -8,10 +13,16 @@
       width="240"
       v-model="drawerOpen"
     >
-      <!-- ... -->
+      <q-list padding>
+        <q-item v-for="(item, index) in menuItems" :key="index" clickable>
+          <q-item-section avatar>
+            <q-icon :name="item.icon"></q-icon>
+          </q-item-section>
+          <q-item-section>{{ item.label }}</q-item-section>
+        </q-item>
+      </q-list>
     </q-drawer>
     <q-page-container>
-      <footer-widget></footer-widget>
       <!-- Other components will go here -->
     </q-page-container>
   </q-layout>
@@ -19,15 +30,9 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import HeaderWidget from './components/HeaderWidget.vue';
-import FooterWidget from './components/FooterWidget.vue';
 
 export default defineComponent({
   name: 'App',
-  components: {
-    HeaderWidget,
-    FooterWidget,
-  },
   setup() {
     const drawerOpen = ref(true);
 
