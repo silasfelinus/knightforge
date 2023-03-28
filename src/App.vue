@@ -1,19 +1,18 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header>
-      <header-widget @toggle-side-menu="toggleSideMenu"></header-widget>
-    </q-header>
+    <header-widget @toggle-side-menu="toggleSideMenu"></header-widget>
     <q-drawer
-      v-model="sideMenuOpen"
-      :show-if-above="true"
-      :width="250"
-      :breakpoint="500"
+      class="side-widget"
+      :class="{ 'side-widget--closed': !drawerOpen }"
+      show-if-above
+      width="240"
+      v-model="drawerOpen"
     >
-      <side-widget></side-widget>
+      <!-- ... -->
     </q-drawer>
     <q-page-container>
-      <!-- Other components will go here -->
       <footer-widget></footer-widget>
+      <!-- Other components will go here -->
     </q-page-container>
   </q-layout>
 </template>
@@ -21,27 +20,63 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import HeaderWidget from './components/HeaderWidget.vue';
-import SideWidget from './components/SideWidget.vue';
 import FooterWidget from './components/FooterWidget.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     HeaderWidget,
-    SideWidget,
     FooterWidget,
   },
   setup() {
-    const sideMenuOpen = ref(true);
+    const drawerOpen = ref(true);
 
     const toggleSideMenu = () => {
-      sideMenuOpen.value = !sideMenuOpen.value;
+      drawerOpen.value = !drawerOpen.value;
     };
 
+    const menuItems = [
+      { label: 'Wonderlab', icon: 'home', link: '/wonderlab' },
+      { label: 'Playlab', icon: 'games', link: '/playlab' },
+      { label: 'ChatGPT', icon: 'chat', link: '/chatgpt' },
+      { label: 'Serendipity', icon: 'explore', link: '/serendipity' },
+      { label: 'Cosmos', icon: 'space_bar', link: '/cosmos' },
+      { label: 'Acrocat Ranch', icon: 'pets', link: '/acrocat-ranch' },
+      { label: 'Cafe Purr', icon: 'local_cafe', link: '/cafe-purr' },
+      { label: 'Cafe Fred', icon: 'local_cafe', link: '/cafe-fred' },
+      { label: 'Digital Art', icon: 'brush', link: '/digital-art' },
+      { label: 'Patreon', icon: 'favorite', link: 'https://www.patreon.com' },
+      { label: 'Mermaids', icon: 'pool', link: '/mermaids' },
+      { label: 'Kittens', icon: 'pets', link: '/kittens' },
+      {
+        label: 'Redbubble',
+        icon: 'shopping_cart',
+        link: 'https://www.redbubble.com',
+      },
+      { label: 'Social', icon: 'group', link: '/social' },
+      { label: 'Github', icon: 'code', link: 'https://github.com' },
+      { label: 'Donate', icon: 'donations', link: '/donate' },
+      { label: 'Settings', icon: 'settings', link: '/settings' },
+      { label: 'Help', icon: 'help', link: '/help' },
+    ];
+
     return {
-      sideMenuOpen,
+      drawerOpen,
       toggleSideMenu,
+      menuItems,
     };
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.side-widget {
+  // ...
+  z-index: 5;
+  // ...
+}
+
+.side-widget--closed {
+  transform: translateX(-100%);
+}
+</style>
