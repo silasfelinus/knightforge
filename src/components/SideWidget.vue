@@ -64,6 +64,7 @@ export default defineComponent({
   box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   z-index: 5;
+  overflow-y: auto;
 }
 
 .side-widget--closed {
@@ -100,8 +101,16 @@ export default defineComponent({
 .side-nav-link.active {
   background-color: rgba(255, 255, 255, 0.2);
 }
-
 .side-nav-label {
   font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.q-icon {
+  font-size: 24px;
+  color: $secondary;
 }
 </style>
