@@ -1,30 +1,64 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="lHh Lpr lFf">
     <q-header>
       <q-toolbar>
-        <q-btn flat dense round @click="toggleSideMenu" icon="menu"></q-btn>
-        <q-toolbar-title> App Title </q-toolbar-title>
+        <q-btn
+          flat
+          round
+          dense
+          icon="menu"
+          @click="leftDrawerOpen = !leftDrawerOpen"
+        />
+        <q-toolbar-title> Knightforge Wonderlab </q-toolbar-title>
       </q-toolbar>
     </q-header>
+
     <q-drawer
-      class="side-widget"
-      :class="{ 'side-widget--closed': !drawerOpen }"
       show-if-above
-      width="240"
-      v-model="drawerOpen"
+      v-model="leftDrawerOpen"
+      side="left"
+      :width="260"
+      :breakpoint="500"
+      bordered
     >
-      <q-list padding>
-        <q-item v-for="(item, index) in menuItems" :key="index" clickable>
+      <q-list>
+        <q-item v-for="(item, index) in menuItems" :key="index">
           <q-item-section avatar>
-            <q-icon :name="item.icon"></q-icon>
+            <q-icon :name="item.icon" />
           </q-item-section>
-          <q-item-section>{{ item.label }}</q-item-section>
+          <q-item-section v-if="leftDrawerOpen">
+            <q-item-label>{{ item.label }}</q-item-label>
+          </q-item-section>
         </q-item>
       </q-list>
     </q-drawer>
+
     <q-page-container>
-      <!-- Other components will go here -->
+      <q-page>
+        <div class="q-gutter-md row items-center justify-center">
+          <q-card class="droppable-area" rounded>
+            <!-- Droppable area content -->
+          </q-card>
+          <q-btn round @click="chatWindowOpen = !chatWindowOpen" icon="chat" />
+        </div>
+      </q-page>
     </q-page-container>
+
+    <q-drawer
+      v-model="chatWindowOpen"
+      side="right"
+      :width="300"
+      :breakpoint="800"
+      bordered
+    >
+      <!-- Chat window content -->
+    </q-drawer>
+
+    <q-footer>
+      <q-toolbar>
+        <q-toolbar-title> Footer Content </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
   </q-layout>
 </template>
 
@@ -34,11 +68,8 @@ import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'App',
   setup() {
-    const drawerOpen = ref(true);
-
-    const toggleSideMenu = () => {
-      drawerOpen.value = !drawerOpen.value;
-    };
+    const leftDrawerOpen = ref(true);
+    const chatWindowOpen = ref(false);
 
     const menuItems = [
       { label: 'Wonderlab', icon: 'home', link: '/wonderlab' },
@@ -66,22 +97,84 @@ export default defineComponent({
     ];
 
     return {
-      drawerOpen,
-      toggleSideMenu,
+      leftDrawerOpen,
+      chatWindowOpen,
       menuItems,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
-.side-widget {
-  // ...
-  z-index: 5;
-  // ...
-}
+<style lang="scss">
+@import './src/css/quasar.variables.scss';
 
-.side-widget--closed {
-  transform: translateX(-100%);
+$border-radius-large: 1rem;
+
+.q-layout {
+  background-color: $secondary;
+
+  .q-header,
+  .q-footer {
+    background-color: $primary;
+    color: $secondary;
+    font-weight: bold;
+
+    .q-toolbar-title {
+      color: $secondary;
+    }
+  }
+
+  .q-drawer {
+    background-color: $accent;
+
+    .q-list {
+      .q-item {
+        color: $primary;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: rgba($primary, 0.1);
+        }
+
+        .q-item-section {
+          .q-icon {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  .droppable-area {
+    max-width: 90%;
+    height: 0;
+    padding-bottom: 90%;
+    position: relative;
+    border: 2px solid $primary;
+    border-radius: $border-radius-large;
+    background-color: $secondary;
+    color: $primary;
+    font-weight: bold;
+
+    &:before {
+      content: 'Droppable Area';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .q-btn {
+    background-color: $primary;
+    color: $secondary;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+
+    &:hover {
+      background-color: darken($primary, 10%);
+    }
+  }
 }
 </style>

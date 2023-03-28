@@ -9,66 +9,226 @@ I have the following structure and I'm trying to follow best practices:
 KnightForge Wonderlab
 
 [INTENT]
-A single-screen Vue web app designed to provide a modern, sleek, fast, and friendly sandbox to make programmatic api calls
+An inviting and fun sandbox to make programmatic api calls
 
 [Dev Environment]
 Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
 
-[INSTALLED MODULES]
-Vue 3, TypeScript, SCSS, Quasar
+[MODULES]
+Vue 3, TypeScript, SASS Quasar
 
 [STANDARDS]
 Material Design, Composition API, Prettify, SASS
 
-[Structure: Material Design]
-Desired Component:Desired Effects
-
-./src/components/HeaderWidget.vue: fixed at top, save/load lab states, create new WonderWidget, manage user login, and toggle night mode.
-./src/componenSideWidget.vue: partially collapsible, drag-and-droppable Material Design icons onto WonderLab.
-./src/components/FooterWidget.vue: Displays copyright information.
-./src/components/ChatWidget.vue: Partially-collapsible component on the left side with Livechat and openai chat integration
-./src/components/WonderLab.vue: A grid-based workspace for building, saving, and sharing programmable WonderWidgets, utilizing a step-based save system for easy progress tracking
-./src/components/WonderWidget.vue:a draggable, droppable, resizable container
-
-
-[Key Intended Features]
-a coding suite of Draggable, droppable, and resizable components such as drop-down selections, buttons, wires, and data displays
-Step-Based Save System
-Impressive, functional, modern interface
+Desired Effects
+A grid-based workspace with Step-Based Save System
+a suite of Draggable, droppable, and resizable icons such as drop-down selections, buttons, wires, and data displays
 
 [Supported File Types]
 txt, yaml, json, jpg, png
 
-[CONFIGURED FILES]
-./src/styles/ain.scss
-./src/styles/variables.scss
-./src/styles/_presets.scss
-./src/styles/_colors.scss
-./.gitignore
-./jsconfig.json
-./package.json
-./README.md
-./tsconfig.json
-./vue.config.js
-./public/index.html
-./main.ts
-
 [NOTES]
 All colors should reference their Quasar preset variables: $primary, $secondary, $accent, $dark, $dark-page, $positive, $negative, $info, $warning
-Use Quasar component if a reasonable option is available
+Use a Quasar component if a reasonable option is available
 
 
-[COLOR VARIABLES]
+I have installed Quasar and Vue3. We have a static sidebar for icons
+Header with controls
+semi-collapsible left window for extended links (should also house draggable playspace tools)
+center droppable labspace (needs to be hideable)
+collapsible chat window on right
+bottom footer.
+
+Major Future Milestones:
+build gui-representation of an api-chain (button+textinput+apiaddress+output).
+livechat
+user logins
+nightmode
+improve styling
+openai secure key storage
+*build suite of playspace tools to showcase playspace, to entertain visitors and my children, and myself when I'm working.
+ideas like bouncing balls, spraypaint, destructile screen effects, anything that is silly and fun. I can use more ideas!, So as we troubleshoot
+please send along a brainstorm list if you have room with 3 pitches for fun effects.
 
 
-I have installed Quasar and Vue3 and the website is blank other than a default splashpage.
-We have created:
-App.vue
-HeaderWidget.vue
-SideWidget.vue
-FooterWidget.vue
+App.vue is below, please assess the current code and offer improvements, piece by piece. We'll start with the entire optimal <template>
+<template>
+  <q-layout view="lHh Lpr lFf">
+    <q-header>
+      <q-toolbar>
+        <q-btn
+          flat
+          round
+          dense
+          icon="menu"
+          @click="leftDrawerOpen = !leftDrawerOpen"
+        />
+        <q-toolbar-title> Knightforge Wonderlab </q-toolbar-title>
+      </q-toolbar>
+    </q-header>
 
-Next goals: make chatwindow
-fix sidewidget not showing background color
-sidewidget should have containers/cards (want advise on best qcomponents to use)
-Initial layout should be two stacked containers: a 3x6 grid of small icons, and a 1x3  grid below it of larger square icons, and a thin rectangular bar that doesn't collapse with the containers.
+    <q-drawer
+      show-if-above
+      v-model="leftDrawerOpen"
+      side="left"
+      :width="260"
+      :breakpoint="500"
+      bordered
+    >
+      <q-list>
+        <q-item v-for="(item, index) in menuItems" :key="index">
+          <q-item-section avatar>
+            <q-icon :name="item.icon" />
+          </q-item-section>
+          <q-item-section v-if="leftDrawerOpen">
+            <q-item-label>{{ item.label }}</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer>
+
+    <q-page-container>
+      <q-page>
+        <div class="q-gutter-md row items-center justify-center">
+          <q-card class="droppable-area" rounded>
+            <!-- Droppable area content -->
+          </q-card>
+          <q-btn round @click="chatWindowOpen = !chatWindowOpen" icon="chat" />
+        </div>
+      </q-page>
+    </q-page-container>
+
+    <q-drawer
+      v-model="chatWindowOpen"
+      side="right"
+      :width="300"
+      :breakpoint="800"
+      bordered
+    >
+      <!-- Chat window content -->
+    </q-drawer>
+
+    <q-footer>
+      <q-toolbar>
+        <q-toolbar-title> Footer Content </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
+  </q-layout>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+
+export default defineComponent({
+  name: 'App',
+  setup() {
+    const leftDrawerOpen = ref(true);
+    const chatWindowOpen = ref(false);
+
+    const menuItems = [
+      { label: 'Wonderlab', icon: 'home', link: '/wonderlab' },
+      { label: 'Playlab', icon: 'games', link: '/playlab' },
+      { label: 'ChatGPT', icon: 'chat', link: '/chatgpt' },
+      { label: 'Serendipity', icon: 'explore', link: '/serendipity' },
+      { label: 'Cosmos', icon: 'space_bar', link: '/cosmos' },
+      { label: 'Acrocat Ranch', icon: 'pets', link: '/acrocat-ranch' },
+      { label: 'Cafe Purr', icon: 'local_cafe', link: '/cafe-purr' },
+      { label: 'Cafe Fred', icon: 'local_cafe', link: '/cafe-fred' },
+      { label: 'Digital Art', icon: 'brush', link: '/digital-art' },
+      { label: 'Patreon', icon: 'favorite', link: 'https://www.patreon.com' },
+      { label: 'Mermaids', icon: 'pool', link: '/mermaids' },
+      { label: 'Kittens', icon: 'pets', link: '/kittens' },
+      {
+        label: 'Redbubble',
+        icon: 'shopping_cart',
+        link: 'https://www.redbubble.com',
+      },
+      { label: 'Social', icon: 'group', link: '/social' },
+      { label: 'Github', icon: 'code', link: 'https://github.com' },
+      { label: 'Donate', icon: 'donations', link: '/donate' },
+      { label: 'Settings', icon: 'settings', link: '/settings' },
+      { label: 'Help', icon: 'help', link: '/help' },
+    ];
+
+    return {
+      leftDrawerOpen,
+      chatWindowOpen,
+      menuItems,
+    };
+  },
+});
+</script>
+
+<style lang="scss">
+@import './src/css/quasar.variables.scss';
+
+$border-radius-large: 1rem;
+
+.q-layout {
+  background-color: $secondary;
+
+  .q-header,
+  .q-footer {
+    background-color: $primary;
+    color: $secondary;
+    font-weight: bold;
+
+    .q-toolbar-title {
+      color: $secondary;
+    }
+  }
+
+  .q-drawer {
+    background-color: $accent;
+
+    .q-list {
+      .q-item {
+        color: $primary;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: rgba($primary, 0.1);
+        }
+
+        .q-item-section {
+          .q-icon {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  .droppable-area {
+    max-width: 90%;
+    height: 0;
+    padding-bottom: 90%;
+    position: relative;
+    border: 2px solid $primary;
+    border-radius: $border-radius-large;
+    background-color: $secondary;
+    color: $primary;
+    font-weight: bold;
+
+    &:before {
+      content: 'Droppable Area';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .q-btn {
+    background-color: $primary;
+    color: $secondary;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+
+    &:hover {
+      background-color: darken($primary, 10%);
+    }
+  }
+}
+</style>
