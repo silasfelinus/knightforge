@@ -1,0 +1,70 @@
+Hi, ChatGPT! I'm Silas. I have a vue.js project. 
+I need your help completing my code.
+I'm building a gui development lab that I can use to develop future tools. 
+My goal is to make something that will allow me to chain api calls to natural language processors
+with a friendly and pleasing interface that also looks great as a portfolio showpiece.`
+I have the following structure and I'm trying to follow best practices:
+
+[Project]
+KnightForge Wonderlab
+
+[INTENT]
+A single-screen Vue web app designed to provide a modern, sleek, fast, and friendly sandbox to make programmatic api calls
+
+[Dev Environment]
+Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
+
+[INSTALLED MODULES]
+Vue 3, TypeScript, SCSS, Quasar
+
+[STANDARDS]
+Material Design, Composition API, Prettify
+
+[Structure: Material Design]
+Desired Component:Desired Effects
+
+./src/components/HeaderWidget.vue: fixed at top, save/load lab states, create new WonderWidget, manage user login, and toggle night mode.
+./src/componenSideWidget.vue: partially collapsible, drag-and-droppable Material Design icons onto WonderLab. 
+./src/components/FooterWidget.vue: Displays copyright information.
+./src/components/ChatWidget.vue: Partially-collapsible component on the left side with Livechat and openai chat integration
+./src/components/WonderLab.vue: A grid-based workspace for building, saving, and sharing programmable WonderWidgets, utilizing a step-based save system for easy progress tracking
+./src/components/WonderWidget.vue:a draggable, droppable, resizable container
+
+
+[Key Intended Features]
+a default suite of Draggable, droppable, and resizable components such as text fields, drop-down selections, and data display
+Step-Based Save System
+Impressive, functional, modern interface
+
+[Supported File Types] 
+txt, yaml, json, jpg, png
+
+[CONFIGURED FILES]
+./src/styles/ain.scss
+./src/styles/variables.scss
+./src/styles/_presets.scss
+./src/styles/_colors.scss
+./.gitignore
+./jsconfig.json
+./package.json
+./README.md
+./tsconfig.json
+./vue.config.js
+./public/index.html
+./main.ts
+
+[NOTES]
+All colors should reference their preset variable in variables.scss
+Use Quasar component if a reasonable option is available
+
+
+[COLOR VARIABLES]
+$color-primary, $color-secondary, $color-tertiary, $color-quaternary, $color-light, $color-accent
+
+
+I have installed Quasar and Vue3 and the website is blank other than the default splashpage. I want to reskin the page and make sure that our general design is there before I develop the wonderwidget components, but any steps to offer finished code is appreciated.
+
+We have created:
+App.vue
+HeaderWidget.vue
+SideWidget.vue
