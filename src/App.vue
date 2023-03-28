@@ -1,13 +1,19 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <header-widget @toggle-side-menu="toggleSideMenu"></header-widget>
-    <side-widget
-      :value="sideMenuOpen"
-      @input="(val) => (sideMenuOpen.value = val)"
-    ></side-widget>
+    <q-header>
+      <header-widget @toggle-side-menu="toggleSideMenu"></header-widget>
+    </q-header>
+    <q-drawer
+      v-model="sideMenuOpen"
+      :show-if-above="true"
+      :width="250"
+      :breakpoint="500"
+    >
+      <side-widget></side-widget>
+    </q-drawer>
     <q-page-container>
-      <footer-widget></footer-widget>
       <!-- Other components will go here -->
+      <footer-widget></footer-widget>
     </q-page-container>
   </q-layout>
 </template>
