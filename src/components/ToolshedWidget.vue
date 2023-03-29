@@ -32,7 +32,6 @@ export default defineComponent({
 });
 </script>
 
-
 <style lang="scss">
 .toolshed-section {
   flex: 1;
@@ -42,5 +41,9 @@ export default defineComponent({
   margin: 5% 1.5%;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 </style>
