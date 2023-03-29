@@ -1,119 +1,85 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header>
-      <q-toolbar>
-        <q-btn flat dense round icon="menu" @click="toggleSidebar" />
-        <q-toolbar-title>KnightForge Wonderlab</q-toolbar-title>
-      </q-toolbar>
-    </q-header>
+    <HeaderWidget @toggleSidebar="toggleSidebar" />
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <q-list>
-        <!-- Insert your navigation items here -->
-      </q-list>
+      <NavigationWidget />
     </q-drawer>
 
     <q-page-container>
       <q-page class="flex flex-center">
-        <div class="toolshed-section">
-          <!-- Insert your ToolShed content here -->
-        </div>
-        <div
-          class="labspace-section"
-          @dragover.prevent="handleDragOver"
-          @drop="handleDrop"
-        >
-          <!-- Insert your Labspace content here -->
-          <div
-            v-for="(item, index) in labSpaceItems"
-            :key="index"
-            class="labspace-item"
-          >
-            {{ item.name }}
-          </div>
-        </div>
-        <div class="chat-window-section">
-          <!-- Insert your ChatWindow content here -->
-        </div>
+        <q-row class="full-width">
+          <q-col cols="12" md="3" class="toolshed-section">
+            <ToolshedWidget>
+              <QuasarButton label="Click Me!" @click="onButtonClick()" />
+            </ToolshedWidget>
+          </q-col>
+          <q-col cols="12" md="6">
+            <LabspaceWidget />
+          </q-col>
+          <q-col cols="12" md="3" class="chat-window-section">
+            <ChatWidget />
+          </q-col>
+        </q-row>
       </q-page>
     </q-page-container>
 
-    <q-footer>
-      <q-toolbar>
-        <q-toolbar-title>Footer</q-toolbar-title>
-      </q-toolbar>
-    </q-footer>
+    <FooterWidget />
   </q-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import HeaderWidget from './components/HeaderWidget.vue';
+import FooterWidget from './components/FooterWidget.vue';
+import ChatWidget from './components/ChatWidget.vue';
+import ToolshedWidget from './components/ToolshedWidget.vue';
+import LabspaceWidget from './components/LabspaceWidget.vue';
+import NavigationWidget from './components/NavigationWidget.vue';
+import QuasarButton from './components/QuasarButton.vue';
 
 export default defineComponent({
   name: 'App',
+  components: {
+    HeaderWidget,
+    FooterWidget,
+    ChatWidget,
+    ToolshedWidget,
+    LabspaceWidget,
+    NavigationWidget,
+    QuasarButton,
+  },
   setup() {
     const leftDrawerOpen = ref(true);
-    const labSpaceItems = ref<Array<any>>([]);
 
     function toggleSidebar() {
       leftDrawerOpen.value = !leftDrawerOpen.value;
     }
 
-    function handleDrop(event: DragEvent) {
-      event.preventDefault();
-      const item = JSON.parse(event.dataTransfer.getData('text'));
-      labSpaceItems.value.push(item);
-    }
-
-    function handleDragOver(event: DragEvent) {
-      event.preventDefault();
-    }
-
-    function handleDragStart(event: DragEvent, item: any) {
-      event.dataTransfer.setData('text/plain', JSON.stringify(item));
+    function onButtonClick() {
+      console.log('QuasarButton clicked');
     }
 
     return {
       leftDrawerOpen,
       toggleSidebar,
-      labSpaceItems,
-      handleDrop,
-      handleDragOver,
-      handleDragStart,
+      onButtonClick,
     };
   },
 });
 </script>
 
 <style lang="scss">
-@import './src/css/quasar.variables.scss';
-
 .q-layout {
   height: 100vh;
   background-color: $primary;
 }
 
-.q-header,
-.q-footer {
-  background-color: $secondary;
-  color: #e7d4d4;
-}
-
-.q-toolbar-title {
-  font-weight: bold;
-}
-
-.q-drawer {
-  background-color: $dark;
-  color: #e7d4d4;
-}
-
-.q-list {
-  // Add your custom styles for the navigation items here
+.full-width {
+  width: 100%;
 }
 
 .toolshed-section,
-.labspace-section,
 .chat-window-section {
   flex: 1;
   background-color: #ffffff;
@@ -122,27 +88,5 @@ export default defineComponent({
   margin: 5% 1.5%;
   position: relative;
   overflow: hidden;
-}
-
-.labspace-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 3px dashed $grey-5;
-}
-
-.labspace-item {
-  background-color: $grey-2;
-  border-radius: 6px;
-  padding: 8px;
-  margin: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #000000;
-}
-
-.chat-window-section {
-  // Add your custom styles for the chat window here
 }
 </style>
