@@ -15,6 +15,14 @@
   </label>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'RedSwitch',
+});
+</script>
+
 <style lang="scss" scoped>
 $color: #ff1818; // Try other colors, like #18ffa0
 $rotation: 25deg;

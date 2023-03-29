@@ -1,7 +1,6 @@
 <template>
   <div class="sidebar" :class="preset">
     <q-toolbar>
-      <q-btn flat round dense @click="toggleSidebar" icon="menu" />
       <q-toolbar-title>Sidebar - {{ preset }}</q-toolbar-title>
     </q-toolbar>
   </div>
@@ -9,11 +8,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { QToolbar, QToolbarTitle, QBtn } from 'quasar';
 
 export default defineComponent({
   name: 'SidebarWidget',
-  components: { QToolbar, QToolbarTitle, QBtn },
   props: {
     side: {
       type: String,
@@ -23,13 +20,6 @@ export default defineComponent({
       type: String,
       required: true,
     },
-  },
-  setup(props, { emit }) {
-    function toggleSidebar() {
-      emit('toggle', props.side);
-    }
-
-    return { toggleSidebar };
   },
 });
 </script>

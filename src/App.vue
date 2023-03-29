@@ -2,30 +2,24 @@
   <div id="app">
     <q-layout view="lHh Lpr lFf">
       <q-header>
-        <HeaderWidget />
+        <HeaderWidget @toggleSidebar="toggleSidebar" />
       </q-header>
 
-      <q-layout>
-        <q-drawer side="left" v-model="collapsedLeft1" bordered>
-          <SidebarWidget side="left" preset="preset3" />
-        </q-drawer>
+      <q-page-container>
+        <q-layout>
+          <q-drawer side="left" v-model="collapsedLeft" bordered>
+            <SidebarWidget side="left" :preset="leftPreset" />
+          </q-drawer>
 
-        <q-drawer side="left" v-model="collapsedLeft2" bordered>
-          <SidebarWidget side="left" preset="preset4" />
-        </q-drawer>
+          <q-page>
+            <MainWidget />
+          </q-page>
 
-        <q-page-container>
-          <MainWidget />
-        </q-page-container>
-
-        <q-drawer side="right" v-model="collapsedRight1" bordered>
-          <SidebarWidget side="right" preset="preset1" />
-        </q-drawer>
-
-        <q-drawer side="right" v-model="collapsedRight2" bordered>
-          <SidebarWidget side="right" preset="preset2" />
-        </q-drawer>
-      </q-layout>
+          <q-drawer side="right" v-model="collapsedRight" bordered>
+            <SidebarWidget side="right" :preset="rightPreset" />
+          </q-drawer>
+        </q-layout>
+      </q-page-container>
 
       <q-footer>
         <FooterWidget />
@@ -50,29 +44,30 @@ export default defineComponent({
     FooterWidget,
   },
   setup(_, { emit }) {
-    const collapsedRight1 = ref(true);
-    const collapsedRight2 = ref(true);
-    const collapsedLeft1 = ref(true);
-    const collapsedLeft2 = ref(true);
+    const collapsedRight = ref(true);
+    const collapsedLeft = ref(true);
+    const leftPreset = ref('preset1');
+    const rightPreset = ref('preset1');
 
     function toggleSidebar(side: string) {
-      if (side === 'right1') {
-        collapsedRight1.value = !collapsedRight1.value;
-      } else if (side === 'right2') {
-        collapsedRight2.value = !collapsedRight2.value;
-      } else if (side === 'left1') {
-        collapsedLeft1.value = !collapsedLeft1.value;
-      } else if (side === 'left2') {
-        collapsedLeft2.value = !collapsedLeft2.value;
+      if (side === 'right') {
+        collapsedRight.value = !collapsedRight.value;
+      } else if (side === 'left') {
+        collapsedLeft.value = !collapsedLeft.value;
+      } else if (side === 'leftPreset') {
+        const nextPreset = (parseInt(leftPreset.value.slice(-1)) % 4) + 1;
+        leftPreset.value = `preset${nextPreset}`;
+      } else if (side === 'rightPreset') {
+        const nextPreset = (parseInt(rightPreset.value.slice(-1)) % 4) + 1;
+        rightPreset.value = `preset${nextPreset}`;
       }
-      emit('toggleSidebar', side);
     }
 
     return {
-      collapsedRight1,
-      collapsedRight2,
-      collapsedLeft1,
-      collapsedLeft2,
+      collapsedRight,
+      collapsedLeft,
+      leftPreset,
+      rightPreset,
       toggleSidebar,
     };
   },
