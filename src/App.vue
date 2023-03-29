@@ -2,20 +2,38 @@
   <q-layout view="hHh lpR fFf">
     <HeaderWidget @toggleSidebar="toggleSidebar" />
 
-    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
+    <q-drawer
+      show-if-above
+      v-model="leftDrawerOpen"
+      side="left"
+      bordered
+      overlay
+      breakpoint="0"
+    >
       <NavigationWidget />
     </q-drawer>
 
+    <q-drawer
+      show-if-above
+      v-model="toolshedDrawerOpen"
+      side="left"
+      bordered
+      overlay
+      breakpoint="9999"
+    >
+      <ToolshedWidget>
+        <QuasarButton label="Click Me!" @click="onButtonClick()" />
+      </ToolshedWidget>
+    </q-drawer>
     <q-page-container>
       <q-page class="flex flex-center">
         <q-row class="full-width">
-          <q-col cols="12" md="3" class="toolshed-section">
-            <ToolshedWidget>
-              <QuasarButton label="Click Me!" @click="onButtonClick()" />
-            </ToolshedWidget>
-          </q-col>
-          <q-col cols="12" md="6">
-            <LabspaceWidget />
+          <q-col cols="12" md="9">
+            <q-row>
+              <q-col cols="12">
+                <LabspaceWidget />
+              </q-col>
+            </q-row>
           </q-col>
           <q-col cols="12" md="3" class="chat-window-section">
             <ChatWidget />
@@ -51,9 +69,11 @@ export default defineComponent({
   },
   setup() {
     const leftDrawerOpen = ref(true);
+    const toolshedDrawerOpen = ref(false);
 
     function toggleSidebar() {
       leftDrawerOpen.value = !leftDrawerOpen.value;
+      toolshedDrawerOpen.value = !toolshedDrawerOpen.value;
     }
 
     function onButtonClick() {
@@ -62,6 +82,7 @@ export default defineComponent({
 
     return {
       leftDrawerOpen,
+      toolshedDrawerOpen,
       toggleSidebar,
       onButtonClick,
     };
