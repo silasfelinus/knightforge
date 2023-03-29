@@ -1,78 +1,46 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh lpR fFf">
     <q-header>
       <q-toolbar>
-        <q-btn
-          flat
-          round
-          dense
-          icon="menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-        <q-toolbar-title> Knightforge Wonderlab </q-toolbar-title>
+        <q-btn flat dense round icon="menu" @click="toggleSidebar" />
+        <q-toolbar-title>KnightForge Wonderlab</q-toolbar-title>
       </q-toolbar>
     </q-header>
-    <q-drawer
-      show-if-above
-      v-model="leftDrawerOpen"
-      side="left"
-      :width="260"
-      :breakpoint="500"
-      bordered
-    >
+
+    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
       <q-list>
-        <q-item v-for="(item, index) in menuItems" :key="index">
-          <q-item-section avatar>
-            <q-icon :name="item.icon" />
-          </q-item-section>
-          <q-item-section v-if="leftDrawerOpen">
-            <q-item-label>{{ item.label }}</q-item-label>
-          </q-item-section>
-        </q-item>
+        <!-- Insert your navigation items here -->
       </q-list>
     </q-drawer>
 
-    <q-drawer
-      v-model="leftToolDrawerOpen"
-      side="left"
-      :width="100"
-      :breakpoint="500"
-      bordered
-    >
-      <!-- Draggable playspace tools -->
-    </q-drawer>
-
     <q-page-container>
-      <q-page>
-        <div class="q-gutter-md row items-center justify-center">
-          <q-btn
-            round
-            @click="droppableAreaVisible = !droppableAreaVisible"
-            icon="visibility"
-          />
-          <q-card v-if="droppableAreaVisible" class="droppable-area" rounded>
-            <q-resize-observer @resize="onResize">
-              <!-- Droppable area content -->
-            </q-resize-observer>
-          </q-card>
-          <q-btn round @click="chatWindowOpen = !chatWindowOpen" icon="chat" />
+      <q-page class="flex flex-center">
+        <div class="toolshed-section">
+          <!-- Insert your ToolShed content here -->
+        </div>
+        <div
+          class="labspace-section"
+          @dragover.prevent="handleDragOver"
+          @drop="handleDrop"
+        >
+          <!-- Insert your Labspace content here -->
+          <div
+            v-for="(item, index) in labSpaceItems"
+            :key="index"
+            class="labspace-item"
+          >
+            {{ item.name }}
+          </div>
+        </div>
+        <div class="chat-window-section">
+          <!-- Insert your ChatWindow content here -->
         </div>
       </q-page>
     </q-page-container>
 
-    <q-drawer
-      v-model="chatWindowOpen"
-      side="right"
-      :width="300"
-      :breakpoint="800"
-      bordered
-    >
-      <!-- Chat window content -->
-    </q-drawer>
-
     <q-footer>
       <q-toolbar>
-        <q-toolbar-title> Footer Content </q-toolbar-title>
+        <q-toolbar-title>Footer</q-toolbar-title>
       </q-toolbar>
     </q-footer>
   </q-layout>
@@ -85,26 +53,33 @@ export default defineComponent({
   name: 'App',
   setup() {
     const leftDrawerOpen = ref(true);
-    const chatWindowOpen = ref(false);
-    const leftToolDrawerOpen = ref(false);
-    const droppableAreaVisible = ref(true);
+    const labSpaceItems = ref<Array<any>>([]);
 
-    const menuItems = [
-      // ... your existing menu items ...
-    ];
+    function toggleSidebar() {
+      leftDrawerOpen.value = !leftDrawerOpen.value;
+    }
 
-    // Resize handler for droppable area
-    const onResize = (evt) => {
-      // Handle resizing here
-    };
+    function handleDrop(event: DragEvent) {
+      event.preventDefault();
+      const item = JSON.parse(event.dataTransfer.getData('text'));
+      labSpaceItems.value.push(item);
+    }
+
+    function handleDragOver(event: DragEvent) {
+      event.preventDefault();
+    }
+
+    function handleDragStart(event: DragEvent, item: any) {
+      event.dataTransfer.setData('text/plain', JSON.stringify(item));
+    }
 
     return {
       leftDrawerOpen,
-      chatWindowOpen,
-      menuItems,
-      leftToolDrawerOpen,
-      droppableAreaVisible,
-      onResize,
+      toggleSidebar,
+      labSpaceItems,
+      handleDrop,
+      handleDragOver,
+      handleDragStart,
     };
   },
 });
@@ -113,74 +88,61 @@ export default defineComponent({
 <style lang="scss">
 @import './src/css/quasar.variables.scss';
 
-$border-radius-large: 1rem;
-
 .q-layout {
+  height: 100vh;
+  background-color: $primary;
+}
+
+.q-header,
+.q-footer {
   background-color: $secondary;
+  color: #e7d4d4;
+}
 
-  .q-header,
-  .q-footer {
-    background-color: $primary;
-    color: $secondary;
-    font-weight: bold;
+.q-toolbar-title {
+  font-weight: bold;
+}
 
-    .q-toolbar-title {
-      color: $secondary;
-    }
-  }
+.q-drawer {
+  background-color: $dark;
+  color: #e7d4d4;
+}
 
-  .q-drawer {
-    background-color: $accent;
+.q-list {
+  // Add your custom styles for the navigation items here
+}
 
-    .q-list {
-      .q-item {
-        color: $primary;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
+.toolshed-section,
+.labspace-section,
+.chat-window-section {
+  flex: 1;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin: 5% 1.5%;
+  position: relative;
+  overflow: hidden;
+}
 
-        &:hover {
-          background-color: rgba($primary, 0.1);
-        }
+.labspace-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px dashed $grey-5;
+}
 
-        .q-item-section {
-          .q-icon {
-            color: $primary;
-          }
-        }
-      }
-    }
-  }
+.labspace-item {
+  background-color: $grey-2;
+  border-radius: 6px;
+  padding: 8px;
+  margin: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+}
 
-  .droppable-area {
-    max-width: 90%;
-    height: 0;
-    padding-bottom: 90%;
-    position: relative;
-    border: 2px solid $primary;
-    border-radius: $border-radius-large;
-    background-color: $secondary;
-    color: $primary;
-    font-weight: bold;
-
-    &:before {
-      content: 'Droppable Area';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  .q-btn {
-    background-color: $primary;
-    color: $secondary;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-    border-radius: $border-radius-large;
-
-    &:hover {
-      background-color: darken($primary, 10%);
-    }
-  }
+.chat-window-section {
+  // Add your custom styles for the chat window here
 }
 </style>
