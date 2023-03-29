@@ -1,79 +1,49 @@
 <template>
   <q-layout view="hHh lpR fFf">
+    php Copy code
     <HeaderWidget @toggleSidebar="toggleSidebar" />
 
-    <q-drawer
-      show-if-above
-      v-model="leftDrawerOpen"
-      side="left"
-      bordered
-      overlay
-      breakpoint="0"
-    >
+    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" elevated>
       <NavigationWidget />
     </q-drawer>
 
-    <q-drawer
-      show-if-above
-      v-model="toolshedDrawerOpen"
-      side="left"
-      bordered
-      overlay
-      breakpoint="9999"
-    >
+    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" elevated>
       <ToolshedWidget>
         <QuasarButton label="Click Me!" @click="onButtonClick()" />
       </ToolshedWidget>
     </q-drawer>
+
     <q-page-container>
-      <q-page class="flex flex-center">
-        <q-row class="full-width">
-          <q-col cols="12" md="9">
-            <q-row>
-              <q-col cols="12">
-                <LabspaceWidget />
-              </q-col>
-            </q-row>
-          </q-col>
-          <q-col cols="12" md="3" class="chat-window-section">
-            <ChatWidget />
-          </q-col>
-        </q-row>
-      </q-page>
+      <router-view />
     </q-page-container>
 
     <FooterWidget />
   </q-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script>
+import { ref } from 'vue';
 import HeaderWidget from './components/HeaderWidget.vue';
 import FooterWidget from './components/FooterWidget.vue';
-import ChatWidget from './components/ChatWidget.vue';
-import ToolshedWidget from './components/ToolshedWidget.vue';
-import LabspaceWidget from './components/LabspaceWidget.vue';
 import NavigationWidget from './components/NavigationWidget.vue';
+import ToolshedWidget from './components/ToolshedWidget.vue';
 import QuasarButton from './components/QuasarButton.vue';
 
-export default defineComponent({
-  name: 'App',
+export default {
   components: {
     HeaderWidget,
     FooterWidget,
-    ChatWidget,
-    ToolshedWidget,
-    LabspaceWidget,
     NavigationWidget,
+    ToolshedWidget,
     QuasarButton,
   },
   setup() {
-    const leftDrawerOpen = ref(true);
-    const toolshedDrawerOpen = ref(false);
+    const leftDrawerOpen = ref(false);
+    const rightDrawerOpen = ref(false);
 
     function toggleSidebar() {
       leftDrawerOpen.value = !leftDrawerOpen.value;
-      toolshedDrawerOpen.value = !toolshedDrawerOpen.value;
+      rightDrawerOpen.value = !rightDrawerOpen.value;
     }
 
     function onButtonClick() {
@@ -82,12 +52,12 @@ export default defineComponent({
 
     return {
       leftDrawerOpen,
-      toolshedDrawerOpen,
+      rightDrawerOpen,
       toggleSidebar,
       onButtonClick,
     };
   },
-});
+};
 </script>
 
 <style lang="scss">
