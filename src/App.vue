@@ -12,7 +12,6 @@
         <q-toolbar-title> Knightforge Wonderlab </q-toolbar-title>
       </q-toolbar>
     </q-header>
-
     <q-drawer
       show-if-above
       v-model="leftDrawerOpen"
@@ -33,11 +32,28 @@
       </q-list>
     </q-drawer>
 
+    <q-drawer
+      v-model="leftToolDrawerOpen"
+      side="left"
+      :width="100"
+      :breakpoint="500"
+      bordered
+    >
+      <!-- Draggable playspace tools -->
+    </q-drawer>
+
     <q-page-container>
       <q-page>
         <div class="q-gutter-md row items-center justify-center">
-          <q-card class="droppable-area" rounded>
-            <!-- Droppable area content -->
+          <q-btn
+            round
+            @click="droppableAreaVisible = !droppableAreaVisible"
+            icon="visibility"
+          />
+          <q-card v-if="droppableAreaVisible" class="droppable-area" rounded>
+            <q-resize-observer @resize="onResize">
+              <!-- Droppable area content -->
+            </q-resize-observer>
           </q-card>
           <q-btn round @click="chatWindowOpen = !chatWindowOpen" icon="chat" />
         </div>
@@ -70,36 +86,25 @@ export default defineComponent({
   setup() {
     const leftDrawerOpen = ref(true);
     const chatWindowOpen = ref(false);
+    const leftToolDrawerOpen = ref(false);
+    const droppableAreaVisible = ref(true);
 
     const menuItems = [
-      { label: 'Wonderlab', icon: 'home', link: '/wonderlab' },
-      { label: 'Playlab', icon: 'games', link: '/playlab' },
-      { label: 'ChatGPT', icon: 'chat', link: '/chatgpt' },
-      { label: 'Serendipity', icon: 'explore', link: '/serendipity' },
-      { label: 'Cosmos', icon: 'space_bar', link: '/cosmos' },
-      { label: 'Acrocat Ranch', icon: 'pets', link: '/acrocat-ranch' },
-      { label: 'Cafe Purr', icon: 'local_cafe', link: '/cafe-purr' },
-      { label: 'Cafe Fred', icon: 'local_cafe', link: '/cafe-fred' },
-      { label: 'Digital Art', icon: 'brush', link: '/digital-art' },
-      { label: 'Patreon', icon: 'favorite', link: 'https://www.patreon.com' },
-      { label: 'Mermaids', icon: 'pool', link: '/mermaids' },
-      { label: 'Kittens', icon: 'pets', link: '/kittens' },
-      {
-        label: 'Redbubble',
-        icon: 'shopping_cart',
-        link: 'https://www.redbubble.com',
-      },
-      { label: 'Social', icon: 'group', link: '/social' },
-      { label: 'Github', icon: 'code', link: 'https://github.com' },
-      { label: 'Donate', icon: 'donations', link: '/donate' },
-      { label: 'Settings', icon: 'settings', link: '/settings' },
-      { label: 'Help', icon: 'help', link: '/help' },
+      // ... your existing menu items ...
     ];
+
+    // Resize handler for droppable area
+    const onResize = (evt) => {
+      // Handle resizing here
+    };
 
     return {
       leftDrawerOpen,
       chatWindowOpen,
       menuItems,
+      leftToolDrawerOpen,
+      droppableAreaVisible,
+      onResize,
     };
   },
 });
@@ -171,6 +176,7 @@ $border-radius-large: 1rem;
     color: $secondary;
     font-weight: bold;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-radius: $border-radius-large;
 
     &:hover {
       background-color: darken($primary, 10%);
