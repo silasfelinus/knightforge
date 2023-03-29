@@ -48,10 +48,10 @@ export default defineComponent({
     FooterWidget,
   },
   setup() {
-    const collapsedRight1 = ref(false);
-    const collapsedRight2 = ref(false);
-    const collapsedLeft1 = ref(false);
-    const collapsedLeft2 = ref(false);
+    const collapsedRight1 = ref(true);
+    const collapsedRight2 = ref(true);
+    const collapsedLeft1 = ref(true);
+    const collapsedLeft2 = ref(true);
 
     return { collapsedRight1, collapsedRight2, collapsedLeft1, collapsedLeft2 };
   },
