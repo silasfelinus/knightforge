@@ -35,6 +35,15 @@ export default defineComponent({
   background-color: $accent;
 }
 .preset4 {
+  background-color: $positive;
+}
+.preset5 {
+  background-color: $negative;
+}
+.preset6 {
+  background-color: $info;
+}
+.preset7 {
   background-color: $warning;
 }
 

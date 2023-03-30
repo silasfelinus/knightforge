@@ -55,10 +55,10 @@ export default defineComponent({
       } else if (side === 'left') {
         collapsedLeft.value = !collapsedLeft.value;
       } else if (side === 'leftPreset') {
-        const nextPreset = (parseInt(leftPreset.value.slice(-1)) % 4) + 1;
+        const nextPreset = (parseInt(leftPreset.value.slice(-1)) % 7) + 1;
         leftPreset.value = `preset${nextPreset}`;
       } else if (side === 'rightPreset') {
-        const nextPreset = (parseInt(rightPreset.value.slice(-1)) % 4) + 1;
+        const nextPreset = (parseInt(rightPreset.value.slice(-1)) % 7) + 1;
         rightPreset.value = `preset${nextPreset}`;
       }
     }
