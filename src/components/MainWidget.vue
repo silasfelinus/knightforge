@@ -3,15 +3,16 @@
     :class="[
       'main-widget',
       { 'collapsed-right': collapsedRight, 'collapsed-left': collapsedLeft },
+      { 'error-loading-image': errorLoadingImage },
     ]"
   >
     <!-- Main widget content -->
-    <q-img :src="randomSecretImage" alt="Secret Image" />
+    <q-img :src="randomSecretImage" alt="Secret Image" @error="onError" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { QImg } from 'quasar';
 
 export default defineComponent({
@@ -33,8 +34,17 @@ export default defineComponent({
       return `/images/secret/secret0${randomNumber}.png`;
     });
 
+    const errorLoadingImage = ref(false);
+
+    function onError() {
+      errorLoadingImage.value = true;
+      randomSecretImage.value = '/images/splash01.png';
+    }
+
     return {
       randomSecretImage,
+      errorLoadingImage,
+      onError,
     };
   },
 });
@@ -51,5 +61,9 @@ export default defineComponent({
 
 .collapsed-left {
   margin-left: 150px; // Adjust the margin to account for the expanded left sidebar
+}
+
+.error-loading-image {
+  background-color: $warning; // Change the background color when there's an error loading the image
 }
 </style>
