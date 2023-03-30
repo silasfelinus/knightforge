@@ -26,24 +26,15 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .preset1 {
-  background-color: $primary;
-}
-.preset2 {
   background-color: $secondary;
 }
-.preset3 {
+.preset2 {
   background-color: $accent;
 }
-.preset4 {
-  background-color: $positive;
-}
-.preset5 {
-  background-color: $negative;
-}
-.preset6 {
+.preset3 {
   background-color: $info;
 }
-.preset7 {
+.preset4 {
   background-color: $warning;
 }
 

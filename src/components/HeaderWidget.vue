@@ -46,18 +46,18 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .q-header {
-  background-color: $secondary;
-  color: $accent;
+  background-color: $primary;
+  color: white;
 }
 .q-toolbar-title {
   font-weight: bold;
 }
 .toggle-button {
-  background-color: $warning;
+  background-color: $positive;
   color: white;
 }
 .collapse-button {
-  background-color: $info;
+  background-color: $negative;
   color: white;
 }
 </style>

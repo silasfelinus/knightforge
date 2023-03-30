@@ -6,12 +6,12 @@
       </q-header>
 
       <q-page-container>
-        <q-layout>
+        <q-layout class="flex-row" style="height: 100%">
           <q-drawer side="left" v-model="collapsedLeft" bordered>
             <SidebarWidget side="left" :preset="leftPreset" />
           </q-drawer>
 
-          <q-page>
+          <q-page class="drawer-content">
             <MainWidget />
           </q-page>
 
@@ -46,8 +46,8 @@ export default defineComponent({
   setup(_, { emit }) {
     const collapsedRight = ref(true);
     const collapsedLeft = ref(true);
-    const leftPreset = ref('preset1');
-    const rightPreset = ref('preset1');
+    const leftPreset = ref('preset2');
+    const rightPreset = ref('preset4');
 
     function toggleSidebar(side: string) {
       if (side === 'right') {
@@ -55,10 +55,10 @@ export default defineComponent({
       } else if (side === 'left') {
         collapsedLeft.value = !collapsedLeft.value;
       } else if (side === 'leftPreset') {
-        const nextPreset = (parseInt(leftPreset.value.slice(-1)) % 7) + 1;
+        const nextPreset = (parseInt(leftPreset.value.slice(-1)) % 4) + 1;
         leftPreset.value = `preset${nextPreset}`;
       } else if (side === 'rightPreset') {
-        const nextPreset = (parseInt(rightPreset.value.slice(-1)) % 7) + 1;
+        const nextPreset = (parseInt(rightPreset.value.slice(-1)) % 4) + 1;
         rightPreset.value = `preset${nextPreset}`;
       }
     }

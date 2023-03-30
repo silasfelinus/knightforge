@@ -2,7 +2,7 @@
   <div class="main-widget">
     <q-img
       class="splash-screen"
-      src="./src/public/splash1.png"
+      src="/images/splash1.png"
       alt="Splash Screen"
       :ratio="16 / 9"
     />
