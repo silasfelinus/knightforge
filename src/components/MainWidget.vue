@@ -6,14 +6,17 @@
     ]"
   >
     <!-- Main widget content -->
+    <q-img :src="randomSecretImage" alt="Secret Image" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { QImg } from 'quasar';
 
 export default defineComponent({
   name: 'MainWidget',
+  components: { QImg },
   props: {
     collapsedRight: {
       type: Boolean,
@@ -23,6 +26,16 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
+  },
+  setup() {
+    const randomSecretImage = computed(() => {
+      const randomNumber = Math.floor(Math.random() * 10);
+      return `/images/secret/secret0${randomNumber}.png`;
+    });
+
+    return {
+      randomSecretImage,
+    };
   },
 });
 </script>

@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import QuasarButton from './QuasarButton.vue';
+import QuasarButton from '../unused/QuasarButton.vue';
 import RedSwitch from './RedSwitch.vue';
 
 export default defineComponent({
