@@ -8,7 +8,7 @@
       <q-page-container>
         <q-layout class="flex-row" style="height: 100%">
           <q-drawer side="left" v-model="collapsedLeft" bordered>
-            <SidebarWidget side="left" :preset="leftPreset" />
+            <SidebarWidget side="left" :preset="preset1" />
           </q-drawer>
 
           <div class="middle-section">
@@ -16,7 +16,7 @@
           </div>
 
           <q-drawer side="right" v-model="collapsedRight" bordered>
-            <SidebarWidget side="right" :preset="rightPreset" />
+            <SidebarWidget side="right" :preset="preset2" />
           </q-drawer>
         </q-layout>
       </q-page-container>
@@ -73,13 +73,4 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped lang="scss">
-.middle-section {
-  flex: 1;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>
+<style scoped lang="scss"></style>
