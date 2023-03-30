@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <q-layout view="lHh Lpr lFf">
+    <q-layout :view="$q.screen.gt.sm ? 'lHh Lpr lFf' : 'hHh'">
       <q-header>
         <HeaderWidget @toggleSidebar="toggleSidebar" />
       </q-header>
