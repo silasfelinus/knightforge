@@ -1,8 +1,8 @@
-<!-- Cable.vue -->
+<!-- CardCable.vue -->
 <template>
   <div
-    class="cable"
-    ref="cable"
+    class="card-cable"
+    ref="card-cable"
     :style="{ top: startY + 'px', left: startX + 'px' }"
   >
     <div class="cable-line" :style="cableStyle"></div>
@@ -13,7 +13,7 @@
 import { defineComponent, ref, computed } from 'vue';
 
 export default defineComponent({
-  name: 'Cable',
+  name: 'CardCable',
   props: {
     startX: {
       type: Number,
@@ -60,7 +60,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.cable {
+.card-cable {
   position: absolute;
   z-index: 1000;
 }

@@ -1,4 +1,4 @@
-<!-- ApiProcessorCard.vue -->
+<!-- CodeCard.vue -->
 <template>
   <q-card class="api-processor-card" :class="{ large: large }">
     <q-avatar class="avatar">
@@ -31,7 +31,7 @@ import { defineComponent, ref } from 'vue';
 import { QAvatar, QCard, QCardSection } from 'quasar';
 
 export default defineComponent({
-  name: 'ApiProcessorCard',
+  name: 'CodeCard',
   components: { QAvatar, QCard, QCardSection },
   props: {
     avatar: {
