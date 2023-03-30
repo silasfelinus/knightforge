@@ -60,7 +60,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .card-mat {
   height: 100%;
   display: flex;

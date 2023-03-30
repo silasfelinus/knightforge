@@ -24,18 +24,18 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .preset1 {
-  background-color: #f44336;
+  background-color: $primary;
 }
 .preset2 {
-  background-color: #2196f3;
+  background-color: $secondary;
 }
 .preset3 {
-  background-color: #4caf50;
+  background-color: $accent;
 }
 .preset4 {
-  background-color: #ffeb3b;
+  background-color: $warning;
 }
 
 .sidebar {

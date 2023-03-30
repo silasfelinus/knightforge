@@ -53,11 +53,11 @@ export default defineComponent({
   font-weight: bold;
 }
 .toggle-button {
-  background-color: blue;
+  background-color: $warning;
   color: white;
 }
 .collapse-button {
-  background-color: red;
+  background-color: $info;
   color: white;
 }
 </style>

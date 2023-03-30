@@ -31,7 +31,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import HeaderWidget from './components/HeaderWidget.vue';
-import SidebarWidget from './components/unused/SidebarWidget.vue';
+import SidebarWidget from './components/SidebarWidget.vue';
 import MainWidget from './components/MainWidget.vue';
 import FooterWidget from './components/FooterWidget.vue';
 

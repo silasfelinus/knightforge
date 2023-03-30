@@ -12,18 +12,6 @@
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 
-$primary: #f0c3d3;
-$secondary: #239c8e;
-$accent: #8b249c;
-
-$dark: #332b2b;
-$dark-page: #1a1a1a;
-
-$positive: #adffc0;
-$negative: #b34e00;
-$info: #c4dd3a;
-$warning: #e8b12d;
-
 // _colors.scss
 
 // Celestial Blues
@@ -199,3 +187,11 @@ $non-euclidean-blue: #3a75c4; // The color of warped geometry
 $pickerel-frog-brown: #9c661f; // The color of the ominous amphibians
 $pluto-gray: #575757; // The color of the far-off celestial body
 $polaris-silver: #d7d7d7; // The color of the pole star
+
+$primary: $grasshopper;
+$secondary: $emerald-jewel;
+$accent: $deep-forest;
+$positive: $lime-spritz;
+$negative: $jungle-depths;
+$info: $turquoise-oasis;
+$warning: $seafoam-surf;

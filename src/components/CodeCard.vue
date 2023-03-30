@@ -77,7 +77,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .api-processor-card {
   width: 200px;
   margin: 8px;
@@ -96,7 +96,7 @@ export default defineComponent({
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #444;
+  background-color: $accent;
 }
 .input-port {
   bottom: 8px;

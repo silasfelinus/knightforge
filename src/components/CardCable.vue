@@ -59,7 +59,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .card-cable {
   position: absolute;
   z-index: 1000;
@@ -68,6 +68,6 @@ export default defineComponent({
 .cable-line {
   position: absolute;
   height: 2px;
-  background-color: #444;
+  background-color: $warning;
 }
 </style>
