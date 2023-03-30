@@ -12,92 +12,72 @@
     </div>
   </transition>
 </template>
-<script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import { QImg } from 'quasar';
 
-export default defineComponent({
-  name: 'MainWidget',
-  components: {
-    QImg,
-  },
-  setup() {
-    const splashFolders = ['splash', 'secret'];
-    let currentFolderIndex = 0;
+const splashFolders = ['splash', 'secret'];
+let currentFolderIndex = 0;
 
-    const splashImages = {
-      splash: [
-        {
-          path: '/images/splash1.png',
-          caption: 'An astonishing view of a mysterious landscape.',
-        },
-        {
-          path: '/images/splash2.png',
-          caption: 'An unexpected encounter with fascinating creatures.',
-        },
-        {
-          path: '/images/splash3.png',
-          caption: 'A mesmerizing glimpse into a hidden paradise.',
-        },
-        // Add more image paths and captions here
-      ],
-      secret: [
-        // Add secret folder image paths and captions here
-      ],
-    };
+const currentSplashImage = ref('');
+const currentCaption = ref('');
 
-    const currentSplashImage = ref(splashImages.splash[0].path);
-    const currentCaption = ref(splashImages.splash[0].caption);
-    let currentIndex = 0;
+async function getImages(folder) {
+  const imagesContext = require.context(
+    '../public/images/',
+    true,
+    /\.(png|jpe?g)$/
+  );
+  const images = imagesContext
+    .keys()
+    .filter((key) => key.startsWith(`./${folder}`));
+  return images.map((key) => ({
+    path: `/images${key.slice(1)}`,
+    caption: key.split('/').pop(),
+  }));
+}
 
-    function preloadImages() {
-      for (const folder in splashImages) {
-        splashImages[folder].forEach((image) => {
-          const img = new Image();
-          img.src = image.path;
-        });
-      }
-    }
+async function getRandomImage(folder) {
+  const images = await getImages(folder);
+  const randomIndex = Math.floor(Math.random() * images.length);
+  return images[randomIndex];
+}
 
-    function nextImage() {
-      currentIndex =
-        (currentIndex + 1) %
-        splashImages[splashFolders[currentFolderIndex]].length;
-      currentSplashImage.value =
-        splashImages[splashFolders[currentFolderIndex]][currentIndex].path;
-      currentCaption.value =
-        splashImages[splashFolders[currentFolderIndex]][currentIndex].caption;
-    }
+async function preloadImages() {
+  const { path, caption } = await getRandomImage('splash');
+  currentSplashImage.value = path;
+  currentCaption.value = caption;
+}
 
-    function changeFolder() {
-      currentFolderIndex = (currentFolderIndex + 1) % splashFolders.length;
-      currentIndex = 0;
-      currentSplashImage.value =
-        splashImages[splashFolders[currentFolderIndex]][currentIndex].path;
-      currentCaption.value =
-        splashImages[splashFolders[currentFolderIndex]][currentIndex].caption;
-    }
+async function nextImage() {
+  const { path, caption } = await getRandomImage(
+    splashFolders[currentFolderIndex]
+  );
+  currentSplashImage.value = path;
+  currentCaption.value = caption;
+}
 
-    function handleKeydown(event) {
-      if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-        nextImage();
-      } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-        changeFolder();
-      }
-    }
+function changeFolder() {
+  currentFolderIndex = (currentFolderIndex + 1) % splashFolders.length;
+  if (currentFolderIndex === 1) {
+    nextImage();
+  }
+}
 
-    onMounted(() => {
-      preloadImages();
-      document.addEventListener('keydown', handleKeydown);
-    });
+function handleKeydown(event) {
+  if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+    nextImage();
+  } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    changeFolder();
+  }
+}
 
-    return {
-      currentSplashImage,
-      currentCaption,
-    };
-  },
+onMounted(() => {
+  preloadImages();
+  document.addEventListener('keydown', handleKeydown);
 });
 </script>
+
 <style scoped lang="scss">
 .main-widget {
   height: 100%;
