@@ -5,18 +5,18 @@
         <HeaderWidget @changePreset="changePreset" />
       </q-header>
 
-      <q-page-container class="q-gutter-md">
+      <q-page-container>
         <q-layout>
           <q-drawer side="left" v-model="collapsedLeft" bordered>
-            <SidebarWidget :side="'left'" :preset="leftPreset" />
+            <SidebarWidget :side="'left'" :preset="TextInput" />
           </q-drawer>
 
           <q-page class="q-gutter-md">
-            <MainWidget :preset="mainPreset" />
+            <MainWidget :preset="SplashScreen" />
           </q-page>
 
           <q-drawer side="right" v-model="collapsedRight" bordered>
-            <SidebarWidget :side="'right'" :preset="rightPreset" />
+            <SidebarWidget :side="'right'" :preset="ChatWidget" />
           </q-drawer>
         </q-layout>
       </q-page-container>
@@ -44,11 +44,11 @@ export default defineComponent({
     FooterWidget,
   },
   setup() {
-    const collapsedRight = ref(false);
-    const collapsedLeft = ref(false);
-    const leftPreset = ref('ChatWidget');
+    const collapsedRight = ref(true);
+    const collapsedLeft = ref(true);
+    const leftPreset = ref('TextInput');
     const mainPreset = ref('SplashScreen');
-    const rightPreset = ref('TextInput');
+    const rightPreset = ref('ChatWidget');
 
     function changePreset({ side, preset }: { side: string; preset: string }) {
       if (side === 'left') {
