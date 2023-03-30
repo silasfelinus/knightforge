@@ -82,14 +82,14 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  position: relative;
 }
-
 .splash-screen {
   max-width: 100%;
   max-height: 100%;
-  height: auto;
+  height: 100%;
   width: auto;
-  object-fit: contain;
+  object-fit: cover;
   position: relative;
 }
 .caption {

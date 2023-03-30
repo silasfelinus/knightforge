@@ -11,9 +11,9 @@
             <SidebarWidget side="left" :preset="leftPreset" />
           </q-drawer>
 
-          <q-page class="middle-section">
+          <div class="middle-section">
             <MainWidget />
-          </q-page>
+          </div>
 
           <q-drawer side="right" v-model="collapsedRight" bordered>
             <SidebarWidget side="right" :preset="rightPreset" />
@@ -73,3 +73,13 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped lang="scss">
+.middle-section {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
