@@ -1,16 +1,32 @@
+<!-- SidebarWidget.vue -->
 <template>
-  <div class="sidebar" :class="preset">
+  <div class="sidebar-widget">
     <q-toolbar>
-      <q-toolbar-title>Sidebar - {{ preset }}</q-toolbar-title>
+      <q-toolbar-title>Sidebar - {{ side }}</q-toolbar-title>
     </q-toolbar>
+    <component :is="currentComponent"></component>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import ChatWidget from './ChatWidget.vue';
+import ToolChest from './ToolChest.vue';
+import PaintBox from './PaintBox.vue';
+import TextInput from './TextInput.vue';
+import DataUpload from './DataUpload.vue';
+import CardManager from './CardManager.vue';
 
 export default defineComponent({
   name: 'SidebarWidget',
+  components: {
+    ChatWidget,
+    ToolChest,
+    PaintBox,
+    TextInput,
+    DataUpload,
+    CardManager,
+  },
   props: {
     side: {
       type: String,
@@ -21,24 +37,31 @@ export default defineComponent({
       required: true,
     },
   },
+  computed: {
+    currentComponent() {
+      switch (this.preset) {
+        case 'preset1':
+          return ChatWidget;
+        case 'preset2':
+          return ToolChest;
+        case 'preset3':
+          return PaintBox;
+        case 'preset4':
+          return TextInput;
+        case 'preset5':
+          return DataUpload;
+        case 'preset6':
+          return CardManager;
+        default:
+          return null;
+      }
+    },
+  },
 });
 </script>
 
 <style scoped>
-.preset1 {
-  background-color: #f44336;
-}
-.preset2 {
-  background-color: #2196f3;
-}
-.preset3 {
-  background-color: #4caf50;
-}
-.preset4 {
-  background-color: #ffeb3b;
-}
-
-.sidebar {
+.sidebar-widget {
   height: 100%;
   padding: 16px;
 }

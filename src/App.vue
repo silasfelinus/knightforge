@@ -1,27 +1,27 @@
 <template>
   <div id="app">
-    <q-layout :view="$q.screen.gt.sm ? 'lHh Lpr lFf' : 'hHh'">
-      <q-header>
+    <q-layout :view="$q.screen.gt.sm ? 'lHh Lpr lFf' : 'hHh'" class="q-gutter-md">
+      <q-header class="q-gutter-sm">
         <HeaderWidget @toggleSidebar="toggleSidebar" />
       </q-header>
 
-      <q-page-container>
+      <q-page-container class="q-gutter-md">
         <q-layout>
           <q-drawer side="left" v-model="collapsedLeft" bordered>
-            <SidebarWidget side="left" :preset="leftPreset" />
+            <SidebarWidget side="left" :preset="'preset1'" />
           </q-drawer>
 
-          <q-page>
+          <q-page class="q-gutter-md">
             <MainWidget />
           </q-page>
 
           <q-drawer side="right" v-model="collapsedRight" bordered>
-            <SidebarWidget side="right" :preset="rightPreset" />
+            <SidebarWidget side="right" :preset="'preset3'" />
           </q-drawer>
         </q-layout>
       </q-page-container>
 
-      <q-footer>
+      <q-footer class="q-gutter-sm">
         <FooterWidget />
       </q-footer>
     </q-layout>
@@ -46,28 +46,24 @@ export default defineComponent({
   setup(_, { emit }) {
     const collapsedRight = ref(true);
     const collapsedLeft = ref(true);
-    const leftPreset = ref('preset1');
-    const rightPreset = ref('preset1');
 
     function toggleSidebar(side: string) {
-      if (side === 'right') {
-        collapsedRight.value = !collapsedRight.value;
-      } else if (side === 'left') {
-        collapsedLeft.value = !collapsedLeft.value;
-      } else if (side === 'leftPreset') {
-        const nextPreset = (parseInt(leftPreset.value.slice(-1)) % 4) + 1;
-        leftPreset.value = `preset${nextPreset}`;
-      } else if (side === 'rightPreset') {
-        const nextPreset = (parseInt(rightPreset.value.slice(-1)) % 4) + 1;
-        rightPreset.value = `preset${nextPreset}`;
+      switch (side) {
+        case 'right':
+          collapsedRight.value = !collapsedRight.value;
+          break;
+        case 'left':
+          collapsedLeft.value = !collapsedLeft.value;
+          break;
+        default:
+          // Handle other cases as needed
+          break;
       }
     }
 
     return {
       collapsedRight,
       collapsedLeft,
-      leftPreset,
-      rightPreset,
       toggleSidebar,
     };
   },
