@@ -1,63 +1,41 @@
 <template>
-  <q-header>
-    <q-toolbar>
-      <div class="header-widget">
-        <q-btn
-          class="toggle-button"
-          label="Toggle Left Presets"
-          @click="togglePresets('leftPreset')"
-        />
-        <q-btn
-          class="collapse-button"
-          label="Collapse Left"
-          @click="toggleSidebar('left')"
-        />
-        <q-btn
-          class="collapse-button"
-          label="Collapse Right"
-          @click="toggleSidebar('right')"
-        />
-        <q-btn
-          class="toggle-button"
-          label="Toggle Right Presets"
-          @click="togglePresets('rightPreset')"
-        />
-      </div>
-      <q-toolbar-title>KnightForge Wonderlab</q-toolbar-title>
-    </q-toolbar>
-  </q-header>
+  <div class="header-widget">
+    <div class="header-title">{{ title }}</div>
+    <NavigationWidget @changePreset="$emit('changePreset', $event)" />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import NavigationWidget from './nav/NavigationWidget.vue';
 
 export default defineComponent({
   name: 'HeaderWidget',
-  methods: {
-    toggleSidebar(side) {
-      this.$emit('toggleSidebar', side);
-    },
-    togglePresets(preset) {
-      this.$emit('toggleSidebar', preset);
+  components: {
+    NavigationWidget,
+  },
+  props: {
+    title: {
+      type: String,
+      default: 'Wonderforge',
     },
   },
 });
 </script>
 
-<style scoped lang="scss">
-.q-header {
-  background-color: $secondary;
-  color: $accent;
+<style scoped>
+.header-widget {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-.q-toolbar-title {
-  font-weight: bold;
-}
-.toggle-button {
-  background-color: blue;
-  color: white;
-}
-.collapse-button {
-  background-color: red;
-  color: white;
+
+.header-title {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  background: #f0f0f0;
+  border-bottom: 1px solid #e0e0e0;
 }
 </style>

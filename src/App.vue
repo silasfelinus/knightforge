@@ -1,15 +1,9 @@
 <template>
   <div id="app">
-    <q-layout
-      :view="$q.screen.gt.sm ? 'lHh Lpr lFf' : 'hHh'"
-      class="q-gutter-md"
-    >
-      <q-page-sticky position="top" class="q-gutter-sm">
-        <HeaderWidget
-          @toggleSidebar="toggleSidebar"
-          @togglePreset="togglePreset"
-        />
-      </q-page-sticky>
+    <q-layout :view="$q.screen.gt.sm ? 'lHh Lpr lFf' : 'hHh'">
+      <q-header>
+        <HeaderWidget @changePreset="changePreset" />
+      </q-header>
 
       <q-page-container class="q-gutter-md">
         <q-layout>
@@ -18,7 +12,7 @@
           </q-drawer>
 
           <q-page class="q-gutter-md">
-            <MainWidget />
+            <MainWidget :preset="mainPreset" />
           </q-page>
 
           <q-drawer side="right" v-model="collapsedRight" bordered>
@@ -27,9 +21,9 @@
         </q-layout>
       </q-page-container>
 
-      <q-page-sticky position="bottom" class="q-gutter-sm">
+      <q-footer>
         <FooterWidget />
-      </q-page-sticky>
+      </q-footer>
     </q-layout>
   </div>
 </template>
@@ -49,50 +43,35 @@ export default defineComponent({
     MainWidget,
     FooterWidget,
   },
-  setup(_, { emit }) {
+  setup() {
     const collapsedRight = ref(false);
     const collapsedLeft = ref(false);
-    const leftPreset = ref('preset1');
-    const rightPreset = ref('preset3');
+    const leftPreset = ref('ChatWidget');
+    const mainPreset = ref('SplashScreen');
+    const rightPreset = ref('TextInput');
 
-    function togglePreset(side: string) {
+    function changePreset({ side, preset }: { side: string; preset: string }) {
       if (side === 'left') {
-        changePreset(leftPreset);
+        leftPreset.value = preset;
+      } else if (side === 'main') {
+        mainPreset.value = preset;
       } else if (side === 'right') {
-        changePreset(rightPreset);
+        rightPreset.value = preset;
       }
-    }
-
-    function toggleSidebar(side: string) {
-      switch (side) {
-        case 'right':
-          collapsedRight.value = !collapsedRight.value;
-          break;
-        case 'left':
-          collapsedLeft.value = !collapsedLeft.value;
-          break;
-        default:
-          // Handle other cases as needed
-          break;
-      }
-    }
-
-    function changePreset(preset: Ref<string>) {
-      const nextPresetNumber = (parseInt(preset.value.slice(-1)) % 6) + 1;
-      preset.value = `preset${nextPresetNumber}`;
     }
 
     return {
       collapsedRight,
       collapsedLeft,
       leftPreset,
+      mainPreset,
       rightPreset,
-      toggleSidebar,
-      togglePreset,
+      changePreset,
     };
   },
 });
 </script>
+
 <style scoped>
 #app {
   display: flex;
@@ -103,6 +82,7 @@ export default defineComponent({
 q-header,
 q-footer {
   z-index: 1000;
+  background: var(--q-color-primary);
 }
 
 q-page-container {

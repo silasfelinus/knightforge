@@ -39,17 +39,17 @@ export default defineComponent({
   computed: {
     currentComponent() {
       switch (this.preset) {
-        case 'preset1':
+        case 'ChatWidget':
           return ChatWidget;
-        case 'preset2':
+        case 'ToolChest':
           return ToolChest;
-        case 'preset3':
+        case 'PaintBox':
           return PaintBox;
-        case 'preset4':
+        case 'TextInput':
           return TextInput;
-        case 'preset5':
+        case 'DataUpload':
           return DataUpload;
-        case 'preset6':
+        case 'CardManager':
           return CardManager;
         default:
           return null;
@@ -58,6 +58,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style scoped>
 .sidebar-widget {
   height: 100%;
