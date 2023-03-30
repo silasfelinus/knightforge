@@ -2,10 +2,9 @@
   <transition name="slide-down">
     <div class="main-widget" @click="nextImage">
       <q-img
-        class="splash-screen"
+        class="splash-screen cover"
         :src="currentSplashImage"
         :alt="currentCaption"
-        :ratio="16 / 9"
       >
         <div class="caption">{{ currentCaption }}</div>
       </q-img>
@@ -21,54 +20,51 @@ let currentFolderIndex = 0;
 
 const currentSplashImage = ref('');
 const currentCaption = ref('');
+let currentIndex = 0;
 
-async function getImages(folder) {
-  const imagesContext = require.context(
-    '../public/images/',
-    true,
-    /\.(png|jpe?g)$/
-  );
-  const images = imagesContext
-    .keys()
-    .filter((key) => key.startsWith(`./${folder}`));
-  return images.map((key) => ({
-    path: `/images${key.slice(1)}`,
-    caption: key.split('/').pop(),
-  }));
+function getImages(folder) {
+  const images = [];
+  for (let i = 0; i < 10; i++) {
+    const filename = `${folder}${String(i).padStart(2, '0')}.png`;
+    images.push({
+      path: `/images/${folder}/${filename}`,
+      caption: filename,
+    });
+  }
+  return images;
 }
 
-async function getRandomImage(folder) {
-  const images = await getImages(folder);
+function getRandomImage(folder) {
+  const images = getImages(folder);
   const randomIndex = Math.floor(Math.random() * images.length);
   return images[randomIndex];
 }
 
-async function preloadImages() {
-  const { path, caption } = await getRandomImage('splash');
+function preloadImages() {
+  const { path, caption } = getRandomImage('splash');
   currentSplashImage.value = path;
   currentCaption.value = caption;
+  currentIndex = parseInt(caption.slice(-6, -4));
 }
 
-async function nextImage() {
-  const { path, caption } = await getRandomImage(
-    splashFolders[currentFolderIndex]
-  );
-  currentSplashImage.value = path;
-  currentCaption.value = caption;
+function nextImage() {
+  const images = getImages(splashFolders[currentFolderIndex]);
+  currentIndex = (currentIndex + 1) % images.length;
+  currentSplashImage.value = images[currentIndex].path;
+  currentCaption.value = images[currentIndex].caption;
 }
 
 function changeFolder() {
   currentFolderIndex = (currentFolderIndex + 1) % splashFolders.length;
-  if (currentFolderIndex === 1) {
-    nextImage();
-  }
+  currentIndex = 0;
+  nextImage();
 }
 
 function handleKeydown(event) {
   if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-    nextImage();
-  } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     changeFolder();
+  } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    nextImage();
   }
 }
 
@@ -80,6 +76,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .main-widget {
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -90,9 +87,11 @@ onMounted(() => {
 .splash-screen {
   max-width: 100%;
   max-height: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
   position: relative;
 }
-
 .caption {
   position: absolute;
   bottom: 10px;

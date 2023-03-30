@@ -11,7 +11,7 @@
             <SidebarWidget side="left" :preset="leftPreset" />
           </q-drawer>
 
-          <q-page class="drawer-content">
+          <q-page class="middle-section">
             <MainWidget />
           </q-page>
 
