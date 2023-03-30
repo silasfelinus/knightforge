@@ -1,6 +1,6 @@
 <template>
-  <q-col cols="12" md="3" class="toolshed-section">
-    <!-- Insert your ToolShed content here -->
+  <q-col cols="12" md="3" class="tool-chest">
+    <!-- Insert your ToolChest content here -->
     <QuasarButton label="Click Me!" @click="$emit('button-click')" />
     <RedSwitch v-model="switchValue" @change="onSwitchChange" />
   </q-col>
@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import QuasarButton from '../unused/QuasarButton.vue';
+import QuasarButton from './QuasarButton.vue';
 import RedSwitch from './RedSwitch.vue';
 
 export default defineComponent({
@@ -31,7 +31,6 @@ export default defineComponent({
   },
 });
 </script>
-
 
 <style lang="scss">
 .toolshed-section {

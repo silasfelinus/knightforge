@@ -1,4 +1,3 @@
-<!-- SidebarWidget.vue -->
 <template>
   <div class="sidebar-widget">
     <q-toolbar>
@@ -10,12 +9,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ChatWidget from './ChatWidget.vue';
-import ToolChest from './ToolChest.vue';
-import PaintBox from './PaintBox.vue';
-import TextInput from './TextInput.vue';
-import DataUpload from './DataUpload.vue';
-import CardManager from './CardManager.vue';
+import ChatWidget from './chat/ChatWidget.vue';
+import ToolChest from './lab/ToolChest.vue';
+import PaintBox from './paint/PaintBox.vue';
+import TextInput from './lab/TextInput.vue';
+import DataUpload from './lab/DataUpload.vue';
+import CardManager from './cards/CardManager.vue';
 
 export default defineComponent({
   name: 'SidebarWidget',
@@ -59,10 +58,40 @@ export default defineComponent({
   },
 });
 </script>
-
 <style scoped>
 .sidebar-widget {
   height: 100%;
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+q-toolbar {
+  background-color: var(--q-color-primary);
+  color: var(--q-color-primary-contrast);
+}
+
+/* You can customize the styling for each preset component below */
+.chat-widget {
+  /* Add styling for the ChatWidget component */
+}
+
+.tool-chest {
+  /* Add styling for the ToolChest component */
+}
+
+.paint-box {
+  /* Add styling for the PaintBox component */
+}
+
+.text-input {
+  /* Add styling for the TextInput component */
+}
+
+.data-upload {
+  /* Add styling for the DataUpload component */
+}
+
+.card-manager {
+  /* Add styling for the CardManager component */
 }
 </style>
