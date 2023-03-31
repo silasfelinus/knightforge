@@ -43,6 +43,7 @@ export default createStore<State>({
       [Preset.Default]: { title: 'Default', bgColor: 'white' },
       // Add more preset settings here
     },
+    headerTitle: 'Wonderforge',
   },
   getters: {
     widgetSettings: (state) => (preset: Preset) => {
@@ -61,10 +62,16 @@ export default createStore<State>({
     toggleVisibility(state, side: Side) {
       toggleVisibility(state, side);
     },
-    updateWidgetTitle(state, { preset, title }: { preset: Preset; title: string }) {
+    updateWidgetTitle(
+      state,
+      { preset, title }: { preset: Preset; title: string }
+    ) {
       state.widgetSettings[preset].title = title;
     },
-    updateWidgetBgColor(state, { preset, bgColor }: { preset: Preset; bgColor: string }) {
+    updateWidgetBgColor(
+      state,
+      { preset, bgColor }: { preset: Preset; bgColor: string }
+    ) {
       state.widgetSettings[preset].bgColor = bgColor;
     },
   },

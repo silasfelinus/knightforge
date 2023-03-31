@@ -1,4 +1,3 @@
-<!-- src/App.vue -->
 <template>
   <div id="app">
     <q-layout :view="$q.screen.gt.sm ? 'lHh Lpr lFf' : 'hHh'">
@@ -9,19 +8,19 @@
       <q-page-container>
         <q-layout>
           <ScreenWidget
-            side="left"
-            size="small"
-            orientation="vertical"
+            :side="'left'"
+            :size="'small'"
+            :orientation="'vertical'"
           ></ScreenWidget>
           <ScreenWidget
-            side="center"
-            size="large"
-            orientation="square"
+            :side="'main'"
+            :size="'large'"
+            :orientation="'square'"
           ></ScreenWidget>
           <ScreenWidget
-            side="right"
-            size="small"
-            orientation="vertical"
+            :side="'right'"
+            :size="'small'"
+            :orientation="'vertical'"
           ></ScreenWidget>
         </q-layout>
       </q-page-container>
@@ -34,7 +33,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useStore } from 'vuex';
 import HeaderWidget from './components/HeaderWidget.vue';
 import ScreenWidget from './components/ScreenWidget.vue';
 import FooterWidget from './components/FooterWidget.vue';
@@ -47,7 +47,13 @@ export default defineComponent({
     FooterWidget,
   },
   setup() {
-    return {};
+    const store = useStore();
+
+    return {
+      leftScreen: computed(() => store.state.leftScreen),
+      mainScreen: computed(() => store.state.mainScreen),
+      rightScreen: computed(() => store.state.rightScreen),
+    };
   },
 });
 </script>

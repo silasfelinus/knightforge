@@ -29,4 +29,5 @@ export interface State {
   mainScreen: Screen;
   rightScreen: Screen;
   widgetSettings: Record<Preset, WidgetSettings>;
+  headerTitle: string;
 }

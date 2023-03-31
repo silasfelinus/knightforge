@@ -6,7 +6,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useStore } from 'vuex';
 import RemoteWidget from './RemoteWidget.vue';
 
 export default defineComponent({
@@ -14,11 +15,14 @@ export default defineComponent({
   components: {
     RemoteWidget,
   },
-  props: {
-    title: {
-      type: String,
-      default: 'Wonderforge',
-    },
+  setup() {
+    const store = useStore();
+
+    const title = computed(() => store.state.headerTitle);
+
+    return {
+      title,
+    };
   },
 });
 </script>

@@ -43,11 +43,11 @@ export default defineComponent({
     const currentPreset = computed(() => {
       return store.state[
         side.value === 'left'
-          ? 'leftPreset'
+          ? 'leftScreen'
           : side.value === 'main'
-          ? 'mainPreset'
-          : 'rightPreset'
-      ];
+          ? 'mainScreen'
+          : 'rightScreen'
+      ].preset;
     });
 
     const currentComponent = ref<Component | null>(null);
