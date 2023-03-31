@@ -11,7 +11,7 @@ import { defineComponent, computed, toRefs } from 'vue';
 import { useStore } from 'vuex';
 import { Side } from '../store/types';
 import ScreenCard from './ScreenCard.vue';
-import UnderConstruction from './UnderConstruction.vue';
+import UnderConstruction from '../pages/UnderConstruction.vue';
 
 export default defineComponent({
   name: 'ScreenWidget',
