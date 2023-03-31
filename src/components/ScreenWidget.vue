@@ -2,8 +2,7 @@
   <div class="screen-widget" :class="[size, orientation]">
     <q-card class="widget-card">
       <q-toolbar>
-        <q-toolbar-title>Screen</q-toolbar-title>
-        <RemoteWidget :side="side" />
+        <q-toolbar-title>KnightForge</q-toolbar-title>
       </q-toolbar>
       <q-card-section>
         <component :is="currentComponent || 'div'"></component>
@@ -15,14 +14,11 @@
 <script lang="ts">
 import { defineComponent, computed, ref, watch, toRefs } from 'vue';
 import { useStore } from 'vuex';
-import RemoteWidget from './RemoteWidget.vue';
 import { Side } from '../store/types';
 
 export default defineComponent({
   name: 'ScreenWidget',
-  components: {
-    RemoteWidget,
-  },
+  components: {},
   props: {
     side: {
       type: String as () => Side,
@@ -70,7 +66,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .screen-widget {
   display: flex;
   flex-direction: column;

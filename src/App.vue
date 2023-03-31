@@ -1,21 +1,25 @@
 <template>
   <div id="app">
     <HeaderWidget />
-    <ScreenWidget
-      side="left"
-      :preset="leftScreen.preset"
-      :visible="leftScreen.visible"
-    />
-    <ScreenWidget
-      side="main"
-      :preset="mainScreen.preset"
-      :visible="mainScreen.visible"
-    />
-    <ScreenWidget
-      side="right"
-      :preset="rightScreen.preset"
-      :visible="rightScreen.visible"
-    />
+    <q-page-container>
+      <q-layout view="hHh lpR fFf">
+        <ScreenWidget
+          side="left"
+          :preset="leftScreen.preset"
+          :visible="leftScreen.visible"
+        />
+        <ScreenWidget
+          side="main"
+          :preset="mainScreen.preset"
+          :visible="mainScreen.visible"
+        />
+        <ScreenWidget
+          side="right"
+          :preset="rightScreen.preset"
+          :visible="rightScreen.visible"
+        />
+      </q-layout>
+    </q-page-container>
     <FooterWidget />
   </div>
 </template>
@@ -59,14 +63,20 @@ q-footer {
   background: $primary;
 }
 
+q-layout,
+q-page {
+  flex: 1;
+}
+
 q-page-container {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-q-layout,
-q-page {
+q-layout__view {
   flex: 1;
+  display: flex;
+  flex-direction: row;
 }
 </style>

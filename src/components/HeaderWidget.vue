@@ -29,7 +29,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .header-widget {
   background: $primary;
   border-bottom: 1px solid $secondary;
