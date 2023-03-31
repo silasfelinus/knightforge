@@ -8,9 +8,9 @@ I have the following structure and I'm trying to follow current best practices:
 WonderForge
 
 [INTENT]
-An inviting sandbox to make  and chain programmatic api calls
+An inviting sandbox to make and chain programmatic API calls with a friendly, pleasing interface that also serves as a portfolio showpiece.
 
-[Dev Environment]
+[DEV ENVIRONMENT]
 Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
 
 [MODULES]
@@ -25,44 +25,39 @@ fontawesome-v6
 [ADDITIONAL GOALS]
 Step-Based Save System
 User Logins
-night Mode
-livechat
-openai secure key storage
-chatgpt chat
-build suite of playspace tools to showcase playspace like superball cannon, graffiti sprapaint, secret 2d adventure mode, bouncing balls, destructile screen effects, anything that is silly and fun. I can use more ideas!
-Toolshed -Draggable, droppable, and resizable icons such as drop-down selections, buttons, wires, and data displays
-
+Night Mode
+Live Chat
+OpenAI Secure Key Storage
+ChatGPT Chat
+Suite of PlaySpace Tools (e.g., Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects, etc.)
+Toolshed - Draggable, Droppable, and Resizable Icons (e.g., Drop-down Selections, Buttons, Wires, Data Displays)
 [Supported File Types]
 txt, yaml, json, jpg, png, wmv, mp4, db, pdf
 
 [NOTES]
-All colors should reference their Quasar preset variables: $primary, $secondary, $accent, $dark, $dark-page, $positive, $negative, $info, $warning
-Use a Quasar component if a reasonable option is available
-Components should rely on the Vuex store for preset and screen names.
-Use Proper typing for most-current TS standards
+Use Quasar preset variables for colors
+Use Quasar components when possible
+Components should use Vuex store for preset and screen names
+Adhere to current TypeScript standards
+Maintain code consistency and avoid brittle code
+No duplicate code or redundant functions
 
-We have:
+[File Structure]
 Installed Quasar CLI, Vue3, SASS
 Created App.vue, HeaderWidget.vue, ScreenWidget.vue, and FooterWidget.vue
-created variable references by calling <style lang="scss">
-Created NavigationWidget to control screens and presets referenced by VueX store.
-current Presets are: 'Default', 'ChatWidget', 'ToolChest', 'PaintBox', 'TextInput', 'DataUpload', 'CardManager'
-Please aim for maximum code consistency. avoiding the creation of brittle code due to unnecessary reliance on hardcoded information.
-Components should only be aware of preset or screen names if it's essential for their functionality.
-Any new projects should use the FUNCTIONWidget naming scheme., eg ChatWidget
-subcomponents should start with new function and end in parent, eg LiveChat
-
-[images]
-./public/images/secret/secret00.png-secret09.png
-./public/images/splash/splash00.png-splash09.png
+Set up variable references and SCSS styling
+Created NavigationWidget with Vuex store for screen and preset management
+Established naming conventions for components and subcomponents
+Imported images for secret and splash screens
 
 [LAYOUT NOTES]
-Screens have been essentialized, what was two sidebars and main screen are now three instances of ScreenWidget
-ScreenWidgets should never trespass header and footer space.
-Components are separate except for VueX interactions
-FooterWidget.vue is always on the bottom, stretched to both sides
+ScreenWidgets should not overlap with header and footer
+Components should interact only through Vuex
+FooterWidget.vue should always be at the bottom, stretched to both sides
 
-./components/labspace/ (programmatic api chain project)
+[COMPONENTS]
+LabSpace (API Chain Project)
+
 CodeCard.vue
 CardCable.vue
 CardManager.vue
@@ -70,12 +65,12 @@ CardMat.vue
 TextInput.vue
 RedSwitch.vue
 DataUpload.vue
+WonderForge (Development Limbo)
 
-./components/wonderforge/ (components in development limbo)
 LabSpaceWidget.vue
 ToolBox.vue
+PlaySpace (Silly Widgets, Games, Social Chat)
 
-./components/playSpace (silly widgets, games, and social chat)
 Paintbox.vue
 PaintCanvas.vue
 SplashWidget.vue
@@ -85,7 +80,7 @@ ChatWidget.vue
 ./src/main.ts
 ./src/store/index.ts
 ./src/types.ts
-./src/App.vue (qlayout:  HeaderWidget; gutter[ScreenWidget(left,small,vertical), ScreenWidget(center,large,square), Screenwidget(right,small,vertical)]; FooterWidget. )
+./src/App.vue (qlayout: HeaderWidget; gutter[ScreenWidget(left, small, vertical), ScreenWidget(center, large, square), ScreenWidget(right, small, vertical)]; FooterWidget.)
 ./src/css/quasar.variables.scss
 ./src/components/HeaderWidget.vue
 ./src/components/RemoteWidget.vue
@@ -93,5 +88,12 @@ ChatWidget.vue
 ./src/components/FooterWidget.vue
 
 [STATUS]
+Reiterating through files, fixing errors to achieve basic layout functions
 
-Re-iterating through those files, fixing errors until we meet basic layout functions
+[REQUEST, PLEASE]
+I'm attaching my index.ts, please examine with a fine-toothed comb, and suggest improvements. All types are to be referenced in types.ts, we want no unnecessary code duplication:
+
+
+
+
+
