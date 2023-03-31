@@ -1,6 +1,10 @@
 <template>
-  <div v-if="visible" :class="['screen-widget', side]">
-    <component :is="presetComponentMap[preset]" />
+  <div class="screen-widget" :class="[size, orientation]">
+    <q-toolbar>
+      <q-toolbar-title>Screen</q-toolbar-title>
+      <RemoteWidget :side="side" />
+    </q-toolbar>
+    <component :is="currentComponent?.value || 'div'"></component>
   </div>
 </template>
 
@@ -25,12 +29,24 @@ export default defineComponent({
     const preset = computed(() => screen.value.preset);
     const visible = computed(() => screen.value.visible);
 
-    const presetComponentMap = {
-      // Add your preset components here, e.g.
-      // 'Preset.TextInput': TextInputComponent,
-      // 'Preset.SplashScreen': SplashScreenComponent,
-      // ...
-    };
+    const currentComponent = ref<Component | null>(null);
+
+
+
+    watch(
+      currentPreset,
+      async (preset) => {
+        if (!preset) {
+          currentComponent.value = null;
+          return;
+        }
+
+        // Dynamic import of the component based on the preset
+        const component = await import(`./components/${preset}.vue`);
+        currentComponent.value = component.default;
+      },
+      { immediate: true }
+    );
 
     return {
       preset,
