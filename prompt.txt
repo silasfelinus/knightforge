@@ -1,4 +1,4 @@
-Hi, ChatGPT! I'm Silas. I have a vue.js project.
+Hi, ChatGPT! I'm Silas Knight. I have a vue.js Quasar project.
 I'm building a gui development lab that I can use to develop future tools.
 My goal is to make something that will allow me to chain api calls to natural language processors
 with a friendly and pleasing interface that also looks great as a portfolio showpiece.
@@ -42,30 +42,27 @@ Components should rely on the Vuex store for preset and screen names.
 
 We have:
 Installed Quasar CLI, Vue3, SASS
-Created App.vue, HeaderWidget.vue, SideWidget.vue, and FooterWidget.vue
+Created App.vue, HeaderWidget.vue, ScreenWidget.vue, and FooterWidget.vue
 created variable references by calling <style lang="scss">
 Created NavigationWidget to control screens and presets referenced by VueX store.
-current Presets are: 'ChatWidget', 'ToolChest', 'PaintBox', 'TextInput', 'DataUpload', 'CardManager'
+current Presets are: 'Default', 'ChatWidget', 'ToolChest', 'PaintBox', 'TextInput', 'DataUpload', 'CardManager'
 Please aim for maximum code consistency. avoiding the creation of brittle code due to unnecessary reliance on hardcoded information.
 Components should only be aware of preset or screen names if it's essential for their functionality.
 Any new projects should use the FUNCTIONWidget naming scheme., ie ChatWidget
 subcomponents should start with new function and end in parent, ie LiveChat
 
-
-
 [images]
 ./public/images/secret/secret00.png-secret09.png
-./public/images/splash/splasg00.png-splash09.png
+./public/images/splash/splash00.png-splash09.png
 
 [LAYOUT NOTES]
 Mainwidget.vue, the mainscreen display, should never bleed into the other areas
-RightScreen, MainScreen, and LeftScreen (aka, two SideWidgets and MainWidget)
-should never leave their windows, and especially never trespass header and footer space.
+Screens have been essentialized, what was two sidebars and main screen are now three instances of ScreenWidget
+ScreenWidgets should never leave their screens, and especially never trespass header and footer space.
 Components are separate except for VueX interactions
 FooterWidget.vue is always on the bottom, stretched to both sides
 
-
-./components/codelab/ (programmatic api chain project)
+./components/labspace/ (programmatic api chain project)
 CodeCard.vue
 CardCable.vue
 CardManager.vue
@@ -78,7 +75,7 @@ DataUpload.vue
 LabSpaceWidget.vue
 ToolBox.vue
 
-./components/PlaySpace (silly widgets, games, and social chat)
+./components/playSpace (silly widgets, games, and social chat)
 Paintbox.vue
 PaintCanvas.vue
 SplashWidget.vue
@@ -87,7 +84,7 @@ ChatWidget.vue
 [ITERATION]
 ./src/main.ts
 ./src/store/index.ts
-./src/App.vue (qlayout that holds a HeaderWidget, a ScreenWidget surrounded by a gutter, and a FooterWidget. )
+./src/App.vue (qlayout that holds a HeaderWidget, ScreenWidget(left,small,vertical), ScreenWidget(center,large,square), Screenwidget(right,small,vertical) surrounded by a gutter, then FooterWidget. )
 ./src/css/quasar.variables.scss
 ./src/components/HeaderWidget.vue
 ./src/components/RemoteWidget.vue
@@ -96,8 +93,4 @@ ChatWidget.vue
 
 [STATUS]
 
-Re-iterating through those files, until we meet basic layout functions.
-
-The RemoteWidget is not curerntly controlling the screens.
-
-Current Goal:
+Re-iterating through those files, until we meet basic layout functions. Can you give me a basic outline for how to approach the tasks when I wake up tomorrow?

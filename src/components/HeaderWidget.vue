@@ -1,20 +1,18 @@
 <template>
   <div class="header-widget">
     <div class="header-title">{{ title }}</div>
-    <NavigationWidget @changePreset="$emit('changePreset', $event)" />
+    <RemoteWidget />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import NavigationWidget from './RemoteWidget.vue';
-
-eventBus.emit('changePreset', { side, preset });
+import RemoteWidget from './RemoteWidget.vue';
 
 export default defineComponent({
   name: 'HeaderWidget',
   components: {
-    NavigationWidget,
+    RemoteWidget,
   },
   props: {
     title: {

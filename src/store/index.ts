@@ -1,4 +1,3 @@
-// src/store/index.ts
 import { createStore } from 'vuex';
 
 const presetOptions = [
@@ -48,6 +47,24 @@ export default createStore({
     leftVisible: true,
     mainVisible: true,
     rightVisible: true,
+    widgetSettings: {
+      TextInput: { title: 'Text Input', bgColor: 'white' },
+      SplashScreen: { title: 'Splash Screen', bgColor: 'white' },
+      ChatWidget: { title: 'Chat Widget', bgColor: 'white' },
+      SplashWidget: { title: 'Splash Widget', bgColor: 'white' },
+      Lab: { title: 'Lab', bgColor: 'white' },
+      ChatGPT: { title: 'ChatGPT', bgColor: 'white' },
+      Paint: { title: 'Paint', bgColor: 'white' },
+      Playspace: { title: 'Playspace', bgColor: 'white' },
+      Settings: { title: 'Settings', bgColor: 'white' },
+      Default: { title: 'Default', bgColor: 'white' },
+      // Add more preset settings here
+    },
+  },
+  getters: {
+    widgetSettings: (state) => (preset:string) => {
+      return state.widgetSettings[preset];
+    },
   },
   mutations: {
     changePreset(state, { side, preset }) {
@@ -65,6 +82,20 @@ export default createStore({
     },
     toggleVisibility(state, side) {
       toggleVisibility(state, side);
+    },
+    updateWidgetTitle(state, { preset, title }) {
+      state.widgetSettings[preset].title = title;
+    },
+    updateWidgetBgColor(state, { preset, bgColor }) {
+      state.widgetSettings[preset].bgColor = bgColor;
+    },
+  },
+  actions: {
+    updateWidgetTitle({ commit }, { preset, title }) {
+      commit('updateWidgetTitle', { preset, title });
+    },
+    updateWidgetBgColor({ commit }, { preset, bgColor }) {
+      commit('updateWidgetBgColor', { preset, bgColor });
     },
   },
 });

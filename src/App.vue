@@ -8,7 +8,21 @@
 
       <q-page-container>
         <q-layout>
-          <ScreenWidget></ScreenWidget>
+          <ScreenWidget
+            side="left"
+            size="small"
+            orientation="vertical"
+          ></ScreenWidget>
+          <ScreenWidget
+            side="center"
+            size="large"
+            orientation="square"
+          ></ScreenWidget>
+          <ScreenWidget
+            side="right"
+            size="small"
+            orientation="vertical"
+          ></ScreenWidget>
         </q-layout>
       </q-page-container>
 
