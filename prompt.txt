@@ -33,10 +33,8 @@ openai secure key storage
 chatgpt chat
 build suite of playspace tools to showcase playspace like superball cannon, graffiti sprapaint, secret 2d adventure mode, bouncing balls, destructile screen effects, anything that is silly and fun. I can use more ideas!
 Toolshed -Draggable, droppable, and resizable icons such as drop-down selections, buttons, wires, and data displays
-Toolshed -Draggable, droppable, and resizable icons such as drop-down selections, buttons, wires, and data displays
 
 [Supported File Types]
-txt, yaml, json, jpg, png, wmv, mp4, db, pdf
 txt, yaml, json, jpg, png, wmv, mp4, db, pdf
 
 [NOTES]
@@ -97,6 +95,86 @@ ChatWidget.vue
 
 [STATUS]
 We're iterating through each file in the project, ensuring the outputted code adheres to our desired standards and achieves the required functionality. The entry point is App.vue, where we will focus on refining layout sections, previously it was handling communication between screens, any leftover code for this function is undesired.
-We are now reiterating back over those files to align them to base functionality and to add the outdated files back in.
+We are now reiterating back over those files to align them to base functionality and to add the outdated files back in., ad to fix errors until we meet basic layout functions
 
-Re-iterating through those files, fixing errors until we meet basic layout functions
+[ASSIGNMENT]
+Return this outline, polished for clarity and consistency, so that in subsequent transfers to you, ChatGPT, it is optimized to provide the clearest information in the best order. Feel free to adjust or merge sections, but do not change any variables or file names. If you have a more efficient way to report files in a way that's readable to you, please use it. I am concerned about token count and having a project overvue that is accurate and updated, easy to access when it is needed, and easily bypassed when it is not.
+
+[Project]
+WonderForge
+
+[INTENT]
+An inviting sandbox to make and chain programmatic API calls with a friendly, pleasing interface that also serves as a portfolio showpiece.
+
+[Dev Environment]
+Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
+
+[MODULES]
+Vue 3, TypeScript, SASS, Quasar, Vuex
+
+[STANDARDS]
+Material Design, Composition API, Prettify, SASS
+
+[ICONSET]
+fontawesome-v6
+
+[ADDITIONAL GOALS]
+
+Step-Based Save System
+User Logins
+Night Mode
+Live Chat
+OpenAI Secure Key Storage
+ChatGPT Chat
+Suite of PlaySpace Tools (e.g., Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects, etc.)
+Toolshed - Draggable, Droppable, and Resizable Icons (e.g., Drop-down Selections, Buttons, Wires, Data Displays)
+[Supported File Types]
+txt, yaml, json, jpg, png, wmv, mp4, db, pdf
+
+[NOTES]
+
+Use Quasar preset variables for colors
+Use Quasar components when possible
+Components should use Vuex store for preset and screen names
+Adhere to current TypeScript standards
+Maintain code consistency and avoid brittle code
+[File Structure]
+
+Installed Quasar CLI, Vue3, SASS
+Created App.vue, HeaderWidget.vue, ScreenWidget.vue, FooterWidget.vue
+Set up variable references and SCSS styling
+Created NavigationWidget with Vuex store for screen and preset management
+Established naming conventions for components and subcomponents
+Imported images for secret and splash screens
+[LAYOUT NOTES]
+
+ScreenWidgets should not overlap with header and footer
+Components should interact only through Vuex
+FooterWidget.vue should always be at the bottom, stretched to both sides
+[COMPONENTS]
+
+LabSpace (API Chain Project)
+
+CodeCard.vue
+CardCable.vue
+CardManager.vue
+CardMat.vue
+TextInput.vue
+RedSwitch.vue
+DataUpload.vue
+WonderForge (Development Limbo)
+
+LabSpaceWidget.vue
+ToolBox.vue
+PlaySpace (Silly Widgets, Games, Social Chat)
+
+Paintbox.vue
+PaintCanvas.vue
+SplashWidget.vue
+ChatWidget.vue
+[ITERATION]
+
+Iterate through project files, refine layout, functionality, and ensure adherence to standards
+Revisit files to update and fix any errors
+Entry point: App.vue
+[ASSIGNMENT]
