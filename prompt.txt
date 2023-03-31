@@ -55,16 +55,16 @@ Components should interact only through Vuex
 FooterWidget.vue should always be at the bottom, stretched to both sides
 
 [COMPONENTS]
-LabSpace/ (API Chain Project)
-CodeCard.vue - stylized cards to represent natural language processor apiscalls
+./components/labSpace/ (API Chain Project)
 CardCable.vue - logic to connect  Codecards for API chain processing
 CardManager.vue - create/edit/delete codecards
 CardMat.vue - droppable space for codecards
-TextInput.vue - stylized input field for text
-RedSwitch.vue - gui toggle
+CodeCard.vue - stylized cards to represent natural language processor api calls
 DataUpload.vue - drag-and-drop local file upload
+RedSwitch.vue - gui toggle
+TextInput.vue - stylized input field for text
 
-PlaySpace/ (Silly Widgets, Games, Social Chat)
+./components/playSpace/ (Silly Widgets, Games, Social Chat)
 Paintbox.vue - toolbox for paintbrushes
 PaintCanvas.vue - gui space for paint effects
 SplashWidget.vue - slideshow image viewer

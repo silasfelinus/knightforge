@@ -1,7 +1,5 @@
 <!-- src/components/RemoteWidget.vue -->
-<!-- src/components/RemoteWidget.vue -->
 <template>
-  <div class="remote-widget">
   <div class="remote-widget">
     <q-card v-for="(screen, index) in screens" :key="index" class="q-ma-md">
       <q-card-section>
@@ -36,7 +34,6 @@ import { defineComponent, computed, ref } from 'vue';
 import { useStore } from 'vuex';
 
 export default defineComponent({
-  name: 'RemoteWidget',
   name: 'RemoteWidget',
   setup() {
     const store = useStore();

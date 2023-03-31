@@ -1,22 +1,31 @@
 <template>
-  <q-footer>
+  <q-header>
     <q-toolbar>
-      <q-toolbar-title>Footer</q-toolbar-title>
+      <q-toolbar-title>{{ title }}</q-toolbar-title>
+      <RemoteWidget />
     </q-toolbar>
-  </q-footer>
+  </q-header>
 </template>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
+import RemoteWidget from './RemoteWidget.vue';
 
 export default defineComponent({
-  name: 'FooterWidget',
+  name: 'HeaderWidget',
+  components: {
+    RemoteWidget,
+  },
+  props: {
+    title: {
+      type: String,
+      default: 'Wonderforge',
+    },
+  },
 });
 </script>
-
 <style lang="scss">
-.q-footer {
-  background-color: $secondary;
+.q-header {
+  background-color: $primary;
   color: $accent;
 }
 </style>
