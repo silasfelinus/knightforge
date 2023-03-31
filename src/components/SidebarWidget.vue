@@ -11,12 +11,12 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
-import ToolBox from './labspace/ToolBox.vue';
-import PaintBox from './playspace/PaintBox.vue';
-import TextInput from './labspace/TextInput.vue';
-import DataUpload from './labspace/DataUpload.vue';
-import CardManager from './cardspace/CardManager.vue';
-import ChatWidget from './playspace/ChatWidget.vue';
+import ToolBox from './wonderforge/ToolBox.vue';
+import PaintBox from './playlab/PaintBox.vue';
+import TextInput from './codelab/TextInput.vue';
+import DataUpload from './codelab/DataUpload.vue';
+import CardManager from './codelab/CardManager.vue';
+import ChatWidget from './playlab/ChatWidget.vue';
 
 export default defineComponent({
   name: 'SidebarWidget',
@@ -38,10 +38,10 @@ export default defineComponent({
     const store = useStore();
 
     const preset = computed(() => {
-  if (props.side === 'left') return store.getters.leftPreset;
-  if (props.side === 'right') return store.getters.rightPreset;
-  return null;
-});
+      if (props.side === 'left') return store.getters.leftPreset;
+      if (props.side === 'right') return store.getters.rightPreset;
+      return null;
+    });
 
     const currentComponent = computed(() => {
       const componentMap = {

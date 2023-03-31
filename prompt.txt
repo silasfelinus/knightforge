@@ -5,10 +5,10 @@ with a friendly and pleasing interface that also looks great as a portfolio show
 I have the following structure and I'm trying to follow current best practices:
 
 [Project]
-KnightForge Wonderlab
+WonderForge
 
 [INTENT]
-An inviting and fun sandbox to make programmatic api calls
+An inviting sandbox to make  and chain programmatic api calls
 
 [Dev Environment]
 Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
@@ -22,7 +22,6 @@ Material Design, Composition API, Prettify, SASS
 [ICONSET]
 fontawesome-v6
 
-
 [ADDITIONAL GOALS]
 Step-Based Save System
 User Logins
@@ -31,16 +30,15 @@ livechat
 openai secure key storage
 chatgpt chat
 build suite of playspace tools to showcase playspace like superball cannon, graffiti sprapaint, secret 2d adventure mode, bouncing balls, destructile screen effects, anything that is silly and fun. I can use more ideas!
-
-Toolshed
-Draggable, droppable, and resizable icons such as drop-down selections, buttons, wires, and data displays
+Toolshed -Draggable, droppable, and resizable icons such as drop-down selections, buttons, wires, and data displays
 
 [Supported File Types]
-txt, yaml, json, jpg, png
+txt, yaml, json, jpg, png, wmv, mp4, db, pdf
 
 [NOTES]
 All colors should reference their Quasar preset variables: $primary, $secondary, $accent, $dark, $dark-page, $positive, $negative, $info, $warning
 Use a Quasar component if a reasonable option is available
+Components should rely on the Vuex store for preset and screen names.
 
 We have:
 Installed Quasar CLI, Vue3, SASS
@@ -54,18 +52,18 @@ Any primary components should follow the FUNCTIONWidget naming scheme., ie ChatW
 subcomponents should start with new function and end in parent, ie LiveChat
 
 
-"We are working through each file in the project, ensuring the outputted code adheres to our desired standards and achieves the required functionality. The entry point is App.vue, where we will focus on refining layout sections, previously it was handling communication between screens, any leftover code for this function is undesired.
- Components should rely on the Vuex store for preset and screen names.
+
 
 [images]
 ./public/images/secret/secret00.png-secret09.png
 ./public/images/splash/splasg00.png-splash09.png
 
-
-[LAYOUT]
-Mainwidget.vue (the mainscreen display-should never bleed into the other areas)
-RightScreen, MainScreen, and LeftScreen (aka, two SideWidgets and a MainWidget)
-FooterWidget.vue (always on the bottom, stretched to both sides)
+[LAYOUT NOTES]
+Mainwidget.vue, the mainscreen display, should never bleed into the other areas
+RightScreen, MainScreen, and LeftScreen (aka, two SideWidgets and MainWidget)
+should never leave their windows, and especially never trespass header and footer space.
+Components are separate except for VueX interactions
+FooterWidget.vue is always on the bottom, stretched to both sides
 
 
 ./components/codelab/ (programmatic api chain project)
@@ -96,4 +94,10 @@ We have looked at:
 ./src/components/RemoteWidget.vue
 ./src/components/SideWidget.vue
 
-We are now reiterating back over those files to allign them to base layout functionality and to add the outdated back in
+[STATUS]
+We're iterating through each file in the project, ensuring the outputted code adheres to our desired standards and achieves the required functionality. The entry point is App.vue, where we will focus on refining layout sections, previously it was handling communication between screens, any leftover code for this function is undesired.
+We are now reiterating back over those files to align them to base functionality and to add the outdated files back in.
+
+The RemoteWidget is not curerntly controlling the screens. App.vue needs to be remodeled, there seems no reason for it to track the preset changes now that we have VueX, correct? I want many components to have access to the presets, and I don't want to be constrained to a three screen setup in the middle. I want one ScreenWidget call, which tells it to load (top, middle, bottom), which tell it to load our HeaderWidget code, MainWidget code, and footer Widget code.
+
+Please iterate that idea so it matches the current design specs and offer suggestions for the next step
