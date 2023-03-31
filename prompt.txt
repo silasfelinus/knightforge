@@ -114,4 +114,4 @@ All types are to be referenced in types.ts, use index.ts for state management, s
 no unnecessary code duplication, find variables programmatically whenever possible
 
 [REQUEST, PLEASE]
-Attaching old App.vue, please revise and polish, including compatibility with VueX store
+please revise and polish attached code, including compatibility with VueX store
