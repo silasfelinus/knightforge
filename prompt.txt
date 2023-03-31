@@ -4,6 +4,7 @@ I have the following structure:
 
 [Project]
 WonderForge
+WonderForge
 
 [INTENT]
 An inviting sandbox to make and chain programmatic API calls with a friendly, pleasing interface that also serves as a portfolio showpiece.
