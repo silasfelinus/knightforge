@@ -4,20 +4,32 @@
       <q-toolbar-title>Screen</q-toolbar-title>
       <RemoteWidget :side="side" />
     </q-toolbar>
-    <component :is="currentComponent?.value || 'div'"></component>
+    <component :is="currentComponent || 'div'"></component>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, toRefs } from 'vue';
+import { defineComponent, computed, ref, watch, toRefs } from 'vue';
 import { useStore } from 'vuex';
+import RemoteWidget from './RemoteWidget.vue';
 import { Side } from '../store/types';
 
 export default defineComponent({
   name: 'ScreenWidget',
+  components: {
+    RemoteWidget,
+  },
   props: {
     side: {
       type: String as () => Side,
+      default: '',
+    },
+    size: {
+      type: String,
+      default: '',
+    },
+    orientation: {
+      type: String,
       default: '',
     },
   },
@@ -25,13 +37,12 @@ export default defineComponent({
     const store = useStore();
     const { side } = toRefs(props);
 
-    const screen = computed(() => store.state[`${side.value}Screen`]);
-    const preset = computed(() => screen.value.preset);
-    const visible = computed(() => screen.value.visible);
+    const currentPreset = computed(() => {
+      const screenKey = `${side.value}Screen`;
+      return store.state[screenKey]?.preset;
+    });
 
-    const currentComponent = ref<Component | null>(null);
-
-
+    const currentComponent = ref(null);
 
     watch(
       currentPreset,
@@ -49,9 +60,7 @@ export default defineComponent({
     );
 
     return {
-      preset,
-      visible,
-      presetComponentMap,
+      currentComponent,
     };
   },
 });
