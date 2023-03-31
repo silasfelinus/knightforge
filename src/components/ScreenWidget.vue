@@ -33,7 +33,6 @@ export default defineComponent({
     };
 
     return {
-      side: side.value,
       preset,
       visible,
       presetComponentMap,
