@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import HeaderWidget from './components/HeaderWidget.vue';
 import ScreenWidget from './components/ScreenWidget.vue';
 import FooterWidget from './components/FooterWidget.vue';
@@ -47,13 +47,7 @@ export default defineComponent({
     FooterWidget,
   },
   setup() {
-    const collapsedRight = ref(true);
-    const collapsedLeft = ref(true);
-
-    return {
-      collapsedRight,
-      collapsedLeft,
-    };
+    return {};
   },
 });
 </script>

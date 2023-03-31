@@ -1,6 +1,35 @@
 import { createStore } from 'vuex';
 
-const presetOptions = [
+type Preset =
+  | 'TextInput'
+  | 'SplashScreen'
+  | 'ChatWidget'
+  | 'SplashWidget'
+  | 'Lab'
+  | 'ChatGPT'
+  | 'Paint'
+  | 'Playspace'
+  | 'Settings'
+  | 'Default';
+
+type Side = 'left' | 'main' | 'right';
+
+interface WidgetSettings {
+  title: string;
+  bgColor: string;
+}
+
+interface State {
+  leftPreset: Preset;
+  mainPreset: Preset;
+  rightPreset: Preset;
+  leftVisible: boolean;
+  mainVisible: boolean;
+  rightVisible: boolean;
+  widgetSettings: Record<Preset, WidgetSettings>;
+}
+
+const presetOptions: Preset[] = [
   'TextInput',
   'SplashScreen',
   'ChatWidget',
@@ -14,12 +43,12 @@ const presetOptions = [
   /* Add more presets here */
 ];
 
-function findNextPreset(currentPreset) {
+function findNextPreset(currentPreset: Preset): Preset {
   const index = presetOptions.indexOf(currentPreset);
   return presetOptions[(index + 1) % presetOptions.length];
 }
 
-function changePreset(state, side, preset) {
+function changePreset(state: State, side: Side, preset: Preset) {
   if (side === 'left') {
     state.leftPreset = preset;
   } else if (side === 'main') {
@@ -29,7 +58,7 @@ function changePreset(state, side, preset) {
   }
 }
 
-function toggleVisibility(state, side) {
+function toggleVisibility(state: State, side: Side) {
   if (side === 'left') {
     state.leftVisible = !state.leftVisible;
   } else if (side === 'main') {
@@ -39,7 +68,7 @@ function toggleVisibility(state, side) {
   }
 }
 
-export default createStore({
+export default createStore<State>({
   state: {
     leftPreset: 'TextInput',
     mainPreset: 'SplashScreen',
@@ -62,7 +91,7 @@ export default createStore({
     },
   },
   getters: {
-    widgetSettings: (state) => (preset:string) => {
+    widgetSettings: (state) => (preset: Preset) => {
       return state.widgetSettings[preset];
     },
   },

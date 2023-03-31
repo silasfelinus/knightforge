@@ -4,14 +4,23 @@
       <q-toolbar-title>Screen</q-toolbar-title>
       <RemoteWidget :side="side" />
     </q-toolbar>
-    <component :is="currentComponent.value"></component>
+    <component
+      v-if="currentComponent.value"
+      :is="currentComponent.value"
+    ></component>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, watch } from 'vue';
+import { defineComponent, computed, ref, watch, toRefs } from 'vue';
 import { useStore } from 'vuex';
 import RemoteWidget from './RemoteWidget.vue';
+
+interface Props {
+  side: Side;
+  size: string;
+  orientation: string;
+}
 
 export default defineComponent({
   name: 'ScreenWidget',
@@ -32,11 +41,11 @@ export default defineComponent({
       default: '',
     },
   },
-  setup(props) {
-    const store = useStore();
+  setup(props: Props) {
+    const store = useStore<State>();
     const { side } = toRefs(props);
 
-    const currentPreset = computed(() => {
+    const currentPreset = computed<Preset>(() => {
       return store.state[
         side.value === 'left'
           ? 'leftPreset'
@@ -46,11 +55,11 @@ export default defineComponent({
       ];
     });
 
-    const currentComponent = ref(null);
+    const currentComponent = ref<null | Vue.Component>(null);
 
     watch(
       currentPreset,
-      async (preset) => {
+      async (preset: Preset) => {
         if (!preset) {
           currentComponent.value = null;
           return;

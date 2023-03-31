@@ -84,6 +84,7 @@ ChatWidget.vue
 [ITERATION]
 ./src/main.ts
 ./src/store/index.ts
+./src/types.ts
 ./src/App.vue (qlayout that holds a HeaderWidget, ScreenWidget(left,small,vertical), ScreenWidget(center,large,square), Screenwidget(right,small,vertical) surrounded by a gutter, then FooterWidget. )
 ./src/css/quasar.variables.scss
 ./src/components/HeaderWidget.vue
@@ -93,4 +94,4 @@ ChatWidget.vue
 
 [STATUS]
 
-Re-iterating through those files, until we meet basic layout functions. Can you give me a basic outline for how to approach the tasks when I wake up tomorrow?
+Re-iterating through those files, fixing errors until we meet basic layout functions
