@@ -1,8 +1,10 @@
 <template>
-  <div class="header-widget">
-    <div class="header-title">{{ title }}</div>
-    <RemoteWidget />
-  </div>
+  <q-header class="header-widget">
+    <q-toolbar>
+      <q-toolbar-title class="header-title">{{ title }}</q-toolbar-title>
+      <RemoteWidget />
+    </q-toolbar>
+  </q-header>
 </template>
 
 <script lang="ts">
@@ -29,17 +31,12 @@ export default defineComponent({
 
 <style scoped>
 .header-widget {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  background: $primary;
+  border-bottom: 1px solid $secondary;
 }
 
 .header-title {
-  width: 100%;
-  text-align: center;
   font-size: 1.5rem;
-  padding: 0.5rem;
-  background: #f0f0f0;
-  border-bottom: 1px solid #e0e0e0;
+  font-weight: 500;
 }
 </style>

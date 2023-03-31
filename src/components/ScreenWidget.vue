@@ -1,10 +1,14 @@
 <template>
   <div class="screen-widget" :class="[size, orientation]">
-    <q-toolbar>
-      <q-toolbar-title>Screen</q-toolbar-title>
-      <RemoteWidget :side="side" />
-    </q-toolbar>
-    <component :is="currentComponent || 'div'"></component>
+    <q-card class="widget-card">
+      <q-toolbar>
+        <q-toolbar-title>Screen</q-toolbar-title>
+        <RemoteWidget :side="side" />
+      </q-toolbar>
+      <q-card-section>
+        <component :is="currentComponent || 'div'"></component>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
 
@@ -65,3 +69,21 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.screen-widget {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.widget-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+q-card-section {
+  flex: 1;
+}
+</style>
