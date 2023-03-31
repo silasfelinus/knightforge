@@ -9,27 +9,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, watch, toRefs, Component } from 'vue';
+import { defineComponent, computed, toRefs } from 'vue';
 import { useStore } from 'vuex';
-import RemoteWidget from './RemoteWidget.vue';
 import { Side } from '../store/types';
 
 export default defineComponent({
   name: 'ScreenWidget',
-  components: {
-    RemoteWidget,
-  },
   props: {
     side: {
       type: String as () => Side,
-      default: '',
-    },
-    size: {
-      type: String,
-      default: '',
-    },
-    orientation: {
-      type: String,
       default: '',
     },
   },
@@ -37,15 +25,9 @@ export default defineComponent({
     const store = useStore();
     const { side } = toRefs(props);
 
-    const currentPreset = computed(() => {
-      return store.state[
-        side.value === 'left'
-          ? 'leftScreen'
-          : side.value === 'main'
-          ? 'mainScreen'
-          : 'rightScreen'
-      ].preset;
-    });
+    const screen = computed(() => store.state[`${side.value}Screen`]);
+    const preset = computed(() => screen.value.preset);
+    const visible = computed(() => screen.value.visible);
 
     const currentComponent = ref<Component | null>(null);
 
@@ -67,7 +49,10 @@ export default defineComponent({
     );
 
     return {
-      currentComponent,
+      side: side.value,
+      preset,
+      visible,
+      presetComponentMap,
     };
   },
 });
