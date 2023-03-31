@@ -14,7 +14,7 @@ An inviting and fun sandbox to make programmatic api calls
 Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
 
 [MODULES]
-Vue 3, TypeScript, SAS,S Quasar
+Vue 3, TypeScript, SASS, Quasar, Vuex
 
 [STANDARDS]
 Material Design, Composition API, Prettify, SASS
@@ -22,16 +22,6 @@ Material Design, Composition API, Prettify, SASS
 [ICONSET]
 fontawesome-v6
 
-[Desired Upgrade]
-slide-down transition page with center button, changing to one of the following depending on the splash image:
-splash1.png:  Labspace component holding a button, two text input fields, and an output display
-splash2.png: labspace component holding one giant image display above a collection of navigation arrows
-splash3.png: labspace component holding video player
-splash4.png, labspace component holding the navigation links from a yaml
-splash5.png, labspace component holding a randomized combination of containers
-Splash6.png: labspace component holding a webgallery
-splash7.png, labspace holding a drop-down selector of urls from our navigation links, and an iframe that displays the url selected
-splash8.png, labspace holding a RedButton
 
 [ADDITIONAL GOALS]
 Step-Based Save System
@@ -52,10 +42,23 @@ txt, yaml, json, jpg, png
 All colors should reference their Quasar preset variables: $primary, $secondary, $accent, $dark, $dark-page, $positive, $negative, $info, $warning
 Use a Quasar component if a reasonable option is available
 
-Steps Taken
+We have:
 Installed Quasar CLI, Vue3, SASS
-Created App.vue, HeaderWidget.vue, collapsible left and right sidebars, and FooterWidget.vue
-Began code for ToolshedWidget.vue, LabspaceWidget.vue, and ChatWidget.vue.
-Want to extrapolate out code for a SideWidget.vue that can be conveniently called for left or right, with full or partial collapse, and different appearance affects
-Please aim for maximum readability, use comments when appropriate to mark future areas that can be developed.
+Created App.vue, HeaderWidget.vue, SideWidget.vue, and FooterWidget.vue
+created variable references by calling <style lang="scss">
+Distinguished "Leftscreen", "Mainscreen", and "RightScreen", with options to toggle or switch individual presets in HeaderWidget.
+current Presets are: 'ChatWidget', 'ToolChest', 'PaintBox', 'TextInput', 'DataUpload', 'CardManager'
+Please aim for maximum readability.
+Remember to utilize VueX store and maintain consistent preset names.
+
+We're going file by file, and getting back outputted code that meets desired standards and functions. app.vue is our entry point, I want to work on our layout sections, then the areas that need presets.
+Preset and Screen names should only be stored in index.ts. Same with default preset names for each widget.
+components shouldn't know preset or screen names unless necessary.
+
+We have looked at:
+./src/main.ts
+./src/store/index.ts
+./src/App.vue
+./src/components/App.vue
+./src/components/NavigationWidget.vue
 

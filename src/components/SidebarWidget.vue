@@ -11,7 +11,7 @@
 import { defineComponent } from 'vue';
 import ChatWidget from './chat/ChatWidget.vue';
 import ToolChest from './lab/ToolChest.vue';
-import PaintBox from './paint/PaintBox.vue';
+import PaintBox from './lab/PaintBox.vue';
 import TextInput from './lab/TextInput.vue';
 import DataUpload from './lab/DataUpload.vue';
 import CardManager from './cards/CardManager.vue';

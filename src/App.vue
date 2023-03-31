@@ -1,22 +1,23 @@
+<!-- src/App.vue -->
 <template>
   <div id="app">
     <q-layout :view="$q.screen.gt.sm ? 'lHh Lpr lFf' : 'hHh'">
       <q-header>
-        <HeaderWidget @changePreset="changePreset" />
+        <HeaderWidget />
       </q-header>
 
       <q-page-container>
         <q-layout>
           <q-drawer side="left" v-model="collapsedLeft" bordered>
-            <SidebarWidget :side="'left'" :preset="TextInput" />
+            <SidebarWidget :side="'left'" :preset="leftPreset" />
           </q-drawer>
 
           <q-page class="q-gutter-md">
-            <MainWidget :preset="SplashScreen" />
+            <MainWidget :preset="mainPreset" />
           </q-page>
 
           <q-drawer side="right" v-model="collapsedRight" bordered>
-            <SidebarWidget :side="'right'" :preset="ChatWidget" />
+            <SidebarWidget :side="'right'" :preset="rightPreset" />
           </q-drawer>
         </q-layout>
       </q-page-container>
@@ -29,7 +30,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
+import { useStore } from 'vuex';
 import HeaderWidget from './components/HeaderWidget.vue';
 import SidebarWidget from './components/SidebarWidget.vue';
 import MainWidget from './components/MainWidget.vue';
@@ -44,21 +46,13 @@ export default defineComponent({
     FooterWidget,
   },
   setup() {
+    const store = useStore();
     const collapsedRight = ref(true);
     const collapsedLeft = ref(true);
-    const leftPreset = ref('TextInput');
-    const mainPreset = ref('SplashScreen');
-    const rightPreset = ref('ChatWidget');
 
-    function changePreset({ side, preset }: { side: string; preset: string }) {
-      if (side === 'left') {
-        leftPreset.value = preset;
-      } else if (side === 'main') {
-        mainPreset.value = preset;
-      } else if (side === 'right') {
-        rightPreset.value = preset;
-      }
-    }
+    const leftPreset = computed(() => store.getters.leftPreset);
+    const mainPreset = computed(() => store.getters.mainPreset);
+    const rightPreset = computed(() => store.getters.rightPreset);
 
     return {
       collapsedRight,
@@ -66,7 +60,6 @@ export default defineComponent({
       leftPreset,
       mainPreset,
       rightPreset,
-      changePreset,
     };
   },
 });
