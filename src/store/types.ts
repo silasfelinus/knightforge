@@ -9,6 +9,7 @@ export enum Preset {
   Playspace = 'Playspace',
   Settings = 'Settings',
   Default = 'Default',
+  UnderConstruction = 'UnderConstruction',
   // Add more presets here
 }
 

@@ -1,21 +1,6 @@
 import { createStore } from 'vuex';
 import { Preset, Side, State } from './types';
 
-const presetValues: Preset[] = Object.values(Preset);
-
-function findNextPreset(currentPreset: Preset): Preset {
-  const index = presetValues.indexOf(currentPreset);
-  return presetValues[(index + 1) % presetValues.length];
-}
-
-function changePreset(state: State, side: Side, preset: Preset) {
-  state[`${side}Screen`].preset = preset;
-}
-
-function toggleVisibility(state: State, side: Side) {
-  state[`${side}Screen`].visible = !state[`${side}Screen`].visible;
-}
-
 export default createStore<State>({
   state: {
     leftScreen: {
@@ -41,7 +26,7 @@ export default createStore<State>({
       [Preset.Playspace]: { title: 'Playspace', bgColor: 'white' },
       [Preset.Settings]: { title: 'Settings', bgColor: 'white' },
       [Preset.Default]: { title: 'Default', bgColor: 'white' },
-      // Add more preset settings here
+      [Preset.UnderConstruction]: { title: 'Under Construction', bgColor: 'white' },
     },
     headerTitle: 'Wonderforge',
   },
@@ -52,35 +37,39 @@ export default createStore<State>({
   },
   mutations: {
     changePreset(state, { side, preset }: { side: Side; preset: Preset }) {
-      changePreset(state, side, preset);
-    },
-    nextPreset(state, side: Side) {
-      const currentPreset = state[`${side}Screen`].preset;
-      const nextPreset = findNextPreset(currentPreset);
-      changePreset(state, side, nextPreset);
+      state[`${side}Screen`].preset = preset;
     },
     toggleVisibility(state, side: Side) {
-      toggleVisibility(state, side);
-    },
-    updateWidgetTitle(
-      state,
-      { preset, title }: { preset: Preset; title: string }
-    ) {
-      state.widgetSettings[preset].title = title;
-    },
-    updateWidgetBgColor(
-      state,
-      { preset, bgColor }: { preset: Preset; bgColor: string }
-    ) {
-      state.widgetSettings[preset].bgColor = bgColor;
+      state[`${side}Screen`].visible = !state[`${side}Screen`].visible;
     },
   },
   actions: {
-    updateWidgetTitle({ commit }, { preset, title }) {
-      commit('updateWidgetTitle', { preset, title });
+    changePreset({ commit }, { side, preset }: { side: Side; preset: Preset }) {
+      commit('changePreset', { side, preset });
     },
-    updateWidgetBgColor({ commit }, { preset, bgColor }) {
-      commit('updateWidgetBgColor', { preset, bgColor });
+    nextPreset({ state, dispatch }, side: Side) {
+      const currentPreset = state[`${side}Screen`].preset;
+      const presetValues: Preset[] = Object.values(Preset);
+      const index = presetValues.indexOf(currentPreset);
+      const nextPreset = presetValues[(index + 1) % presetValues.length];
+      dispatch('changePreset', { side, preset: nextPreset });
+    },
+    toggleVisibility({ commit }, side: Side) {
+      commit('toggleVisibility', side);
+    },
+    updateWidgetTitle(
+      { state, commit },
+      { preset, title }: { preset: Preset; title: string }
+    ) {
+      state.widgetSettings[preset].title = title;
+      commit('widgetSettings', state.widgetSettings);
+    },
+    updateWidgetBgColor(
+      { state, commit },
+      { preset, bgColor }: { preset: Preset; bgColor: string }
+    ) {
+      state.widgetSettings[preset].bgColor = bgColor;
+      commit('widgetSettings', state.widgetSettings);
     },
   },
 });

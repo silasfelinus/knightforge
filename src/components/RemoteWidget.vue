@@ -1,4 +1,3 @@
-<!-- src/components/RemoteWidget.vue -->
 <template>
   <div class="remote-widget">
     <q-card v-for="(screen, index) in screens" :key="index" class="q-ma-md">
@@ -30,39 +29,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent } from 'vue';
+import useRemoteWidget from './useRemoteWidget';
 
 export default defineComponent({
   name: 'RemoteWidget',
   setup() {
-    const store = useStore();
-
-    const screens = computed(() => [
-      { name: 'Left Sidebar', side: 'left' },
-      { name: 'Main Widget', side: 'main' },
-      { name: 'Right Sidebar', side: 'right' },
-    ]);
-
-    const presetOptions = ref(store.getters.presets);
-
-    const selectedPresets = [
-      store.state.leftPreset,
-      store.state.mainPreset,
-      store.state.rightPreset,
-    ];
-
-    function changePreset(side: string, preset: string) {
-      store.commit('changePreset', { side, preset });
-    }
-
-    function nextPreset(side: string) {
-      store.dispatch('nextPreset', side);
-    }
-
-    function toggleVisibility(side: string) {
-      store.dispatch('toggleVisibility', side);
-    }
+    const {
+      screens,
+      presetOptions,
+      selectedPresets,
+      changePreset,
+      nextPreset,
+      toggleVisibility,
+    } = useRemoteWidget();
 
     return {
       screens,

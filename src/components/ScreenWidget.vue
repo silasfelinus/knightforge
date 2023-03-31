@@ -1,35 +1,27 @@
 <template>
-  <div class="screen-widget" :class="[size, orientation]">
-    <q-card class="widget-card">
-      <q-toolbar>
-        <q-toolbar-title>KnightForge</q-toolbar-title>
-      </q-toolbar>
-      <q-card-section>
-        <component :is="currentComponent || 'div'"></component>
-      </q-card-section>
-    </q-card>
+  <div class="screen-widget">
+    <ScreenCard :widgetTitle="widgetTitle">
+      <component :is="currentComponent" />
+    </ScreenCard>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, watch, toRefs } from 'vue';
+import { defineComponent, computed, toRefs } from 'vue';
 import { useStore } from 'vuex';
 import { Side } from '../store/types';
+import ScreenCard from './ScreenCard.vue';
+import UnderConstruction from './UnderConstruction.vue';
 
 export default defineComponent({
   name: 'ScreenWidget',
-  components: {},
+  components: {
+    ScreenCard,
+    UnderConstruction,
+  },
   props: {
     side: {
       type: String as () => Side,
-      default: '',
-    },
-    size: {
-      type: String,
-      default: '',
-    },
-    orientation: {
-      type: String,
       default: '',
     },
   },
@@ -42,44 +34,33 @@ export default defineComponent({
       return store.state[screenKey]?.preset;
     });
 
-    const currentComponent = ref(null);
+    const widgetTitle = computed(() => {
+      const preset = currentPreset.value;
+      return store.getters.widgetSettings(preset)?.title;
+    });
 
-    watch(
-      currentPreset,
-      async (preset) => {
-        if (!preset) {
-          currentComponent.value = null;
-          return;
-        }
-
-        // Dynamic import of the component based on the preset
-        const component = await import(`./components/${preset}.vue`);
-        currentComponent.value = component.default;
-      },
-      { immediate: true }
-    );
+    const currentComponent = computed(() => {
+      switch (currentPreset.value) {
+        case 'underConstruction':
+          return 'UnderConstruction';
+        // Add other cases for other presets as you create them.
+        default:
+          return 'UnderConstruction';
+      }
+    });
 
     return {
+      widgetTitle,
       currentComponent,
     };
   },
 });
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .screen-widget {
   display: flex;
   flex-direction: column;
   margin: 1rem;
-}
-
-.widget-card {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-q-card-section {
-  flex: 1;
 }
 </style>
