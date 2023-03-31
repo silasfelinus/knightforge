@@ -1,8 +1,6 @@
-Hi, ChatGPT! I'm Silas Knight. I have a vue.js Quasar project.
-I'm building a gui development lab that I can use to develop future tools.
-My goal is to make something that will allow me to chain api calls to natural language processors
-with a friendly and pleasing interface that also looks great as a portfolio showpiece.
-I have the following structure and I'm trying to follow current best practices:
+Hi, ChatGPT! I'm Silas Knight.
+I'm building a gui development lab using Vue3, Quasar, and VueX.
+I have the following structure:
 
 [Project]
 WonderForge
@@ -40,7 +38,8 @@ Use Quasar components when possible
 Components should use Vuex store for preset and screen names
 Adhere to current TypeScript standards
 Maintain code consistency and avoid brittle code
-No duplicate code or redundant functions
+No duplicate code or redundant functions.
+Don't repeat variable declarations, find information programmatically
 
 [File Structure]
 Installed Quasar CLI, Vue3, SASS
@@ -76,7 +75,7 @@ PaintCanvas.vue
 SplashWidget.vue
 ChatWidget.vue
 
-[ITERATION]
+[MAIN ITERATION FILES]
 ./src/main.ts
 ./src/store/index.ts
 ./src/types.ts
@@ -88,10 +87,10 @@ ChatWidget.vue
 ./src/components/FooterWidget.vue
 
 [STATUS]
-Reiterating through files, fixing errors to achieve basic layout functions
+Re-iterating through files, fixing errors to achieve basic layout functions
 
 [REQUEST, PLEASE]
-I'm attaching my index.ts, please examine with a fine-toothed comb, and suggest improvements. All types are to be referenced in types.ts, we want no unnecessary code duplication:
+I'm attaching my index.ts, please examine with a fine-toothed comb, and suggest improvements. All types are to be referenced in types.ts, no unnecessary code duplication:
 
 
 

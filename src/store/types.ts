@@ -1,16 +1,20 @@
-export type Preset =
-  | 'TextInput'
-  | 'SplashScreen'
-  | 'ChatWidget'
-  | 'SplashWidget'
-  | 'Lab'
-  | 'ChatGPT'
-  | 'Paint'
-  | 'Playspace'
-  | 'Settings'
-  | 'Default';
+export const presetOptions = [
+  'TextInput',
+  'SplashScreen',
+  'ChatWidget',
+  'SplashWidget',
+  'Lab',
+  'ChatGPT',
+  'Paint',
+  'Playspace',
+  'Settings',
+  'Default',
+  /* Add more presets here */
+] as const;
 
-export type Side = 'left' | 'main' | 'right' | 'center';
+export type Preset = (typeof presetOptions)[number];
+
+export type Side = 'left' | 'main' | 'right';
 
 export interface WidgetSettings {
   title: string;
