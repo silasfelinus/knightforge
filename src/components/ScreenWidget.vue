@@ -12,12 +12,12 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
-import ChatWidget from './chat/ChatWidget.vue';
-import ToolChest from './lab/ToolChest.vue';
-import PaintBox from './lab/PaintBox.vue';
-import TextInput from './lab/TextInput.vue';
-import DataUpload from './lab/DataUpload.vue';
-import CardManager from './cards/CardManager.vue';
+import ChatWidget from './playspace/ChatWidget.vue';
+import ToolChest from './wonderforge/ToolChest.vue';
+import PaintBox from './playspace/PaintBox.vue';
+import TextInput from './labspace/TextInput.vue';
+import DataUpload from './labspace/DataUpload.vue';
+import CardManager from './labspace/CardManager.vue';
 import RemoteWidget from './RemoteWidget.vue';
 
 export default defineComponent({

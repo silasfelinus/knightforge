@@ -8,8 +8,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import QuasarButton from './QuasarButton.vue';
-import RedSwitch from './RedSwitch.vue';
+import QuasarButton from '../playspace/QuasarButton.vue';
+import RedSwitch from '../labspace/RedSwitch.vue';
 
 export default defineComponent({
   name: 'ToolshedWidget',

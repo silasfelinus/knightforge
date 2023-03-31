@@ -84,181 +84,20 @@ PaintCanvas.vue
 SplashWidget.vue
 ChatWidget.vue
 
-We have looked at:
+[ITERATION]
 ./src/main.ts
 ./src/store/index.ts
-./src/App.vue
+./src/App.vue (qlayout that holds a HeaderWidget, a ScreenWidget surrounded by a gutter, and a FooterWidget. )
 ./src/css/quasar.variables.scss
 ./src/components/HeaderWidget.vue
 ./src/components/RemoteWidget.vue
-./src/components/SideWidget.vue
+./src/components/ScreenWidget.vue
+./src/components/FooterWidget.vue
 
 [STATUS]
-We're iterating through each file in the project, ensuring the outputted code adheres to our desired standards and achieves the required functionality. Files with notes:
-App.vue - qlayout that holds a HeaderWidget, a ScreenWidget surrounded by a gutter, and a FooterWidget. Each called with a "Default" preset, and registered in index.ts
 
-I'm including the old code, Please only retain what is vital for base function
+Re-iterating through those files, until we meet basic layout functions.
 
-The RemoteWidget is not curerntly controlling the screens. App.vue needs to be remodeled, there seems no reason for it to track the preset changes now that we have VueX, correct? I want many components to have access to the presets, and I don't want to be constrained to a three screen setup in the middle. I want one ScreenWidget call, which tells it to load (top, middle, bottom), which tell it to load our HeaderWidget code, MainWidget code, and footer Widget code.
+The RemoteWidget is not curerntly controlling the screens.
 
 Current Goal:
-Refactor App.vue to use Vuex for preset management:
-Since you're using Vuex for state management, you should remove any code related to preset management in App.vue and instead rely on Vuex for managing and accessing the presets. This will make your components more modular and prevent unnecessary coupling.
-
-[App.vue]
-<!-- src/App.vue -->
-<template>
-  <div id="app">
-    <q-layout :view="$q.screen.gt.sm ? 'lHh Lpr lFf' : 'hHh'">
-      <q-header>
-        <HeaderWidget />
-      </q-header>
-
-      <q-page-container>
-        <q-layout>
-          <q-drawer side="left" v-model="collapsedLeft" bordered>
-            <SidebarWidget :side="'left'" :preset="leftPreset" />
-          </q-drawer>
-
-          <q-page class="q-gutter-md">
-            <MainWidget :preset="mainPreset" />
-          </q-page>
-
-          <q-drawer side="right" v-model="collapsedRight" bordered>
-            <SidebarWidget :side="'right'" :preset="rightPreset" />
-          </q-drawer>
-        </q-layout>
-      </q-page-container>
-
-      <q-footer>
-        <FooterWidget />
-      </q-footer>
-    </q-layout>
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
-import { useStore } from 'vuex';
-import HeaderWidget from './components/HeaderWidget.vue';
-import SidebarWidget from './components/SidebarWidget.vue';
-import MainWidget from './components/MainWidget.vue';
-import FooterWidget from './components/FooterWidget.vue';
-
-export default defineComponent({
-  name: 'App',
-  components: {
-    HeaderWidget,
-    SidebarWidget,
-    MainWidget,
-    FooterWidget,
-  },
-  setup() {
-    const store = useStore();
-    const collapsedRight = ref(true);
-    const collapsedLeft = ref(true);
-
-    const leftPreset = computed(() => store.getters.leftPreset);
-    const mainPreset = computed(() => store.getters.mainPreset);
-    const rightPreset = computed(() => store.getters.rightPreset);
-
-    return {
-      collapsedRight,
-      collapsedLeft,
-      leftPreset,
-      mainPreset,
-      rightPreset,
-    };
-  },
-});
-</script>
-
-<style scoped>
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-q-header,
-q-footer {
-  z-index: 1000;
-  background: var(--q-color-primary);
-}
-
-q-page-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-q-layout,
-q-page {
-  flex: 1;
-}
-</style>
-
-
-
-[index.ts]
-// src/store/index.ts
-import { createStore } from 'vuex';
-
-const presetOptions = [
-  'TextInput',
-  'SplashScreen',
-  'ChatWidget',
-  'ChatWidget',
-  'SplashWidget',
-  'Lab',
-  'ChatGPT',
-  'Paint',
-  'Playspace',
-  'Settings',
-  /* Add more presets here */
-];
-
-function findNextPreset(currentPreset) {
-  const index = presetOptions.indexOf(currentPreset);
-  return presetOptions[(index + 1) % presetOptions.length];
-}
-
-export default createStore({
-  state: {
-    leftPreset: 'TextInput',
-    mainPreset: 'SplashScreen',
-    rightPreset: 'ChatWidget',
-    leftVisible: true,
-    mainVisible: true,
-    rightVisible: true,
-  },
-  mutations: {
-    changePreset(state, { side, preset }) {
-      if (side === 'left') {
-        state.leftPreset = preset;
-      } else if (side === 'main') {
-        state.mainPreset = preset;
-      } else if (side === 'right') {
-        state.rightPreset = preset;
-      }
-    },
-    nextPreset(state, side) {
-      if (side === 'left') {
-        state.leftPreset = findNextPreset(state.leftPreset);
-      } else if (side === 'main') {
-        state.mainPreset = findNextPreset(state.mainPreset);
-      } else if (side === 'right') {
-        state.rightPreset = findNextPreset(state.rightPreset);
-      }
-    },
-    toggleVisibility(state, side) {
-      if (side === 'left') {
-        state.leftVisible = !state.leftVisible;
-      } else if (side === 'main') {
-        state.mainVisible = !state.mainVisible;
-      } else if (side === 'right') {
-        state.rightVisible = !state.rightVisible;
-      }
-    },
-  },
-});

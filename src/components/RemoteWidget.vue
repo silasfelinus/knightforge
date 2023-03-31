@@ -52,21 +52,21 @@ export default defineComponent({
     ];
 
     const selectedPresets = [
-      store.getters.leftPreset,
-      store.getters.mainPreset,
-      store.getters.rightPreset,
+      store.state.leftPreset,
+      store.state.mainPreset,
+      store.state.rightPreset,
     ];
 
     function changePreset(side: string, preset: string) {
-      store.dispatch('changePreset', { side, preset });
+      store.commit('changePreset', { side, preset });
     }
 
     function nextPreset(side: string) {
-      // Implement next preset logic
+      store.commit('nextPreset', side);
     }
 
     function toggleVisibility(side: string) {
-      // Implement toggle visibility logic
+      store.commit('toggleVisibility', side);
     }
 
     return {

@@ -5,13 +5,13 @@ const presetOptions = [
   'TextInput',
   'SplashScreen',
   'ChatWidget',
-  'ChatWidget',
   'SplashWidget',
   'Lab',
   'ChatGPT',
   'Paint',
   'Playspace',
   'Settings',
+  'Default',
   /* Add more presets here */
 ];
 
