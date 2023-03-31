@@ -1,23 +1,27 @@
+<!-- src/components/ScreenWidget.vue -->
 <template>
-  <div class="sidebar-widget">
+  <div class="screen-widget">
     <q-toolbar>
-      <q-toolbar-title>Sidebar - {{ side }}</q-toolbar-title>
+      <q-toolbar-title>Screen - {{ side }}</q-toolbar-title>
+      <RemoteWidget :side="side" />
     </q-toolbar>
     <component :is="currentComponent"></component>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useStore } from 'vuex';
 import ChatWidget from './chat/ChatWidget.vue';
 import ToolChest from './lab/ToolChest.vue';
 import PaintBox from './lab/PaintBox.vue';
 import TextInput from './lab/TextInput.vue';
 import DataUpload from './lab/DataUpload.vue';
 import CardManager from './cards/CardManager.vue';
+import RemoteWidget from './RemoteWidget.vue';
 
 export default defineComponent({
-  name: 'SidebarWidget',
+  name: 'ScreenWidget',
   components: {
     ChatWidget,
     ToolChest,
@@ -25,20 +29,21 @@ export default defineComponent({
     TextInput,
     DataUpload,
     CardManager,
+    RemoteWidget,
   },
   props: {
     side: {
       type: String,
       required: true,
     },
-    preset: {
-      type: String,
-      required: true,
-    },
   },
-  computed: {
-    currentComponent() {
-      switch (this.preset) {
+  setup() {
+    const store = useStore();
+
+    const currentComponent = computed(() => {
+      const preset =
+        store.state[side === 'left' ? 'leftPreset' : side === 'main' ? 'mainPreset' : 'rightPreset'];
+      switch (preset) {
         case 'ChatWidget':
           return ChatWidget;
         case 'ToolChest':
@@ -54,13 +59,17 @@ export default defineComponent({
         default:
           return null;
       }
-    },
+    });
+
+    return {
+      currentComponent,
+    };
   },
 });
 </script>
 
 <style scoped>
-.sidebar-widget {
+.screen-widget {
   height: 100%;
   display: flex;
   flex-direction: column;

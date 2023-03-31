@@ -8,17 +8,7 @@
 
       <q-page-container>
         <q-layout>
-          <q-drawer side="left" v-model="collapsedLeft" bordered>
-            <SidebarWidget :side="'left'" :preset="leftPreset" />
-          </q-drawer>
-
-          <q-page class="q-gutter-md">
-            <MainWidget :preset="mainPreset" />
-          </q-page>
-
-          <q-drawer side="right" v-model="collapsedRight" bordered>
-            <SidebarWidget :side="'right'" :preset="rightPreset" />
-          </q-drawer>
+          <ScreenWidget></ScreenWidget>
         </q-layout>
       </q-page-container>
 
@@ -30,42 +20,31 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent, ref } from 'vue';
 import HeaderWidget from './components/HeaderWidget.vue';
-import SidebarWidget from './components/SidebarWidget.vue';
-import MainWidget from './components/MainWidget.vue';
+import ScreenWidget from './components/ScreenWidget.vue';
 import FooterWidget from './components/FooterWidget.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     HeaderWidget,
-    SidebarWidget,
-    MainWidget,
+    ScreenWidget,
     FooterWidget,
   },
   setup() {
-    const store = useStore();
     const collapsedRight = ref(true);
     const collapsedLeft = ref(true);
-
-    const leftPreset = computed(() => store.getters.leftPreset);
-    const mainPreset = computed(() => store.getters.mainPreset);
-    const rightPreset = computed(() => store.getters.rightPreset);
 
     return {
       collapsedRight,
       collapsedLeft,
-      leftPreset,
-      mainPreset,
-      rightPreset,
     };
   },
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #app {
   display: flex;
   flex-direction: column;
@@ -75,7 +54,7 @@ export default defineComponent({
 q-header,
 q-footer {
   z-index: 1000;
-  background: var(--q-color-primary);
+  background: $primary;
 }
 
 q-page-container {

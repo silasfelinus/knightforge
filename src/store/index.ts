@@ -20,6 +20,26 @@ function findNextPreset(currentPreset) {
   return presetOptions[(index + 1) % presetOptions.length];
 }
 
+function changePreset(state, side, preset) {
+  if (side === 'left') {
+    state.leftPreset = preset;
+  } else if (side === 'main') {
+    state.mainPreset = preset;
+  } else if (side === 'right') {
+    state.rightPreset = preset;
+  }
+}
+
+function toggleVisibility(state, side) {
+  if (side === 'left') {
+    state.leftVisible = !state.leftVisible;
+  } else if (side === 'main') {
+    state.mainVisible = !state.mainVisible;
+  } else if (side === 'right') {
+    state.rightVisible = !state.rightVisible;
+  }
+}
+
 export default createStore({
   state: {
     leftPreset: 'TextInput',
@@ -31,31 +51,20 @@ export default createStore({
   },
   mutations: {
     changePreset(state, { side, preset }) {
-      if (side === 'left') {
-        state.leftPreset = preset;
-      } else if (side === 'main') {
-        state.mainPreset = preset;
-      } else if (side === 'right') {
-        state.rightPreset = preset;
-      }
+      changePreset(state, side, preset);
     },
     nextPreset(state, side) {
-      if (side === 'left') {
-        state.leftPreset = findNextPreset(state.leftPreset);
-      } else if (side === 'main') {
-        state.mainPreset = findNextPreset(state.mainPreset);
-      } else if (side === 'right') {
-        state.rightPreset = findNextPreset(state.rightPreset);
-      }
+      const nextPreset = findNextPreset(
+        side === 'left'
+          ? state.leftPreset
+          : side === 'main'
+          ? state.mainPreset
+          : state.rightPreset
+      );
+      changePreset(state, side, nextPreset);
     },
     toggleVisibility(state, side) {
-      if (side === 'left') {
-        state.leftVisible = !state.leftVisible;
-      } else if (side === 'main') {
-        state.mainVisible = !state.mainVisible;
-      } else if (side === 'right') {
-        state.rightVisible = !state.rightVisible;
-      }
+      toggleVisibility(state, side);
     },
   },
 });
