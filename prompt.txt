@@ -4,7 +4,6 @@ I have the following structure:
 
 [Project]
 WonderForge
-WonderForge
 
 [INTENT]
 An inviting sandbox to make and chain programmatic API calls with a friendly, pleasing interface that also serves as a portfolio showpiece.
@@ -70,7 +69,7 @@ PaintCanvas.vue - gui space for paint effects
 SplashWidget.vue - slideshow image viewer
 ChatWidget.vue - livechat & chatgpt
 
-[MAIN ITERATION FILES]
+[MAIN FILES]
 ./src/main.ts
 ./src/store/index.ts
 ./src/types.ts
@@ -111,7 +110,13 @@ Updated ScreenWidget side property to use 'left', 'main', and 'right'
 [STATUS]
 Re-iterating through files, fixing errors and optimizing foundation and integrating with VueX store.
 All types are to be referenced in types.ts, use index.ts for state management, scss quasar variables for color references
-no unnecessary code duplication, find variables programmatically whenever possible
+no unnecessary code duplication, find variables programmatically whenever possible.
+
+With that in mind, help me get this so that HeaderWidget, FooterWidget, and ScreenWidget work together to make an interface. Currently, it's just a blank screen on the website, things broke when I added the VueX store, and I don't want to go back to stateless management, so we are moving forward waiting for it to work again. What can I show you first?
+Options:
+[QUESTION]
 
 [REQUEST, PLEASE]
 please revise and polish attached code, including compatibility with VueX store
+
+
