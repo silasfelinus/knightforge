@@ -1,7 +1,7 @@
-// src/store/index.ts
 import { createStore } from 'vuex';
+import { Preset, Side, State } from './types';
 
-const presetOptions = [
+const presetOptions: Preset[] = [
   'TextInput',
   'SplashScreen',
   'ChatWidget',
@@ -15,12 +15,12 @@ const presetOptions = [
   /* Add more presets here */
 ];
 
-function findNextPreset(currentPreset) {
+function findNextPreset(currentPreset: Preset): Preset {
   const index = presetOptions.indexOf(currentPreset);
   return presetOptions[(index + 1) % presetOptions.length];
 }
 
-function changePreset(state, side, preset) {
+function changePreset(state: State, side: Side, preset: Preset) {
   if (side === 'left') {
     state.leftPreset = preset;
   } else if (side === 'main') {
@@ -30,7 +30,7 @@ function changePreset(state, side, preset) {
   }
 }
 
-function toggleVisibility(state, side) {
+function toggleVisibility(state: State, side: Side) {
   if (side === 'left') {
     state.leftVisible = !state.leftVisible;
   } else if (side === 'main') {
@@ -40,7 +40,7 @@ function toggleVisibility(state, side) {
   }
 }
 
-export default createStore({
+export default createStore<State>({
   state: {
     leftPreset: 'TextInput',
     mainPreset: 'SplashScreen',
@@ -48,12 +48,30 @@ export default createStore({
     leftVisible: true,
     mainVisible: true,
     rightVisible: true,
+    widgetSettings: {
+      TextInput: { title: 'Text Input', bgColor: 'white' },
+      SplashScreen: { title: 'Splash Screen', bgColor: 'white' },
+      ChatWidget: { title: 'Chat Widget', bgColor: 'white' },
+      SplashWidget: { title: 'Splash Widget', bgColor: 'white' },
+      Lab: { title: 'Lab', bgColor: 'white' },
+      ChatGPT: { title: 'ChatGPT', bgColor: 'white' },
+      Paint: { title: 'Paint', bgColor: 'white' },
+      Playspace: { title: 'Playspace', bgColor: 'white' },
+      Settings: { title: 'Settings', bgColor: 'white' },
+      Default: { title: 'Default', bgColor: 'white' },
+      // Add more preset settings here
+    },
+  },
+  getters: {
+    widgetSettings: (state) => (preset: Preset) => {
+      return state.widgetSettings[preset];
+    },
   },
   mutations: {
-    changePreset(state, { side, preset }) {
+    changePreset(state, { side, preset }: { side: Side; preset: Preset }) {
       changePreset(state, side, preset);
     },
-    nextPreset(state, side) {
+    nextPreset(state, side: Side) {
       const nextPreset = findNextPreset(
         side === 'left'
           ? state.leftPreset
@@ -63,8 +81,28 @@ export default createStore({
       );
       changePreset(state, side, nextPreset);
     },
-    toggleVisibility(state, side) {
+    toggleVisibility(state, side: Side) {
       toggleVisibility(state, side);
+    },
+    updateWidgetTitle(
+      state,
+      { preset, title }: { preset: Preset; title: string }
+    ) {
+      state.widgetSettings[preset].title = title;
+    },
+    updateWidgetBgColor(
+      state,
+      { preset, bgColor }: { preset: Preset; bgColor: string }
+    ) {
+      state.widgetSettings[preset].bgColor = bgColor;
+    },
+  },
+  actions: {
+    updateWidgetTitle({ commit }, { preset, title }) {
+      commit('updateWidgetTitle', { preset, title });
+    },
+    updateWidgetBgColor({ commit }, { preset, bgColor }) {
+      commit('updateWidgetBgColor', { preset, bgColor });
     },
   },
 });
