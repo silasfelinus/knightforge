@@ -1,34 +1,22 @@
 <template>
   <div id="app">
-    <q-layout :view="$q.screen.gt.sm ? 'lHh Lpr lFf' : 'hHh'">
-      <q-header>
-        <HeaderWidget />
-      </q-header>
-
-      <q-page-container>
-        <q-layout>
-          <ScreenWidget
-            :side="'left'"
-            :size="'small'"
-            :orientation="'vertical'"
-          ></ScreenWidget>
-          <ScreenWidget
-            :side="'main'"
-            :size="'large'"
-            :orientation="'square'"
-          ></ScreenWidget>
-          <ScreenWidget
-            :side="'right'"
-            :size="'small'"
-            :orientation="'vertical'"
-          ></ScreenWidget>
-        </q-layout>
-      </q-page-container>
-
-      <q-footer>
-        <FooterWidget />
-      </q-footer>
-    </q-layout>
+    <HeaderWidget />
+    <ScreenWidget
+      side="left"
+      :preset="leftScreen.preset"
+      :visible="leftScreen.visible"
+    />
+    <ScreenWidget
+      side="main"
+      :preset="mainScreen.preset"
+      :visible="mainScreen.visible"
+    />
+    <ScreenWidget
+      side="right"
+      :preset="rightScreen.preset"
+      :visible="rightScreen.visible"
+    />
+    <FooterWidget />
   </div>
 </template>
 

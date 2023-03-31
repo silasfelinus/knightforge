@@ -1,38 +1,19 @@
 <template>
-  <div class="screen-widget" :class="[size, orientation]">
-    <q-toolbar>
-      <q-toolbar-title>Screen</q-toolbar-title>
-      <RemoteWidget :side="side" />
-    </q-toolbar>
-    <component
-      v-if="currentComponent.value"
-      :is="currentComponent.value"
-    ></component>
+  <div v-if="visible" :class="['screen-widget', side]">
+    <component :is="presetComponentMap[preset]" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, watch, toRefs, Component } from 'vue';
+import { defineComponent, computed, toRefs } from 'vue';
 import { useStore } from 'vuex';
-import RemoteWidget from './RemoteWidget.vue';
 import { Side } from '../store/types';
 
 export default defineComponent({
   name: 'ScreenWidget',
-  components: {
-    RemoteWidget,
-  },
   props: {
     side: {
       type: String as () => Side,
-      default: '',
-    },
-    size: {
-      type: String,
-      default: '',
-    },
-    orientation: {
-      type: String,
       default: '',
     },
   },
@@ -40,35 +21,22 @@ export default defineComponent({
     const store = useStore();
     const { side } = toRefs(props);
 
-    const currentPreset = computed(() => {
-      return store.state[
-        side.value === 'left'
-          ? 'leftScreen'
-          : side.value === 'main'
-          ? 'mainScreen'
-          : 'rightScreen'
-      ].preset;
-    });
+    const screen = computed(() => store.state[`${side.value}Screen`]);
+    const preset = computed(() => screen.value.preset);
+    const visible = computed(() => screen.value.visible);
 
-    const currentComponent = ref<Component | null>(null);
-
-    watch(
-      currentPreset,
-      async (preset) => {
-        if (!preset) {
-          currentComponent.value = null;
-          return;
-        }
-
-        // Dynamic import of the component based on the preset
-        const component = await import(`./components/${preset}.vue`);
-        currentComponent.value = component.default;
-      },
-      { immediate: true }
-    );
+    const presetComponentMap = {
+      // Add your preset components here, e.g.
+      // 'Preset.TextInput': TextInputComponent,
+      // 'Preset.SplashScreen': SplashScreenComponent,
+      // ...
+    };
 
     return {
-      currentComponent,
+      side: side.value,
+      preset,
+      visible,
+      presetComponentMap,
     };
   },
 });
