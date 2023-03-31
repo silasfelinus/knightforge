@@ -49,6 +49,9 @@ Created NavigationWidget with Vuex store for screen and preset management
 Established naming conventions for components and subcomponents
 Imported images for secret and splash screens
 
+[LAYOUT]
+(qlayout: HeaderWidget; gutter[ScreenWidget(left, small, vertical), ScreenWidget(center, large, square), ScreenWidget(right, small, vertical)]; FooterWidget.)
+
 [LAYOUT NOTES]
 ScreenWidgets should not overlap with header and footer
 Components should interact only through Vuex
@@ -79,20 +82,36 @@ ChatWidget.vue
 ./src/main.ts
 ./src/store/index.ts
 ./src/types.ts
-./src/App.vue (qlayout: HeaderWidget; gutter[ScreenWidget(left, small, vertical), ScreenWidget(center, large, square), ScreenWidget(right, small, vertical)]; FooterWidget.)
+./src/App.vue
 ./src/css/quasar.variables.scss
 ./src/components/HeaderWidget.vue
 ./src/components/RemoteWidget.vue
 ./src/components/ScreenWidget.vue
 ./src/components/FooterWidget.vue
 
+[VUEX STORE: State]
+leftPreset, mainPreset, rightPreset: current preset per section.
+leftVisible, mainVisible, rightVisible: visibility status.
+widgetSettings: settings for each preset (title, bgColor).
+
+[VUEX STORE: Getters]
+widgetSettings: takes Preset, returns settings.
+
+[VUEX STORE: Mutations]
+changePreset: changes preset for side (left, main, right).
+nextPreset: cycles to next preset for side.
+toggleVisibility: toggles visibility of side.
+updateWidgetTitle: updates title of preset.
+updateWidgetBgColor: updates bgColor of preset.
+
+[VUEX STORE: Actions]
+updateWidgetTitle: updates title of preset.
+updateWidgetBgColor: updates bgColor of preset.
+
 [STATUS]
-Re-iterating through files, fixing errors to achieve basic layout functions
+Re-iterating through files, fixing errors and optimizing foundation and integration with VueX store.
+All types are to be referenced in types.ts, use index.ts for state management, scss quasar variables for color references
+no unnecessary code duplication, find variables programmatically whenever possible
 
 [REQUEST, PLEASE]
-I'm attaching my index.ts, please examine with a fine-toothed comb, and suggest improvements. All types are to be referenced in types.ts, no unnecessary code duplication:
-
-
-
-
-
+Please examine the outline I've sent. Reply with feedback, and let me know whether we should look closer at the index.ts or types.ts files that we just revised, or if we are ready to look at the App.vue with the info provided.

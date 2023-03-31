@@ -1,18 +1,16 @@
-export const presetOptions = [
-  'TextInput',
-  'SplashScreen',
-  'ChatWidget',
-  'SplashWidget',
-  'Lab',
-  'ChatGPT',
-  'Paint',
-  'Playspace',
-  'Settings',
-  'Default',
-  /* Add more presets here */
-] as const;
-
-export type Preset = (typeof presetOptions)[number];
+export enum Preset {
+  TextInput = 'TextInput',
+  SplashScreen = 'SplashScreen',
+  ChatWidget = 'ChatWidget',
+  SplashWidget = 'SplashWidget',
+  Lab = 'Lab',
+  ChatGPT = 'ChatGPT',
+  Paint = 'Paint',
+  Playspace = 'Playspace',
+  Settings = 'Settings',
+  Default = 'Default',
+  // Add more presets here
+}
 
 export type Side = 'left' | 'main' | 'right';
 
@@ -21,12 +19,14 @@ export interface WidgetSettings {
   bgColor: string;
 }
 
+export interface Screen {
+  preset: Preset;
+  visible: boolean;
+}
+
 export interface State {
-  leftPreset: Preset;
-  mainPreset: Preset;
-  rightPreset: Preset;
-  leftVisible: boolean;
-  mainVisible: boolean;
-  rightVisible: boolean;
+  leftScreen: Screen;
+  mainScreen: Screen;
+  rightScreen: Screen;
   widgetSettings: Record<Preset, WidgetSettings>;
 }
