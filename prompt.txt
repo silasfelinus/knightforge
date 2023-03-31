@@ -6,8 +6,10 @@ I have the following structure and I'm trying to follow current best practices:
 
 [Project]
 WonderForge
+WonderForge
 
 [INTENT]
+An inviting sandbox to make  and chain programmatic api calls
 An inviting sandbox to make  and chain programmatic api calls
 
 [Dev Environment]
@@ -31,19 +33,23 @@ openai secure key storage
 chatgpt chat
 build suite of playspace tools to showcase playspace like superball cannon, graffiti sprapaint, secret 2d adventure mode, bouncing balls, destructile screen effects, anything that is silly and fun. I can use more ideas!
 Toolshed -Draggable, droppable, and resizable icons such as drop-down selections, buttons, wires, and data displays
+Toolshed -Draggable, droppable, and resizable icons such as drop-down selections, buttons, wires, and data displays
 
 [Supported File Types]
+txt, yaml, json, jpg, png, wmv, mp4, db, pdf
 txt, yaml, json, jpg, png, wmv, mp4, db, pdf
 
 [NOTES]
 All colors should reference their Quasar preset variables: $primary, $secondary, $accent, $dark, $dark-page, $positive, $negative, $info, $warning
 Use a Quasar component if a reasonable option is available
 Components should rely on the Vuex store for preset and screen names.
+Components should rely on the Vuex store for preset and screen names.
 
 We have:
 Installed Quasar CLI, Vue3, SASS
 Created App.vue, HeaderWidget.vue, SideWidget.vue, and FooterWidget.vue
 created variable references by calling <style lang="scss">
+Created NavigationWidget to control screens and presets referenced by VueX store.
 Created NavigationWidget to control screens and presets referenced by VueX store.
 current Presets are: 'ChatWidget', 'ToolChest', 'PaintBox', 'TextInput', 'DataUpload', 'CardManager'
 Please aim for maximum code consistency. avoiding the creation of brittle code due to unnecessary reliance on hardcoded information.
@@ -84,8 +90,13 @@ Paintbox.vue
 PaintCanvas.vue
 SplashWidget.vue
 ChatWidget.vue
+./components/PlaySpace (silly widgets, games, and social chat)
+Paintbox.vue
+PaintCanvas.vue
+SplashWidget.vue
+ChatWidget.vue
 
-We have looked at:
+[ITERATION]
 ./src/main.ts
 ./src/store/index.ts
 ./src/App.vue

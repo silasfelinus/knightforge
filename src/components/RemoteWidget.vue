@@ -1,5 +1,7 @@
 <!-- src/components/RemoteWidget.vue -->
+<!-- src/components/RemoteWidget.vue -->
 <template>
+  <div class="remote-widget">
   <div class="remote-widget">
     <q-card v-for="(screen, index) in screens" :key="index" class="q-ma-md">
       <q-card-section>
@@ -35,6 +37,7 @@ import { useStore } from 'vuex';
 
 export default defineComponent({
   name: 'RemoteWidget',
+  name: 'RemoteWidget',
   setup() {
     const store = useStore();
 
@@ -47,13 +50,13 @@ export default defineComponent({
     const presetOptions = ref(store.getters.presets);
 
     const selectedPresets = [
-      store.getters.leftPreset,
-      store.getters.mainPreset,
-      store.getters.rightPreset,
+      store.state.leftPreset,
+      store.state.mainPreset,
+      store.state.rightPreset,
     ];
 
     function changePreset(side: string, preset: string) {
-      store.dispatch('changePreset', { side, preset });
+      store.commit('changePreset', { side, preset });
     }
 
     function nextPreset(side: string) {
