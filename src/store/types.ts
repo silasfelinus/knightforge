@@ -10,7 +10,7 @@ export type Preset =
   | 'Settings'
   | 'Default';
 
-export type Side = 'left' | 'main' | 'right';
+export type Side = 'left' | 'main' | 'right' | 'center';
 
 export interface WidgetSettings {
   title: string;

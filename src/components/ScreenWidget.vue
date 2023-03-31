@@ -12,15 +12,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, watch, toRefs } from 'vue';
+import { defineComponent, computed, ref, watch, toRefs, Component } from 'vue';
 import { useStore } from 'vuex';
 import RemoteWidget from './RemoteWidget.vue';
-
-interface Props {
-  side: Side;
-  size: string;
-  orientation: string;
-}
+import { Side } from '../store/types';
 
 export default defineComponent({
   name: 'ScreenWidget',
@@ -29,7 +24,7 @@ export default defineComponent({
   },
   props: {
     side: {
-      type: String,
+      type: String as () => Side,
       default: '',
     },
     size: {
@@ -41,11 +36,11 @@ export default defineComponent({
       default: '',
     },
   },
-  setup(props: Props) {
-    const store = useStore<State>();
+  setup(props) {
+    const store = useStore();
     const { side } = toRefs(props);
 
-    const currentPreset = computed<Preset>(() => {
+    const currentPreset = computed(() => {
       return store.state[
         side.value === 'left'
           ? 'leftPreset'
@@ -55,11 +50,11 @@ export default defineComponent({
       ];
     });
 
-    const currentComponent = ref<null | Vue.Component>(null);
+    const currentComponent = ref<Component | null>(null);
 
     watch(
       currentPreset,
-      async (preset: Preset) => {
+      async (preset) => {
         if (!preset) {
           currentComponent.value = null;
           return;

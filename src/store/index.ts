@@ -1,33 +1,5 @@
 import { createStore } from 'vuex';
-
-type Preset =
-  | 'TextInput'
-  | 'SplashScreen'
-  | 'ChatWidget'
-  | 'SplashWidget'
-  | 'Lab'
-  | 'ChatGPT'
-  | 'Paint'
-  | 'Playspace'
-  | 'Settings'
-  | 'Default';
-
-type Side = 'left' | 'main' | 'right';
-
-interface WidgetSettings {
-  title: string;
-  bgColor: string;
-}
-
-interface State {
-  leftPreset: Preset;
-  mainPreset: Preset;
-  rightPreset: Preset;
-  leftVisible: boolean;
-  mainVisible: boolean;
-  rightVisible: boolean;
-  widgetSettings: Record<Preset, WidgetSettings>;
-}
+import { Preset, Side, State } from './types';
 
 const presetOptions: Preset[] = [
   'TextInput',
@@ -96,10 +68,10 @@ export default createStore<State>({
     },
   },
   mutations: {
-    changePreset(state, { side, preset }) {
+    changePreset(state, { side, preset }: { side: Side; preset: Preset }) {
       changePreset(state, side, preset);
     },
-    nextPreset(state, side) {
+    nextPreset(state, side: Side) {
       const nextPreset = findNextPreset(
         side === 'left'
           ? state.leftPreset
@@ -109,13 +81,19 @@ export default createStore<State>({
       );
       changePreset(state, side, nextPreset);
     },
-    toggleVisibility(state, side) {
+    toggleVisibility(state, side: Side) {
       toggleVisibility(state, side);
     },
-    updateWidgetTitle(state, { preset, title }) {
+    updateWidgetTitle(
+      state,
+      { preset, title }: { preset: Preset; title: string }
+    ) {
       state.widgetSettings[preset].title = title;
     },
-    updateWidgetBgColor(state, { preset, bgColor }) {
+    updateWidgetBgColor(
+      state,
+      { preset, bgColor }: { preset: Preset; bgColor: string }
+    ) {
       state.widgetSettings[preset].bgColor = bgColor;
     },
   },
