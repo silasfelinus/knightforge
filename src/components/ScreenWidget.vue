@@ -7,17 +7,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, toRefs } from 'vue';
+import { defineComponent, computed, toRefs, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import { Side } from '../store/types';
 import ScreenCard from './ScreenCard.vue';
-import UnderConstruction from '../pages/UnderConstruction.vue';
 
 export default defineComponent({
   name: 'ScreenWidget',
   components: {
     ScreenCard,
-    UnderConstruction,
   },
   props: {
     side: {
@@ -39,14 +37,17 @@ export default defineComponent({
       return store.getters.widgetSettings(preset)?.title;
     });
 
-    const currentComponent = computed(() => {
-      switch (currentPreset.value) {
-        case 'underConstruction':
-          return 'UnderConstruction';
-        // Add other cases for other presets as you create them.
-        default:
-          return 'UnderConstruction';
-      }
+    const currentComponent = ref({});
+    watch(currentPreset, (preset) => {
+      import(`../pages/${preset}.vue`)
+        .then((module) => {
+          currentComponent.value = module.default;
+        })
+        .catch(() => {
+          import('../pages/UnderConstruction.vue').then((module) => {
+            currentComponent.value = module.default;
+          });
+        });
     });
 
     return {

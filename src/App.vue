@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <HeaderWidget />
-    <q-page-container>
-      <q-layout view="hHh lpR fFf">
+    <q-layout view="hHh lpR fFf">
+      <HeaderWidget />
+      <q-page-container>
         <ScreenWidget
           side="left"
           :preset="leftScreen.preset"
@@ -18,9 +18,9 @@
           :preset="rightScreen.preset"
           :visible="rightScreen.visible"
         />
-      </q-layout>
-    </q-page-container>
-    <FooterWidget />
+      </q-page-container>
+      <FooterWidget />
+    </q-layout>
   </div>
 </template>
 

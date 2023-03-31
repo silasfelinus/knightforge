@@ -112,15 +112,16 @@ Updated ScreenWidget side property to use 'left', 'main', and 'right'
 Added ScreenCard.vue to visually style the interface screens
 added userRemoteWidget.ts to separate gui and logic
 Added UnderConstruction.vue for screen testing
+WORKING WEBSITE LAYOUT!!!!!!!!! - HeaderWidget, ScreenWidgets, and FooterWidget display on single screen with nested RemoteControl
 
 [STATUS]
-Re-iterating through files, fixing errors and optimizing foundation and integrating with VueX store.
+Re-iterating through files, fixing errors, optimizing foundation and integrating with VueX store.
 All types are to be referenced in types.ts, use index.ts for state management, scss quasar variables for color references
-no unnecessary code duplication, find variables programmatically whenever possible.
+No unnecessary code duplication, find variables programmatically whenever possible.
 
 Help me get to this base function:
 [BASE FUNCTIONS]
-HeaderWidget, three ScreenWidgets, and a FooterWidget work together to make an interface
+
 Remotewidget updating VueX, ScreenWidgets update display states
 
 TODO: add an under construction preset, then point our defaults to it so we can see *something* on the website.
