@@ -8,7 +8,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NavigationWidget from './RemoteWidget.vue';
-import { eventBus } from '@/EventBus';
 
 eventBus.emit('changePreset', { side, preset });
 

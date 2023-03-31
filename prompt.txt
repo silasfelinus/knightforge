@@ -53,7 +53,6 @@ subcomponents should start with new function and end in parent, ie LiveChat
 
 
 
-
 [images]
 ./public/images/secret/secret00.png-secret09.png
 ./public/images/splash/splasg00.png-splash09.png

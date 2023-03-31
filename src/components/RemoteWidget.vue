@@ -1,6 +1,6 @@
-<!-- src/components/NavigationWidget.vue -->
+<!-- src/components/RemoteWidget.vue -->
 <template>
-  <div class="navigation-widget">
+  <div class="remote-widget">
     <q-card v-for="(screen, index) in screens" :key="index" class="q-ma-md">
       <q-card-section>
         <div class="text-h6">{{ screen.name }}</div>
@@ -34,7 +34,7 @@ import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default defineComponent({
-  name: 'NavigationWidget',
+  name: 'RemoteWidget',
   setup() {
     const store = useStore();
 

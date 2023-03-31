@@ -42,7 +42,13 @@ export default defineComponent({
 
     const currentComponent = computed(() => {
       const preset =
-        store.state[side === 'left' ? 'leftPreset' : side === 'main' ? 'mainPreset' : 'rightPreset'];
+        store.state[
+          side === 'left'
+            ? 'leftPreset'
+            : side === 'main'
+            ? 'mainPreset'
+            : 'rightPreset'
+        ];
       switch (preset) {
         case 'ChatWidget':
           return ChatWidget;
