@@ -46,19 +46,54 @@ We have:
 Installed Quasar CLI, Vue3, SASS
 Created App.vue, HeaderWidget.vue, SideWidget.vue, and FooterWidget.vue
 created variable references by calling <style lang="scss">
-Distinguished "Leftscreen", "Mainscreen", and "RightScreen", with options to toggle or switch individual presets in HeaderWidget.
+Created NavigationWidget to control screens and presets referenced by VueX store.
 current Presets are: 'ChatWidget', 'ToolChest', 'PaintBox', 'TextInput', 'DataUpload', 'CardManager'
-Please aim for maximum readability.
-Remember to utilize VueX store and maintain consistent preset names.
+Please aim for maximum code consistency. avoiding the creation of brittle code due to unnecessary reliance on hardcoded information.
+Components should only be aware of preset or screen names if it's essential for their functionality.
+Any primary components should follow the FUNCTIONWidget naming scheme., ie ChatWidget
+subcomponents should start with new function and end in parent, ie LiveChat
 
-We're going file by file, and getting back outputted code that meets desired standards and functions. app.vue is our entry point, I want to work on our layout sections, then the areas that need presets.
-Preset and Screen names should only be stored in index.ts. Same with default preset names for each widget.
-components shouldn't know preset or screen names unless necessary.
+
+"We are working through each file in the project, ensuring the outputted code adheres to our desired standards and achieves the required functionality. The entry point is App.vue, where we will focus on refining layout sections, previously it was handling communication between screens, any leftover code for this function is undesired.
+ Components should rely on the Vuex store for preset and screen names.
+
+[images]
+./public/images/secret/secret00.png-secret09.png
+./public/images/splash/splasg00.png-splash09.png
+
+
+[LAYOUT]
+Mainwidget.vue (the mainscreen display-should never bleed into the other areas)
+RightScreen, MainScreen, and LeftScreen (aka, two SideWidgets and a MainWidget)
+FooterWidget.vue (always on the bottom, stretched to both sides)
+
+
+./components/codelab/ (programmatic api chain project)
+CodeCard.vue
+CardCable.vue
+CardManager.vue
+CardMat.vue
+TextInput.vue
+RedSwitch.vue
+DataUpload.vue
+
+./components/wonderforge/ (components in development limbo)
+LabSpaceWidget.vue
+ToolBox.vue
+
+./components/PlaySpace (silly widgets, games, and social chat)
+Paintbox.vue
+PaintCanvas.vue
+SplashWidget.vue
+ChatWidget.vue
 
 We have looked at:
 ./src/main.ts
 ./src/store/index.ts
 ./src/App.vue
-./src/components/App.vue
-./src/components/NavigationWidget.vue
+./src/css/quasar.variables.scss
+./src/components/HeaderWidget.vue
+./src/components/RemoteWidget.vue
+./src/components/SideWidget.vue
 
+We are now reiterating back over those files to allign them to base layout functionality and to add the outdated back in

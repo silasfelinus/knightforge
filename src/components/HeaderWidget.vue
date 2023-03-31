@@ -7,10 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import NavigationWidget from './NavigationWidget.vue';
-import { eventBus } from '@/EventBus';
-
-eventBus.emit('changePreset', { side, preset });
+import NavigationWidget from './RemoteWidget.vue';
 
 export default defineComponent({
   name: 'HeaderWidget',

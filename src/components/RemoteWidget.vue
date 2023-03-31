@@ -1,6 +1,6 @@
-<!-- src/components/NavigationWidget.vue -->
+<!-- src/components/RemoteWidget.vue -->
 <template>
-  <div class="navigation-widget">
+  <div class="remote-widget">
     <q-card v-for="(screen, index) in screens" :key="index" class="q-ma-md">
       <q-card-section>
         <div class="text-h6">{{ screen.name }}</div>
@@ -30,11 +30,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { useStore } from 'vuex';
 
 export default defineComponent({
-  name: 'NavigationWidget',
+  name: 'RemoteWidget',
   setup() {
     const store = useStore();
 
@@ -44,12 +44,7 @@ export default defineComponent({
       { name: 'Right Sidebar', side: 'right' },
     ]);
 
-    const presetOptions = [
-      'TextInput',
-      'SplashScreen',
-      'ChatWidget',
-      /* Add more presets here */
-    ];
+    const presetOptions = ref(store.getters.presets);
 
     const selectedPresets = [
       store.getters.leftPreset,
@@ -62,11 +57,11 @@ export default defineComponent({
     }
 
     function nextPreset(side: string) {
-      // Implement next preset logic
+      store.dispatch('nextPreset', side);
     }
 
     function toggleVisibility(side: string) {
-      // Implement toggle visibility logic
+      store.dispatch('toggleVisibility', side);
     }
 
     return {
@@ -82,7 +77,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.navigation-widget {
+.remote-widget {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

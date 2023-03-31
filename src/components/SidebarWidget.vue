@@ -1,3 +1,4 @@
+<!-- src/components/SidebarWidget.vue -->
 <template>
   <div class="sidebar-widget">
     <q-toolbar>
@@ -8,19 +9,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import ChatWidget from './chat/ChatWidget.vue';
-import ToolChest from './lab/ToolChest.vue';
-import PaintBox from './lab/PaintBox.vue';
-import TextInput from './lab/TextInput.vue';
-import DataUpload from './lab/DataUpload.vue';
-import CardManager from './cards/CardManager.vue';
+import { defineComponent, computed } from 'vue';
+import { useStore } from 'vuex';
+import ToolBox from './labspace/ToolBox.vue';
+import PaintBox from './playspace/PaintBox.vue';
+import TextInput from './labspace/TextInput.vue';
+import DataUpload from './labspace/DataUpload.vue';
+import CardManager from './cardspace/CardManager.vue';
+import ChatWidget from './playspace/ChatWidget.vue';
 
 export default defineComponent({
   name: 'SidebarWidget',
   components: {
     ChatWidget,
-    ToolChest,
+    ToolBox,
     PaintBox,
     TextInput,
     DataUpload,
@@ -31,30 +33,30 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    preset: {
-      type: String,
-      required: true,
-    },
   },
-  computed: {
-    currentComponent() {
-      switch (this.preset) {
-        case 'ChatWidget':
-          return ChatWidget;
-        case 'ToolChest':
-          return ToolChest;
-        case 'PaintBox':
-          return PaintBox;
-        case 'TextInput':
-          return TextInput;
-        case 'DataUpload':
-          return DataUpload;
-        case 'CardManager':
-          return CardManager;
-        default:
-          return null;
-      }
-    },
+  setup(props) {
+    const store = useStore();
+
+    const preset = computed(() => {
+  if (props.side === 'left') return store.getters.leftPreset;
+  if (props.side === 'right') return store.getters.rightPreset;
+  return null;
+});
+
+    const currentComponent = computed(() => {
+      const componentMap = {
+        ChatWidget,
+        ToolBox,
+        PaintBox,
+        TextInput,
+        DataUpload,
+        CardManager,
+      };
+
+      return componentMap[preset.value] || null;
+    });
+
+    return { preset, currentComponent };
   },
 });
 </script>
@@ -69,30 +71,5 @@ export default defineComponent({
 q-toolbar {
   background-color: var(--q-color-primary);
   color: var(--q-color-primary-contrast);
-}
-
-/* You can customize the styling for each preset component below */
-.chat-widget {
-  /* Add styling for the ChatWidget component */
-}
-
-.tool-chest {
-  /* Add styling for the ToolChest component */
-}
-
-.paint-box {
-  /* Add styling for the PaintBox component */
-}
-
-.text-input {
-  /* Add styling for the TextInput component */
-}
-
-.data-upload {
-  /* Add styling for the DataUpload component */
-}
-
-.card-manager {
-  /* Add styling for the CardManager component */
 }
 </style>
