@@ -19,11 +19,11 @@ function toggleVisibility(state: State, side: Side) {
 export default createStore<State>({
   state: {
     leftScreen: {
-      preset: Preset.TextInput,
+      preset: Preset.Default,
       visible: true,
     },
     mainScreen: {
-      preset: Preset.SplashScreen,
+      preset: Preset.Default,
       visible: true,
     },
     rightScreen: {

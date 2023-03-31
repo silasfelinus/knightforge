@@ -4,10 +4,7 @@
       <q-toolbar-title>Screen</q-toolbar-title>
       <RemoteWidget :side="side" />
     </q-toolbar>
-    <component
-      v-if="currentComponent.value"
-      :is="currentComponent.value"
-    ></component>
+    <component :is="currentComponent?.value || 'div'"></component>
   </div>
 </template>
 
@@ -51,6 +48,8 @@ export default defineComponent({
     });
 
     const currentComponent = ref<Component | null>(null);
+
+
 
     watch(
       currentPreset,
