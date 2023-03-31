@@ -1,234 +1,89 @@
-Hi, ChatGPT! I'm Silas. I have a vue.js project.
-I need your help completing my code.
-I'm building a gui development lab that I can use to develop future tools.
-My goal is to make something that will allow me to chain api calls to natural language processors
-with a friendly and pleasing interface that also looks great as a portfolio showpiece.`
-I have the following structure and I'm trying to follow best practices:
+Hi, ChatGPT! I'm Silas Knight. 
+I'm building a gui development lab with Quasar, Vue3, and VueX
+I have the following structure and I'm trying to follow current best practices:
 
 [Project]
-KnightForge Wonderlab
+WonderForge
 
 [INTENT]
-An inviting and fun sandbox to make programmatic api calls
+An inviting sandbox to make and chain programmatic API calls with a friendly, pleasing interface that also serves as a portfolio showpiece.
 
-[Dev Environment]
+[DEV ENVIRONMENT]
 Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
 
 [MODULES]
-Vue 3, TypeScript, SASS Quasar
+Vue 3, TypeScript, SASS, Quasar, Vuex
 
 [STANDARDS]
 Material Design, Composition API, Prettify, SASS
 
-Desired Effects
-A grid-based workspace with Step-Based Save System
-a suite of Draggable, droppable, and resizable icons such as drop-down selections, buttons, wires, and data displays
+[ICONSET]
+fontawesome-v6
 
+[ADDITIONAL GOALS]
+Step-Based Save System
+User Logins
+Night Mode
+Live Chat
+OpenAI Secure Key Storage
+ChatGPT Chat
+Suite of PlaySpace Tools (e.g., Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects, etc.)
+Toolshed - Draggable, Droppable, and Resizable Icons (e.g., Drop-down Selections, Buttons, Wires, Data Displays)
 [Supported File Types]
-txt, yaml, json, jpg, png
+txt, yaml, json, jpg, png, wmv, mp4, db, pdf
 
 [NOTES]
-All colors should reference their Quasar preset variables: $primary, $secondary, $accent, $dark, $dark-page, $positive, $negative, $info, $warning
-Use a Quasar component if a reasonable option is available
+Use Quasar preset variables for colors
+Use Quasar components when possible
+Components should use Vuex store for preset and screen names
+Adhere to current TypeScript standards
+Maintain code consistency and avoid brittle code
+No duplicate code or redundant functions
 
+[File Structure]
+Installed Quasar CLI, Vue3, SASS
+Created App.vue, HeaderWidget.vue, ScreenWidget.vue, and FooterWidget.vue
+Set up variable references and SCSS styling
+Created NavigationWidget with Vuex store for screen and preset management
+Established naming conventions for components and subcomponents
+Imported images for secret and splash screens
 
-I have installed Quasar and Vue3. We have a static sidebar for icons
-Header with controls
-semi-collapsible left window for extended links (should also house draggable playspace tools)
-center droppable labspace (needs to be hideable)
-collapsible chat window on right
-bottom footer.
+[LAYOUT NOTES]
+ScreenWidgets should not overlap with header and footer
+Components should interact only through Vuex
+FooterWidget.vue should always be at the bottom, stretched to both sides
 
-Major Future Milestones:
-build gui-representation of an api-chain (button+textinput+apiaddress+output).
-livechat
-user logins
-nightmode
-improve styling
-openai secure key storage
-*build suite of playspace tools to showcase playspace, to entertain visitors and my children, and myself when I'm working.
-ideas like bouncing balls, spraypaint, destructile screen effects, anything that is silly and fun. I can use more ideas!, So as we troubleshoot
-please send along a brainstorm list if you have room with 3 pitches for fun effects.
+[COMPONENTS]
+LabSpace (API Chain Project)
 
+CodeCard.vue
+CardCable.vue
+CardManager.vue
+CardMat.vue
+TextInput.vue
+RedSwitch.vue
+DataUpload.vue
+WonderForge (Development Limbo)
 
-App.vue is below, please assess the current code and offer improvements, piece by piece. We'll start with the entire optimal <template>
-<template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header>
-      <q-toolbar>
-        <q-btn
-          flat
-          round
-          dense
-          icon="menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-        <q-toolbar-title> Knightforge Wonderlab </q-toolbar-title>
-      </q-toolbar>
-    </q-header>
+LabSpaceWidget.vue
+ToolBox.vue
+PlaySpace (Silly Widgets, Games, Social Chat)
 
-    <q-drawer
-      show-if-above
-      v-model="leftDrawerOpen"
-      side="left"
-      :width="260"
-      :breakpoint="500"
-      bordered
-    >
-      <q-list>
-        <q-item v-for="(item, index) in menuItems" :key="index">
-          <q-item-section avatar>
-            <q-icon :name="item.icon" />
-          </q-item-section>
-          <q-item-section v-if="leftDrawerOpen">
-            <q-item-label>{{ item.label }}</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-drawer>
+Paintbox.vue
+PaintCanvas.vue
+SplashWidget.vue
+ChatWidget.vue
 
-    <q-page-container>
-      <q-page>
-        <div class="q-gutter-md row items-center justify-center">
-          <q-card class="droppable-area" rounded>
-            <!-- Droppable area content -->
-          </q-card>
-          <q-btn round @click="chatWindowOpen = !chatWindowOpen" icon="chat" />
-        </div>
-      </q-page>
-    </q-page-container>
+[ITERATION]
+./src/main.ts
+./src/store/index.ts
+./src/types.ts
+./src/App.vue (qlayout: HeaderWidget; gutter[ScreenWidget(left, small, vertical), ScreenWidget(center, large, square), ScreenWidget(right, small, vertical)]; FooterWidget.)
+./src/css/quasar.variables.scss
+./src/components/HeaderWidget.vue
+./src/components/RemoteWidget.vue
+./src/components/ScreenWidget.vue
+./src/components/FooterWidget.vue
 
-    <q-drawer
-      v-model="chatWindowOpen"
-      side="right"
-      :width="300"
-      :breakpoint="800"
-      bordered
-    >
-      <!-- Chat window content -->
-    </q-drawer>
-
-    <q-footer>
-      <q-toolbar>
-        <q-toolbar-title> Footer Content </q-toolbar-title>
-      </q-toolbar>
-    </q-footer>
-  </q-layout>
-</template>
-
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-
-export default defineComponent({
-  name: 'App',
-  setup() {
-    const leftDrawerOpen = ref(true);
-    const chatWindowOpen = ref(false);
-
-    const menuItems = [
-      { label: 'Wonderlab', icon: 'home', link: '/wonderlab' },
-      { label: 'Playlab', icon: 'games', link: '/playlab' },
-      { label: 'ChatGPT', icon: 'chat', link: '/chatgpt' },
-      { label: 'Serendipity', icon: 'explore', link: '/serendipity' },
-      { label: 'Cosmos', icon: 'space_bar', link: '/cosmos' },
-      { label: 'Acrocat Ranch', icon: 'pets', link: '/acrocat-ranch' },
-      { label: 'Cafe Purr', icon: 'local_cafe', link: '/cafe-purr' },
-      { label: 'Cafe Fred', icon: 'local_cafe', link: '/cafe-fred' },
-      { label: 'Digital Art', icon: 'brush', link: '/digital-art' },
-      { label: 'Patreon', icon: 'favorite', link: 'https://www.patreon.com' },
-      { label: 'Mermaids', icon: 'pool', link: '/mermaids' },
-      { label: 'Kittens', icon: 'pets', link: '/kittens' },
-      {
-        label: 'Redbubble',
-        icon: 'shopping_cart',
-        link: 'https://www.redbubble.com',
-      },
-      { label: 'Social', icon: 'group', link: '/social' },
-      { label: 'Github', icon: 'code', link: 'https://github.com' },
-      { label: 'Donate', icon: 'donations', link: '/donate' },
-      { label: 'Settings', icon: 'settings', link: '/settings' },
-      { label: 'Help', icon: 'help', link: '/help' },
-    ];
-
-    return {
-      leftDrawerOpen,
-      chatWindowOpen,
-      menuItems,
-    };
-  },
-});
-</script>
-
-<style lang="scss">
-@import './src/css/quasar.variables.scss';
-
-$border-radius-large: 1rem;
-
-.q-layout {
-  background-color: $secondary;
-
-  .q-header,
-  .q-footer {
-    background-color: $primary;
-    color: $secondary;
-    font-weight: bold;
-
-    .q-toolbar-title {
-      color: $secondary;
-    }
-  }
-
-  .q-drawer {
-    background-color: $accent;
-
-    .q-list {
-      .q-item {
-        color: $primary;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-          background-color: rgba($primary, 0.1);
-        }
-
-        .q-item-section {
-          .q-icon {
-            color: $primary;
-          }
-        }
-      }
-    }
-  }
-
-  .droppable-area {
-    max-width: 90%;
-    height: 0;
-    padding-bottom: 90%;
-    position: relative;
-    border: 2px solid $primary;
-    border-radius: $border-radius-large;
-    background-color: $secondary;
-    color: $primary;
-    font-weight: bold;
-
-    &:before {
-      content: 'Droppable Area';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  .q-btn {
-    background-color: $primary;
-    color: $secondary;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-
-    &:hover {
-      background-color: darken($primary, 10%);
-    }
-  }
-}
-</style>
+[STATUS]
+Reiterating through files, fixing errors to achieve basic layout functions
