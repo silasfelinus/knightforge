@@ -1,52 +1,91 @@
-Hi, ChatGPT! I'm Silas. I need your help developing code.
-I'm building a GUI development lab to chain together API calls to natural language processors like yourself.
+Hi, ChatGPT! I'm Silas Knight. I have a vue.js Quasar project.
+I'm building a gui development lab that I can use to develop future tools.
+My goal is to make something that will allow me to chain api calls to natural language processors
+with a friendly and pleasing interface that also looks great as a portfolio showpiece.
+I have the following structure and I'm trying to follow current best practices:
 
-[FRAMEWORK]
-Quasar CLI with Vuejs 3, SCSS, TS, Composition API, Material Design
-
-
-[PROJECT]
-KnightForge Wonderlab
+[Project]
+WonderForge
 
 [INTENT]
-An inviting and fun sandbox to make programmatic api calls
+An inviting sandbox to make and chain programmatic API calls with a friendly, pleasing interface that also serves as a portfolio showpiece.
 
-[Dev Environment]
+[DEV ENVIRONMENT]
 Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
 
 [MODULES]
-Vue 3, TypeScript, SCSS, Quasar
+Vue 3, TypeScript, SASS, Quasar, Vuex
 
 [STANDARDS]
-Material Design, Composition API, Prettify, SCSS
+Material Design, Composition API, Prettify, SASS
 
 [ICONSET]
 fontawesome-v6
 
-
-[DESIRED EXPANSIONS]
+[ADDITIONAL GOALS]
 Step-Based Save System
 User Logins
-night Mode
-livechat
-openai secure key storage
-chatgpt chat
-build suite of playspace tools to showcase playspace like superball cannon, graffiti sprapaint, secret 2d adventure mode, bouncing balls, destructile screen effects, anything that is silly and fun. I can use more ideas!
-
-Draggable, droppable, and resizable icons such as drop-down selections, buttons, wires, and data displays
-
+Night Mode
+Live Chat
+OpenAI Secure Key Storage
+ChatGPT Chat
+Suite of PlaySpace Tools (e.g., Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects, etc.)
+Toolshed - Draggable, Droppable, and Resizable Icons (e.g., Drop-down Selections, Buttons, Wires, Data Displays)
 [Supported File Types]
-txt, yaml, json, jpg, png, wmv, pdf, mp4
+txt, yaml, json, jpg, png, wmv, mp4, db, pdf
 
 [NOTES]
-All colors should reference their Quasar preset variables: $primary, $secondary, $accent, $dark, $dark-page, $positive, $negative, $info, $warning
-Use a Quasar component if a reasonable option is available
-Please aim for maximum readability, use comments when appropriate to mark future areas that can be developed.
+Use Quasar preset variables for colors
+Use Quasar components when possible
+Components should use Vuex store for preset and screen names
+Adhere to current TypeScript standards
+Maintain code consistency and avoid brittle code
+No duplicate code or redundant functions
 
-Steps Taken
+[File Structure]
 Installed Quasar CLI, Vue3, SASS
-Created App.vue, HeaderWidget.vue,SidebarWidget, and FooterWidget.vue
-Expanded Sidebar function for multi-page toggle and collapse.
-MainWidget.vue space now functions as a splashpage.
-Beginning code developed for CodeCard.vue, CardCable.vue, and CardMat.vue to chain api calls.
+Created App.vue, HeaderWidget.vue, ScreenWidget.vue, and FooterWidget.vue
+Set up variable references and SCSS styling
+Created NavigationWidget with Vuex store for screen and preset management
+Established naming conventions for components and subcomponents
+Imported images for secret and splash screens
 
+[LAYOUT NOTES]
+ScreenWidgets should not overlap with header and footer
+Components should interact only through Vuex
+FooterWidget.vue should always be at the bottom, stretched to both sides
+
+[COMPONENTS]
+LabSpace (API Chain Project)
+
+CodeCard.vue
+CardCable.vue
+CardManager.vue
+CardMat.vue
+TextInput.vue
+RedSwitch.vue
+DataUpload.vue
+WonderForge (Development Limbo)
+
+LabSpaceWidget.vue
+ToolBox.vue
+PlaySpace (Silly Widgets, Games, Social Chat)
+
+Paintbox.vue
+PaintCanvas.vue
+SplashWidget.vue
+ChatWidget.vue
+
+[ITERATION]
+./src/main.ts
+./src/store/index.ts
+./src/types.ts
+./src/App.vue (qlayout: HeaderWidget; gutter[ScreenWidget(left, small, vertical), ScreenWidget(center, large, square), ScreenWidget(right, small, vertical)]; FooterWidget.)
+./src/css/quasar.variables.scss
+./src/components/HeaderWidget.vue
+./src/components/RemoteWidget.vue
+./src/components/ScreenWidget.vue
+./src/components/FooterWidget.vue
+
+[STATUS]
+Reiterating through files, fixing errors to achieve basic layout functions
