@@ -8,8 +8,8 @@
 
 <script lang="ts">
 import { defineComponent, computed, toRefs, ref, watch } from 'vue';
-import { useStore } from 'vuex';
-import { Side } from '../store/types';
+import { useAppStore } from '../stores';
+import { Side } from '../stores/types';
 import ScreenCard from './ScreenCard.vue';
 
 export default defineComponent({
@@ -24,17 +24,17 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const store = useStore();
+    const appStore = useAppStore();
     const { side } = toRefs(props);
 
     const currentPreset = computed(() => {
       const screenKey = `${side.value}Screen`;
-      return store.state[screenKey]?.preset;
+      return appStore[screenKey]?.preset;
     });
 
     const widgetTitle = computed(() => {
       const preset = currentPreset.value;
-      return store.getters.widgetSettings(preset)?.title;
+      return appStore.widgetSettings(preset)?.title;
     });
 
     const currentComponent = ref({});
