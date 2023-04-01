@@ -1,6 +1,10 @@
-// src/main.ts
 import { createApp } from 'vue';
 import App from './App.vue';
-import store from '../stores';
+import { createPinia } from 'pinia';
 
-createApp(App).use(store).mount('#app');
+const app = createApp(App);
+
+// Replace the Vuex store with a Pinia store
+app.use(createPinia());
+
+app.mount('#app');

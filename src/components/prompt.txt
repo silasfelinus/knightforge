@@ -1,5 +1,5 @@
 Hi, ChatGPT! I'm Silas Knight.
-I'm building a gui development lab using Vue3, Quasar, and VueX.
+I'm building a gui development lab using Vue3, Quasar, and Pinia
 I have the following structure:
 
 [Project]
@@ -12,18 +12,18 @@ An inviting sandbox to make and chain programmatic API calls with a friendly, pl
 Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
 
 [MODULES]
-Vue 3, TypeScript, SASS, Quasar, Vuex
+Vue 3, TypeScript, SASS, Quasar, Pinia
 
 [STANDARDS]
-Material Design, Composition API, Prettify, SASS
+Material Design, Prettify, SCSS, Pinia Setup Stores
 
 [ICONSET]
 fontawesome-v6
 
 [COLORS]
-$pimary, $secondary, $accent, $dark,
+$primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
 
-[ADDITIONAL GOALS]
+[FUTUREGOALS]
 Step-Based Save System
 User Logins
 Night Mode
@@ -114,6 +114,7 @@ added userRemoteWidget.ts to separate gui and logic
 Added UnderConstruction.vue for screen testing
 WORKING WEBSITE LAYOUT!!!!!!!!! - HeaderWidget, ScreenWidgets, and FooterWidget display on single screen with nested RemoteControl
 Installed Pinia, migrating from Vuex
+updated main.ts
 
 [STATUS]
 Re-iterating through files, fixing errors, optimizing foundation and integrating with VueX store.
@@ -121,9 +122,22 @@ All types are to be referenced in types.ts, use index.ts for state management, s
 No unnecessary code duplication, find variables programmatically whenever possible.
 
 [INSTRUCTIONS]
-There's a new VueX upgrade to Pinia. I never had a solid concept of VueX, so this is an opportunity to build a solid state management system with full grasp of the fundamentals.
+ We will be transitioning the code from VueX to Pinia (based on Vuex5)
 
-Here is the info for Pinia, please advise next course:
+Actions:
+Changed store/ to stores/
+
+my notes so far:
+[Old standard = New standard]
+modules = stores
+Options Api = Options Object
+{state, actions, getters = data, methods, computed}
+Composition API (our old standard) = Setup Stores
+ref() = state properties
+computer() = getters
+function() = action
+
+Everything that follows is from the migration sheet on the the Pinia website, Please work with me to condense it down to a single sheet of todos pertinent to our project:
 -------------------
 
 Restructuring Modules to Stores
