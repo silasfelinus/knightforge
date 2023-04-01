@@ -40,9 +40,8 @@ Use Quasar preset variables for colors
 Use Quasar components when available
 Use Vuex store for state management
 Adhere to current TypeScript standards
-Maintain code consistency and avoid brittle code
-No duplicate code or redundant functions.
-Don't repeat variable declarations, find information programmatically
+Separate concerns by maintaining a clear distinction between data structures and the logic that manipulates them.
+Avoid hardcoding data in application logic; instead, use programmatically generated data to ensure flexibility and maintainability.
 Always style <style scoped lang="scss">
 
 
@@ -83,23 +82,20 @@ ChatWidget.vue - livechat & chatgpt
 ./src/components/ScreenCard.vue
 ./src/components/FooterWidget.vue
 
-[VUEX STORE: State]
+[PINIA STORE: State]
 leftScreen, mainScreen, rightScreen: current preset and visibility status per section.
 widgetSettings: settings for each preset (title, bgColor).
 
-[VUEX STORE: Getters]
+[PINIA STORE: Getters]
 widgetSettings: takes Preset, returns settings.
 
-[VUEX STORE: Mutations]
+[PINIA STORE: Actions]
 changePreset: changes preset for side (left, main, right).
 nextPreset: cycles to next preset for side.
 toggleVisibility: toggles visibility of side.
 updateWidgetTitle: updates title of preset.
 updateWidgetBgColor: updates bgColor of preset.
-
-[VUEX STORE: Actions]
-updateWidgetTitle: updates title of preset.
-updateWidgetBgColor: updates bgColor of preset.
+{Note that in the Pinia setup, there is no separate Mutations section as in Vuex. Actions are used to directly modify the state, and there are no mutations.}
 
 [PROGRESS]
 Installed Quasar CLI, Vue3, SASS
@@ -115,6 +111,8 @@ Added UnderConstruction.vue for screen testing
 WORKING WEBSITE LAYOUT!!!!!!!!! - HeaderWidget, ScreenWidgets, and FooterWidget display on single screen with nested RemoteControl
 Installed Pinia, migrating from Vuex
 updated main.ts
+updated index.ts to use Pinia
+updated useRemoteWidget.ts
 
 [STATUS]
 Re-iterating through files, fixing errors, optimizing foundation and integrating with VueX store.

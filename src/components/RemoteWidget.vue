@@ -11,7 +11,7 @@
           v-model="selectedPresets[index]"
           :options="presetOptions"
           label="Select Preset"
-          @input="changePreset(screen.side, selectedPresets[index])"
+          @update:modelValue="changePreset(screen.side, selectedPresets[index])"
         />
         <q-btn
           color="primary"

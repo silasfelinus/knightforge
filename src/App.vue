@@ -5,18 +5,18 @@
       <q-page-container>
         <ScreenWidget
           side="left"
-          :preset="leftScreen.preset"
-          :visible="leftScreen.visible"
+          :preset="appStore.leftScreen.preset"
+          :visible="appStore.leftScreen.visible"
         />
         <ScreenWidget
           side="main"
-          :preset="mainScreen.preset"
-          :visible="mainScreen.visible"
+          :preset="appStore.mainScreen.preset"
+          :visible="appStore.mainScreen.visible"
         />
         <ScreenWidget
           side="right"
-          :preset="rightScreen.preset"
-          :visible="rightScreen.visible"
+          :preset="appStore.rightScreen.preset"
+          :visible="appStore.rightScreen.visible"
         />
       </q-page-container>
       <FooterWidget />
@@ -25,8 +25,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent } from 'vue';
+import { useAppStore } from './stores';
 import HeaderWidget from './components/HeaderWidget.vue';
 import ScreenWidget from './components/ScreenWidget.vue';
 import FooterWidget from './components/FooterWidget.vue';
@@ -39,12 +39,10 @@ export default defineComponent({
     FooterWidget,
   },
   setup() {
-    const store = useStore();
+    const appStore = useAppStore();
 
     return {
-      leftScreen: computed(() => store.state.leftScreen),
-      mainScreen: computed(() => store.state.mainScreen),
-      rightScreen: computed(() => store.state.rightScreen),
+      appStore,
     };
   },
 });

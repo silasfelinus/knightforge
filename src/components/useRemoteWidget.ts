@@ -1,9 +1,9 @@
 import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { useAppStore } from '../stores';
 import { Side, Preset } from '../stores/types';
 
 export default function useRemoteWidget() {
-  const store = useStore();
+  const appStore = useAppStore();
 
   const screens = computed(() => [
     { name: 'Left Sidebar', side: 'left' as Side },
@@ -14,21 +14,21 @@ export default function useRemoteWidget() {
   const presetOptions = computed(() => Object.values(Preset));
 
   const selectedPresets = computed(() => [
-    store.state.leftScreen.preset,
-    store.state.mainScreen.preset,
-    store.state.rightScreen.preset,
+    appStore.leftScreen.preset,
+    appStore.mainScreen.preset,
+    appStore.rightScreen.preset,
   ]);
 
   function changePreset(side: Side, preset: Preset) {
-    store.commit('changePreset', { side, preset });
+    appStore.changePreset({ side, preset });
   }
 
   function nextPreset(side: Side) {
-    store.dispatch('nextPreset', side);
+    appStore.nextPreset(side);
   }
 
   function toggleVisibility(side: Side) {
-    store.dispatch('toggleVisibility', side);
+    appStore.toggleVisibility(side);
   }
 
   return {

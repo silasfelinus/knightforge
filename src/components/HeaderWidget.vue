@@ -1,15 +1,17 @@
 <template>
   <q-header class="header-widget">
     <q-toolbar>
-      <q-toolbar-title class="header-title">{{ title }}</q-toolbar-title>
+      <q-toolbar-title class="header-title">{{
+        appStore.headerTitle
+      }}</q-toolbar-title>
       <RemoteWidget />
     </q-toolbar>
   </q-header>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent } from 'vue';
+import { useAppStore } from '../stores';
 import RemoteWidget from './RemoteWidget.vue';
 
 export default defineComponent({
@@ -18,12 +20,10 @@ export default defineComponent({
     RemoteWidget,
   },
   setup() {
-    const store = useStore();
-
-    const title = computed(() => store.state.headerTitle);
+    const appStore = useAppStore();
 
     return {
-      title,
+      appStore,
     };
   },
 });
