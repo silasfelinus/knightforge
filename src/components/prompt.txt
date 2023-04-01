@@ -12,7 +12,7 @@ An inviting sandbox to make and chain programmatic API calls with a friendly, pl
 Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
 
 [MODULES]
-Vue 3, TypeScript, SASS, Quasar, Pinia
+Vue 3, TypeScript, SASS, Quasar, Pinia, VueRouter
 
 [STANDARDS]
 Material Design, Prettify, SCSS, Pinia Setup Stores
@@ -110,7 +110,7 @@ added userRemoteWidget.ts to separate gui and logic
 Added UnderConstruction.vue for screen testing
 WORKING WEBSITE LAYOUT!!!!!!!!! - HeaderWidget, ScreenWidgets, and FooterWidget display on single screen with nested RemoteControl
 migrated from Vuex to Pinia
-creates router/index.ts and 
+created router/index.ts
 
 
 [STATUS]
@@ -120,5 +120,4 @@ iterating through files, fixing errors, optimizing foundation and integrating wi
 All types are to be referenced in types.ts, use index.ts for state management, scss quasar variables for color references
 No unnecessary code duplication, find variables programmatically whenever possible.
 
-I would like to setup routes from square one. Please walk me through a recommendation of steps
-based on my project design and current skillset.
+I just rebuilt routes but the website i
