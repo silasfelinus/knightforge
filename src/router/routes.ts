@@ -1,18 +1,23 @@
-import { RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import CardMat from '../components/labspace/CardMat.vue';
+import PaintCanvas from '../components/playspace/PaintCanvas.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    name: 'CardMat',
+    component: CardMat,
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
   {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
+    path: '/playspace',
+    name: 'PaintCanvas',
+    component: PaintCanvas,
   },
 ];
 
-export default routes;
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+
+export default router;
