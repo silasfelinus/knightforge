@@ -49,7 +49,6 @@ txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
 Use Composition API
 
 
-
 [DIRECTORY]
 WonderForge/
 ├── quasar.config.js
@@ -80,7 +79,7 @@ WonderForge/
 /layouts: HeaderWidget.vue, FooterWidget.vue, MainLayout.vue
 ./pages/: ScreenSet1, ScreenSet2, UnderConstruction, ErrorNotFound
 
-[SSCREENSPACE]
+[SCREENSPACE]
 /screenspace: RemoteControl.vue, useRemoteControl.ts, ScreenWidget.vue, ScreenCard.vue, ScreenWidgetWrapper.vue
 
 [LABSPACE]
@@ -116,6 +115,7 @@ Moved layout components to layouts/
 Created ScreenWidgetWrapper
 Moved screen elements into components/screenspace
 Updated outline and project docs
+fixed routing problems making @ unrecognized by dev build
 
 [STATUS]
 We are working together, iterating through files, making sure that we've separated concerns and following our structure.
@@ -128,15 +128,4 @@ a. fun emoticon and fun and inspiring phrase
 4. Any Additional comments
 
 [STATUS]
-troubleshooting error(s) preventing the website from displaying.
-
-[ERROR MESSAGE]
-broswer console: runtime-core.esm-bundler.js:40 [Vue warn]: Unhandled error during execution of setup function
-  at <HeaderWidget>
-  at <QLayout view="hHh lpR fFf" >
-  at <App>
-
-[INSTRUCTIONS]
-Help me track this browser console error message and restore display function.
-
-[STEPS]
+currently troubleshooting error(s) preventing the website from displaying.
