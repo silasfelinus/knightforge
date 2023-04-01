@@ -43,24 +43,30 @@ Separate concerns. Maintain a clear distinction between data structures and the 
 Avoid hardcoding data in application logic; instead, use programmatically generated data to ensure flexibility and maintainability.
 Always style <style scoped lang="scss">
 
-[MAIN ENTRY]
-./src/main.ts
-./src/store/app.ts (pinia store)
-./src/types.ts (establishes Presets)
-./src/css/quasar.variables.scss (sets color variables)
+[PRIMARY FOLDERS]
+./ = src/
+./main.ts
+./App.vue (calls HeaderWidget, MainLayout, and Footerwidget)
+./components/labspace/
+./components/screenspace/
+./components/playspace/
 ./router/index.ts (route management for screenwidgets)
-./src/App.vue (calls HeaderWidget, MainLayout, and Footerwidget)
+./stores/app.ts  (pinia store)
+./stores/types.ts (establishes Presets)
+./css/quasar.variables (sets color variables)
+./pages/: ScreenSet1, ScreenSet2, UnderConstruction, ErrorNotFound
+
 
 [LAYOUTS]
-/layouts (screen divisions for managing different sections)
+/layouts
 HeaderWidget.vue (top boundary maintainer and holder of RemoteControl)
 FooterWidget.vue (bottom boundary maintainer and holder of RemoteControl)
 MainLayout.vue (maintains layout boundaries for ScreenWidget Wrapper)
 
 [Screenspace]
 /screenspace (manipulation of screen elements)
-./src/components/RemoteWidget.vue (changes channels on screenwidgets through pinia)
-./src/components/useRemoteWidget.ts (old vuex code, needs to be updated to work with pinia setup)
+./src/components/RemoteControl.vue (changes channels on screenwidgets through pinia)
+./src/components/useRemoteControl.ts (old vuex code, needs to be updated to work with pinia setup)
 ./src/components/ScreenWidget.vue (screen display, might be duplicated by screencard in this setup)
 ./src/components/ScreenCard.vue (Screenwidget visual styling)
 ./src/components/ScreenWidgetWrapper.vue (Manages ScreenWidgets)
@@ -83,12 +89,6 @@ PaintCanvas.vue - gui space for paint effects
 SplashWidget.vue - slideshow image viewer
 ChatWidget.vue - livechat & chatgpt
 
-[PAGES]
-ErrorNotFound.vue (404 errors)
-UnderConstruction.vue (Under construction PAge)
-
-[VIEWS](is this redundant with layout and pages?)
-ScreenSet1, ScreenSet2 (presets for the ScreenWidgetWrapper)
 
 [PINIA STORE: State]
 leftScreen, mainScreen, rightScreen: current preset and visibility status per section.
@@ -113,7 +113,7 @@ Created Vuex store for screen and preset management
 Connected App.vue to Vuex store, retrieving leftScreen, mainScreen, and rightScreen from the store.
 Updated ScreenWidget side property to use 'left', 'main', and 'right'
 Added ScreenCard.vue to visually style the interface screens
-added userRemoteWidget.ts to separate gui and logic
+added userRemoteControl.ts to separate gui and logic
 Added UnderConstruction.vue for screen testing
 WORKING WEBSITE LAYOUT!!!!!!!!! - [HeaderWidget, ScreenWidgets, and FooterWidget display on single screen with nested RemoteControl]
 migrated from Vuex to Pinia, [now everything is broken again]
@@ -121,8 +121,8 @@ created router/index.ts
 moved HeaderWidget, MainLayout, and FooterLayout to layouts/
 created ScreenWidgetWrapper to wrap ScreenWidgets
 moved screen elements into components/screenspace
+updated outline and project docs
 
 [STATUS]
-iterating through files, fixing errors, optimizing foundation to restore gui functionality 2.0 after migrating to pinia and fully redesigning screen
-concepts.
-Please look over project design, and reply with suggestions to get back to base function: fully working remotewidgets in header and footer controlling screenwidgets in the main layout.
+
+Please look over project design, and reply with suggestions to get back to base function: fully working RemoteControls in header and footer controlling screenwidgets in the main layout.

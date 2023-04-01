@@ -4,7 +4,7 @@
       <q-toolbar-title class="header-title">{{
         appStore.headerTitle
       }}</q-toolbar-title>
-      <RemoteWidget />
+      <RemoteControl />
     </q-toolbar>
   </q-header>
 </template>
@@ -12,12 +12,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useAppStore } from '../stores/app';
-import RemoteWidget from '../components/screenspace/RemoteControl.vue';
+import RemoteControl from '../components/screenspace/RemoteControl.vue';
 
 export default defineComponent({
   name: 'HeaderWidget',
   components: {
-    RemoteWidget,
+    RemoteControl,
   },
   setup() {
     const appStore = useAppStore();

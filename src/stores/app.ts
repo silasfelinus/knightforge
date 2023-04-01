@@ -9,7 +9,6 @@ const generateWidgetSettings = (): Record<Preset, WidgetSettings> => {
   }, {} as Record<Preset, WidgetSettings>);
 };
 
-export type { AppStore };
 export const useAppStore = defineStore({
   id: 'app',
   state: (): State => ({

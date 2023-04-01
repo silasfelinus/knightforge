@@ -1,5 +1,3 @@
-import { useAppStore } from './app';
-
 export enum Preset {
   TextInput = 'TextInput',
   SplashScreen = 'SplashScreen',
@@ -34,7 +32,3 @@ export interface State {
   widgetSettings: Record<Preset, WidgetSettings>;
   headerTitle: string;
 }
-
-export type AppStore = ReturnType<typeof useAppStore> & {
-  widgetSettings: (preset: Preset) => WidgetSettings;
-};
