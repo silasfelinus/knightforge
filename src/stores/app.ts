@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { Preset, Side, State, WidgetSettings } from './types';
+import { Preset, Side, State, WidgetSettings, AppStore } from './types';
 
 const generateWidgetSettings = (): Record<Preset, WidgetSettings> => {
   const presets = Object.values(Preset);
@@ -9,6 +9,7 @@ const generateWidgetSettings = (): Record<Preset, WidgetSettings> => {
   }, {} as Record<Preset, WidgetSettings>);
 };
 
+export type { AppStore };
 export const useAppStore = defineStore({
   id: 'app',
   state: (): State => ({
