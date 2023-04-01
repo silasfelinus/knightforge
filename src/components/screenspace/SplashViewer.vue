@@ -1,11 +1,3 @@
-<template>
-  <div @click="changeImage" class="splash-viewer">
-    <transition name="flip-down">
-      <img :key="currentImage" :src="currentImageUrl" alt="Splash Image" />
-    </transition>
-  </div>
-</template>
-
 <script>
 export default {
   data() {
@@ -43,22 +35,3 @@ export default {
   },
 };
 </script>
-
-
-<style scoped>
-.splash-viewer {
-  cursor: pointer;
-}
-
-.flip-down-enter-active,
-.flip-down-leave-active {
-  transition: transform 0.5s;
-  backface-visibility: hidden;
-  perspective: 1000;
-}
-
-.flip-down-enter,
-.flip-down-leave-to {
-  transform: rotateX(-90deg);
-}
-</style>

@@ -1,50 +1,25 @@
 <template>
-  <div id="app">
-    <q-layout view="hHh lpR fFf">
-      <HeaderWidget />
-      <q-page-container>
-        <router-view />
-      </q-page-container>
-      <FooterWidget />
-    </q-layout>
+  <div class="main-layout">
+    <ScreenWidgetWrapper />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HeaderWidget from './layouts/HeaderWidget.vue';
-import FooterWidget from './layouts/FooterWidget.vue';
+import ScreenWidgetWrapper from '../components/screenspace/ScreenWidgetWrapper.vue';
 
 export default defineComponent({
-  name: 'App',
+  name: 'MainLayout',
   components: {
-    HeaderWidget,
-    FooterWidget,
+    ScreenWidgetWrapper,
   },
 });
 </script>
 
-<style lang="scss" scoped>
-#app {
+<style scoped lang="scss">
+.main-layout {
   display: flex;
   flex-direction: column;
-  height: 100%;
-}
-
-q-header,
-q-footer {
-  z-index: 1000;
-  background: $primary;
-}
-
-q-layout,
-q-page {
-  flex: 1;
-}
-
-q-page-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  overflow-y: auto;
 }
 </style>

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { Preset, Side, State, WidgetSettings, AppStore } from './types';
+import { Preset, Side, State, WidgetSettings, } from './types';
 
 const generateWidgetSettings = (): Record<Preset, WidgetSettings> => {
   const presets = Object.values(Preset);

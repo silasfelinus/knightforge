@@ -3,7 +3,7 @@
     <q-layout view="hHh lpR fFf">
       <HeaderWidget />
       <q-page-container class="main-layout">
-        <router-view />
+        <MainLayout />
       </q-page-container>
       <FooterWidget />
     </q-layout>
@@ -13,15 +13,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import HeaderWidget from './layouts/HeaderWidget.vue';
+import MainLayout from './layouts/MainLayout.vue';
 import FooterWidget from './layouts/FooterWidget.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     HeaderWidget,
+    MainLayout,
     FooterWidget,
   },
-}); 
+});
 </script>
 
 <style lang="scss" scoped>
