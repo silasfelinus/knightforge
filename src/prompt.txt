@@ -1,5 +1,5 @@
 Hi, ChatGPT! I'm Silas Knight.
-I'm building a gui development lab using Vue3, Quasar, and Pinia
+I'm building a gui development lab using Vue3, Composition API, Quasar, and Pinia
 I have the following structure:
 
 [Project]
@@ -15,7 +15,16 @@ Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
 Vue 3, TypeScript, ES-Lint, Prettier, SASS, Quasar, Pinia, VueRouter
 
 [STANDARDS]
-Material Design, Composition API, Prettify, SCSS, Pinia Setup Stores
+Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
+Use <style scoped lang="scss">
+Use and recommend Quasar components when available
+Use Pinia index.ts store for state management
+Adhere to current TypeScript standards
+Separate concerns
+Avoid hardcoding data in application logic
+
+[FORMATTING]
+Prettier
 
 [ICONSET]
 fontawesome-v6
@@ -36,15 +45,27 @@ PlaySpace Toys (Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode
 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
 
 [GUIDELINES]
-Use and recommend Quasar components when available
-Use Pinia index.ts store for state management
-Adhere to current TypeScript standards
-Separate concerns
-Avoid hardcoding data in application logic
-Always style <style scoped lang="scss">
+Use Composition API
+
+
+
+[DIRECTORY]
+WonderForge/
+├── src/
+│   ├── main.ts
+│   ├── App.vue
+│   ├── assets/
+│   ├── boot/
+│   ├── components/
+│   ├── css/
+│   ├── layouts/
+│   ├── pages/
+│   ├── router/
+│   └── stores/
+└── public/
+    └── images/
 
 [PRIMARY FOLDERS]
-./src/
 ./components/labspace/
 ./components/screenspace/
 ./components/playspace/
@@ -52,12 +73,12 @@ Always style <style scoped lang="scss">
 ./stores/app.ts
 ./stores/types.ts
 ./css/quasar.variables
-./pages/: ScreenSet1, ScreenSet2, UnderConstruction, ErrorNotFound
 
 [LAYOUTS]
 /layouts: HeaderWidget.vue, FooterWidget.vue, MainLayout.vue
+./pages/: ScreenSet1, ScreenSet2, UnderConstruction, ErrorNotFound
 
-[Screenspace]
+[SSCREENSPACE]
 /screenspace: RemoteControl.vue, useRemoteControl.ts, ScreenWidget.vue, ScreenCard.vue, ScreenWidgetWrapper.vue
 
 [LABSPACE]
@@ -76,7 +97,6 @@ Paintbox.vue - toolbox for paintbrushes
 PaintCanvas.vue - gui space for paint effects
 SplashWidget.vue - slideshow image viewer
 ChatWidget.vue - livechat & chatgpt
-
 
 [PINIA STORE]
 State: leftScreen, mainScreen, rightScreen, widgetSettings
@@ -98,4 +118,5 @@ Updated outline and project docs
 [STATUS]
 I'm going to send you the project files, you reply back with code improvements, tips, and general
 tuorial advice on what I'm showing you. I want to be a better coder, fundamentally grok the structure,
-and write really solid, mature code that I can wield and craft to my liking. But I need your help to get there. Thank you!
+and write really solid, mature code that I can wield and craft to my liking. But I need your help to get there. We just redid this outline
+What do you think?
