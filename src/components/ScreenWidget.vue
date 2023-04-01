@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, toRefs, ref, watch } from 'vue';
-import { useAppStore } from '../stores';
+import { useAppStore } from '../stores/app';
 import { Side } from '../stores/types';
 import ScreenCard from './ScreenCard.vue';
 

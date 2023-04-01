@@ -12,7 +12,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useAppStore } from '../stores';
-import RemoteWidget from './RemoteWidget.vue';
+import RemoteWidget from '../components/RemoteWidget.vue';
 
 export default defineComponent({
   name: 'HeaderWidget',

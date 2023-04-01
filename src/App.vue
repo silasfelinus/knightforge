@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HeaderWidget from './components/HeaderWidget.vue';
-import FooterWidget from './components/FooterWidget.vue';
+import HeaderWidget from './layouts/HeaderWidget.vue';
+import FooterWidget from './layouts/FooterWidget.vue';
 
 export default defineComponent({
   name: 'App',
