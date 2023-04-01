@@ -8,7 +8,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import RemoteWidget from '../components/RemoteWidget.vue';
+import RemoteWidget from '../components/RemoteControl.vue';
 
 export default defineComponent({
   name: 'FooterWidget',

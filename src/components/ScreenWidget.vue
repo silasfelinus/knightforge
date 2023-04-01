@@ -6,9 +6,9 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import TextInput from './TextInput.vue';
-import SplashScreen from './SplashScreen.vue';
-import ChatWidget from './ChatWidget.vue';
+import TextInput from './labspace/TextInput.vue';
+import SplashWidget from './playspace/SplashWidget.vue';
+import ChatWidget from './playspace/ChatWidget.vue';
 // ... import other components
 
 export default defineComponent({
@@ -20,7 +20,7 @@ export default defineComponent({
   },
   components: {
     TextInput,
-    SplashScreen,
+    SplashWidget,
     ChatWidget,
     // ... other components
   },

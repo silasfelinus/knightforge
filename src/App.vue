@@ -21,7 +21,7 @@ export default defineComponent({
     HeaderWidget,
     FooterWidget,
   },
-});
+}); 
 </script>
 
 <style lang="scss" scoped>

@@ -35,25 +35,37 @@ PlaySpace Toys (Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode
 [INTENDED FILE TYPES]
 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf
 
-[NOTES]
-Use Quasar preset variables for colors
-Use Quasar components when available
-Use Vuex store for state management
+[STANDARDS]
+Use and recommend Quasar components when available
+Use Pinia index.ts store for state management
 Adhere to current TypeScript standards
-Separate concerns by maintaining a clear distinction between data structures and the logic that manipulates them.
+Separate concerns. Maintain a clear distinction between data structures and the logic that manipulates them.
 Avoid hardcoding data in application logic; instead, use programmatically generated data to ensure flexibility and maintainability.
 Always style <style scoped lang="scss">
 
+[MAIN ENTRY]
+./src/main.ts
+./src/store/app.ts (pinia store)
+./src/types.ts (establishes Presets)
+./src/css/quasar.variables.scss (sets color variables)
+./src/App.vue (calls HeaderWidget, MainLayout, and Footerwidget)
 
-[LAYOUT]
-(qlayout: HeaderWidget; gutter[ScreenWidget(left, small, vertical), ScreenWidget(center, large, square), ScreenWidget(right, small, vertical)]; FooterWidget.)
+[LAYOUTS]
+/layouts (screen divisions for managing different sections)
+HeaderWidget.vue (top boundary maintainer and holder of RemoteControl)
+FooterWidget.vue (bottom boundary maintainer and holder of RemoteControl)
+MainLayout.vue (maintains layout boundaries for ScreenWidget Wrapper)
 
-[LAYOUT NOTES]
-ScreenWidgets should not overlap with header and footer
-Components should interact only through Vuex
-FooterWidget.vue should always be at the bottom, stretched to both sides
+[Screenspace]
+/screenspace (manipulation of screen elements)
+./src/components/RemoteWidget.vue (changes channels on screenwidgets through pinia)
+./src/components/useRemoteWidget.ts (old vuex code, needs to be updated to work with pinia setup)
+./src/components/ScreenWidget.vue (screen display, might be duplicated by screencard in this setup)
+./src/components/ScreenCard.vue (Screenwidget visual styling)
+./src/components/ScreenWidgetWrapper.vue (Manages ScreenWidgets)
 
-[COMPONENTS]
+[UNDEVELOPED COMPONENTS]
+[LABSPACE]
 ./components/labSpace/ (API Chain Project)
 CardCable.vue - logic to connect  Codecards for API chain processing
 CardManager.vue - create/edit/delete codecards
@@ -63,24 +75,19 @@ DataUpload.vue - drag-and-drop local file upload
 RedSwitch.vue - gui toggle
 TextInput.vue - stylized input field for text
 
+[PLAYSPACE]
 ./components/playSpace/ (Silly Widgets, Games, Social Chat)
 Paintbox.vue - toolbox for paintbrushes
 PaintCanvas.vue - gui space for paint effects
 SplashWidget.vue - slideshow image viewer
 ChatWidget.vue - livechat & chatgpt
 
-[MAIN FILES]
-./src/main.ts
-./src/store/index.ts
-./src/types.ts
-./src/App.vue
-./src/css/quasar.variables.scss
-./src/components/HeaderWidget.vue
-./src/components/RemoteWidget.vue
-./src/components/useRemoteWidget.ts
-./src/components/ScreenWidget.vue
-./src/components/ScreenCard.vue
-./src/components/FooterWidget.vue
+[PAGES]
+ErrorNotFound.vue (404 errors)
+UnderConstruction.vue (Under construction PAge)
+
+[VIEWS](is this redundant with layout and pages?)
+ScreenSet1, ScreenSet2 (presets for the ScreenWidgetWrapper)
 
 [PINIA STORE: State]
 leftScreen, mainScreen, rightScreen: current preset and visibility status per section.
@@ -95,7 +102,6 @@ nextPreset: cycles to next preset for side.
 toggleVisibility: toggles visibility of side.
 updateWidgetTitle: updates title of preset.
 updateWidgetBgColor: updates bgColor of preset.
-{Note that in the Pinia setup, there is no separate Mutations section as in Vuex. Actions are used to directly modify the state, and there are no mutations.}
 
 [PROGRESS]
 Installed Quasar CLI, Vue3, SASS
@@ -108,16 +114,13 @@ Updated ScreenWidget side property to use 'left', 'main', and 'right'
 Added ScreenCard.vue to visually style the interface screens
 added userRemoteWidget.ts to separate gui and logic
 Added UnderConstruction.vue for screen testing
-WORKING WEBSITE LAYOUT!!!!!!!!! - HeaderWidget, ScreenWidgets, and FooterWidget display on single screen with nested RemoteControl
-migrated from Vuex to Pinia
+WORKING WEBSITE LAYOUT!!!!!!!!! - [HeaderWidget, ScreenWidgets, and FooterWidget display on single screen with nested RemoteControl]
+migrated from Vuex to Pinia, [now everything is broken again]
 created router/index.ts
-
+moved HeaderWidget, MainLayout, and FooterLayout to layouts/
+created ScreenWidgetWrapper to wrap ScreenWidgets
 
 [STATUS]
-iterating through files, fixing errors, optimizing foundation and integrating with Pinia store.
-
-[INSTRUCTIONS]
-All types are to be referenced in types.ts, use index.ts for state management, scss quasar variables for color references
-No unnecessary code duplication, find variables programmatically whenever possible.
-
-I just rebuilt routes but the website i
+iterating through files, fixing errors, optimizing foundation to restore gui functionality 2.0 after migrating to pinia and fully redesigning screen
+concepts.
+Please look over project design, and reply with suggestions for optimizations using this general idea. I am attempting to get back to base function: fully working remotewidgets in header and footer controlling screenwidgets in the main layout.
