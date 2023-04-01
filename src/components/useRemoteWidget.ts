@@ -1,6 +1,6 @@
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import { Side, Preset } from '../store/types';
+import { Side, Preset } from '../stores/types';
 
 export default function useRemoteWidget() {
   const store = useStore();
