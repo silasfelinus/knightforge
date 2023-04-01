@@ -2,7 +2,7 @@
   <div id="app">
     <q-layout view="hHh lpR fFf">
       <HeaderWidget />
-      <q-page-container>
+      <q-page-container class="main-layout">
         <router-view />
       </q-page-container>
       <FooterWidget />
@@ -46,5 +46,11 @@ q-page-container {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+.main-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 </style>
