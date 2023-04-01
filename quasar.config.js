@@ -46,6 +46,13 @@ module.exports = configure(function (/* ctx */) {
       'roboto-font', // optional, you are not bound to it
       'material-icons', // optional, you are not bound to it
     ],
+    vite: {
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, 'src'),
+        },
+      },
+    },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
@@ -53,7 +60,7 @@ module.exports = configure(function (/* ctx */) {
       extendViteConf(viteConf) {
         viteConf.resolve.alias['@'] = path.resolve(__dirname, 'src');
       },
-      
+
       target: {
         browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
         node: 'node16',

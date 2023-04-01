@@ -1,6 +1,6 @@
 import { computed } from 'vue';
 import { useAppStore } from '@/stores/app';
-import { Side, Preset } from '../stores/types';
+import { Side, Preset } from '@/stores/types';
 
 export default function useRemoteControl() {
   const appStore = useAppStore();
