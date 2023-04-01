@@ -1,16 +1,14 @@
-<template>
-  <div class="screen-widget">
-    <ScreenCard :widgetTitle="widgetTitle">
-      <component :is="currentComponent" />
-    </ScreenCard>
-  </div>
-</template>
+<!-- ScreenWidget.vue -->
 
 <script lang="ts">
-import { defineComponent, computed, toRefs, ref, watch } from 'vue';
-import { useAppStore } from '../stores';
+import { defineComponent, computed, Ref, ref, watch, toRefs } from 'vue';
+import { useAppStore, AppStore } from '../stores/app';
 import { Side } from '../stores/types';
 import ScreenCard from './ScreenCard.vue';
+
+interface WidgetSettings {
+  title: string;
+}
 
 export default defineComponent({
   name: 'ScreenWidget',
@@ -24,7 +22,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const appStore = useAppStore();
+    const appStore = useAppStore() as AppStore;
     const { side } = toRefs(props);
 
     const currentPreset = computed(() => {
@@ -34,10 +32,11 @@ export default defineComponent({
 
     const widgetTitle = computed(() => {
       const preset = currentPreset.value;
-      return appStore.widgetSettings(preset)?.title;
+      const settings = appStore.widgetSettings(preset);
+      return settings ? (settings as WidgetSettings).title : '';
     });
 
-    const currentComponent = ref({});
+    const currentComponent: Ref<ReturnType<typeof defineComponent> | object> = ref({});
     watch(currentPreset, (preset) => {
       import(`../pages/${preset}.vue`)
         .then((module) => {
