@@ -12,10 +12,10 @@ An inviting sandbox to make and chain programmatic API calls with a friendly, pl
 Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
 
 [MODULES]
-Vue 3, TypeScript, SASS, Quasar, Pinia, VueRouter
+Vue 3, TypeScript, ES-Lint, Prettier, SASS, Quasar, Pinia, VueRouter
 
 [STANDARDS]
-Material Design, Prettify, SCSS, Pinia Setup Stores
+Material Design, Composition API, Prettify, SCSS, Pinia Setup Stores
 
 [ICONSET]
 fontawesome-v6
@@ -33,7 +33,7 @@ ChatGPT Chat
 PlaySpace Toys (Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects)
 
 [INTENDED FILE TYPES]
-txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf
+txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
 
 [STANDARDS]
 Use and recommend Quasar components when available
@@ -48,6 +48,7 @@ Always style <style scoped lang="scss">
 ./src/store/app.ts (pinia store)
 ./src/types.ts (establishes Presets)
 ./src/css/quasar.variables.scss (sets color variables)
+./router/index.ts (route management for screenwidgets)
 ./src/App.vue (calls HeaderWidget, MainLayout, and Footerwidget)
 
 [LAYOUTS]
@@ -119,8 +120,9 @@ migrated from Vuex to Pinia, [now everything is broken again]
 created router/index.ts
 moved HeaderWidget, MainLayout, and FooterLayout to layouts/
 created ScreenWidgetWrapper to wrap ScreenWidgets
+moved screen elements into components/screenspace
 
 [STATUS]
 iterating through files, fixing errors, optimizing foundation to restore gui functionality 2.0 after migrating to pinia and fully redesigning screen
 concepts.
-Please look over project design, and reply with suggestions for optimizations using this general idea. I am attempting to get back to base function: fully working remotewidgets in header and footer controlling screenwidgets in the main layout.
+Please look over project design, and reply with suggestions to get back to base function: fully working remotewidgets in header and footer controlling screenwidgets in the main layout.
