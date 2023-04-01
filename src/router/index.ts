@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import ScreenWidget from '../components/ScreenWidget.vue';
+import ScreenWidget from '../components/screenspace/ScreenWidget.vue';
 
 const routes: RouteRecordRaw[] = [
   {

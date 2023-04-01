@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useAppStore } from '../stores/app';
+import { useAppStore } from '../../stores/app';
 
 export default defineComponent({
   name: 'RemoteControl',
