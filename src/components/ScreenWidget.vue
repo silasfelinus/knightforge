@@ -1,66 +1,59 @@
-<!-- ScreenWidget.vue -->
+<template>
+  <div class="screen-widget">
+    <component :is="currentComponent" v-bind="currentProps" />
+  </div>
+</template>
 
 <script lang="ts">
-import { defineComponent, computed, Ref, ref, watch, toRefs } from 'vue';
-import { useAppStore, AppStore } from '../stores/app';
-import { Side } from '../stores/types';
-import ScreenCard from './ScreenCard.vue';
-
-interface WidgetSettings {
-  title: string;
-}
+import { defineComponent, computed } from 'vue';
+import TextInput from './TextInput.vue';
+import SplashScreen from './SplashScreen.vue';
+import ChatWidget from './ChatWidget.vue';
+// ... import other components
 
 export default defineComponent({
   name: 'ScreenWidget',
-  components: {
-    ScreenCard,
-  },
   props: {
-    side: {
-      type: String as () => Side,
-      default: '',
-    },
+    side: String,
+    preset: String,
+    visible: Boolean,
+  },
+  components: {
+    TextInput,
+    SplashScreen,
+    ChatWidget,
+    // ... other components
   },
   setup(props) {
-    const appStore = useAppStore() as AppStore;
-    const { side } = toRefs(props);
-
-    const currentPreset = computed(() => {
-      const screenKey = `${side.value}Screen`;
-      return appStore[screenKey]?.preset;
+    const currentComponent = computed(() => {
+      switch (props.preset) {
+        case 'TextInput':
+          return 'TextInput';
+        case 'SplashScreen':
+          return 'SplashScreen';
+        case 'ChatWidget':
+          return 'ChatWidget';
+        // ... other cases
+        default:
+          return 'DefaultComponent'; // Replace with the actual component name
+      }
     });
 
-    const widgetTitle = computed(() => {
-      const preset = currentPreset.value;
-      const settings = appStore.widgetSettings(preset);
-      return settings ? (settings as WidgetSettings).title : '';
-    });
-
-    const currentComponent: Ref<ReturnType<typeof defineComponent> | object> = ref({});
-    watch(currentPreset, (preset) => {
-      import(`../pages/${preset}.vue`)
-        .then((module) => {
-          currentComponent.value = module.default;
-        })
-        .catch(() => {
-          import('../pages/UnderConstruction.vue').then((module) => {
-            currentComponent.value = module.default;
-          });
-        });
+    const currentProps = computed(() => {
+      // Add any logic to compute the current props needed for the component
+      return {};
     });
 
     return {
-      widgetTitle,
       currentComponent,
+      currentProps,
     };
   },
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .screen-widget {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
+  // Add any necessary styling for the screen widget component
 }
 </style>
