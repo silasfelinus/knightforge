@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import ScreenWidget from '../components/screenspace/ScreenWidget.vue';
+import ScreenWidgetWrapper from '@/components/screenspace/ScreenWidgetWrapper.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Main',
-    component: ScreenWidget,
+    component: ScreenWidgetWrapper,
     props: {
       side: 'main',
       preset: 'default',

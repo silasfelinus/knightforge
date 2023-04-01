@@ -6,9 +6,9 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import TextInput from './labspace/TextInput.vue';
-import SplashWidget from './playspace/SplashWidget.vue';
-import ChatWidget from './playspace/ChatWidget.vue';
+import TextInput from '../labspace/TextInput.vue';
+import ScreenCard from '../screenspace/ScreenCard.vue';
+import ChatWidget from '../playspace/ChatWidget.vue';
 // ... import other components
 
 export default defineComponent({
@@ -52,8 +52,3 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.screen-widget {
-  // Add any necessary styling for the screen widget component
-}
-</style>
