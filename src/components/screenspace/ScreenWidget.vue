@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import TextInput from '../labspace/TextInput.vue';
-import ScreenCard from '../screenspace/ScreenCard.vue';
+import SplashViewer from '../screenspace/SplashViewer.vue';
 import ChatWidget from '../playspace/ChatWidget.vue';
 // ... import other components
 
@@ -20,7 +20,7 @@ export default defineComponent({
   },
   components: {
     TextInput,
-    SplashWidget,
+    SplashViewer,
     ChatWidget,
     // ... other components
   },
@@ -29,8 +29,8 @@ export default defineComponent({
       switch (props.preset) {
         case 'TextInput':
           return 'TextInput';
-        case 'SplashScreen':
-          return 'SplashScreen';
+        case 'SplashViewer':
+          return 'SplashViewer';
         case 'ChatWidget':
           return 'ChatWidget';
         // ... other cases
