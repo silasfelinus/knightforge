@@ -98,12 +98,12 @@ a. fun emoticon and fun and inspiring phrase
 4. Any Additional comments
 
 [BASIC FUNCTION]
- main.ts loads App.vue + router/index.ts
+ main.ts loads App.vue, router/index.ts, and stores/useAppStore.ts
 App.vue loads the default Preset (AppSimple) from index.ts
 Appsimple shows UnderConstruction page
 
-Please include in reply how to setup global error handling and testing for basic functions. I have Eslint running, but it was all setup automatically,
-so my understanding is it is just evaluating at a surface level and we can go deeper and help me maintain basic functions on the website without breaking at every update.
+Please include in reply how to test for basic functions.
+
 main.ts = {
 import { createApp } from 'vue';
 import App from '@/pages/Splash.vue';

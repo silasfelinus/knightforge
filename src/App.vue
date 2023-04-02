@@ -3,7 +3,7 @@
   <div id="app">
     <img
       class="splash-image"
-      src="/@/assets/splash/splash00.png"
+      src="@/assets/splash/splash00.png"
       alt="Splash Image"
     />
   </div>
