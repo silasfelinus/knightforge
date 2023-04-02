@@ -1,8 +1,12 @@
-<!-- HeaderWidget.vue -->
 <template>
   <header>
     <h1>WonderForge</h1>
     <button @click="addNewCard">Add New Card</button>
+    <button @click="removeSelectedCards">Remove Selected Cards</button>
+    <button @click="saveStep">Save Step</button>
+    <button @click="undo">Undo</button>
+    <button @click="login">Login</button>
+    <button @click="logout">Logout</button>
   </header>
 </template>
 
@@ -24,8 +28,33 @@ export default {
       });
     }
 
+    function removeSelectedCards() {
+      appStore.removeSelectedCards();
+    }
+
+    function saveStep() {
+      appStore.saveStep();
+    }
+
+    function undo() {
+      appStore.undo();
+    }
+
+    function login() {
+      appStore.login();
+    }
+
+    function logout() {
+      appStore.logout();
+    }
+
     return {
       addNewCard,
+      removeSelectedCards,
+      saveStep,
+      undo,
+      login,
+      logout,
     };
   },
 };
