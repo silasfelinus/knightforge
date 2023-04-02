@@ -1,19 +1,19 @@
 [INTRODUCTION]
 Hi, ChatGPT! I'm Silas Knight.
-I'm building an SPA development lab using Vue3, Composition API, Quasar, and Pinia.
+I'm building an SPA using Vue3, Composition API, Quasar, and Pinia.
 
 [PROJECT]
 WonderForge
 
 [INTENT]
-A sandbox for rapidly protoyping development and coding projects
-(with a pleasing interface that also serves as a portfolio showpiece)
+A gui sandbox for rapidly protoyping development and coding projects
+(with a pleasing interface and best practices to serve as a portfolio showpiece)
 
 [DEV ENVIRONMENT]
-Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
+Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
 
 [MODULES]
-Vue 3, TypeScript, ES-Lint, Prettier, SASS, Quasar, Pinia, VueRouter
+Vue 3, TypeScript, ES-Lint, Prettier, SASS, Quasar, Pinia, Vue-Router, vuedraggable, vue-resizable
 
 [STANDARDS]
 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
