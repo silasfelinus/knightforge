@@ -2,8 +2,8 @@
   <div id="app">
     <q-layout view="hHh lpR fFf">
       <HeaderWidget />
-      <q-page-container class="main-layout error-warning">
-        <!-- <MainLayout /> -->
+      <q-page-container class="main-layout">
+        <MainLayout />
       </q-page-container>
       <FooterWidget />
     </q-layout>
@@ -13,14 +13,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import HeaderWidget from './layouts/HeaderWidget.vue';
-// import MainLayout from './layouts/MainLayout.vue';
+import MainLayout from './layouts/MainLayout.vue';
 import FooterWidget from './layouts/FooterWidget.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     HeaderWidget,
-    // MainLayout,
+    MainLayout,
     FooterWidget,
   },
 });
@@ -49,15 +49,10 @@ q-page-container {
   display: flex;
   flex-direction: column;
 }
-
 .main-layout {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-}
-
-.error-warning {
-  background-color: $warning;
 }
 </style>
