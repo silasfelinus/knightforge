@@ -20,7 +20,6 @@ export const useAppStore = defineStore('app', {
     user: null as User | null,
     isLoggedIn: false,
     nightMode: false,
-    notifications: [] as string[],
     screenCards: [] as ScreenCard[],
     nextCardId: 1,
     selectedCardIds: new Set<number>(),
@@ -53,14 +52,6 @@ export const useAppStore = defineStore('app', {
     // Toggle night mode
     toggleNightMode() {
       this.nightMode = !this.nightMode;
-    },
-    // Add a new notification
-    addNotification(notification: string) {
-      this.notifications.push(notification);
-    },
-    // Remove a notification by its index
-    removeNotification(index: number) {
-      this.notifications.splice(index, 1);
     },
     // Add a new screen card
     addScreenCard(card: Omit<ScreenCard, 'id'>) {
