@@ -14,7 +14,7 @@ import { defineComponent, ref } from 'vue';
 import ScreenWidget from '@/components/ScreenWidget.vue';
 
 export default defineComponent({
-  name: 'ScreenSet2',
+  name: 'ScreenSet02',
   components: {
     ScreenWidget,
   },

@@ -111,10 +111,8 @@ Created dummy preset components
 Set up variable references and SCSS styling
 Migrated from Vuex to Pinia
 Created router/index.ts
-Moved layout components to layouts/
+reconfigured folder structure
 Created ScreenWidgetWrapper
-Moved screen elements into components/screenspace
-Updated outline and project docs
 fixed routing problems making @ unrecognized by dev build
 
 [STATUS]
@@ -127,5 +125,175 @@ a. fun emoticon and fun and inspiring phrase
 3. The file or files you'd like to see next
 4. Any Additional comments
 
-[STATUS]
-currently troubleshooting error(s) preventing the website from displaying.
+[CURRENT]
+Troubleshooting error(s) preventing the website from displaying. Help me setup a simple ScreenSet00.vue and ensure each of the elements is working together as planned. I've removed a coupel extra elements to simplify, we want to achieve:
+App.vue calls HeaderWidget, MainLayout, FooterWidget.
+HeaderWidget and FooterWidget should display the title "WonderForge"
+MainLayout should call ScreenWidgetWrapper
+ScreenWidgetWrapper should load a background in $warning color.
+
+[App.vue]
+<template>
+  <div id="app">
+    <q-layout view="hHh lpR fFf">
+      <HeaderWidget />
+      <q-page-container class="main-layout">
+        <MainLayout />
+      </q-page-container>
+      <FooterWidget />
+    </q-layout>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import HeaderWidget from './layouts/HeaderWidget.vue';
+import MainLayout from './layouts/MainLayout.vue';
+import FooterWidget from './layouts/FooterWidget.vue';
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    HeaderWidget,
+    MainLayout,
+    FooterWidget,
+  },
+});
+</script>
+
+<style lang="scss" scoped>
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+q-header,
+q-footer {
+  z-index: 1000;
+  background: $primary;
+}
+
+q-layout,
+q-page {
+  flex: 1;
+}
+
+q-page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.main-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+</style>
+
+[HeaderWidget]
+<template>
+  <q-header class="header-widget">
+    <q-toolbar>
+      <q-toolbar-title class="header-title">{{
+        appStore.headerTitle
+      }}</q-toolbar-title>
+      <RemoteControl />
+    </q-toolbar>
+  </q-header>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { useAppStore } from '../stores/app';
+import RemoteControl from '../components/screenspace/RemoteControl.vue';
+
+export default defineComponent({
+  name: 'HeaderWidget',
+  components: {
+    RemoteControl,
+  },
+  setup() {
+    const appStore = useAppStore();
+
+    return {
+      appStore,
+    };
+  },
+});
+</script>
+
+<style scoped lang="scss">
+.header-widget {
+  background: $primary;
+  border-bottom: 1px solid $secondary;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+</style>
+
+[ScreenWidgetWrapper]
+<template>
+  <div>
+    <ScreenWidget
+      v-for="(screen, index) in screens"
+      :key="index"
+      :preset="screen.preset"
+      :visible="screen.visible"
+    />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import ScreenWidget from './ScreenWidget.vue';
+
+export default defineComponent({
+  name: 'ScreenWidgetWrapper',
+  components: {
+    ScreenWidget,
+  },
+  setup() {
+    const screens = ref([
+      { preset: 'Default', visible: true },
+      // ... add more ScreenWidgets as needed
+    ]);
+
+    return {
+      screens,
+    };
+  },
+});
+</script>
+
+[MainLayout]
+<template>
+  <div class="main-layout">
+    <ScreenWidgetWrapper />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import ScreenWidgetWrapper from '../components/screenspace/ScreenWidgetWrapper.vue';
+
+export default defineComponent({
+  name: 'MainLayout',
+  components: {
+    ScreenWidgetWrapper,
+  },
+});
+</script>
+
+<style scoped lang="scss">
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+</style>
+
