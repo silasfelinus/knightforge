@@ -67,11 +67,11 @@ WonderForge/
 
 [PRIMARY FOLDERS]
 ./router/index.ts
-./stores/useAppStore.ts
+./stores/useAppStore.ts (not implemented)
 ./stores/useAuthStore.ts (not implemented)
 ./stores/types.ts
 ./css/quasar.variables
-[layouts/] Presets, AppSimple, AppWorking, AppFull
+[layouts/] AppSimple, AppWorking, AppFull
 [pages/] ErrorNotFound, Footer, Header, LoginForm, MainWindow, Sidebar, SplashScreen, UnderConstruction, WarningScreen
 [src/] Main, App.vue
 
@@ -79,12 +79,14 @@ WonderForge/
 
 
 [PROGRESS]
-Installed Quasar CLI, Vue3, SASS
-Created Preset components
-Set up variable references and SCSS styling
-fixed routing problems making @ unrecognized by dev build
-Added demo login, preset routing,  and Simple/Working/Full App presets
+Installed Quasar CLI, Vue3, SASS and other listed modules
+Setup variable references and SCSS styling
+setup types and framework for pinia store
+Setup basic routing structure
 main.ts loads App.vue and shows splash image (woohoo)
+
+[STATUS]
+Upgrading App.vue to load pages based on instructions from useAppStore
 
 
 [SUGGESTED REPLY FORMAT]
@@ -96,13 +98,3 @@ a. fun emoticon and fun and inspiring phrase
 
 [BASIC FUNCTIONS]
 
-
-Help me decide my basic structure from here. I want
-main.ts loads router/index.ts, and stores/useAppStore.ts
-App.vue loads the default Preset (AppSimple) from index.ts
-Appsimple load SplashScreen.vue
-
-Work with me as we setup next steps:
-AppSimple loads UnderConstruction.vue
-AppWorking loads MainWindow.vue
-AppFull loads Header, SplashScreen, Footer
