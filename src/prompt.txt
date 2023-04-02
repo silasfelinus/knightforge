@@ -12,7 +12,8 @@ A gui sandbox for rapidly protoyping development and coding projects
 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
 
 [MODULES]
-Vue 3, TypeScript, fontawesome-v6, ES-Lint, Prettier, SASS, Quasar, Pinia, Vue-Router, vuedraggable, vue-resizable
+@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint eslint-config-prettier eslint-plugin-prettier prettier
+Vue 3, fontawesome-v6, SASS, Quasar, Pinia, Vue-Router, vuedraggable, vue-resizable
 
 [STANDARDS]
 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
@@ -70,7 +71,7 @@ WonderForge/
 [pages/] ErrorNotFound, Footer, Header, LoginForm, MainWindow, Sidebar, SplashScreen, UnderConstruction, WarningScreen
 [src/] Main, App.vue
 
-[PRESETS]
+[PRESET LOADS]
 AppSimple - UnderConstruction.vue
 AppWorking - MainWindow.vue
 AppFull - Header, SplashScreen, Footer
@@ -93,13 +94,13 @@ a. fun emoticon and fun and inspiring phrase
 3. The file or files you'd like to see next
 4. Any Additional comments
 
-[CURRENT]
-Avise on current directory structure and pathing:
+[BASIC FUNCTION]
+ main.ts loads App.vue + router/index.ts
+App.vue loads the default Preset (AppSimple) from index.ts
+Appsimple shows UnderConstruction page
 
- main.ts calls App.vue
-router/index.ts loads the default layout Preset (currently AppSimple)
-Loaded Layout displays options for header, mainwindow, sidebar, footer, etc.
-
+Please include in reply how to setup global error handling and testing for basic functions. I have Eslint running, but it was all setup automatically,
+so my understanding is it is just evaluating at a surface level and we can go deeper and help me maintain basic functions on the website without breaking at every update.
 main.ts = {
 import { createApp } from 'vue';
 import App from '@/pages/Splash.vue';
@@ -108,82 +109,12 @@ import { createPinia } from 'pinia';
 
 const app = createApp(App);
 
+// Use the router
 app.use(router);
 
 // Use the Pinia store
 app.use(createPinia());
 
 app.mount('#app');
-}
-
-index.ts = {
-  import { createRouter, createWebHistory } from 'vue-router';
-import ErrorNotFound from '@/pages/ErrorNotFound.vue';
-import LoginForm from '@/pages/LoginForm.vue';
-import Preset from '@/layouts/Preset.vue';
-
-const routes = [
-  {
-    path: '/',
-    component: Preset,
-  },
-  {
-    path: '/login',
-    component: LoginForm,
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    component: ErrorNotFound,
-  },
-];
-
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
-
-export default router;
 
 }
-
-Preset.vue = {
-  <template>
-  <component :is="loadedPreset" />
-</template>
-
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import AppSimple from '@/layouts/AppSimple.vue';
-import AppWorking from '@/layouts/AppWorking.vue';
-import AppFull from '@/layouts/AppFull.vue';
-import ErrorNotFound from '@/pages/ErrorNotFound.vue';
-// ... other layout components
-
-const PRESET = 'AppSimple'; // Change this to switch between presets
-
-export default defineComponent({
-  setup() {
-    const loadedPreset = ref(null);
-
-    const presets = {
-      AppSimple,
-      AppWorking,
-      AppFull,
-      ErrorNotFound,
-      // ... other layouts
-    };
-
-    if (presets[PRESET]) {
-      loadedPreset.value = presets[PRESET];
-    } else {
-      console.error(`Failed to load preset: ${PRESET}`);
-      loadedPreset.value = ErrorNotFound;
-    }
-
-    return { loadedPreset };
-  },
-});
-</script>
-
-}
-Please reply back with working AppSimple and any comments or additional code revisions.

@@ -1,14 +1,15 @@
 import { createApp } from 'vue';
 import App from '@/pages/Splash.vue';
-import router from './router'; // Import the router instance, not the routes
+import router from './router';
 import { createPinia } from 'pinia';
 
 const app = createApp(App);
 
-// Use the router
+app.config.errorHandler = (err, vm, info) => {
+  console.error('Captured in global errorHandler:', err);
+  // You can also send the error to a logging service or display a user-friendly message
+};
+
 app.use(router);
-
-// Use the Pinia store
 app.use(createPinia());
-
 app.mount('#app');
