@@ -1,39 +1,38 @@
+<!-- HeaderWidget.vue -->
 <template>
-  <q-header class="header-widget">
-    <q-toolbar>
-      <q-toolbar-title class="header-title">{{
-        appStore.headerTitle
-      }}</q-toolbar-title>
-    </q-toolbar>
-  </q-header>
+  <header>
+    <h1>WonderForge</h1>
+    <button @click="addNewCard">Add New Card</button>
+  </header>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { useAppStore } from '../stores/app';
+<script>
+import { useAppStore } from '@/stores/app';
 
-export default defineComponent({
+export default {
   name: 'HeaderWidget',
-  components: {
-  },
   setup() {
     const appStore = useAppStore();
 
+    function addNewCard() {
+      appStore.addScreenCard({
+        content: 'New Card',
+        x: 0,
+        y: 0,
+        width: 200,
+        height: 200,
+      });
+    }
+
     return {
-      appStore,
+      addNewCard,
     };
   },
-});
+};
 </script>
 
 <style scoped lang="scss">
-.header-widget {
-  background: $primary;
-  border-bottom: 1px solid $secondary;
-}
-
-.header-title {
-  font-size: 1.5rem;
-  font-weight: 500;
+header {
+  // Your header styles go here
 }
 </style>
