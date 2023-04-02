@@ -1,62 +1,38 @@
+// app.ts
 import { defineStore } from 'pinia';
-import { Preset, Side, State, WidgetSettings, } from './types';
 
-const generateWidgetSettings = (): Record<Preset, WidgetSettings> => {
-  const presets = Object.values(Preset);
-  return presets.reduce((acc, preset) => {
-    acc[preset] = { title: preset, bgColor: 'white' };
-    return acc;
-  }, {} as Record<Preset, WidgetSettings>);
-};
+interface ScreenCard {
+  id: number;
+  content: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
 
-export const useAppStore = defineStore({
-  id: 'app',
-  state: (): State => ({
-    leftScreen: {
-      preset: Preset.Default,
-      visible: true,
-    },
-    mainScreen: {
-      preset: Preset.Default,
-      visible: true,
-    },
-    rightScreen: {
-      preset: Preset.Default,
-      visible: true,
-    },
-    widgetSettings: generateWidgetSettings(),
-    headerTitle: 'Wonderforge',
+export const useAppStore = defineStore('app', {
+  state: () => ({
+    screenCards: [] as ScreenCard[],
+    nextCardId: 1,
   }),
   getters: {
-    widgetSettings: (state) => (preset: Preset) => {
-      return state.widgetSettings[preset];
+    getScreenCardById: (state) => (id: number) => {
+      return state.screenCards.find((card) => card.id === id);
     },
   },
   actions: {
-    changePreset({ side, preset }: { side: Side; preset: Preset }) {
-      this[`${side}Screen`].preset = preset;
+    addScreenCard(card: Omit<ScreenCard, 'id'>) {
+      this.screenCards.push({ ...card, id: this.nextCardId });
+      this.nextCardId += 1;
     },
-    toggleVisibility(side: Side) {
-      this[`${side}Screen`].visible = !this[`${side}Screen`].visible;
+    updateScreenCard(card: ScreenCard) {
+      const index = this.screenCards.findIndex((c) => c.id === card.id);
+      if (index !== -1) {
+        this.screenCards[index] = card;
+      }
     },
-    nextPreset(side: Side) {
-      const currentPreset = this[`${side}Screen`].preset;
-      const presetValues: Preset[] = Object.values(Preset);
-      const index = presetValues.indexOf(currentPreset);
-      const nextPreset = presetValues[(index + 1) % presetValues.length];
-      this.changePreset({ side, preset: nextPreset });
-    },
-    updateWidgetTitle({ preset, title }: { preset: Preset; title: string }) {
-      this.widgetSettings[preset].title = title;
-    },
-    updateWidgetBgColor({
-      preset,
-      bgColor,
-    }: {
-      preset: Preset;
-      bgColor: string;
-    }) {
-      this.widgetSettings[preset].bgColor = bgColor;
+    removeScreenCard(id: number) {
+      this.screenCards = this.screenCards.filter((card) => card.id !== id);
     },
   },
 });
