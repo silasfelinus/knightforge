@@ -2,34 +2,38 @@
 <template>
   <footer>
     <div class="color-picker">
-      <label for="primary-color">Primary Color:</label>
-      <input type="color" id="primary-color" v-model="primaryColor" @change="updateColor('primary', primaryColor)" />
-      <label for="secondary-color">Secondary Color:</label>
-      <input type="color" id="secondary-color" v-model="secondaryColor" @change="updateColor('secondary', secondaryColor)" />
-      <label for="accent-color">Accent Color:</label>
-      <input type="color" id="accent-color" v-model="accentColor" @change="updateColor('accent', accentColor)" />
+      <template v-for="color in colors">
+        <label :for="color.name">{{ color.label }}:</label>
+        <input type="color" :id="color.name" v-model="color.value" @change="updateColor(color.name, color.value)" />
+      </template>
     </div>
   </footer>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
 export default {
   name: 'FooterWidget',
   setup() {
-    const primaryColor = ref('#027BE3');
-    const secondaryColor = ref('#26A69A');
-    const accentColor = ref('#9C27B0');
+    const colors = reactive([
+      { name: 'primary', label: 'Primary Color', value: '#f0c3d3' },
+      { name: 'secondary', label: 'Secondary Color', value: '#239c8e' },
+      { name: 'accent', label: 'Accent Color', value: '#8b249c' },
+      { name: 'dark', label: 'Dark Color', value: '#332b2b' },
+      { name: 'dark-page', label: 'Dark Page Color', value: '#1a1a1a' },
+      { name: 'positive', label: 'Positive Color', value: '#adffc0' },
+      { name: 'negative', label: 'Negative Color', value: '#b34e00' },
+      { name: 'info', label: 'Info Color', value: '#c4dd3a' },
+      { name: 'warning', label: 'Warning Color', value: '#e8b12d' },
+    ]);
 
     function updateColor(colorName, colorValue) {
       document.documentElement.style.setProperty(`--${colorName}`, colorValue);
     }
 
     return {
-      primaryColor,
-      secondaryColor,
-      accentColor,
+      colors,
       updateColor,
     };
   },
