@@ -1,21 +1,16 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import ScreenWidgetWrapper from '@/components/screenspace/ScreenWidgetWrapper.vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import ScreenSet00 from '../pages/ScreenSet00.vue';
 
-const routes: RouteRecordRaw[] = [
+const routes = [
   {
     path: '/',
-    name: 'Main',
-    component: ScreenWidgetWrapper,
-    props: {
-      side: 'main',
-      preset: 'default',
-    },
+    component: ScreenSet00,
   },
-  // Add other routes here
+  // ... other routes
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes,
 });
 
