@@ -113,6 +113,7 @@ fixed routing problems making @ unrecognized by dev build
 Created ScreenSet00.vue for debug warning screen
 Added feature set to Footer and Header
 Added demo login setup
+Added preset routing and Simple/Working/Full App configs through pages/
 
 [STATUS]
 We're iterating through files, making sure that we're following our structure.
