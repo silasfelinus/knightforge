@@ -77,12 +77,9 @@ Installed Quasar CLI, Vue3, SASS and other listed modules
 Setup variable references and SCSS styling
 Configured useAppStore and useAuthStore with demo options
 Established types.ts
-Designed routing, Layout and Page structure
+Designed routing and Page structures
 main.ts loads App.vue and shows splash image (woohoo)
-
-[STATUS]
-Upgrading App.vue to load pages based on instructions from useAppStore
-
+Layout customizes header, footer, and sidebar
 
 [SUGGESTED REPLY FORMAT]
 a. fun emoticon and fun and inspiring phrase
@@ -90,3 +87,8 @@ a. fun emoticon and fun and inspiring phrase
 2. Improved Code that will work within our structure
 3. The file or files you'd like to see next
 4. Any Additional comments
+
+
+[REQUEST]
+Help me 
+

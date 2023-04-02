@@ -1,18 +1,22 @@
 <template>
-  <div id="app">
-    <router-view />
-    <night-mode-toggle v-if="isLoggedIn" :is-night-mode="nightMode" @toggle="toggleNightMode" />
+  <div id="app" :class="{ 'night-mode': nightMode }">
+    <router-view v-slot="{ Component }">
+      <app-layout v-bind="$route.meta.layout">
+        <component :is="Component" />
+      </app-layout>
+    </router-view>
   </div>
 </template>
-
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useAppStore } from './stores/useAppStore';
+import AppLayout from './layouts/AppLayout.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
+    AppLayout,
   },
   setup() {
     const appStore = useAppStore();
@@ -39,7 +43,5 @@ export default defineComponent({
   a {
     color: $info;
   }
-
 }
-
 </style>

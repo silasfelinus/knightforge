@@ -5,7 +5,8 @@ import LoginForm from '@/pages/LoginForm.vue';
 const routes = [
   {
     path: '/',
-    component: Preset,
+    component: () => import('pages/MainWindow.vue'),
+    meta: { layout: { showHeader: true, showFooter: true, showSidebar: false } },
   },
   {
     path: '/login',
