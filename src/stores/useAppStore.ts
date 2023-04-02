@@ -15,6 +15,10 @@ interface ScreenCard {
   height: number;
 }
 
+interface ComponentVisibility {
+  [key: string]: boolean;
+}
+
 export const useAppStore = defineStore('app', {
   state: () => ({
     user: null as User | null,
@@ -24,6 +28,14 @@ export const useAppStore = defineStore('app', {
     nextCardId: 1,
     selectedCardIds: new Set<number>(),
     stepHistory: [] as ScreenCard[][],
+    componentVisibility: {
+      leftSidebar: true,
+      rightSidebar: true,
+      headerBar: true,
+      mainWindow: true,
+      footerBar: true,
+      // Add more components here
+    } as ComponentVisibility,
   }),
   getters: {
     // Get a screen card by its id
@@ -96,6 +108,16 @@ export const useAppStore = defineStore('app', {
         this.screenCards = this.stepHistory.pop() || [];
       }
     },
-  }
-})
-
+    // Toggle component visibility
+    toggleComponentVisibility(componentName: string) {
+      if (componentName in this.componentVisibility) {
+        this.componentVisibility[componentName] =
+          !this.componentVisibility[componentName];
+      } else {
+        console.error(
+          `Component "${componentName}" not found in componentVisibility.`
+        );
+      }
+    },
+  },
+});

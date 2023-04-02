@@ -25,9 +25,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang="scss">
-.splash-page {
-  /* Add your styling for the splash page here */
-}
-</style>

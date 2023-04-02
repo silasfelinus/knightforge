@@ -1,35 +1,40 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header>
+    <q-header v-if="componentVisibility.headerBar">
       <TitleBar />
     </q-header>
 
-    <q-drawer v-model="leftSidebarVisibility" show-if-above>
+    <q-drawer v-model="componentVisibility.leftSidebar" show-if-above>
       <UnderConstruction />
     </q-drawer>
 
-    <q-drawer v-model="rightSidebarVisibility" show-if-above side="right">
+    <q-drawer
+      v-model="componentVisibility.rightSidebar"
+      show-if-above
+      side="right"
+    >
       <div class="right-sidebar">
         <!-- Right sidebar content goes here -->
       </div>
     </q-drawer>
 
     <q-page-container>
-      <MainWindow />
+      <MainWindow v-if="componentVisibility.mainWindow" />
     </q-page-container>
 
-    <q-footer>
+    <q-footer v-if="componentVisibility.footerBar">
       <RemoteControl />
     </q-footer>
   </q-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import TitleBar from '@/pages/TitleBar.vue';
-import MainWindow from '@/pages/MainWindow.vue';
-import RemoteControl from '@/pages/RemoteControl.vue';
-import UnderConstruction from '@/pages/UnderConstruction.vue';
+import { defineComponent } from 'vue';
+import TitleBar from '../pages/TitleBar.vue';
+import MainWindow from '../pages/MainWindow.vue';
+import RemoteControl from '../pages/RemoteControl.vue';
+import UnderConstruction from '../pages/UnderConstruction.vue';
+import { useAppStore } from '../stores/useAppStore';
 
 export default defineComponent({
   name: 'AppLayout',
@@ -40,12 +45,11 @@ export default defineComponent({
     UnderConstruction,
   },
   setup() {
-    const leftSidebarVisibility = ref(true);
-    const rightSidebarVisibility = ref(true);
+    const appStore = useAppStore();
+    const componentVisibility = appStore.componentVisibility;
 
     return {
-      leftSidebarVisibility,
-      rightSidebarVisibility,
+      componentVisibility,
     };
   },
 });

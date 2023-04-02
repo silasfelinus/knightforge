@@ -1,7 +1,8 @@
 <template>
   <q-header class="title-bar">
     <q-toolbar>
-      <q-btn flat dense round icon="menu" @click="toggleSidebar" />
+      <q-btn flat dense round icon="menu" @click="toggleComponentVisibility('leftSidebar')" />
+      <!-- Add more buttons to control other windows here -->
       <q-toolbar-title class="text-h6">{{ title }}</q-toolbar-title>
       <div class="spacer"></div>
       <!-- Additional header content goes here -->
@@ -23,14 +24,27 @@ export default defineComponent({
   },
   setup() {
     const appStore = useAppStore();
-    const toggleSidebar = () => appStore.toggleSidebar();
+    const toggleComponentVisibility = (component: string) => appStore.toggleComponentVisibility(component);
 
     return {
-      toggleSidebar,
+      toggleComponentVisibility,
     };
   },
 });
 </script>
+
+
+<style scoped>
+.title-bar {
+  background-color: var(--q-color-primary);
+  color: var(--q-color-primary-contrast);
+}
+
+.spacer {
+  flex-grow: 1;
+}
+</style>
+
 
 <style scoped lang="scss">
 .title-bar {

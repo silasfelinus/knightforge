@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SplashPage from './pages/SplashPage.vue';
+import SplashPage from './SplashPage.vue';
 
 export default defineComponent({
   name: 'MainWindow',
@@ -15,9 +15,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang="scss">
-.main-window {
-  /* Add your styling for the main window here */
-}
-</style>

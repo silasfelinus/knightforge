@@ -21,6 +21,7 @@ Use <script lang="ts">
 Use <style scoped lang="scss">
 Use Quasar components when available
 Use Pinia useAppStore.ts store for state management
+Components must have TwoWord names
 Adhere to current TypeScript standards
 Separate concerns. Avoid hardcoding data in application logic
 
