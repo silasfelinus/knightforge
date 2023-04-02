@@ -37,11 +37,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-footer {
-  // Your footer styles go here
-}
 
-.color-picker {
-  // Your color picker styles go here
-}
 </style>

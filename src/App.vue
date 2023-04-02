@@ -85,11 +85,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.cards-container {
-  // Your cards container styles go here
-}
 
-.card {
-  // Your card styles go here
-}
 </style>

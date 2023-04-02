@@ -29,10 +29,4 @@ export default {
     };
   },
 };
-</script>
 
-<style scoped lang="scss">
-header {
-  // Your header styles go here
-}
-</style>
