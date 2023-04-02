@@ -1,8 +1,7 @@
-<!-- FooterWidget.vue -->
 <template>
   <footer>
     <div class="color-picker">
-      <template v-for="color in colors">
+      <template v-for="(color, index) in colors" :key="index">
         <label :for="color.name">{{ color.label }}:</label>
         <input type="color" :id="color.name" v-model="color.value" @change="updateColor(color.name, color.value)" />
       </template>
@@ -11,7 +10,7 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue';
+import { reactive } from 'vue';
 
 export default {
   name: 'FooterWidget',
@@ -40,12 +39,3 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-footer {
-  // Your footer styles go here
-}
-
-.color-picker {
-  // Your color picker styles go here
-}
-</style>

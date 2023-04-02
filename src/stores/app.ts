@@ -1,6 +1,4 @@
 import { defineStore } from 'pinia';
-import { reactive } from 'vue';
-import { auth } from '@/firebase';
 
 interface ScreenCard {
   id: number;
@@ -60,22 +58,6 @@ export const useAppStore = defineStore('app', {
       }
     },
 
-    async login(email, password) {
-      try {
-        await auth.signInWithEmailAndPassword(email, password);
-        // Handle successful login
-      } catch (error) {
-        // Handle login errors
-      }
-    },
 
-    async logout() {
-      try {
-        await auth.signOut();
-        // Handle successful logout
-      } catch (error) {
-        // Handle logout errors
-      }
-    },
   },
 });
