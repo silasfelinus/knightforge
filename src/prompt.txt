@@ -40,10 +40,8 @@ Labspace API Card GUI
 Screenspace Screen/Card Management
 Chat
 ScreenSpace Remote Control
-
-[FUTUREGOALS]
 OpenAI Secure Key Storage
-PlaySpace Toys (Superball Cannon, Graffiti Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects)
+Future: PlaySpace Toys (Superball Cannon, Graffiti Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects)
 
 [INTENDED FILE TYPES]
 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
@@ -67,12 +65,12 @@ WonderForge/
 
 [PRIMARY FOLDERS]
 ./router/index.ts
-./stores/useAppStore.ts (not implemented)
-./stores/useAuthStore.ts (not implemented)
+./stores/useAppStore.ts
+./stores/useAuthStore.ts
 ./stores/types.ts
 ./css/quasar.variables
-[layouts/] AppSimple, AppWorking, AppFull
-[pages/] ErrorNotFound, Footer, Header, LoginForm, MainWindow, Sidebar, SplashScreen, UnderConstruction, WarningScreen
+[layouts/] FullScreen, HeaderFooter, HeaderFooterSides
+[pages/] ErrorNotFound, Footer, Header, LoginForm, MainWindow, Sidebar, SplashPage, UnderConstruction, WarningScreen
 [src/] Main, App.vue
 
 [PRESET LOADS]
@@ -81,8 +79,9 @@ WonderForge/
 [PROGRESS]
 Installed Quasar CLI, Vue3, SASS and other listed modules
 Setup variable references and SCSS styling
-setup types and framework for pinia store
-Setup basic routing structure
+Configured useAppStore and useAuthStore with demo options
+Established types.ts
+Designed routing, Layout and Page structure
 main.ts loads App.vue and shows splash image (woohoo)
 
 [STATUS]
@@ -95,6 +94,3 @@ a. fun emoticon and fun and inspiring phrase
 2. Improved Code that will work within our structure
 3. The file or files you'd like to see next
 4. Any Additional comments
-
-[BASIC FUNCTIONS]
-

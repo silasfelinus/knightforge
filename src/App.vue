@@ -1,25 +1,44 @@
 <template>
   <div id="app">
     <router-view />
+    <notification-list v-if="notifications.length" :notifications="notifications" @remove="removeNotification" />
+    <night-mode-toggle v-if="isLoggedIn" @toggle="toggleNightMode" :nightMode="nightMode" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useAppStore } from './stores/useAppStore';
+import NotificationList from './components/NotificationList.vue';
+import NightModeToggle from './components/NightModeToggle.vue';
 
 export default defineComponent({
   name: 'App',
+  components: {
+    NotificationList,
+    NightModeToggle,
+  },
   setup() {
     const appStore = useAppStore();
 
-    // Here, you can access the state and actions from your appStore
-    // and perform any necessary operations before rendering the pages
+    // Destructure the required properties and actions from the store
+    const { isLoggedIn, notifications, nightMode, removeNotification, toggleNightMode } = appStore;
 
-    return {};
+    return {
+      isLoggedIn,
+      notifications,
+      nightMode,
+      removeNotification,
+      toggleNightMode,
+    };
   },
 });
 </script>
+
+<style scoped lang="scss">
+// Your styles here
+</style>
+
 <style lang="scss">
 /* Add your base SCSS styling here */
 
