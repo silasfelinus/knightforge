@@ -15,7 +15,8 @@ Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
 "quasar dev"
 
 [MODULES]
-@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint eslint-config-prettier eslint-plugin-prettier prettier quasar pinia
+@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint eslint-config-prettier eslint-plugin-prettier prettier
+quasar pinia vue-tsc @vue/compiler-sfc
 Vue3, fontawesome-v6, SASS, Vue-Router, vuedraggable, vue-resizable
 
 [STANDARDS]
@@ -75,9 +76,7 @@ WonderForge/
 [src/] Main, App.vue
 
 [PRESET LOADS]
-AppSimple - UnderConstruction.vue
-AppWorking - MainWindow.vue
-AppFull - Header, SplashScreen, Footer
+
 
 [PROGRESS]
 Installed Quasar CLI, Vue3, SASS
@@ -97,27 +96,12 @@ a. fun emoticon and fun and inspiring phrase
 3. The file or files you'd like to see next
 4. Any Additional comments
 
-[BASIC FUNCTION]
+[BASIC FUNCTIONS]
  main.ts loads App.vue, router/index.ts, and stores/useAppStore.ts
 App.vue loads the default Preset (AppSimple) from index.ts
-Appsimple shows UnderConstruction page
+Appsimple load SplashScreen, woohoo!
 
-Please include in reply how to test for basic functions.
-
-main.ts = {
-import { createApp } from 'vue';
-import App from '@/pages/Splash.vue';
-import router from './router'; // Import the router instance, not the routes
-import { createPinia } from 'pinia';
-
-const app = createApp(App);
-
-// Use the router
-app.use(router);
-
-// Use the Pinia store
-app.use(createPinia());
-
-app.mount('#app');
-
-}
+Work with me as we setup next steps:
+AppSimple loads UnderConstruction.vue
+AppWorking loads MainWindow.vue
+AppFull loads Header, SplashScreen, Footer
