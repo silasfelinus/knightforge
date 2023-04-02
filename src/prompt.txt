@@ -1,0 +1,192 @@
+[INTRODUCTION]
+Hi, ChatGPT! I'm Silas Knight.
+I'm building an SPA development lab using Vue3, Composition API, Quasar, and Pinia.
+
+[PROJECT]
+WonderForge
+
+[INTENT]
+A sandbox for rapidly protoyping development and coding projects
+(with a pleasing interface that also serves as a portfolio showpiece)
+
+[DEV ENVIRONMENT]
+Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
+
+[MODULES]
+Vue 3, TypeScript, ES-Lint, Prettier, SASS, Quasar, Pinia, VueRouter
+
+[STANDARDS]
+Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
+Use <style scoped lang="scss">
+Use and recommend Quasar components when available
+Use Pinia index.ts store for state management
+Adhere to current TypeScript standards
+Separate concerns
+Avoid hardcoding data in application logic
+
+[FORMATTING]
+Prettier
+
+[ICONSET]
+fontawesome-v6
+
+[COLORS]
+$primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
+
+[FUTUREGOALS]
+Step-Based Save System
+User Logins
+Night Mode
+Live Chat
+OpenAI Secure Key Storage
+ChatGPT Chat
+PlaySpace Toys (Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects)
+
+[INTENDED FILE TYPES]
+txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
+
+[GUIDELINES]
+Use Composition API
+
+
+[DIRECTORY]
+WonderForge/
+├── quasar.config.js
+├── src/
+│   ├── main.ts
+│   ├── App.vue
+│   ├── assets/
+│   ├── boot/
+│   ├── components/
+│   ├── css/
+│   ├── layouts/
+│   ├── pages/
+│   ├── router/
+│   └── stores/
+└── public/
+    └── images/
+
+[PRIMARY FOLDERS]
+./components/labspace/
+./components/screenspace/
+./components/playspace/
+./router/index.ts
+./stores/app.ts
+./stores/types.ts
+./css/quasar.variables
+
+[LAYOUTS]
+/layouts: HeaderWidget.vue, FooterWidget.vue, MainLayout.vue
+./pages/: ScreenSet1, ScreenSet2, UnderConstruction, ErrorNotFound
+
+[SCREENSPACE]
+/screenspace: RemoteControl.vue, useRemoteControl.ts, ScreenWidget.vue, ScreenCard.vue, ScreenWidgetWrapper.vue
+
+[LABSPACE]
+./components/labSpace/ (API Chain Project)
+CardCable.vue - logic to connect  Codecards for API chain processing
+CardManager.vue - create/edit/delete codecards
+CardMat.vue - droppable space for codecards
+CodeCard.vue - stylized cards to represent natural language processor api calls
+DataUpload.vue - drag-and-drop local file upload
+RedSwitch.vue - gui toggle
+TextInput.vue - stylized input field for text
+
+[PLAYSPACE]
+./components/playSpace/ (Silly Widgets, Games, Social Chat)
+Paintbox.vue - toolbox for paintbrushes
+PaintCanvas.vue - gui space for paint effects
+SplashWidget.vue - slideshow image viewer
+ChatWidget.vue - livechat & chatgpt
+
+[PINIA STORE]
+State: leftScreen, mainScreen, rightScreen, widgetSettings
+Getters: widgetSettings
+Actions: changePreset, nextPreset, toggleVisibility, updateWidgetTitle, updateWidgetBgColor
+
+[PROGRESS]
+Installed Quasar CLI, Vue3, SASS
+Created App.vue, HeaderWidget.vue, ScreenWidget.vue, and FooterWidget.vue
+Created dummy preset components
+Set up variable references and SCSS styling
+Migrated from Vuex to Pinia
+Created router/index.ts
+reconfigured folder structure
+Created ScreenWidgetWrapper
+fixed routing problems making @ unrecognized by dev build
+Created ScreenSet00.vue for debug warning screen
+
+[STATUS]
+We are working together, iterating through files, making sure that we've separated concerns and following our structure.
+
+[SUGGESTED REPLY FORMAT]
+a. fun emoticon and fun and inspiring phrase
+1. Comment on code and project thus far
+2. Improved Code that will work within our structure
+3. The file or files you'd like to see next
+4. Any Additional comments
+
+[CURRENT]
+Troubleshooting error(s) preventing the website from displaying. We've limited it to a simple App.vue > HeaderWidget, Warning color, FooterWidget, no display.
+
+[App.vue]
+
+
+<template>
+  <div id="app">
+    <q-layout view="hHh lpR fFf">
+      <HeaderWidget />
+      <q-page-container class="main-layout">
+        <MainLayout />
+      </q-page-container>
+      <FooterWidget />
+    </q-layout>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import HeaderWidget from './layouts/HeaderWidget.vue';
+import MainLayout from './layouts/MainLayout.vue';
+import FooterWidget from './layouts/FooterWidget.vue';
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    HeaderWidget,
+    MainLayout,
+    FooterWidget,
+  },
+});
+</script>
+
+<style lang="scss" scoped>
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+q-header,
+q-footer {
+  z-index: 1000;
+  background: $primary;
+}
+
+q-layout,
+q-page {
+  flex: 1;
+}
+
+q-page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.main-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+</style>
