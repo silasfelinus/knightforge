@@ -1,6 +1,5 @@
 [INTRODUCTION]
-Hi, ChatGPT! I'm Silas Knight.
-I'm building an SPA using Vue3, Composition API, Quasar, and Pinia.
+Hi, ChatGPT! I'm Silas Knight. I'm building an SPA using Vue3, Composition API, Quasar, and Pinia.
 
 [PROJECT]
 WonderForge
@@ -13,27 +12,19 @@ A gui sandbox for rapidly protoyping development and coding projects
 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
 
 [MODULES]
-Vue 3, TypeScript, ES-Lint, Prettier, SASS, Quasar, Pinia, Vue-Router, vuedraggable, vue-resizable
+Vue 3, TypeScript, fontawesome-v6, ES-Lint, Prettier, SASS, Quasar, Pinia, Vue-Router, vuedraggable, vue-resizable
 
 [STANDARDS]
 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
+Use <script lang="ts">
 Use <style scoped lang="scss">
-<script lang="ts">
-Use Composition API
 Use Quasar components when available
-Use Pinia index.ts store for state management
+Use Pinia useAppStore.ts store for state management
 Adhere to current TypeScript standards
-Separate concerns
-Avoid hardcoding data in application logic
+Separate concerns. Avoid hardcoding data in application logic
 
-[FORMATTING]
-Prettier
-
-[ICONSET]
-fontawesome-v6
-
-[COLORS]
-$primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
+[VARIABLES]
+colors: $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
 
 [DEVELOPING FEATURES]
 Step-Based Save System
@@ -43,6 +34,7 @@ Playspace Paint mode
 Labspace API Card GUI
 Screenspace Screen/Card Management
 Chat
+ScreenSpace Remote Control
 
 [FUTUREGOALS]
 OpenAI Secure Key Storage
@@ -80,7 +72,7 @@ WonderForge/
 
 [LAYOUTS]
 /layouts: HeaderWidget.vue, FooterWidget.vue, MainLayout.vue
-./pages/: ScreenSet00, ScreenSet01, ScreenSet02, UnderConstruction, ErrorNotFound, Loginform
+./pages/: ErrorNotFound, Loginform, ScreenSet00, ScreenSet01, ScreenSet02, UnderConstruction
 
 [SCREENSPACE]
 /screenspace: RemoteControl.vue, useRemoteControl.ts, ScreenWidget.vue, ScreenCard.vue, ScreenWidgetWrapper.vue
@@ -102,9 +94,9 @@ PaintCanvas.vue - gui space for paint effects
 SplashWidget.vue - slideshow image viewer
 ChatWidget.vue - livechat & chatgpt
 
-[PINIA STORE]
+[PINIA STORE] [this section needs updating]
 State: leftScreen, mainScreen, rightScreen, widgetSettings
-Getters: widgetSettings
+Getters: widgetSettings, Presets
 Actions: changePreset, nextPreset, toggleVisibility, updateWidgetTitle, updateWidgetBgColor
 
 [PROGRESS]
@@ -133,4 +125,9 @@ a. fun emoticon and fun and inspiring phrase
 
 [CURRENT]
 just added a feature rich header nad footer set, demo logins, and revised stores.
-Things were already broke, so this is a remodel, help me see if we can get to a working gui today using best practices.
+Things were already broke, so this is a remodel, help me
+reach basic functions:
+
+Main.ts launches App.vue
+App.vue launches HeaderWidget, MainLayout, FooterWidget
+MainLayout shows
