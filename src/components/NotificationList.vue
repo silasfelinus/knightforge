@@ -22,16 +22,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
-.notification-list {
-  // Add your styles for the notification list container
-}
 
-.notification-item {
-  // Add your styles for the individual notification items
-}
-
-button {
-  // Add your styles for the remove button
-}
-</style>

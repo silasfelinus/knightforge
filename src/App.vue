@@ -2,9 +2,10 @@
   <div id="app">
     <router-view />
     <notification-list v-if="notifications.length" :notifications="notifications" @remove="removeNotification" />
-    <night-mode-toggle v-if="isLoggedIn" @toggle="toggleNightMode" :nightMode="nightMode" />
+    <night-mode-toggle v-if="isLoggedIn" :is-night-mode="nightMode" @toggle="toggleNightMode" />
   </div>
 </template>
+
 
 <script lang="ts">
 import { defineComponent } from 'vue';
