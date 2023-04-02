@@ -1,7 +1,11 @@
 <!-- App.vue -->
 <template>
   <div id="app">
-    <img class="splash-image" src="/images/splash/splash00.png" alt="Splash Image" />
+    <img
+      class="splash-image"
+      src="/@/assets/splash/splash00.png"
+      alt="Splash Image"
+    />
   </div>
 </template>
 

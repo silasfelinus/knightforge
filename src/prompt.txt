@@ -63,60 +63,28 @@ WonderForge/
 [PRIMARY FOLDERS]
 ./router/index.ts
 ./stores/useAppStore.ts
-./stores/useAuthStore.ts
+./stores/useAuthStore.ts (not implemented)
 ./stores/types.ts
 ./css/quasar.variables
-./components/labspace/
-./components/screenspace/
-./components/playspace/
+[layouts/] Presets, AppSimple, AppWorking, AppFull
+[pages/] ErrorNotFound, Footer, Header, LoginForm, MainWindow, Sidebar, SplashScreen, UnderConstruction, WarningScreen
+[src/] Main, App.vue
 
-[LAYOUTS]
-layouts/ FooterWidget, MainLayout, FooterWidget
-pages/ ErrorNotFound, AppSimple, AppWorking, AppFull, LoginForm, UnderConstruction, WarningScreen
-src/ Main, App.vue
-
-[SCREENSPACE]
-/screenspace: RemoteControl.vue, useRemoteControl.ts, ScreenWidget.vue, ScreenCard.vue, ScreenWidgetWrapper.vue
-
-[LABSPACE]
-./components/labSpace/ (API Chain Project)
-CardCable.vue - logic to connect  Codecards for API chain processing
-CardManager.vue - create/edit/delete codecards
-CardMat.vue - droppable space for codecards
-CodeCard.vue - stylized cards to represent natural language processor api calls
-DataUpload.vue - drag-and-drop local file upload
-RedSwitch.vue - gui toggle
-TextInput.vue - stylized input field for text
-
-[PLAYSPACE]
-./components/playSpace/ (Silly Widgets, Games, Social Chat)
-Paintbox.vue - toolbox for paintbrushes
-PaintCanvas.vue - gui space for paint effects
-SplashWidget.vue - slideshow image viewer
-ChatWidget.vue - livechat & chatgpt
-
-[PINIA STORE] [this section needs updating]
-State: ComponentSettings
-Getters: ComponentSettings, Presets
-Actions: changePreset, nextPreset, toggleVisibility, updateComponentTitle, updateComponentBgColor
+[PRESETS]
+AppSimple - UnderConstruction.vue
+AppWorking - MainWindow.vue
+AppFull - Header, SplashScreen, Footer
 
 [PROGRESS]
 Installed Quasar CLI, Vue3, SASS
-Created App.vue, HeaderWidget.vue, ScreenWidget.vue, and FooterWidget.vue
 Created Preset components
 Set up variable references and SCSS styling
-Migrated from Vuex to Pinia
-Created router/index.ts
-reconfigured folder structure
-Created ScreenWidgetWrapper
 fixed routing problems making @ unrecognized by dev build
-Created ScreenSet00.vue for debug warning screen
-Added feature set to Footer and Header
 Added demo login setup
-Added preset routing and Simple/Working/Full App configs through pages/
+Added preset routing and Simple/Working/Full App presets
 
 [STATUS]
-We're iterating through files, making sure that we're following our structure.
+We're iterating and rebuilding files, making sure that we're following our structure.
 
 [SUGGESTED REPLY FORMAT]
 a. fun emoticon and fun and inspiring phrase
@@ -126,25 +94,96 @@ a. fun emoticon and fun and inspiring phrase
 4. Any Additional comments
 
 [CURRENT]
-We're testing basic functions with demo setup for a feature rich header nad footer set, demo logins, and revised stores.
-Things were already broke, so this is a remodel, help me reach basic functions:
+Avise on current directory structure and pathing:
 
-Main.ts launches App.vue
-App.vue launches HeaderWidget, MainLayout, FooterWidget, each with Preset "Warning"
-HeaderWidget, MainLayout, and FeatureWidget show $warning color with proper spacing (Header on top of screen, footer at bottom, mainlayout between, no bleed)
+ main.ts calls App.vue
+router/index.ts loads the default layout Preset (currently AppSimple)
+Loaded Layout displays options for header, mainwindow, sidebar, footer, etc.
 
-[main.ts]
+main.ts = {
 import { createApp } from 'vue';
-import App from '@/App.vue';
+import App from '@/pages/Splash.vue';
 import router from './router'; // Import the router instance, not the routes
 import { createPinia } from 'pinia';
 
 const app = createApp(App);
 
-// Use the router
 app.use(router);
 
 // Use the Pinia store
 app.use(createPinia());
 
 app.mount('#app');
+}
+
+index.ts = {
+  import { createRouter, createWebHistory } from 'vue-router';
+import ErrorNotFound from '@/pages/ErrorNotFound.vue';
+import LoginForm from '@/pages/LoginForm.vue';
+import Preset from '@/layouts/Preset.vue';
+
+const routes = [
+  {
+    path: '/',
+    component: Preset,
+  },
+  {
+    path: '/login',
+    component: LoginForm,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: ErrorNotFound,
+  },
+];
+
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
+});
+
+export default router;
+
+}
+
+Preset.vue = {
+  <template>
+  <component :is="loadedPreset" />
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import AppSimple from '@/layouts/AppSimple.vue';
+import AppWorking from '@/layouts/AppWorking.vue';
+import AppFull from '@/layouts/AppFull.vue';
+import ErrorNotFound from '@/pages/ErrorNotFound.vue';
+// ... other layout components
+
+const PRESET = 'AppSimple'; // Change this to switch between presets
+
+export default defineComponent({
+  setup() {
+    const loadedPreset = ref(null);
+
+    const presets = {
+      AppSimple,
+      AppWorking,
+      AppFull,
+      ErrorNotFound,
+      // ... other layouts
+    };
+
+    if (presets[PRESET]) {
+      loadedPreset.value = presets[PRESET];
+    } else {
+      console.error(`Failed to load preset: ${PRESET}`);
+      loadedPreset.value = ErrorNotFound;
+    }
+
+    return { loadedPreset };
+  },
+});
+</script>
+
+}
+Please reply back with working AppSimple and any comments or additional code revisions.

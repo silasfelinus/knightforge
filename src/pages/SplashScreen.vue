@@ -8,6 +8,10 @@
 import secretImages from '@/assets/splash/secretImages.json';
 import splashImages from '@/assets/splash/splashImages.json';
 
+// Import all images from the assets/splash directory
+const splashImagesImport = import.meta.globEager('@/assets/splash/*.png');
+const imageList = Object.values(splashImagesImport).map((img) => img.default);
+
 export default {
   name: 'SplashScreen',
   data() {
@@ -20,10 +24,12 @@ export default {
   },
   methods: {
     loadRandomImage() {
-      const allImages = [...secretImages, ...splashImages];
+      const allImages = [...secretImages, ...splashImages].map((imgName) => {
+        // Find the corresponding image module in the imported image list
+        return imageList.find((img) => img.includes(imgName));
+      });
       const randomIndex = Math.floor(Math.random() * allImages.length);
-      const selectedImage = allImages[randomIndex];
-      this.randomImage = require('@/assets/splash/' + selectedImage);
+      this.randomImage = allImages[randomIndex];
     },
   },
 };
