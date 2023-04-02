@@ -5,18 +5,25 @@
     <button @click="removeSelectedCards">Remove Selected Cards</button>
     <button @click="saveStep">Save Step</button>
     <button @click="undo">Undo</button>
-    <button @click="login">Login</button>
+    <button @click="showLoginForm = !showLoginForm">Login</button>
     <button @click="logout">Logout</button>
+    <LoginForm v-if="showLoginForm" @login="onLogin" />
   </header>
 </template>
 
-<script>
+<script lang="ts">
 import { useAppStore } from '@/stores/app';
+import { useAuthStore } from '@/stores/authStore';
+import LoginForm from '@/components/LoginForm.vue';
 
 export default {
   name: 'HeaderWidget',
+  components: { LoginForm },
   setup() {
     const appStore = useAppStore();
+    const authStore = useAuthStore();
+
+    const showLoginForm = ref(false);
 
     function addNewCard() {
       appStore.addScreenCard({
@@ -40,12 +47,12 @@ export default {
       appStore.undo();
     }
 
-    function login() {
-      appStore.login();
+    function onLogin() {
+      showLoginForm.value = false;
     }
 
     function logout() {
-      appStore.logout();
+      authStore.logout();
     }
 
     return {
@@ -53,7 +60,8 @@ export default {
       removeSelectedCards,
       saveStep,
       undo,
-      login,
+      showLoginForm,
+      onLogin,
       logout,
     };
   },

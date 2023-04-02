@@ -19,6 +19,7 @@ Vue 3, TypeScript, ES-Lint, Prettier, SASS, Quasar, Pinia, Vue-Router, vuedragga
 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
 Use <style scoped lang="scss">
 <script lang="ts">
+Use Composition API
 Use Quasar components when available
 Use Pinia index.ts store for state management
 Adhere to current TypeScript standards
@@ -34,21 +35,21 @@ fontawesome-v6
 [COLORS]
 $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
 
-[FUTUREGOALS]
+[DEVELOPING FEATURES]
 Step-Based Save System
 User Logins
 Night Mode
-Live Chat
+Playspace Paint mode
+Labspace API Card GUI
+Screenspace Screen/Card Management
+Chat
+
+[FUTUREGOALS]
 OpenAI Secure Key Storage
-ChatGPT Chat
-PlaySpace Toys (Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects)
+PlaySpace Toys (Superball Cannon, Graffiti Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects)
 
 [INTENDED FILE TYPES]
 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
-
-[GUIDELINES]
-Use Composition API
-
 
 [DIRECTORY]
 WonderForge/
@@ -68,17 +69,18 @@ WonderForge/
     └── images/
 
 [PRIMARY FOLDERS]
+./router/index.ts
+./stores/useAppStore.ts
+./stores/useAuthStore.ts
+./stores/types.ts
+./css/quasar.variables
 ./components/labspace/
 ./components/screenspace/
 ./components/playspace/
-./router/index.ts
-./stores/app.ts
-./stores/types.ts
-./css/quasar.variables
 
 [LAYOUTS]
 /layouts: HeaderWidget.vue, FooterWidget.vue, MainLayout.vue
-./pages/: ScreenSet1, ScreenSet2, UnderConstruction, ErrorNotFound
+./pages/: ScreenSet00, ScreenSet01, ScreenSet02, UnderConstruction, ErrorNotFound, Loginform
 
 [SCREENSPACE]
 /screenspace: RemoteControl.vue, useRemoteControl.ts, ScreenWidget.vue, ScreenCard.vue, ScreenWidgetWrapper.vue
@@ -108,7 +110,7 @@ Actions: changePreset, nextPreset, toggleVisibility, updateWidgetTitle, updateWi
 [PROGRESS]
 Installed Quasar CLI, Vue3, SASS
 Created App.vue, HeaderWidget.vue, ScreenWidget.vue, and FooterWidget.vue
-Created dummy preset components
+Created Preset components
 Set up variable references and SCSS styling
 Migrated from Vuex to Pinia
 Created router/index.ts
@@ -116,6 +118,8 @@ reconfigured folder structure
 Created ScreenWidgetWrapper
 fixed routing problems making @ unrecognized by dev build
 Created ScreenSet00.vue for debug warning screen
+Added feature set to Footer and Header
+Added demo login setup
 
 [STATUS]
 We are working together, iterating through files, making sure that we've separated concerns and following our structure.
@@ -128,21 +132,5 @@ a. fun emoticon and fun and inspiring phrase
 4. Any Additional comments
 
 [CURRENT]
-Troubleshooting error(s) preventing the website from displaying. I need the most essential walkthrough to create a simple App.vue that just displays a warning message. That's it, just a warning message.
-
-This is the main.ts:
-import { createApp } from 'vue';
-import App from '@/App.vue';
-import router from './router'; // Import the router instance, not the routes
-import { createPinia } from 'pinia';
-
-const app = createApp(App);
-
-// Use the router
-app.use(router);
-
-// Use the Pinia store
-app.use(createPinia());
-
-app.mount('#app');
-
+just added a feature rich header nad footer set, demo logins, and revised stores.
+Things were already broke, so this is a remodel, help me see if we can get to a working gui today using best practices.
