@@ -114,7 +114,7 @@ Added feature set to Footer and Header
 Added demo login setup
 
 [STATUS]
-We are working together, iterating through files, making sure that we've separated concerns and following our structure.
+We're iterating through files, making sure that we're following our structure.
 
 [SUGGESTED REPLY FORMAT]
 a. fun emoticon and fun and inspiring phrase
@@ -124,10 +124,25 @@ a. fun emoticon and fun and inspiring phrase
 4. Any Additional comments
 
 [CURRENT]
-just added a feature rich header nad footer set, demo logins, and revised stores.
-Things were already broke, so this is a remodel, help me
-reach basic functions:
+We're testing basic functions with demo setup for a feature rich header nad footer set, demo logins, and revised stores.
+Things were already broke, so this is a remodel, help me reach basic functions:
 
 Main.ts launches App.vue
-App.vue launches HeaderWidget, MainLayout, FooterWidget
-MainLayout shows
+App.vue launches HeaderWidget, MainLayout, FooterWidget, each with Preset "Warning"
+HeaderWidget, MainLayout, and FeatureWidget show $warning color with proper spacing (Header on top of screen, footer at bottom, mainlayout between, no bleed)
+
+[main.ts]
+import { createApp } from 'vue';
+import App from '@/App.vue';
+import router from './router'; // Import the router instance, not the routes
+import { createPinia } from 'pinia';
+
+const app = createApp(App);
+
+// Use the router
+app.use(router);
+
+// Use the Pinia store
+app.use(createPinia());
+
+app.mount('#app');
