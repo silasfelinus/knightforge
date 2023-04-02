@@ -83,11 +83,9 @@ Installed Quasar CLI, Vue3, SASS
 Created Preset components
 Set up variable references and SCSS styling
 fixed routing problems making @ unrecognized by dev build
-Added demo login setup
-Added preset routing and Simple/Working/Full App presets
+Added demo login, preset routing,  and Simple/Working/Full App presets
+main.ts loads App.vue and shows splash image (woohoo)
 
-[STATUS]
-We're iterating and rebuilding files, making sure that we're following our structure.
 
 [SUGGESTED REPLY FORMAT]
 a. fun emoticon and fun and inspiring phrase
@@ -97,9 +95,12 @@ a. fun emoticon and fun and inspiring phrase
 4. Any Additional comments
 
 [BASIC FUNCTIONS]
- main.ts loads App.vue, router/index.ts, and stores/useAppStore.ts
+
+
+Help me decide my basic structure from here. I want
+main.ts loads router/index.ts, and stores/useAppStore.ts
 App.vue loads the default Preset (AppSimple) from index.ts
-Appsimple load SplashScreen, woohoo!
+Appsimple load SplashScreen.vue
 
 Work with me as we setup next steps:
 AppSimple loads UnderConstruction.vue

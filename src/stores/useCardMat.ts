@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-interface ScreenCard {
+interface ScreenCard { 
   id: number;
   content: string;
   x: number;

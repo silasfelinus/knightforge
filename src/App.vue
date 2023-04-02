@@ -1,6 +1,6 @@
 <!-- App.vue -->
 <template>
-  <div id="app">
+  <div id="app"> 
     <img
       class="splash-image"
       src="@/assets/splash/splash01.png"
