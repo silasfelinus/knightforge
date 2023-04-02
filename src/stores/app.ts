@@ -1,5 +1,6 @@
-// app.ts
 import { defineStore } from 'pinia';
+import { reactive } from 'vue';
+import { auth } from '@/firebase';
 
 interface ScreenCard {
   id: number;
@@ -14,6 +15,8 @@ export const useAppStore = defineStore('app', {
   state: () => ({
     screenCards: [] as ScreenCard[],
     nextCardId: 1,
+    selectedCardIds: new Set<number>(),
+    stepHistory: [] as ScreenCard[][],
   }),
   getters: {
     getScreenCardById: (state) => (id: number) => {
@@ -24,6 +27,7 @@ export const useAppStore = defineStore('app', {
     addScreenCard(card: Omit<ScreenCard, 'id'>) {
       this.screenCards.push({ ...card, id: this.nextCardId });
       this.nextCardId += 1;
+      this.saveStep();
     },
     updateScreenCard(card: ScreenCard) {
       const index = this.screenCards.findIndex((c) => c.id === card.id);
@@ -33,6 +37,45 @@ export const useAppStore = defineStore('app', {
     },
     removeScreenCard(id: number) {
       this.screenCards = this.screenCards.filter((card) => card.id !== id);
+    },
+    selectCard(id: number) {
+      this.selectedCardIds.add(id);
+    },
+    deselectCard(id: number) {
+      this.selectedCardIds.delete(id);
+    },
+    removeSelectedCards() {
+      this.screenCards = this.screenCards.filter(
+        (card) => !this.selectedCardIds.has(card.id)
+      );
+      this.selectedCardIds.clear();
+      this.saveStep();
+    },
+    saveStep() {
+      this.stepHistory.push(JSON.parse(JSON.stringify(this.screenCards)));
+    },
+    undo() {
+      if (this.stepHistory.length > 0) {
+        this.screenCards = this.stepHistory.pop() || [];
+      }
+    },
+
+    async login(email, password) {
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+        // Handle successful login
+      } catch (error) {
+        // Handle login errors
+      }
+    },
+
+    async logout() {
+      try {
+        await auth.signOut();
+        // Handle successful logout
+      } catch (error) {
+        // Handle logout errors
+      }
     },
   },
 });
