@@ -11,9 +11,12 @@ A gui sandbox for rapidly protoyping development and coding projects
 [DEV ENVIRONMENT]
 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
 
+[RUN COMMAND]
+"quasar dev"
+
 [MODULES]
-@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint eslint-config-prettier eslint-plugin-prettier prettier
-Vue 3, fontawesome-v6, SASS, Quasar, Pinia, Vue-Router, vuedraggable, vue-resizable
+@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint eslint-config-prettier eslint-plugin-prettier prettier quasar pinia
+Vue3, fontawesome-v6, SASS, Vue-Router, vuedraggable, vue-resizable
 
 [STANDARDS]
 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
