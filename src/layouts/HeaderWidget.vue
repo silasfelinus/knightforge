@@ -12,9 +12,9 @@
 </template>
 
 <script lang="ts">
-import { useAppStore } from '@/stores/app';
-import { useAuthStore } from '@/stores/authStore';
-import LoginForm from '@/components/LoginForm.vue';
+import { useAppStore } from '@/stores/useAppStore';
+import { useAuthStore } from '@/stores/useAuthStore';
+import LoginForm from '@/pages/LoginForm.vue';
 
 export default {
   name: 'HeaderWidget',

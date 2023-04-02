@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ScreenSet00 from '../pages/ScreenSet00.vue';
+import ScreenSet00 from '@/pages/ScreenSet00.vue';
 
 const routes = [
   {
