@@ -1,30 +1,52 @@
-<!-- App.vue -->
 <template>
-  <div id="app"> 
-    <img
-      class="splash-image"
-      src="@/assets/splash/splash01.png"
-      alt="Splash Image"
-    />
+  <div id="app">
+    <router-view />
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App',
-};
-</script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { useAppStore } from './stores/useAppStore';
 
-<style scoped lang="scss">
-#app {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+export default defineComponent({
+  name: 'App',
+  setup() {
+    const appStore = useAppStore();
+
+    // Here, you can access the state and actions from your appStore
+    // and perform any necessary operations before rendering the pages
+
+    return {};
+  },
+});
+</script>
+<style lang="scss">
+/* Add your base SCSS styling here */
+
+.night-mode {
+  background-color: $dark-page;
+  color: $info;
+
+  a {
+    color: $info;
+  }
+
+  // Add any other Night Mode styles as needed
 }
 
-.splash-image {
+/* GlobalNotification component styles */
+.global-notification {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  z-index: 1000;
+}
+
+.notification {
+  background-color: $warning;
+  color: $dark;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 </style>
