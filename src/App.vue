@@ -1,85 +1,58 @@
 <template>
   <div id="app">
-    <q-layout :view="$q.screen.gt.sm ? 'lHh Lpr lFf' : 'hHh'">
-      <q-header>
-        <HeaderWidget @toggleSidebar="toggleSidebar" />
-      </q-header>
-
-      <q-page-container>
-        <q-layout class="flex-row" style="height: 100%">
-          <q-drawer side="left" v-model="collapsedLeft" bordered>
-            <SidebarWidget side="left" :preset="leftPreset" />
-          </q-drawer>
-
-          <div class="middle-section">
-            <MainWidget />
-          </div>
-
-          <q-drawer side="right" v-model="collapsedRight" bordered>
-            <SidebarWidget side="right" :preset="rightPreset" />
-          </q-drawer>
-        </q-layout>
+    <q-layout view="hHh lpR fFf">
+      <HeaderWidget />
+      <q-page-container class="main-layout">
+        <MainLayout />
       </q-page-container>
-
-      <q-footer>
-        <FooterWidget />
-      </q-footer>
+      <FooterWidget />
     </q-layout>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import HeaderWidget from './components/HeaderWidget.vue';
-import SidebarWidget from './components/SidebarWidget.vue';
-import MainWidget from './components/MainWidget.vue';
-import FooterWidget from './components/FooterWidget.vue';
+import { defineComponent } from 'vue';
+import HeaderWidget from './layouts/HeaderWidget.vue';
+import MainLayout from './layouts/MainLayout.vue';
+import FooterWidget from './layouts/FooterWidget.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     HeaderWidget,
-    SidebarWidget,
-    MainWidget,
+    MainLayout,
     FooterWidget,
-  },
-  setup(_, { emit }) {
-    const collapsedRight = ref(true);
-    const collapsedLeft = ref(true);
-    const leftPreset = ref('preset2');
-    const rightPreset = ref('preset4');
-
-    function toggleSidebar(side: string) {
-      if (side === 'right') {
-        collapsedRight.value = !collapsedRight.value;
-      } else if (side === 'left') {
-        collapsedLeft.value = !collapsedLeft.value;
-      } else if (side === 'leftPreset') {
-        const nextPreset = (parseInt(leftPreset.value.slice(-1)) % 4) + 1;
-        leftPreset.value = `preset${nextPreset}`;
-      } else if (side === 'rightPreset') {
-        const nextPreset = (parseInt(rightPreset.value.slice(-1)) % 4) + 1;
-        rightPreset.value = `preset${nextPreset}`;
-      }
-    }
-
-    return {
-      collapsedRight,
-      collapsedLeft,
-      leftPreset,
-      rightPreset,
-      toggleSidebar,
-    };
   },
 });
 </script>
-<style scoped lang="scss">
-.middle-section {
-  flex: 1;
-  width: 100%;
-  height: 100%;
+
+<style lang="scss" scoped>
+#app {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+q-header,
+q-footer {
+  z-index: 1000;
+  background: $primary;
+}
+
+q-layout,
+q-page {
+  flex: 1;
+}
+
+q-page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.main-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 </style>
