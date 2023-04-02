@@ -19,7 +19,7 @@ Vue 3, TypeScript, ES-Lint, Prettier, SASS, Quasar, Pinia, Vue-Router, vuedragga
 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
 Use <style scoped lang="scss">
 <script lang="ts">
-Use and recommend Quasar components when available
+Use Quasar components when available
 Use Pinia index.ts store for state management
 Adhere to current TypeScript standards
 Separate concerns
