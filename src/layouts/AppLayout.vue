@@ -1,41 +1,59 @@
 <template>
-  <div>
-    <header v-if="showHeader">
-      <slot name="header"></slot>
-    </header>
+  <q-layout view="lHh Lpr lFf">
+    <q-header>
+      <TitleBar />
+    </q-header>
 
-    <aside v-if="showSidebar">
-      <slot name="sidebar"></slot>
-    </aside>
+    <q-drawer v-model="leftSidebarVisibility" show-if-above>
+      <UnderConstruction />
+    </q-drawer>
 
-    <main>
-      <slot></slot>
-    </main>
+    <q-drawer v-model="rightSidebarVisibility" show-if-above side="right">
+      <div class="right-sidebar">
+        <!-- Right sidebar content goes here -->
+      </div>
+    </q-drawer>
 
-    <footer v-if="showFooter">
-      <slot name="footer"></slot>
-    </footer>
-  </div>
+    <q-page-container>
+      <MainWindow />
+    </q-page-container>
+
+    <q-footer>
+      <RemoteControl />
+    </q-footer>
+  </q-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import TitleBar from '@/pages/TitleBar.vue';
+import MainWindow from '@/pages/MainWindow.vue';
+import RemoteControl from '@/pages/RemoteControl.vue';
+import UnderConstruction from '@/pages/UnderConstruction.vue';
 
 export default defineComponent({
   name: 'AppLayout',
-  props: {
-    showHeader: {
-      type: Boolean,
-      default: true,
-    },
-    showFooter: {
-      type: Boolean,
-      default: true,
-    },
-    showSidebar: {
-      type: Boolean,
-      default: false,
-    },
+  components: {
+    TitleBar,
+    MainWindow,
+    RemoteControl,
+    UnderConstruction,
+  },
+  setup() {
+    const leftSidebarVisibility = ref(true);
+    const rightSidebarVisibility = ref(true);
+
+    return {
+      leftSidebarVisibility,
+      rightSidebarVisibility,
+    };
   },
 });
 </script>
+
+<style scoped lang="scss">
+.right-sidebar {
+  background-color: $warning;
+  /* Add other styling for the right sidebar here */
+}
+</style>

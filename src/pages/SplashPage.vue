@@ -1,52 +1,33 @@
 <template>
-  <div class="splash-screen">
-    <img :src="randomImage" alt="Splash Screen" />
+  <div class="splash-page">
+    <img :src="randomImage" alt="Splash Image" />
   </div>
 </template>
 
-<script>
-import secretImages from '@/assets/splash/secretImages.json';
-import splashImages from '@/assets/splash/splashImages.json';
+<script lang="ts">
+import { defineComponent, onMounted, ref } from 'vue';
 
-// Import all images from the assets/splash directory
-const splashImagesImport = import.meta.globEager('@/assets/splash/*.png');
-const imageList = Object.values(splashImagesImport).map((img) => img.default);
+export default defineComponent({
+  name: 'SplashPage',
+  setup() {
+    const randomImage = ref('');
 
-export default {
-  name: 'SplashScreen',
-  data() {
+    onMounted(async () => {
+      const response = await fetch('/src/assets/splash/splashImages.json');
+      const images = await response.json();
+      const randomIndex = Math.floor(Math.random() * images.length);
+      randomImage.value = `/src/assets/splash/${images[randomIndex]}`;
+    });
+
     return {
-      randomImage: '',
+      randomImage,
     };
   },
-  created() {
-    this.loadRandomImage();
-  },
-  methods: {
-    loadRandomImage() {
-      const allImages = [...secretImages, ...splashImages].map((imgName) => {
-        // Find the corresponding image module in the imported image list
-        return imageList.find((img) => img.includes(imgName));
-      });
-      const randomIndex = Math.floor(Math.random() * allImages.length);
-      this.randomImage = allImages[randomIndex];
-    },
-  },
-};
+});
 </script>
 
-<style scoped>
-.splash-screen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+<style scoped lang="scss">
+.splash-page {
+  /* Add your styling for the splash page here */
 }
 </style>

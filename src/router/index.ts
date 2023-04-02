@@ -1,25 +1,27 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import ErrorNotFound from '@/pages/ErrorNotFound.vue';
-import LoginForm from '@/pages/LoginForm.vue';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('pages/MainWindow.vue'),
-    meta: { layout: { showHeader: true, showFooter: true, showSidebar: false } },
+    component: () => import('layouts/AppLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('pages/MainWindow.vue'),
+        meta: { layout: { showHeader: true, showFooter: true, showSidebar: false } },
+      },
+      // Other routes go here
+    ],
   },
+  // Catch-all route
   {
-    path: '/login',
-    component: LoginForm,
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    component: ErrorNotFound,
+    path: '/:catchAll(.*)',
+    component: () => import('pages/ErrorNotFound.vue'),
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes,
 });
 

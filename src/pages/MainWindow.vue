@@ -1,21 +1,23 @@
 <template>
-  <div class="main-layout">
-    <router-view />
+  <div class="main-window">
+    <SplashPage />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import SplashPage from './pages/SplashPage.vue';
 
 export default defineComponent({
-  name: 'MainLayout',
+  name: 'MainWindow',
+  components: {
+    SplashPage,
+  },
 });
 </script>
 
 <style scoped lang="scss">
-.main-layout {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+.main-window {
+  /* Add your styling for the main window here */
 }
 </style>

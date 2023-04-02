@@ -61,12 +61,11 @@ WonderForge/
 
 [PRIMARY FOLDERS]
 ./router/index.ts
-./stores/useAppStore.ts
-./stores/useAuthStore.ts
-./stores/types.ts
-./css/quasar.variables
-[layouts/] FullScreen, HeaderFooter, HeaderFooterSides
-[pages/] ErrorNotFound, Footer, Header, LoginForm, MainWindow, Sidebar, SplashPage, UnderConstruction, WarningScreen
+[/stores/] useAppStore.ts, useAuthStore.ts, types.ts
+[/css/] css.quasar.variables
+[layouts/] AppLayout.vue
+[pages/] ErrorNotFound, LoginForm, MainWindow, RemoteControl, SplashPage, TitleBar, UnderConstruction
+ROOT: quasar.config.js, tsconfig.json, .eslintrc.js, .prettierrc, index.html, package.json, postcss.config.js
 [src/] Main, App.vue
 
 [PRESET LOADS]
@@ -79,7 +78,7 @@ Configured useAppStore and useAuthStore with demo options
 Established types.ts
 Designed routing and Page structures
 main.ts loads App.vue and shows splash image (woohoo)
-Layout customizes header, footer, and sidebar
+AppLayout customizes header, footer, and sidebar
 
 [SUGGESTED REPLY FORMAT]
 a. fun emoticon and fun and inspiring phrase
@@ -90,5 +89,4 @@ a. fun emoticon and fun and inspiring phrase
 
 
 [REQUEST]
-Help me 
 
