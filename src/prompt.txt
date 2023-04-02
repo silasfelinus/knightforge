@@ -127,66 +127,21 @@ a. fun emoticon and fun and inspiring phrase
 4. Any Additional comments
 
 [CURRENT]
-Troubleshooting error(s) preventing the website from displaying. We've limited it to a simple App.vue > HeaderWidget, Warning color, FooterWidget, no display.
+Troubleshooting error(s) preventing the website from displaying. I need the most essential walkthrough to create a simple App.vue that just displays a warning message. That's it, just a warning message.
 
-[App.vue]
+This is the main.ts:
+import { createApp } from 'vue';
+import App from '@/App.vue';
+import router from './router'; // Import the router instance, not the routes
+import { createPinia } from 'pinia';
 
+const app = createApp(App);
 
-<template>
-  <div id="app">
-    <q-layout view="hHh lpR fFf">
-      <HeaderWidget />
-      <q-page-container class="main-layout">
-        <MainLayout />
-      </q-page-container>
-      <FooterWidget />
-    </q-layout>
-  </div>
-</template>
+// Use the router
+app.use(router);
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HeaderWidget from './layouts/HeaderWidget.vue';
-import MainLayout from './layouts/MainLayout.vue';
-import FooterWidget from './layouts/FooterWidget.vue';
+// Use the Pinia store
+app.use(createPinia());
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    HeaderWidget,
-    MainLayout,
-    FooterWidget,
-  },
-});
-</script>
+app.mount('#app');
 
-<style lang="scss" scoped>
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-q-header,
-q-footer {
-  z-index: 1000;
-  background: $primary;
-}
-
-q-layout,
-q-page {
-  flex: 1;
-}
-
-q-page-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.main-layout {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-</style>

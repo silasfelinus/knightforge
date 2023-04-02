@@ -1,28 +1,18 @@
+<!-- FooterWidget.vue -->
 <template>
-  <q-footer>
-    <q-toolbar>
-      <q-toolbar-title>{{ title }}</q-toolbar-title>
-    </q-toolbar>
-  </q-footer>
+  <footer>
+    <p>&copy; 2023 Silas Knight. All rights reserved.</p>
+  </footer>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+<script>
+export default {
   name: 'FooterWidget',
-  components: {
-  },
-  props: {
-    title: {
-      type: String,
-      default: 'Wonderforge',
-    },
-  },
-});
+};
 </script>
-<style lang="scss">
-.q-footer {
-  background-color: $primary;
-  color: $accent;
+
+<style scoped lang="scss">
+footer {
+  // Your footer styles go here
 }
 </style>

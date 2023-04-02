@@ -1,63 +1,30 @@
+<!-- App.vue -->
 <template>
   <div id="app">
-    <q-layout view="hHh lpR fFf">
-      <HeaderWidget />
-      <q-page-container class="main-layout error-warning">
-        <!-- <MainLayout /> -->
-      </q-page-container>
-      <FooterWidget />
-    </q-layout>
+    <HeaderWidget />
+    <main>
+      <p class="warning-message">This is a warning message.</p>
+    </main>
+    <FooterWidget />
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HeaderWidget from './layouts/HeaderWidget.vue';
-// import MainLayout from './layouts/MainLayout.vue';
-import FooterWidget from './layouts/FooterWidget.vue';
+<script>
+import HeaderWidget from '@/layouts/HeaderWidget.vue';
+import FooterWidget from '@/layouts/FooterWidget.vue';
 
-export default defineComponent({
+export default {
   name: 'App',
   components: {
     HeaderWidget,
-    // MainLayout,
     FooterWidget,
   },
-});
+};
 </script>
 
-<style lang="scss" scoped>
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-q-header,
-q-footer {
-  z-index: 1000;
-  background: $primary;
-}
-
-q-layout,
-q-page {
-  flex: 1;
-}
-
-q-page-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-layout {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
-.error-warning {
-  background-color: $warning;
+<style scoped lang="scss">
+.warning-message {
+  color: $warning;
+  font-weight: bold;
 }
 </style>

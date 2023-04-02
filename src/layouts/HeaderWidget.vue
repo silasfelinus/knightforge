@@ -1,29 +1,14 @@
+<!-- HeaderWidget.vue -->
 <template>
-  <q-header class="header-widget">
-    <q-toolbar>
-      <q-toolbar-title class="header-title">{{
-        appStore.headerTitle
-      }}</q-toolbar-title>
-    </q-toolbar>
-  </q-header>
+  <header>
+    <h1>WonderForge</h1>
+  </header>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { useAppStore } from '../stores/app';
-
-export default defineComponent({
+<script>
+export default {
   name: 'HeaderWidget',
-  components: {
-  },
-  setup() {
-    const appStore = useAppStore();
-
-    return {
-      appStore,
-    };
-  },
-});
+};
 </script>
 
 <style scoped lang="scss">
