@@ -11,7 +11,10 @@ import { useAppStore } from './stores/useAppStore';
 export default defineComponent({
   name: 'App',
   setup() {
+    // Access the app store
     const appStore = useAppStore();
+
+    // Destructure the nightMode property from the app store
     const { nightMode } = appStore;
 
     return {
@@ -23,9 +26,11 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .night-mode {
+  // Apply styles for night mode
   background-color: $dark-page;
   color: $info;
 
+  // Style anchor tags in night mode
   a {
     color: $info;
   }
