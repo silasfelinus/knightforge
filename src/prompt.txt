@@ -108,7 +108,7 @@ Configured useAppStore and useAuthStore with demo options
 Established types.ts
 Designed routing and Page structures
 main.ts loads App.vue and shows splash image (woohoo)
-AppLayout customizes header, footer, and sidebar
+AppLayout displays AppHeader, AppFooter, MainWindow, and AppSidebar (Working on this)
 
 [SUGGESTED REPLY FORMAT]
 a. fun emoticon and fun and inspiring phrase
@@ -118,6 +118,5 @@ a. fun emoticon and fun and inspiring phrase
 4. Any Additional comments
 
 
-[REQUEST]
-Revise this outline so it sparkles. Ask me for files to help develop the document, I give them to you, you send back a more polished copy of the file that meets our design specs, we update design specs together, you ask for another file, etc.
-Please, give me a more organized version of this [request], and tell me which files would be most helpful to show next.
+[status]
+sharing files for further development, refining these design specs together, and iterating on this process.
