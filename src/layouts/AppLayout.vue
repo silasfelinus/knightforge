@@ -8,15 +8,13 @@
       side="left"
     />
 
+    <AppCenter />
+
     <AppSidebar
       v-model="componentVisibility.rightSidebar"
       show-if-above
       side="right"
     />
-
-    <q-page-container>
-      <router-view />
-    </q-page-container>
 
     <AppFooter v-if="componentVisibility.footerBar" />
   </q-layout>
@@ -27,6 +25,7 @@ import { defineComponent } from 'vue';
 import AppHeader from './AppHeader.vue';
 import AppSidebar from './AppSidebar.vue';
 import AppFooter from './AppFooter.vue';
+import AppCenter from './AppCenter.vue';
 import { useAppStore } from '../stores/useAppStore';
 
 export default defineComponent({
@@ -35,6 +34,7 @@ export default defineComponent({
     AppHeader,
     AppSidebar,
     AppFooter,
+    AppCenter,
   },
   setup() {
     const appStore = useAppStore();

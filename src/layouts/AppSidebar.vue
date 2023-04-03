@@ -1,11 +1,11 @@
 <template>
-  <q-drawer v-model="componentVisibility" show-if-above :side="side">
+  <q-drawer v-model="visibility" show-if-above :side="side">
     <slot />
   </q-drawer>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, ref, watch } from 'vue';
 
 export default defineComponent({
   name: 'AppSidebar',
@@ -18,6 +18,19 @@ export default defineComponent({
       type: String as PropType<'left' | 'right'>,
       default: 'left',
     },
+  },
+  setup(props, { emit }) {
+    const visibility = ref(props.componentVisibility);
+
+    watch(visibility, (newValue, oldValue) => {
+      if (newValue !== oldValue) {
+        emit('update:componentVisibility', newValue);
+      }
+    });
+
+    return {
+      visibility,
+    };
   },
 });
 </script>

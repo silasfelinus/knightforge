@@ -8,7 +8,9 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         component: () => import('pages/MainWindow.vue'),
-        meta: { layout: { showHeader: true, showFooter: true, showSidebar: false } },
+        meta: {
+          layout: { showHeader: true, showFooter: true, showSidebar: false },
+        },
       },
       // Other routes go here
     ],
