@@ -18,9 +18,8 @@ export const useAuthStore = defineStore('auth', {
         this.user = { email: 'acroguest@cafepurr.com', id: 1 };
         this.isLoggedIn = true;
         return true;
-      } else {
-        return false;
       }
+      return false;
     },
     logout() {
       this.user = null;
