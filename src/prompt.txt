@@ -108,10 +108,10 @@ Configured useAppStore and useAuthStore with demo options
 Established types.ts
 Designed routing and Page structures
 main.ts loads App.vue and shows splash image (woohoo)
-AppLayout displays AppHeader, AppFooter, MainWindow, and AppSidebar (Working on this)
+Organized AppLayout for modular displays AppHeader, AppFooter, MainCenter, and AppSidebar
 
 [LAYOUTS]
-🎨 AppLayout is the main application layout that includes AppHeader, AppFooter, AppCenter, and AppSidebar components. It uses the Quasar framework to set up the layout structure and relies on the useAppStore for managing the state of component visibility. AppCenter.vue component is responsible for handling the central screen display and maintaining the separation between screens.
+🎨 AppLayout is the main application layout that includes AppHeader, AppFooter, AppCenter, and AppSidebar components. It uses the Quasar framework to set up the layout structure and relies on the useAppStore for managing the state of component visibility. AppCenter.vue component is responsible for maintaining the separation between screens.
 
 [SUGGESTED REPLY FORMAT]
 a. fun emoticon and fun and inspiring phrase
