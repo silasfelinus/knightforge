@@ -13,7 +13,7 @@
 
 [MODULES]
 📦 @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint eslint-config-prettier eslint-plugin-prettier prettier
-quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, @vue/test-utils jest
+quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, @vue/test-utils, jest, @types/jest
 
 [STANDARDS]
 🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
@@ -64,7 +64,7 @@ Future: PlaySpace Toys (Superball Cannon, Graffiti Secret 2D Adventure Mode, Bou
 📂 ./router/index.ts
 [/stores/] useAppStore.ts, useAuthStore.ts, types.ts
 [/css/] css.quasar.variables
-[layouts/] AppLayout.vue, AppCenter.vue
+[layouts/] AppLayout.vue, AppCenter.vue, AppFooter, AppHeader, AppSidebar
 [pages/] ErrorNotFound, LoginForm, MainWindow, RemoteControl, SplashPage, TitleBar, UnderConstruction
 ROOT: quasar.config.js, tsconfig.json, .eslintrc.js, .prettierrc, index.html, package.json, postcss.config.js
 [src/] Main, App.vue
@@ -109,6 +109,7 @@ Established types.ts
 Designed routing and Page structures
 main.ts loads App.vue and shows splash image (woohoo)
 Organized AppLayout for modular AppHeader, AppFooter, AppCenter, and AppSidebar display
+Added Jest and main.spec.ts
 
 [LAYOUTS]
 🎨 AppLayout is responsible for maintaining the separation between AppHeader, AppFooter, AppCenter, and AppSidebar components. It leverages Quasar and relies on the useAppStore for managing the state of component visibility.
@@ -121,28 +122,8 @@ a. fun emoticon and inspiring phrase
 4. Any Additional comments
 
 [REQUEST]
-I've not had a GUI for a week since I integrated the Pinia store and decided to rebuild the infrastructure from the ground up.
-It's time to put all this planning into action and get the new layout to display.
-I've just installed @vue/test-utils. I want to setup testing for main.ts, router/index.ts, App.vue, AppLayout, and the various layout elements. What do we do first?
-
-[main.ts]
-import { createApp } from 'vue';
-import router from './router';
-import App from '/App.vue';
-import { createPinia } from 'pinia';
-
-// Create a new Vue app instance
-const app = createApp(App);
-
-// Set up a global error handler for the app
-app.config.errorHandler = (err, _vm, _info) => {
-  console.error('Captured in global errorHandler:', err);
-};
-
-// Use the router and Pinia for state management
-app.use(router);
-app.use(createPinia());
-
-// Mount the app to the DOM
-app.mount('#app');
-
+Help setup and teach testing with Jest.
+Can I get a tutorial using this project?
+I've installed it and it runs with "npm test" but the
+got "  ({"Object.<anonymous>":function(module,exports,require,__dirname,__filename,jest){import { mount } from '@vue/test-utils';
+SyntaxError: Cannot use import statement outside a module"
