@@ -1,9 +1,9 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <AppHeader v-if="route.meta.layout.showHeader" />
+    <AppHeader v-if="layoutConfig.showHeader" />
 
     <AppSidebar
-      v-if="route.meta.layout.showSidebar"
+      v-if="layoutConfig.showSidebar"
       v-model="componentVisibility.leftSidebar"
       show-if-above
       side="left"
@@ -12,13 +12,13 @@
     <AppCenter />
 
     <AppSidebar
-      v-if="route.meta.layout.showSidebar"
+      v-if="layoutConfig.showSidebar"
       v-model="componentVisibility.rightSidebar"
       show-if-above
       side="right"
     />
 
-    <AppFooter v-if="route.meta.layout.showFooter" />
+    <AppFooter v-if="layoutConfig.showFooter" />
   </q-layout>
 </template>
 
@@ -30,6 +30,12 @@ import AppSidebar from './AppSidebar.vue';
 import AppFooter from './AppFooter.vue';
 import AppCenter from './AppCenter.vue';
 import { useAppStore } from '../stores/useAppStore';
+
+type LayoutConfig = {
+  showHeader: boolean;
+  showFooter: boolean;
+  showSidebar: boolean;
+};
 
 export default defineComponent({
   name: 'AppLayout',
@@ -43,10 +49,12 @@ export default defineComponent({
     const route = useRoute();
     const appStore = useAppStore();
     const componentVisibility = appStore.componentVisibility;
+    const layoutConfig = (route.meta.layout || {}) as LayoutConfig;
 
     return {
       componentVisibility,
       route,
+      layoutConfig,
     };
   },
 });
