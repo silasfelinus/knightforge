@@ -5,5 +5,16 @@
     "paths": {
       "@/*": ["src/*"]
     },
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "jest.config.js",
+    "babel.config.js",
+    "node_modules",
+    "**/*.spec.ts",
+    "**/tests/**"
+  ],
 }
