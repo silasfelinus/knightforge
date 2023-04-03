@@ -77,7 +77,11 @@ export const useAppStore = defineStore('app', {
     updateScreenCard(card: ScreenCard) {
       const index = this.screenCards.findIndex((c) => c.id === card.id);
       if (index !== -1) {
-        this.screenCards[index] = card;
+        this.screenCards = [
+          ...this.screenCards.slice(0, index),
+          card,
+          ...this.screenCards.slice(index + 1),
+        ];
       }
     },
     // Remove a screen card by its id

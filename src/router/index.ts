@@ -3,23 +3,36 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layout/AppLayout.vue'),
+    component: () => import('layout/AppLayoutWrapper.vue'),
     children: [
       {
         path: '',
-        component: () => import('views/SplashPage.vue'),
+        component: () => import('layout/ScreenWidget.vue'),
         meta: {
-          layout: { showHeader: false, showFooter: false, showSidebar: false },
+          layout: { showHeader: true, showFooter: true, showSidebar: true },
         },
+      },
+      {
+        path: '/splash',
+        component: () => import('views/SplashImage.vue'),
       },
       {
         path: '/login',
         component: () => import('views/LoginForm.vue'),
-        meta: {
-          layout: { showHeader: true, showFooter: true, showSidebar: false },
-        },
       },
-      // Other routes go here
+      {
+        path: '/remote-control',
+        component: () => import('views/RemoteControl.vue'),
+      },
+      {
+        path: '/under-construction',
+        component: () => import('views/UnderConstruction.vue'),
+      },
+      {
+        path: '/title-bar',
+        component: () => import('views/TitleBar.vue'),
+      },
+      // Add additional routes here as needed
     ],
   },
   // Catch-all route

@@ -1,5 +1,5 @@
 [INTRODUCTION]
-👋 Hi, ChatGPT! I'm Silas Knight. I'm building an SPA using Vue3, Composition API, Quasar, and Pinia.
+👋 Hi, ChatGPT! I'm Silas Knight. We're building an SPA using Vue3, Composition API, Quasar, and Pinia.
 
 [PROJECT]
 🔧 WonderForge: GUI sandbox for prototyping development and coding projects (portfolio showpiece)
@@ -7,21 +7,30 @@
 [DEV ENVIRONMENT]
 💻 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
 
+[REFERENCE]
+Vue3 (https://vuejs.org/guide/introduction.html)
+Vue-Router (https://router.vuejs.org/guide/)
+Typescript (https://www.typescriptlang.org/)
+Babel (https://babeljs.io/)
+Jest (https://jestjs.io/docs/getting-started)
+Vue3-Jest-Typescript Testing - (https://vuejs.org/guide/scaling-up/testing.html#testing-with-jest)
+Quasar CLI (https://quasar.dev/start/quasar-cli)
+Pinia (https://pinia.vuejs.org/)
+
+[MODULES]
+📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass
+
 [RUN COMMAND]
 🚀 "quasar dev"
 
-[MODULES]
-📦 @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint eslint-config-prettier eslint-plugin-prettier prettier
-quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, jest @vue/test-utils @vue/vue3-jest babel-jest @babel/core @babel/preset-env @babel/preset-typescript, @babel/plugin-transform-runtime
-
 [STANDARDS]
-🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, and DRY principle
+🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, Kaizen, DRY Principle
 
-[VARIABLES]
-🎨 colors: $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
+[COLORS]
+🎨 $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
 
 [DEVELOPING FEATURES]
-🌈 Step-Based Save System, User Logins, Night Mode, ScreenCard Management, Chat, ScreenSpace Remote Control, OpenAI Secure Key Storage, Future PlaySpace Toys
+🌈 Step-Based Save System, User Logins, Night Mode, Chat, PlaySpace Toys
 
 [INTENDED FILE TYPES]
 📁 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
@@ -41,69 +50,74 @@ quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, 
 │ ├── router/
 │ └── stores/
 │ └── tests/
-│ └── helpers/
-└── public/
-└── images/
+└── public/images/
 
-[useAppStore]
-(state management, manages component visibility for AppLayout and Screen states for RemoteControl and ScreenWidget)
-STATE: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
-GETTERS: getScreenCardById(id: number): ScreenCard | undefined
-ACTIONS: login(email: string, password: string), logout(), toggleNightMode(),
-addScreenCard(card: Omit<ScreenCard, 'id'>), updateScreenCard(card: ScreenCard), removeScreenCard(id: number),
-selectCard(id: number), deselectCard(id: number), removeSelectedCards(), saveStep(), undo(), toggleComponentVisibility(componentName: string),
-setGridWidth(width: number), setGridHeight(height: number), setGridCellSize(size: number)
-
-[LAYOUT]
-🎨 AppLayout maintains separation between AppHeader, AppFooter, AppCenter, and AppSidebar components using useAppStore
-
-[VIEWS]
-Individual screen styling and component calls
+[STATE MANAGEMENT]
+useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
 [PROGRESS]
-Installed modules, setup variable references and SCSS styling, configured stores, designed routing and page structures, main.ts loads App.vue, organized AppLayout, Jest setup, organized Launch file chain, added reference links
-
+Installed modules, setup variable references and SCSS styling, configured stores, designed routing and page structures, now iterating through files and rebuilding structure to follow design specs and re-reach gui functionality
 
 [PRIMARY FILES]
 index.html: Quasar Entry Point
-quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc: Configuration files
+quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json: Configuration files
 src/main.ts: Entry point for the Vue application, imports Vue, router, and Pinia store
-src/router/index.ts: Vue Router route definitions
-src/App.vue: Root Vue component, imports useAppStore and AppLayout
-src/stores/useAppStore.ts: Application state management with Pinia
-src/layout/AppLayout.vue: Main layout component, contains AppHeader, AppFooter, AppCenter, and AppSidebar
+src/router/index.ts: Calls AppLayoutWrapper for route layout
+src/App.vue: Root Vue component
+src/stores/useAppStore.ts: Pinia global state management
+src/layout/AppLayoutWrapper.vue: Sets up the outer App layout and includes the AppLayout component
+src/layout/AppLayout.vue: Styles and creates boundaries between different components (AppHeader, AppSidebar, ScreenWidget, and AppFooter)
 src/layout/AppHeader.vue: qHeader, includes sidebar toggles, TitleBar, user login, and login status indicator
 src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
-src/layout/AppSidebar.vue: q-drawer (Right), imports Remotecontrol
-src/layout/AppFooter.vue: qfooter, handles toggling of night mode
-src/layout/AppCenter.vue: q-page-container and outer boundary for router call to ScreenWidget
-src/views/SplashPage.vue: Displays a random splash image from the src/assets/splash folder
-src/views/ScreenWidget.vue: boundary interface andb background display for ScreenCards (needs to be redone)
-src/components/ScreenCard.vue: q-card, selectable, resizeable, and moveable, representing an abstracted API call
-src/views/: ErrorNotFound:, TitleBar, UnderConstruction - various end-point static pages with routing information
-src/views/LoginForm: demo login interface
-src/views/RemoteControl: gui interface to Add, Select, Remove, and Change channel on ScreenCards inside ScreenWidget
-useRemoteControl: interface logic for RemoteControl
-
-[UNDEVELOPED]
-Setup Jest testing, polish ScreenWidget, polish ScreenCards
-
-[REFERENCE]
-Vue3 (https://vuejs.org/guide/introduction.html)
-Vue-Router (https://router.vuejs.org/guide/)
-Typescript (https://www.typescriptlang.org/)
-Babel (https://babeljs.io/)
-Jest (https://jestjs.io/docs/getting-started)
-Vue3-Jest-Typescript Testing - (https://vuejs.org/guide/scaling-up/testing.html#testing-with-jest)
-Quasar CLI (https://quasar.dev/start/quasar-cli)
-Pinia (https://pinia.vuejs.org/)
-
-
-[ISSUES]
-No GUI, AppLayout has a circular loop that needs fixing. It calls AppCenter which calls router, router calls AppLayout which calls SplashPage.ScreenWidget needs to be stiched in. Help organize and essentialize this structure so each part is doing what it should and no more
-
+src/layout/AppSidebar.vue: q-drawer (Right), imports RemoteControl
+src/layout/AppFooter.vue: qFooter, uses useAppStore for night mode toggle
+src/layout/ScreenWidget.vue: q-page-container and boundary for ScreenCards, utilizes SplashImage for background
+src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
+src/components/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, also utilizes SplashImage for inner display
+src/views/: ErrorNotFound, TitleBar, UnderConstruction - end-point static pages
+src/views/LoginForm.vue: Demo login interface
+src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change channel on ScreenCards inside ScreenWidget using useAppStore
 
 [SUGGESTED REPLY FORMAT]
 1. Emoticon and brief project assessment
 2. Improved code or request for file(s)
 3. Additional comments
+
+[STATUS]
+No GUI since project redesign. the goal is a functional gui, and then build in testing.
+I'm working from this list of files, and marking them [DONE] when we've looked them over:
+
+Configuration Files (5 files)
+[DONE]quasar.config.js
+[DONE]tsconfig.json
+[DONE]postcss.config.js
+[DONE].eslintrc.js
+[DONE].prettierrc
+[DONE]package.json
+
+Entry Points (2 files)
+[DONE]src/main.ts
+[DONE]src/router/index.ts
+
+State Management (1 file)
+[DONE]src/stores/useAppStore.ts
+
+Layout Components (6 files)
+src/layout/AppLayoutWrapper.vue
+src/layout/AppLayout.vue
+src/layout/AppHeader.vue
+src/layout/AppSidebar.vue
+src/layout/AppFooter.vue
+src/layout/ScreenWidget.vue
+
+View Components (7 files)
+src/views/ErrorNotFound.vue
+src/views/TitleBar.vue
+src/views/UnderConstruction.vue
+src/views/LoginForm.vue
+src/views/RemoteControl.vue
+src/views/SplashImage.vue
+src/components/ScreenCard.vue
+
+
+[AppLayoutWrapper]

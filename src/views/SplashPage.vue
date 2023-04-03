@@ -8,7 +8,7 @@
 import { defineComponent, onMounted, ref } from 'vue';
 
 export default defineComponent({
-  name: 'SplashPage',
+  name: 'SplashImage',
   setup() {
     const randomImage = ref('');
 
