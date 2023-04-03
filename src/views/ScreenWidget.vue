@@ -6,9 +6,9 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import TextInput from '../labspace/TextInput.vue';
-import SplashViewer from '../screenspace/SplashViewer.vue';
-import ChatWidget from '../playspace/ChatWidget.vue';
+import TextInput from '../components/labspace/TextInput.vue';
+import SplashViewer from '../components/screenspace/SplashViewer.vue';
+import ChatWidget from '../components/playspace/ChatWidget.vue';
 // ... import other components
 
 export default defineComponent({

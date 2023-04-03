@@ -1,6 +1,6 @@
 [useAppStore]
 
-Manage user authentication state: Store and handle user login status and authentication tokens for conditional rendering of components and pages.
-Control application themes (e.g., Night Mode): Store and handle the application theme settings, allowing theme toggling across components and pages.
+Manage user authentication state: Store and handle user login status and authentication tokens for conditional rendering of components and views.
+Control application themes (e.g., Night Mode): Store and handle the application theme settings, allowing theme toggling across components and views.
 Store and manage user preferences: Maintain user preferences such as font size, layout, and other settings for a personalized user experience.
 Manage global notifications and messages: Handle notifications, error messages, and other information displayed throughout the application using a global notification component.

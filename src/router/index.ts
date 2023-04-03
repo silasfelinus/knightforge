@@ -3,18 +3,18 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/AppLayout.vue'),
+    component: () => import('layout/AppLayout.vue'),
     children: [
       {
         path: '',
-        component: () => import('pages/SplashPage.vue'),
+        component: () => import('views/SplashPage.vue'),
         meta: {
           layout: { showHeader: false, showFooter: false, showSidebar: false },
         },
       },
       {
         path: '/login',
-        component: () => import('pages/LoginForm.vue'),
+        component: () => import('views/LoginForm.vue'),
         meta: {
           layout: { showHeader: true, showFooter: true, showSidebar: false },
         },
@@ -25,7 +25,7 @@ const routes: RouteRecordRaw[] = [
   // Catch-all route
   {
     path: '/:catchAll(.*)',
-    component: () => import('pages/ErrorNotFound.vue'),
+    component: () => import('views/ErrorNotFound.vue'),
   },
 ];
 

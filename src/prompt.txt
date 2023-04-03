@@ -2,8 +2,7 @@
 👋 Hi, ChatGPT! I'm Silas Knight. I'm building an SPA using Vue3, Composition API, Quasar, and Pinia.
 
 [PROJECT]
-🔧 WonderForge: A GUI sandbox for rapidly prototyping development and coding projects
-(with a pleasing interface and best practices to serve as a portfolio showpiece)
+🔧 WonderForge: GUI sandbox for prototyping development and coding projects (portfolio showpiece)
 
 [DEV ENVIRONMENT]
 💻 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
@@ -16,29 +15,13 @@
 quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, jest @vue/test-utils @vue/vue3-jest babel-jest @babel/core @babel/preset-env @babel/preset-typescript, @babel/plugin-transform-runtime
 
 [STANDARDS]
-🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
-Use <script lang="ts">
-Use <style scoped lang="scss">
-Use Quasar components when available
-Use Pinia useAppStore.ts store for state management
-Components must have TwoWord names
-Adhere to current TypeScript standards
-Separate concerns. Avoid hardcoding data in application logic
+🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, and DRY principle
 
 [VARIABLES]
 🎨 colors: $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
 
 [DEVELOPING FEATURES]
-🌈 Step-Based Save System
-User Logins
-Night Mode
-Playspace Paint mode
-Labspace API Card GUI
-Screenspace Screen/Card Management
-Chat
-ScreenSpace Remote Control
-OpenAI Secure Key Storage
-Future: PlaySpace Toys (Superball Cannon, Graffiti Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects)
+🌈 Step-Based Save System, User Logins, Night Mode, ScreenCard Management, Chat, ScreenSpace Remote Control, OpenAI Secure Key Storage, Future PlaySpace Toys
 
 [INTENDED FILE TYPES]
 📁 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
@@ -53,73 +36,74 @@ Future: PlaySpace Toys (Superball Cannon, Graffiti Secret 2D Adventure Mode, Bou
 │ ├── boot/
 │ ├── components/
 │ ├── css/
-│ ├── layouts/
-│ ├── pages/
+│ ├── layout/
+│ ├── views/
 │ ├── router/
 │ └── stores/
+│ └── tests/
+│ └── helpers/
 └── public/
 └── images/
 
-[PRIMARY FOLDERS]
-📂 ./router/index.ts
-[/stores/] useAppStore.ts, useAuthStore.ts, types.ts
-[/css/] css.quasar.variables
-[layouts/] AppLayout.vue (loads AppHeader, AppCenter.vue, AppFooter,  AppSidebar)
-[pages/] ErrorNotFound, LoginForm, MainWindow, RemoteControl, SplashPage, TitleBar, UnderConstruction
-ROOT: quasar.config.js, tsconfig.json, .eslintrc.js, .prettierrc, index.html, package.json, postcss.config.js
-[src/] Main, App.vue
-
 [useAppStore]
-state
-- user
-- isLoggedIn
-- nightMode
-- screenCards
-- nextCardId
-- selectedCardIds
-- stepHistory
-- componentVisibility
-- gridWidth
-- gridHeight
-- gridCellSize
-getters
-- getScreenCardById(id: number): ScreenCard | undefined
-actions
-- login(email: string, password: string): boolean
-- logout(): void
-- toggleNightMode(): void
-addScreenCard(card: Omit<ScreenCard, 'id'>): void
-- updateScreenCard(card: ScreenCard): void
-- removeScreenCard(id: number): void
-- selectCard(id: number): void
-- deselectCard(id: number): void
-- removeSelectedCards(): void
-- saveStep(): void
-- undo(): void
-- toggleComponentVisibility(componentName: string): void
-- setGridWidth(width: number): void
-- setGridHeight(height: number): void
-- setGridCellSize(size: number): void
+(state management, manages component visibility for AppLayout and Screen states for RemoteControl and ScreenWidget)
+STATE: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
+GETTERS: getScreenCardById(id: number): ScreenCard | undefined
+ACTIONS: login(email: string, password: string), logout(), toggleNightMode(),
+addScreenCard(card: Omit<ScreenCard, 'id'>), updateScreenCard(card: ScreenCard), removeScreenCard(id: number),
+selectCard(id: number), deselectCard(id: number), removeSelectedCards(), saveStep(), undo(), toggleComponentVisibility(componentName: string),
+setGridWidth(width: number), setGridHeight(height: number), setGridCellSize(size: number)
+
+[LAYOUT]
+🎨 AppLayout maintains separation between AppHeader, AppFooter, AppCenter, and AppSidebar components using useAppStore
+
+[VIEWS]
+Individual screen styling and component calls
 
 [PROGRESS]
-Installed Quasar CLI, Vue3, SASS and other listed modules
-Setup variable references and SCSS styling
-Configured useAppStore and useAuthStore with demo options
-Established types.ts
-Designed routing and Page structures
-main.ts loads App.vue and shows splash image (woohoo)
-Organized AppLayout for modular AppHeader, AppFooter, AppCenter, and AppSidebar display
-Added Jest and main.spec.ts, but tests are
+Installed modules, setup variable references and SCSS styling, configured stores, designed routing and page structures, main.ts loads App.vue, organized AppLayout, Jest setup, organized Launch file chain, added reference links
 
-[LAYOUTS]
-🎨 AppLayout is responsible for maintaining the separation between AppHeader, AppFooter, AppCenter, and AppSidebar components. It leverages useAppStore for managing component visibility state.
+
+[PRIMARY FILES]
+index.html: Quasar Entry Point
+quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc: Configuration files
+src/main.ts: Entry point for the Vue application, imports Vue, router, and Pinia store
+src/router/index.ts: Vue Router route definitions
+src/App.vue: Root Vue component, imports useAppStore and AppLayout
+src/stores/useAppStore.ts: Application state management with Pinia
+src/layout/AppLayout.vue: Main layout component, contains AppHeader, AppFooter, AppCenter, and AppSidebar
+src/layout/AppHeader.vue: qHeader, includes sidebar toggles, TitleBar, user login, and login status indicator
+src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
+src/layout/AppSidebar.vue: q-drawer (Right), imports Remotecontrol
+src/layout/AppFooter.vue: qfooter, handles toggling of night mode
+src/layout/AppCenter.vue: q-page-container and outer boundary for router call to ScreenWidget
+src/views/SplashPage.vue: Displays a random splash image from the src/assets/splash folder
+src/views/ScreenWidget.vue: boundary interface andb background display for ScreenCards (needs to be redone)
+src/components/ScreenCard.vue: q-card, selectable, resizeable, and moveable, representing an abstracted API call
+src/views/: ErrorNotFound:, TitleBar, UnderConstruction - various end-point static pages with routing information
+src/views/LoginForm: demo login interface
+src/views/RemoteControl: gui interface to Add, Select, Remove, and Change channel on ScreenCards inside ScreenWidget
+useRemoteControl: interface logic for RemoteControl
+
+[UNDEVELOPED]
+Setup Jest testing, polish ScreenWidget, polish ScreenCards
+
+[REFERENCE]
+Vue3 (https://vuejs.org/guide/introduction.html)
+Vue-Router (https://router.vuejs.org/guide/)
+Typescript (https://www.typescriptlang.org/)
+Babel (https://babeljs.io/)
+Jest (https://jestjs.io/docs/getting-started)
+Vue3-Jest-Typescript Testing - (https://vuejs.org/guide/scaling-up/testing.html#testing-with-jest)
+Quasar CLI (https://quasar.dev/start/quasar-cli)
+Pinia (https://pinia.vuejs.org/)
+
+
+[ISSUES]
+No GUI, AppLayout has a circular loop that needs fixing. It calls AppCenter which calls router, router calls AppLayout which calls SplashPage.ScreenWidget needs to be stiched in. Help organize and essentialize this structure so each part is doing what it should and no more
+
 
 [SUGGESTED REPLY FORMAT]
-a. fun emoticon and inspiring phrase
-1. Comment on code and project thus far
-2. Improved Code that will work within our structure
-3. The file or files you'd like to see next
-4. Any Additional comments
-
-[REQUEST]
-Trying to setup tests
+1. Emoticon and brief project assessment
+2. Improved code or request for file(s)
+3. Additional comments

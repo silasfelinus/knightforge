@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import RemoteControl from '../pages/RemoteControl.vue';
+import RemoteControl from '../views/RemoteControl.vue';
 
 export default defineComponent({
   name: 'AppFooter',

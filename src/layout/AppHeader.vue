@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import TitleBar from '../pages/TitleBar.vue';
+import TitleBar from '../views/TitleBar.vue';
 import { useAppStore } from '../stores/useAppStore';
 
 export default defineComponent({
