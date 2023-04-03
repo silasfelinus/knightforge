@@ -1,6 +1,12 @@
 <template>
-  <q-header>
-    <TitleBar @toggle-left-sidebar="toggleLeftSidebar" />
+  <q-header class="app-header">
+    <q-toolbar>
+      <q-btn icon="menu" flat @click="toggleLeftSidebar" />
+      <TitleBar />
+      <q-space />
+      <q-btn icon="nightlight" flat @click="toggleNightMode" />
+      <q-btn label="Login" flat to="/login" />
+    </q-toolbar>
   </q-header>
 </template>
 
@@ -21,9 +27,21 @@ export default defineComponent({
         !appStore.componentVisibility.leftSidebar;
     };
 
+    const toggleNightMode = () => {
+      appStore.toggleNightMode();
+    };
+
     return {
       toggleLeftSidebar,
+      toggleNightMode,
     };
   },
 });
 </script>
+
+<style scoped lang="scss">
+.app-header {
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+}
+</style>

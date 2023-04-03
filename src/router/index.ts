@@ -7,7 +7,14 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        component: () => import('pages/MainWindow.vue'),
+        component: () => import('pages/SplashPage.vue'),
+        meta: {
+          layout: { showHeader: false, showFooter: false, showSidebar: false },
+        },
+      },
+      {
+        path: '/login',
+        component: () => import('pages/LoginForm.vue'),
         meta: {
           layout: { showHeader: true, showFooter: true, showSidebar: false },
         },
