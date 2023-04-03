@@ -19,6 +19,7 @@ export default defineComponent({
       default: 'left',
     },
   },
+  emits: ['update:componentVisibility'], // Add this line
   setup(props, { emit }) {
     const visibility = ref(props.componentVisibility);
 

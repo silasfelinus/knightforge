@@ -108,19 +108,55 @@ Configured useAppStore and useAuthStore with demo options
 Established types.ts
 Designed routing and Page structures
 main.ts loads App.vue and shows splash image (woohoo)
-Organized AppLayout for modular displays AppHeader, AppFooter, MainCenter, and AppSidebar
+Organized AppLayout for modular AppHeader, AppFooter, AppCenter, and AppSidebar display
 
 [LAYOUTS]
-🎨 AppLayout is the main application layout that includes AppHeader, AppFooter, AppCenter, and AppSidebar components. It uses the Quasar framework to set up the layout structure and relies on the useAppStore for managing the state of component visibility. AppCenter.vue component is responsible for maintaining the separation between screens.
+🎨 AppLayout is responsible for maintaining the separation between AppHeader, AppFooter, AppCenter, and AppSidebar components. It leverages Quasar and relies on the useAppStore for managing the state of component visibility.
 
 [SUGGESTED REPLY FORMAT]
-a. fun emoticon and fun and inspiring phrase
+a. fun emoticon and inspiring phrase
 1. Comment on code and project thus far
 2. Improved Code that will work within our structure
 3. The file or files you'd like to see next
 4. Any Additional comments
 
+[REQUEST]
+I'm getting an error in AppSidebar. Please explain and fix error "warning  The "update:componentVisibility" event has been triggered but not declared on `emits` option"
 
-[status]
-sharing files for further development, refining these design specs together, and iterating on this process.
-Return this outline updated with Layout summary and other elaborations in efficient markup
+[AppSidebar]
+<template>
+  <q-drawer v-model="visibility" show-if-above :side="side">
+    <slot />
+  </q-drawer>
+</template>
+
+<script lang="ts">
+import { defineComponent, PropType, ref, watch } from 'vue';
+
+export default defineComponent({
+  name: 'AppSidebar',
+  props: {
+    componentVisibility: {
+      type: Boolean,
+      required: true,
+    },
+    side: {
+      type: String as PropType<'left' | 'right'>,
+      default: 'left',
+    },
+  },
+  setup(props, { emit }) {
+    const visibility = ref(props.componentVisibility);
+
+    watch(visibility, (newValue, oldValue) => {
+      if (newValue !== oldValue) {
+        emit('update:componentVisibility', newValue);
+      }
+    });
+
+    return {
+      visibility,
+    };
+  },
+});
+</script>
