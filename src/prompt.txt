@@ -13,7 +13,7 @@
 
 [MODULES]
 📦 @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint eslint-config-prettier eslint-plugin-prettier prettier
-quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, @vue/test-utils, @vue/vue3-jest, babel-jest @babel/core @babel/preset-env, @babel/preset-typescript
+quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, jest @vue/test-utils @vue/vue3-jest babel-jest @babel/core @babel/preset-env @babel/preset-typescript, @babel/plugin-transform-runtime
 
 [STANDARDS]
 🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
@@ -122,4 +122,4 @@ a. fun emoticon and inspiring phrase
 4. Any Additional comments
 
 [REQUEST]
-Just installed Jest.Help setup first test.
+Trying to setup tests
