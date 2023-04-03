@@ -34,8 +34,10 @@ export const useAppStore = defineStore('app', {
       headerBar: true,
       mainWindow: true,
       footerBar: true,
-      // Add more components here
     } as ComponentVisibility,
+    gridWidth: 12, // Grid width in cells
+    gridHeight: 12, // Grid height in cells
+    gridCellSize: 50, // Grid cell size in pixels
   }),
   getters: {
     // Get a screen card by its id
@@ -118,6 +120,18 @@ export const useAppStore = defineStore('app', {
           `Component "${componentName}" not found in componentVisibility.`
         );
       }
+    },
+    // Set the grid width
+    setGridWidth(width: number) {
+      this.gridWidth = width;
+    },
+    // Set the grid height
+    setGridHeight(height: number) {
+      this.gridHeight = height;
+    },
+    // Set the grid cell size
+    setGridCellSize(size: number) {
+      this.gridCellSize = size;
     },
   },
 });
