@@ -13,7 +13,7 @@
 
 [MODULES]
 📦 @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint eslint-config-prettier eslint-plugin-prettier prettier
-quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, vuedraggable, vue-resizable
+quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, @vue/test-utils jest
 
 [STANDARDS]
 🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
@@ -121,42 +121,28 @@ a. fun emoticon and inspiring phrase
 4. Any Additional comments
 
 [REQUEST]
-I'm getting an error in AppSidebar. Please explain and fix error "warning  The "update:componentVisibility" event has been triggered but not declared on `emits` option"
+I've not had a GUI for a week since I integrated the Pinia store and decided to rebuild the infrastructure from the ground up.
+It's time to put all this planning into action and get the new layout to display.
+I've just installed @vue/test-utils. I want to setup testing for main.ts, router/index.ts, App.vue, AppLayout, and the various layout elements. What do we do first?
 
-[AppSidebar]
-<template>
-  <q-drawer v-model="visibility" show-if-above :side="side">
-    <slot />
-  </q-drawer>
-</template>
+[main.ts]
+import { createApp } from 'vue';
+import router from './router';
+import App from '/App.vue';
+import { createPinia } from 'pinia';
 
-<script lang="ts">
-import { defineComponent, PropType, ref, watch } from 'vue';
+// Create a new Vue app instance
+const app = createApp(App);
 
-export default defineComponent({
-  name: 'AppSidebar',
-  props: {
-    componentVisibility: {
-      type: Boolean,
-      required: true,
-    },
-    side: {
-      type: String as PropType<'left' | 'right'>,
-      default: 'left',
-    },
-  },
-  setup(props, { emit }) {
-    const visibility = ref(props.componentVisibility);
+// Set up a global error handler for the app
+app.config.errorHandler = (err, _vm, _info) => {
+  console.error('Captured in global errorHandler:', err);
+};
 
-    watch(visibility, (newValue, oldValue) => {
-      if (newValue !== oldValue) {
-        emit('update:componentVisibility', newValue);
-      }
-    });
+// Use the router and Pinia for state management
+app.use(router);
+app.use(createPinia());
 
-    return {
-      visibility,
-    };
-  },
-});
-</script>
+// Mount the app to the DOM
+app.mount('#app');
+
