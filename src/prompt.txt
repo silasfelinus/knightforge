@@ -13,7 +13,7 @@
 
 [MODULES]
 📦 @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint eslint-config-prettier eslint-plugin-prettier prettier
-quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, @vue/test-utils, jest, @types/jest
+quasar pinia vue-tsc @vue/compiler-sfc, Vue3, fontawesome-v6, SASS, Vue-Router, @vue/test-utils, @vue/vue3-jest, babel-jest @babel/core @babel/preset-env, @babel/preset-typescript
 
 [STANDARDS]
 🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
@@ -64,7 +64,7 @@ Future: PlaySpace Toys (Superball Cannon, Graffiti Secret 2D Adventure Mode, Bou
 📂 ./router/index.ts
 [/stores/] useAppStore.ts, useAuthStore.ts, types.ts
 [/css/] css.quasar.variables
-[layouts/] AppLayout.vue, AppCenter.vue, AppFooter, AppHeader, AppSidebar
+[layouts/] AppLayout.vue (loads AppHeader, AppCenter.vue, AppFooter,  AppSidebar)
 [pages/] ErrorNotFound, LoginForm, MainWindow, RemoteControl, SplashPage, TitleBar, UnderConstruction
 ROOT: quasar.config.js, tsconfig.json, .eslintrc.js, .prettierrc, index.html, package.json, postcss.config.js
 [src/] Main, App.vue
@@ -109,10 +109,10 @@ Established types.ts
 Designed routing and Page structures
 main.ts loads App.vue and shows splash image (woohoo)
 Organized AppLayout for modular AppHeader, AppFooter, AppCenter, and AppSidebar display
-Added Jest and main.spec.ts
+Added Jest and main.spec.ts, but tests are
 
 [LAYOUTS]
-🎨 AppLayout is responsible for maintaining the separation between AppHeader, AppFooter, AppCenter, and AppSidebar components. It leverages Quasar and relies on the useAppStore for managing the state of component visibility.
+🎨 AppLayout is responsible for maintaining the separation between AppHeader, AppFooter, AppCenter, and AppSidebar components. It leverages useAppStore for managing component visibility state.
 
 [SUGGESTED REPLY FORMAT]
 a. fun emoticon and inspiring phrase
@@ -122,8 +122,4 @@ a. fun emoticon and inspiring phrase
 4. Any Additional comments
 
 [REQUEST]
-Help setup and teach testing with Jest.
-Can I get a tutorial using this project?
-I've installed it and it runs with "npm test" but the
-got "  ({"Object.<anonymous>":function(module,exports,require,__dirname,__filename,jest){import { mount } from '@vue/test-utils';
-SyntaxError: Cannot use import statement outside a module"
+Just installed Jest.Help setup first test.
