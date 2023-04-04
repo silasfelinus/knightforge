@@ -26,42 +26,27 @@ export default defineComponent({
   name: 'HomePage',
   setup() {
     const nightMode = ref(false);
-    const imageImports = {
-      '../../assets/splash/splash00.png': import(
-        '../../assets/splash/splash00.png'
-      ).catch(() => {}),
-      '../../assets/splash/splash01.png': import(
-        '../../assets/splash/splash01.png'
-      ).catch(() => {}),
-      '../../assets/splash/secret00.png': import(
-        '../../assets/splash/secret00.png'
-      ).catch(() => {}),
-      '../../assets/splash/secret01.png': import(
-        '../../assets/splash/secret01.png'
-      ).catch(() => {})
-    };
-    const splashImages = [
-      {
-        id: 1,
-        src: imageImports['../../assets/splash/splash00.png']?.default,
-        alt: 'Splash Image 00'
-      },
-      {
-        id: 2,
-        src: imageImports['../../assets/splash/splash01.png']?.default,
-        alt: 'Splash Image 01'
-      },
-      {
-        id: 3,
-        src: imageImports['../../assets/splash/secret00.png']?.default,
-        alt: 'Secret Image 00'
-      },
-      {
-        id: 4,
-        src: imageImports['../../assets/splash/secret01.png']?.default,
-        alt: 'Secret Image 01'
-      }
+    const imagePaths = [
+      '../../assets/splash/splash00.png',
+      '../../assets/splash/splash01.png',
+      '../../assets/splash/secret00.png',
+      '../../assets/splash/secret01.png'
     ];
+
+    const imageImports = imagePaths.reduce((acc, path) => {
+      acc[path] = import(path).catch(error => {
+        console.error(`Failed to load ${path}:`, error);
+      });
+      return acc;
+    }, {});
+
+    const splashImages = imagePaths.map((path, index) => {
+      return {
+        id: index + 1,
+        src: imageImports[path]?.default,
+        alt: index < 2 ? `Splash Image 0${index}` : `Secret Image 0${index - 2}`
+      };
+    });
 
     const toggleNightMode = () => {
       nightMode.value = !nightMode.value;
