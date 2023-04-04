@@ -17,16 +17,16 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { useAuthStore } from '@/stores/useAuthStore';
+import { useAppStore } from '@/stores/useAppStore';
 
 export default defineComponent({
   setup() {
     const email = ref('');
     const password = ref('');
-    const authStore = useAuthStore();
+    const appStore = useAppStore();
 
     const submitForm = async () => {
-      if (await authStore.login(email.value, password.value)) {
+      if (await appStore.login(email.value, password.value)) {
         alert('Login successful!');
       } else {
         alert('Invalid credentials. Please try again.');
