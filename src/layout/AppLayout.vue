@@ -38,7 +38,7 @@ export default defineComponent({
     AppHeader,
     AppSidebar,
     AppFooter,
-    MainContent,
+    MainContent
   },
   setup() {
     const route = useRoute();
@@ -49,8 +49,8 @@ export default defineComponent({
     return {
       componentVisibility,
       route,
-      layoutConfig,
+      layoutConfig
     };
-  },
+  }
 });
 </script>

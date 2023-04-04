@@ -15,7 +15,7 @@
             class="card"
             :style="{
               width: element.width + 'px',
-              height: element.height + 'px',
+              height: element.height + 'px'
             }"
           >
             {{ element.content }}

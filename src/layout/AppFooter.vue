@@ -19,9 +19,9 @@ export default defineComponent({
     const inputText = ref('');
 
     return {
-      inputText,
+      inputText
     };
-  },
+  }
 });
 </script>
 

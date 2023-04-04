@@ -17,20 +17,20 @@ export default defineComponent({
   props: {
     startX: {
       type: Number,
-      required: true,
+      required: true
     },
     startY: {
       type: Number,
-      required: true,
+      required: true
     },
     endX: {
       type: Number,
-      required: true,
+      required: true
     },
     endY: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props) {
     const cable = ref(null);
@@ -47,15 +47,15 @@ export default defineComponent({
 
       return {
         width: length + 'px',
-        transform: `rotate(${angle}deg)`,
+        transform: `rotate(${angle}deg)`
       };
     });
 
     return {
       cable,
-      cableStyle,
+      cableStyle
     };
-  },
+  }
 });
 </script>
 

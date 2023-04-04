@@ -30,9 +30,9 @@ export default defineComponent({
     return {
       appStore,
       toggleSidebar,
-      toggleNightMode,
+      toggleNightMode
     };
-  },
+  }
 });
 </script>
 

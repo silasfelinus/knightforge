@@ -59,7 +59,7 @@ Pinia (https://pinia.vuejs.org/)
 useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
 [PROGRESS]
-Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs and re-reach gui functionality
+Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs, reached gui functionality with simple design, created homepage for demo testing,
 
 [PRIMARY FILES]
 index.html: Quasar Entry Point
@@ -80,6 +80,7 @@ src/views/ScreenCard.vue: q-card, selectable, resizable, and movable, representi
 src/views/: ErrorNotFound, UnderConstruction, HomePage - end-point static pages
 src/views/LoginForm.vue: Demo login interface
 src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
+src/views/HomePage.vue - Demo landing page while building app function
 
 [SUGGESTED REPLY FORMAT]
 1. Emoticon and brief project assessment
@@ -95,5 +96,3 @@ App.vue(disabled useAppStore), HomePage.vue (disabled useAppStore), index.ts (di
 [STILL NEED TO STITCH]
 useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, ScreenWidget, SplashImage, ScreenCard, LoginForm, RemoteControl
 
-
-[

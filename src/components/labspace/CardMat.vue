@@ -27,7 +27,7 @@ export default defineComponent({
   name: 'CardMat',
   components: {
     CodeCard,
-    CardCable,
+    CardCable
   },
   setup() {
     const cards = ref([
@@ -54,9 +54,9 @@ export default defineComponent({
       cableVisible,
       cableStart,
       cableEnd,
-      handlePortPosition,
+      handlePortPosition
     };
-  },
+  }
 });
 </script>
 

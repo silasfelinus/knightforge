@@ -3,7 +3,7 @@
     :class="[
       'main-widget',
       { 'collapsed-right': collapsedRight, 'collapsed-left': collapsedLeft },
-      { 'error-loading-image': errorLoadingImage },
+      { 'error-loading-image': errorLoadingImage }
     ]"
   >
     <!-- Main widget content -->
@@ -21,12 +21,12 @@ export default defineComponent({
   props: {
     collapsedRight: {
       type: Boolean,
-      required: true,
+      required: true
     },
     collapsedLeft: {
       type: Boolean,
-      required: true,
-    },
+      required: true
+    }
   },
   setup() {
     const randomSecretImage = computed(() => {
@@ -44,9 +44,9 @@ export default defineComponent({
     return {
       randomSecretImage,
       errorLoadingImage,
-      onError,
+      onError
     };
-  },
+  }
 });
 </script>
 

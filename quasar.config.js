@@ -28,11 +28,11 @@ module.exports = configure(function (/* ctx */) {
       // Set the target browsers and Node.js version
       target: {
         browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
-        node: 'node16',
+        node: 'node16'
       },
 
       // Set the Vue Router mode
-      vueRouterMode: 'hash',
+      vueRouterMode: 'hash'
     },
 
     // Configure the development server
@@ -48,7 +48,7 @@ module.exports = configure(function (/* ctx */) {
     ssr: {
       pwa: false,
       prodPort: 3000,
-      middlewares: ['render'],
+      middlewares: ['render']
     },
 
     // PWA settings
@@ -57,7 +57,7 @@ module.exports = configure(function (/* ctx */) {
       injectPwaMetaTags: true,
       swFilename: 'sw.js',
       manifestFilename: 'manifest.json',
-      useCredentialsForManifestTag: false,
+      useCredentialsForManifestTag: false
     },
 
     // Cordova settings
@@ -71,10 +71,10 @@ module.exports = configure(function (/* ctx */) {
       inspectPort: 5858,
       bundler: 'packager',
       packager: {},
-      builder: { appId: 'knightforge' },
+      builder: { appId: 'knightforge' }
     },
 
     // BEX settings
-    bex: { contentScripts: ['my-content-script'] },
+    bex: { contentScripts: ['my-content-script'] }
   };
 });

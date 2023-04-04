@@ -34,6 +34,6 @@ export default defineComponent({
     };
 
     return { email, password, submitForm };
-  },
+  }
 });
 </script>

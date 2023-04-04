@@ -3,13 +3,13 @@ export default {
   data() {
     return {
       images: [],
-      currentImage: '',
+      currentImage: ''
     };
   },
   computed: {
     currentImageUrl() {
       return require(`@/assets/splash/${this.currentImage}`);
-    },
+    }
   },
   methods: {
     changeImage() {
@@ -26,13 +26,13 @@ export default {
 
       this.images = requireImages
         .keys()
-        .map((fileName) => fileName.replace('./', ''));
-    },
+        .map(fileName => fileName.replace('./', ''));
+    }
   },
   mounted() {
     this.loadImages();
     this.currentImage =
       this.images[Math.floor(Math.random() * this.images.length)];
-  },
+  }
 };
 </script>

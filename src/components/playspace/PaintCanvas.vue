@@ -22,13 +22,13 @@ export default {
     let context = null;
     let drawing = false;
 
-    const startDrawing = (event) => {
+    const startDrawing = event => {
       drawing = true;
       context.beginPath();
       context.moveTo(event.clientX, event.clientY);
     };
 
-    const draw = (event) => {
+    const draw = event => {
       if (!drawing) return;
       context.strokeStyle = currentColor.value;
 
@@ -63,9 +63,9 @@ export default {
       canvasContainer,
       startDrawing,
       draw,
-      stopDrawing,
+      stopDrawing
     };
-  },
+  }
 };
 </script>
 

@@ -13,8 +13,8 @@ import SplashImage from './SplashImage.vue';
 export default defineComponent({
   name: 'ScreenWidget',
   components: {
-    SplashImage,
-  },
+    SplashImage
+  }
 });
 </script>
 

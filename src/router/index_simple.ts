@@ -5,17 +5,17 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'ErrorNotFound',
-    component: ErrorNotFound,
+    component: ErrorNotFound
   },
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/',
-  },
+    redirect: '/'
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 
 export default router;

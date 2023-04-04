@@ -16,17 +16,17 @@ import ScreenWidget from '../../views/ScreenWidget.vue';
 export default defineComponent({
   name: 'ScreenWidgetWrapper',
   components: {
-    ScreenWidget,
+    ScreenWidget
   },
   setup() {
     const screens = ref([
-      { preset: 'Default', visible: true },
+      { preset: 'Default', visible: true }
       // ... add more ScreenWidgets as needed
     ]);
 
     return {
-      screens,
+      screens
     };
-  },
+  }
 });
 </script>

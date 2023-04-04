@@ -12,12 +12,12 @@ export default defineComponent({
   props: {
     modelValue: {
       type: Boolean,
-      required: true,
+      required: true
     },
     side: {
       type: String as PropType<'left' | 'right'>,
-      default: 'left',
-    },
+      default: 'left'
+    }
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
@@ -30,8 +30,8 @@ export default defineComponent({
     });
 
     return {
-      visibility,
+      visibility
     };
-  },
+  }
 });
 </script>

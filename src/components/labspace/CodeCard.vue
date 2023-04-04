@@ -36,24 +36,24 @@ export default defineComponent({
   props: {
     avatar: {
       type: String,
-      required: true,
+      required: true
     },
     title: {
       type: String,
-      required: true,
+      required: true
     },
     fields: {
       type: Array,
-      required: true,
+      required: true
     },
     description: {
       type: String,
-      required: true,
+      required: true
     },
     large: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   setup(_, { emit }) {
     const inputPort = ref(null);
@@ -71,9 +71,9 @@ export default defineComponent({
     return {
       inputPort,
       outputPort,
-      emitPortPosition,
+      emitPortPosition
     };
-  },
+  }
 });
 </script>
 

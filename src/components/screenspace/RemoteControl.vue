@@ -14,8 +14,8 @@ export default defineComponent({
     const { changePreset } = useRemoteControl();
 
     return {
-      changePreset,
+      changePreset
     };
-  },
+  }
 });
 </script>

@@ -33,17 +33,17 @@ export const useAppStore = defineStore('app', {
       rightSidebar: true,
       headerBar: true,
       mainWindow: true,
-      footerBar: true,
+      footerBar: true
     } as ComponentVisibility,
     gridWidth: 12, // Grid width in cells
     gridHeight: 12, // Grid height in cells
-    gridCellSize: 50, // Grid cell size in pixels
+    gridCellSize: 50 // Grid cell size in pixels
   }),
   getters: {
     // Get a screen card by its id
-    getScreenCardById: (state) => (id: number) => {
-      return state.screenCards.find((card) => card.id === id);
-    },
+    getScreenCardById: state => (id: number) => {
+      return state.screenCards.find(card => card.id === id);
+    }
   },
   actions: {
     // Log in the user
@@ -75,18 +75,18 @@ export const useAppStore = defineStore('app', {
     },
     // Update an existing screen card
     updateScreenCard(card: ScreenCard) {
-      const index = this.screenCards.findIndex((c) => c.id === card.id);
+      const index = this.screenCards.findIndex(c => c.id === card.id);
       if (index !== -1) {
         this.screenCards = [
           ...this.screenCards.slice(0, index),
           card,
-          ...this.screenCards.slice(index + 1),
+          ...this.screenCards.slice(index + 1)
         ];
       }
     },
     // Remove a screen card by its id
     removeScreenCard(id: number) {
-      this.screenCards = this.screenCards.filter((card) => card.id !== id);
+      this.screenCards = this.screenCards.filter(card => card.id !== id);
     },
     // Select a card by its id
     selectCard(id: number) {
@@ -99,7 +99,7 @@ export const useAppStore = defineStore('app', {
     // Remove all selected cards
     removeSelectedCards() {
       this.screenCards = this.screenCards.filter(
-        (card) => !this.selectedCardIds.has(card.id)
+        card => !this.selectedCardIds.has(card.id)
       );
       this.selectedCardIds.clear();
       this.saveStep();
@@ -136,6 +136,6 @@ export const useAppStore = defineStore('app', {
     // Set the grid cell size
     setGridCellSize(size: number) {
       this.gridCellSize = size;
-    },
-  },
+    }
+  }
 });

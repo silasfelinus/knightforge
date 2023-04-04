@@ -11,33 +11,33 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'HomePage',
-    component: HomePage,
+    component: HomePage
   },
   {
     path: '/under-construction',
     name: 'UnderConstruction',
-    component: UnderConstruction,
+    component: UnderConstruction
   },
   {
     path: '/login',
     name: 'LoginForm',
-    component: LoginForm,
+    component: LoginForm
   },
   {
     path: '/remote-control',
     name: 'RemoteControl',
-    component: RemoteControl,
+    component: RemoteControl
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'ErrorNotFound',
-    component: ErrorNotFound,
-  },
+    component: ErrorNotFound
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 
 export default router;

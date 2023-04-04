@@ -20,25 +20,25 @@ import SplashImage from '@/components/SplashImage.vue';
 export default defineComponent({
   name: 'ScreenCard',
   components: {
-    SplashImage,
+    SplashImage
   },
   props: {
     id: {
       type: Number,
-      required: true,
+      required: true
     },
     description: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   setup() {
     const name = ref('');
 
     return {
-      name,
+      name
     };
-  },
+  }
 });
 </script>
 

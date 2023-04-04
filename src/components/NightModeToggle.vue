@@ -18,9 +18,9 @@ export default defineComponent({
   props: {
     isNightMode: {
       type: Boolean,
-      required: true,
-    },
+      required: true
+    }
   },
-  emits: ['toggle'],
+  emits: ['toggle']
 });
 </script>

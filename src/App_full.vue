@@ -18,9 +18,9 @@ export default defineComponent({
     const { nightMode } = appStore;
 
     return {
-      nightMode,
+      nightMode
     };
-  },
+  }
 });
 </script>
 

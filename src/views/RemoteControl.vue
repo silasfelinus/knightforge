@@ -27,7 +27,7 @@ export default defineComponent({
         x: 0,
         y: 0,
         width: appStore.gridWidth / 2,
-        height: appStore.gridHeight / 2,
+        height: appStore.gridHeight / 2
       };
       appStore.addScreenCard(newCard);
     };
@@ -48,7 +48,7 @@ export default defineComponent({
       if (appStore.screenCards.length > 0) {
         const updatedCard = {
           ...appStore.screenCards[0],
-          content: 'Updated Card',
+          content: 'Updated Card'
         };
         appStore.updateScreenCard(updatedCard);
       }
@@ -61,9 +61,9 @@ export default defineComponent({
       selectCard,
       removeCard,
       changeCard,
-      toggleNightMode,
+      toggleNightMode
     };
-  },
+  }
 });
 </script>
 

@@ -11,8 +11,8 @@ import ScreenWidget from '../views/ScreenWidget.vue';
 export default defineComponent({
   name: 'MainContent',
   components: {
-    ScreenWidget,
-  },
+    ScreenWidget
+  }
 });
 </script>
 

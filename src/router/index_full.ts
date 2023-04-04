@@ -13,8 +13,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
           layout: { showHeader: true, showFooter: true, showSidebar: true },
           leftSidebar: { show: true },
-          rightSidebar: { show: true },
-        },
+          rightSidebar: { show: true }
+        }
       },
       {
         path: '/splash',
@@ -22,8 +22,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
           layout: { showHeader: true, showFooter: true, showSidebar: false },
           leftSidebar: { show: true },
-          rightSidebar: { show: true },
-        },
+          rightSidebar: { show: true }
+        }
       },
       {
         path: '/login',
@@ -31,8 +31,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
           layout: { showHeader: true, showFooter: true, showSidebar: false },
           leftSidebar: { show: true },
-          rightSidebar: { show: true },
-        },
+          rightSidebar: { show: true }
+        }
       },
       {
         path: '/under-construction',
@@ -40,11 +40,11 @@ const routes: RouteRecordRaw[] = [
         meta: {
           layout: { showHeader: true, showFooter: true, showSidebar: false },
           leftSidebar: { show: false },
-          rightSidebar: { show: false },
-        },
-      },
+          rightSidebar: { show: false }
+        }
+      }
       // Add additional routes here as needed
-    ],
+    ]
   },
   // Catch-all route
   {
@@ -53,14 +53,14 @@ const routes: RouteRecordRaw[] = [
     meta: {
       layout: { showHeader: true, showFooter: true, showSidebar: false },
       leftSidebar: { show: false },
-      rightSidebar: { show: false },
-    },
-  },
+      rightSidebar: { show: false }
+    }
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 
 export default router;

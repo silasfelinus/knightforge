@@ -8,7 +8,7 @@ export default function useRemoteControl() {
   const screens = computed(() => [
     { name: 'Left Sidebar', side: 'left' as Side },
     { name: 'Main Widget', side: 'main' as Side },
-    { name: 'Right Sidebar', side: 'right' as Side },
+    { name: 'Right Sidebar', side: 'right' as Side }
   ]);
 
   const presetOptions = computed(() => Object.values(Preset));
@@ -16,7 +16,7 @@ export default function useRemoteControl() {
   const selectedPresets = computed(() => [
     appStore.leftScreen.preset,
     appStore.mainScreen.preset,
-    appStore.rightScreen.preset,
+    appStore.rightScreen.preset
   ]);
 
   function changePreset(side: Side, preset: Preset) {
@@ -37,6 +37,6 @@ export default function useRemoteControl() {
     selectedPresets,
     changePreset,
     nextPreset,
-    toggleVisibility,
+    toggleVisibility
   };
 }
