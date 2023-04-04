@@ -2,7 +2,8 @@
   <div :class="{ 'night-mode': nightMode }">
     <h1 class="text-h3 q-mb-lg">Welcome to WonderForge</h1>
     <p class="text-h5 q-mb-xl">
-      The ultimate GUI sandbox for designing and prototyping coding projects
+      A really pleasing GUI sandbox for designing and prototyping coding
+      projects
     </p>
     <div class="row q-gutter-md images-container">
       <q-img
@@ -22,7 +23,6 @@
     </q-btn>
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { QImg, QBtn } from 'quasar';
@@ -35,6 +35,7 @@ export default defineComponent({
   },
   setup() {
     const nightMode = ref(false);
+
     const imagePaths = [
       '../../assets/splash/splash00.png',
       '../../assets/splash/splash01.png',
@@ -42,20 +43,27 @@ export default defineComponent({
       '../../assets/splash/secret01.png',
     ];
 
-    const imageImports = imagePaths.reduce((acc, path) => {
-      acc[path] = import(path).catch((error) => {
-        console.error(`Failed to load ${path}:`, error);
-      });
-      return acc;
-    }, {});
+    const loadImages = async () => {
+      const imageImports: any[] = await Promise.all(
+        imagePaths.map((path) =>
+          import(path).catch((error) => {
+            console.error(`Failed to load ${path}:`, error);
+          })
+        )
+      );
 
-    const splashImages = imagePaths.map((path, index) => {
-      return {
+      return imageImports.map((img, index) => ({
         id: index + 1,
-        src: imageImports[path]?.default,
+        src: img.default,
         alt:
           index < 2 ? `Splash Image 0${index}` : `Secret Image 0${index - 2}`,
-      };
+      }));
+    };
+
+    const splashImages = ref<any[]>([]);
+
+    loadImages().then((images) => {
+      splashImages.value = images;
     });
 
     const toggleNightMode = () => {
@@ -70,36 +78,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-.text-h3 {
-  font-weight: bold;
-  text-align: center;
-}
-
-.text-h5 {
-  text-align: center;
-}
-
-.images-container {
-  justify-content: center;
-}
-
-.splash-image {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.toggle-button {
-  display: block;
-  margin: 0 auto;
-}
-
-.night-mode {
-  background-color: #212121;
-  color: #fff;
-}
-</style>
