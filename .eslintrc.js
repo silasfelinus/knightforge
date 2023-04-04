@@ -9,11 +9,11 @@ module.exports = {
     'eslint:recommended',
     '@vue/typescript/recommended',
     '@vue/prettier',
-    '@vue/prettier/@typescript-eslint',
+    'prettier',
   ],
   parserOptions: {
     ecmaVersion: 2020,
-    project: './tsconfig.json', // Add this line
+    project: './tsconfig.json',
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
