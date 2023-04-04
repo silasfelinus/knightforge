@@ -86,42 +86,5 @@ src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change Sp
 2. Improved code or request for file(s)
 3. Additional comments
 
-
 [STATUS]
-No GUI since project redesign. the goal is a functional gui, and then build in testing.
-I'm working from this list of files, and marking them [DONE] when we've looked them over:
 
-Configuration Files (5 files)
-[DONE]quasar.config.js
-[DONE]tsconfig.json
-[DONE]postcss.config.js
-[DONE].eslintrc.js
-[DONE].prettierrc
-[DONE]package.json
-
-Entry Points (2 files)
-[DONE]src/main.ts
-[DONE]src/router/index.ts
-
-State Management (1 file)
-[DONE]src/stores/useAppStore.ts
-
-Layout Components (6 files)
-src/layout/AppLayout.vue
-src/layout/AppHeader.vue
-src/layout/AppSidebar.vue
-src/layout/AppFooter.vue
-src/layout/MainContent.vue
-src/layout/ScreenWidget.vue
-
-View Components (7 files)
-src/views/ErrorNotFound.vue
-src/views/TitleBar.vue
-src/views/UnderConstruction.vue
-src/views/LoginForm.vue
-src/views/RemoteControl.vue
-src/views/SplashImage.vue
-src/components/ScreenCard.vue
-
-
-[AppLayout]
