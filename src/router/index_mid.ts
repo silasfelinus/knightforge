@@ -1,22 +1,20 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomePage from '../views/HomePage.vue';
 import ErrorNotFound from '../views/ErrorNotFound.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'HomePage',
-    component: HomePage,
+    name: 'ErrorNotFound',
+    component: ErrorNotFound,
   },
   {
     path: '/:pathMatch(.*)*',
-    name: 'ErrorNotFound',
-    component: ErrorNotFound,
+    redirect: '/',
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes,
 });
 
