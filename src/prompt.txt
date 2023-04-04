@@ -111,7 +111,7 @@ src/layout/AppLayout.vue
 src/layout/AppHeader.vue
 src/layout/AppSidebar.vue
 src/layout/AppFooter.vue
-src/layout/
+src/layout/MainContent.vue
 src/layout/ScreenWidget.vue
 
 View Components (7 files)
