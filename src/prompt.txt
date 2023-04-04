@@ -2,7 +2,7 @@
 👋 Hi, ChatGPT! I'm Silas Knight. We're building an SPA using Vue3, Composition API, Quasar, and Pinia.
 
 [PROJECT]
-🔧 WonderForge: GUI sandbox for prototyping development and coding projects (portfolio showpiece)
+🔧 WonderForge: GUI sandbox for designing and prototyping coding projects (portfolio showpiece)
 
 [DEV ENVIRONMENT]
 💻 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
