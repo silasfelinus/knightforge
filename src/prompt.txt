@@ -82,6 +82,12 @@ src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change ch
 2. Improved code or request for file(s)
 3. Additional comments
 
+Advise on error messages that keep occuring with all files. How do I add them in mass, if that is the best option. Also,. what is happening?
+"ERROR: nfigRootDir>/src/App.vue` using `parserOptions.project`: <tsconfigRootDir>/tsconfig.json
+However, that TSConfig does not include this file. Either:
+- Change ESLint's list of included files to not include this file
+- Change that TSConfig to include this file"
+
 [STATUS]
 No GUI since project redesign. the goal is a functional gui, and then build in testing.
 I'm working from this list of files, and marking them [DONE] when we've looked them over:
