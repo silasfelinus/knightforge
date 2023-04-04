@@ -11,9 +11,7 @@ import useRemoteControl from './useRemoteControl';
 export default defineComponent({
   name: 'RemoteControl',
   setup() {
-    const {
-      changePreset,
-    } = useRemoteControl();
+    const { changePreset } = useRemoteControl();
 
     return {
       changePreset,

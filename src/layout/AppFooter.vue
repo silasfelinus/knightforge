@@ -1,6 +1,11 @@
 <template>
   <q-footer>
-    <q-input class="footer-input" outlined v-model="inputText" placeholder="Enter text" />
+    <q-input
+      class="footer-input"
+      outlined
+      v-model="inputText"
+      placeholder="Enter text"
+    />
     <div class="color-background-filler" />
   </q-footer>
 </template>
