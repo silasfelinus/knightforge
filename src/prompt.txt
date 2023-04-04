@@ -18,7 +18,7 @@ Quasar CLI (https://quasar.dev/start/quasar-cli)
 Pinia (https://pinia.vuejs.org/)
 
 [MODULES]
-📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass
+📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest
 
 [RUN COMMAND]
 🚀 "quasar dev"
@@ -65,8 +65,8 @@ src/main.ts: Entry point for the Vue application, imports Vue, router, and Pinia
 src/App.vue: Root Vue component
 src/stores/useAppStore.ts: Pinia global state management
 src/router/index.ts: Calls AppLayout for route layout with meta styling
-src/layout/AppLayout.vue: qlayout, creates boundaries between different components (AppHeader, AppSidebar, ScreenWidget, and AppFooter) based on meta styling
-src/layout/AppHeader.vue: qHeader, includes sidebar toggles, TitleBar, user login, and login status indicator
+src/layout/AppLayout.vue: qlayout, creates boundaries between different components (AppHeader, AppSidebar, MainContent, and AppFooter) based on meta styling
+src/layout/AppHeader.vue: qHeader, includes sidebar toggles, Project Title from state , login/ link, and login status indicator
 src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
 src/layout/AppSidebar.vue: q-drawer (Right), imports RemoteControl
 src/layout/AppFooter.vue: qFooter, uses useAppStore for night mode toggle
@@ -112,6 +112,7 @@ src/layout/AppLayout.vue
 src/layout/AppHeader.vue
 src/layout/AppSidebar.vue
 src/layout/AppFooter.vue
+src/layout/
 src/layout/ScreenWidget.vue
 
 View Components (7 files)
