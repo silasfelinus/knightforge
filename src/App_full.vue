@@ -24,7 +24,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .night-mode {
   // Apply styles for night mode
   background-color: $dark-page;

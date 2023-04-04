@@ -77,7 +77,7 @@ src/layout/MainContent.vue: launches main display ScreenWidget
 src/views/ScreenWidget.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
 src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
 src/views/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
-src/views/: ErrorNotFound, UnderConstruction - end-point static pages
+src/views/: ErrorNotFound, UnderConstruction, HomePage - end-point static pages
 src/views/LoginForm.vue: Demo login interface
 src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
 
@@ -87,9 +87,11 @@ src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change Sp
 3. Additional comments
 
 [STATUS]
-IT's time to get the GUI back together. I'm rebuilding my files, first we'll cobble together a dummy version that just *works*, then we'll add functionality. So. I'm including my main.ts. Reply back with the minimim code  necessary in App.vue and router files, no appstore calls, with just enough css to see that things are working.
+IT's time to get the GUI back together. I'm rebuilding my files, first we'll cobble together a dummy version that just *works*, then we'll add functionality. So. I'm including basic code in a working configuration, let's stitch together each file again, polishing as we go, and I'll make sure that everything stays working as we build.
 
-[main.ts]
+[WORKING GUI WIH MINIMAL OPTIONS]
+MAIN.TS, APP.VUE, ROUTER/INDEX.TS, HOMEPAGE
+[MAIN.TS]
 import { createApp } from 'vue';
 import router from './router';
 import App from '/App.vue';
@@ -109,3 +111,97 @@ app.use(createPinia());
 
 // Mount the app to the DOM
 app.mount('#app');
+
+[APP.VUE]
+<template>
+  <div id="app" :class="{ 'night-mode': nightMode }">
+    <router-view />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { useAppStore } from './stores/useAppStore';
+
+export default defineComponent({
+  name: 'App',
+  setup() {
+    // Access the app store
+    const appStore = useAppStore();
+
+    // Destructure the nightMode property from the app store
+    const { nightMode } = appStore;
+
+    return {
+      nightMode,
+    };
+  },
+});
+</script>
+
+<style lang="scss">
+.night-mode {
+  // Apply styles for night mode
+  background-color: $dark-page;
+  color: $info;
+
+  // Style anchor tags in night mode
+  a {
+    color: $info;
+  }
+}
+</style>
+
+[INDEX]
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import HomePage from '../views/HomePage.vue';
+import ErrorNotFound from '../views/ErrorNotFound.vue';
+
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    name: 'HomePage',
+    component: HomePage,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'ErrorNotFound',
+    component: ErrorNotFound,
+  },
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+
+export default router;
+
+[HOMEPAGE]
+<template>
+  <div>
+    <h1>Home Page</h1>
+    <button @click="toggleNightMode">Toggle Night Mode</button>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { useAppStore } from '../stores/useAppStore';
+
+export default defineComponent({
+  name: 'HomePage',
+  setup() {
+    const appStore = useAppStore();
+
+    const toggleNightMode = () => {
+      appStore.nightMode = !appStore.nightMode;
+    };
+
+    return {
+      toggleNightMode,
+    };
+  },
+});
+</script>
+
