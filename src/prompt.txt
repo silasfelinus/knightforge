@@ -62,21 +62,20 @@ Installed modules, setup variable references and SCSS styling, configured stores
 index.html: Quasar Entry Point
 quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json: Configuration files
 src/main.ts: Entry point for the Vue application, imports Vue, router, and Pinia store
-src/router/index.ts: Calls AppLayoutWrapper for route layout
 src/App.vue: Root Vue component
 src/stores/useAppStore.ts: Pinia global state management
-src/layout/AppLayoutWrapper.vue: Sets up the outer App layout and includes the AppLayout component
-src/layout/AppLayout.vue: Styles and creates boundaries between different components (AppHeader, AppSidebar, ScreenWidget, and AppFooter)
+src/router/index.ts: Calls AppLayout for route layout with meta styling
+src/layout/AppLayout.vue: qlayout, creates boundaries between different components (AppHeader, AppSidebar, ScreenWidget, and AppFooter) based on meta styling
 src/layout/AppHeader.vue: qHeader, includes sidebar toggles, TitleBar, user login, and login status indicator
 src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
 src/layout/AppSidebar.vue: q-drawer (Right), imports RemoteControl
 src/layout/AppFooter.vue: qFooter, uses useAppStore for night mode toggle
-src/layout/ScreenWidget.vue: q-page-container and boundary for ScreenCards, utilizes SplashImage for background
+src/layout/ScreenWidget.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
 src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
-src/components/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, also utilizes SplashImage for inner display
+src/components/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
 src/views/: ErrorNotFound, TitleBar, UnderConstruction - end-point static pages
 src/views/LoginForm.vue: Demo login interface
-src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change channel on ScreenCards inside ScreenWidget using useAppStore
+src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change channel on ScreenWidget ScreenCards using useAppStore
 
 [SUGGESTED REPLY FORMAT]
 1. Emoticon and brief project assessment
@@ -103,7 +102,6 @@ State Management (1 file)
 [DONE]src/stores/useAppStore.ts
 
 Layout Components (6 files)
-src/layout/AppLayoutWrapper.vue
 src/layout/AppLayout.vue
 src/layout/AppHeader.vue
 src/layout/AppSidebar.vue
@@ -120,4 +118,4 @@ src/views/SplashImage.vue
 src/components/ScreenCard.vue
 
 
-[AppLayoutWrapper]
+[AppLayout]
