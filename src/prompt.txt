@@ -18,7 +18,10 @@ Quasar CLI (https://quasar.dev/start/quasar-cli)
 Pinia (https://pinia.vuejs.org/)
 
 [MODULES]
-📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest
+📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates
+
+[UPDATE]
+"ncu" && "ncu -u"
 
 [RUN COMMAND]
 🚀 "quasar dev"
@@ -56,7 +59,7 @@ Pinia (https://pinia.vuejs.org/)
 useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
 [PROGRESS]
-Installed modules, setup variable references and SCSS styling, configured stores, designed routing and page structures, now iterating through files and rebuilding structure to follow design specs and re-reach gui functionality
+Installed modules, setup variable references and SCSS styling, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs and re-reach gui functionality
 
 [PRIMARY FILES]
 index.html: Quasar Entry Point
