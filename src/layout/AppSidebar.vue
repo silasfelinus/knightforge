@@ -10,7 +10,7 @@ import { defineComponent, PropType, ref, watch } from 'vue';
 export default defineComponent({
   name: 'AppSidebar',
   props: {
-    componentVisibility: {
+    modelValue: {
       type: Boolean,
       required: true,
     },
@@ -19,13 +19,13 @@ export default defineComponent({
       default: 'left',
     },
   },
-  emits: ['update:componentVisibility'], // Add this line
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const visibility = ref(props.componentVisibility);
+    const visibility = ref(props.modelValue);
 
     watch(visibility, (newValue, oldValue) => {
       if (newValue !== oldValue) {
-        emit('update:componentVisibility', newValue);
+        emit('update:modelValue', newValue);
       }
     });
 
