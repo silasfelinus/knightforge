@@ -73,23 +73,19 @@ src/layout/AppHeader.vue: qHeader, includes sidebar toggles, Project Title from 
 src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
 src/layout/AppSidebar.vue: q-drawer (Right), imports RemoteControl
 src/layout/AppFooter.vue: qFooter, uses useAppStore for night mode toggle
+src/layout/MainContent.vue: launches main display ScreenWidget
 src/layout/ScreenWidget.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
 src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
 src/components/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
 src/views/: ErrorNotFound, TitleBar, UnderConstruction - end-point static pages
 src/views/LoginForm.vue: Demo login interface
-src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change channel on ScreenWidget ScreenCards using useAppStore
+src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
 
 [SUGGESTED REPLY FORMAT]
 1. Emoticon and brief project assessment
 2. Improved code or request for file(s)
 3. Additional comments
 
-Advise on error messages that keep occuring with all files. How do I add them in mass, if that is the best option. Also,. what is happening?
-"ERROR: nfigRootDir>/src/App.vue` using `parserOptions.project`: <tsconfigRootDir>/tsconfig.json
-However, that TSConfig does not include this file. Either:
-- Change ESLint's list of included files to not include this file
-- Change that TSConfig to include this file"
 
 [STATUS]
 No GUI since project redesign. the goal is a functional gui, and then build in testing.
