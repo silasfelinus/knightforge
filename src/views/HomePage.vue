@@ -6,16 +6,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { useAppStore } from '../stores/useAppStore';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'HomePage',
   setup() {
-    const appStore = useAppStore();
+    const nightMode = ref(false);
 
     const toggleNightMode = () => {
-      appStore.nightMode = !appStore.nightMode;
+      nightMode.value = !nightMode.value;
     };
 
     return {

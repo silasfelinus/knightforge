@@ -86,67 +86,14 @@ src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change Sp
 2. Improved code or request for file(s)
 3. Additional comments
 
-[STATUS]
-IT's time to get the GUI back together. I'm including basic code in a working configuration, let's stitch together each file again, polishing as we go. Once we get a file operational and good or better than the last version, I'll move it to fully operational. I'll make sure that everything stays working as we build. Help me add options and get everything to FULLY OPERATIONAL
-
 [FULLY OPERATIONAL]
-index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction
 
 [WORKING BUT SIMPLIFIED]
-APP.VUE, ROUTER/INDEX.TS
+App.vue(disabled useAppStore), HomePage.vue (disabled useAppStore), index.ts (disabled AppLayout)
 
 [STILL NEED TO STITCH]
-useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, ScreenWidget, SplashImage, ScreenCard, UnderConstruction, HomePage, LoginForm, RemoteControl
+useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, ScreenWidget, SplashImage, ScreenCard, LoginForm, RemoteControl
 
 
-[QUESTION]
-How does that list and plan look, and what order should be rebuild? I've attached the simple versions.
-
-[APP.VUE][SIMPLE]
-<template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'App',
-});
-</script>
-
-<style scoped>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-</style>
-
-
-[INDEX.TS][SIMPLE]
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import ErrorNotFound from '../views/ErrorNotFound.vue';
-
-const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'ErrorNotFound',
-    component: ErrorNotFound,
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/',
-  },
-];
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
-
-export default router;
+[
