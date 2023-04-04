@@ -31,7 +31,8 @@ export default {
   },
   mounted() {
     this.loadImages();
-    this.currentImage = this.images[Math.floor(Math.random() * this.images.length)];
+    this.currentImage =
+      this.images[Math.floor(Math.random() * this.images.length)];
   },
 };
 </script>

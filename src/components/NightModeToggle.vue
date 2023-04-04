@@ -1,7 +1,12 @@
 <template>
   <div class="night-mode-toggle">
     <label for="night-mode-checkbox">Night Mode</label>
-    <input id="night-mode-checkbox" type="checkbox" :checked="isNightMode" @change="$emit('toggle')" />
+    <input
+      id="night-mode-checkbox"
+      type="checkbox"
+      :checked="isNightMode"
+      @change="$emit('toggle')"
+    />
   </div>
 </template>
 
