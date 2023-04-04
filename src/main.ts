@@ -7,7 +7,7 @@ import { createPinia } from 'pinia';
 const app = createApp(App);
 
 // Set up a global error handler for the app
-app.config.errorHandler = (err, _vm, _info) => {
+app.config.errorHandler = (err) => {
   console.error('Captured in global errorHandler:', err);
 };
 
