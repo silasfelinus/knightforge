@@ -6,6 +6,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/views/ScreenWidget.vue"],
   "exclude": ["jest.config.js", "babel.config.js", "node_modules"]
 }

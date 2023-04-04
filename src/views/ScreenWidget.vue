@@ -1,54 +1,36 @@
 <template>
   <div class="screen-widget">
-    <component :is="currentComponent" v-bind="currentProps" />
+    <div class="screen-content">
+      <SplashImage />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import TextInput from '../components/labspace/TextInput.vue';
-import SplashViewer from '../components/screenspace/SplashViewer.vue';
-import ChatWidget from '../components/playspace/ChatWidget.vue';
-// ... import other components
+import { defineComponent } from 'vue';
+import SplashImage from './SplashImage.vue';
 
 export default defineComponent({
   name: 'ScreenWidget',
-  props: {
-    side: String,
-    preset: String,
-    visible: Boolean,
-  },
   components: {
-    TextInput,
-    SplashViewer,
-    ChatWidget,
-    // ... other components
-  },
-  setup(props) {
-    const currentComponent = computed(() => {
-      switch (props.preset) {
-        case 'TextInput':
-          return 'TextInput';
-        case 'SplashViewer':
-          return 'SplashViewer';
-        case 'ChatWidget':
-          return 'ChatWidget';
-        // ... other cases
-        default:
-          return 'DefaultComponent'; // Replace with the actual component name
-      }
-    });
-
-    const currentProps = computed(() => {
-      // Add any logic to compute the current props needed for the component
-      return {};
-    });
-
-    return {
-      currentComponent,
-      currentProps,
-    };
+    SplashImage,
   },
 });
 </script>
 
+<style scoped>
+.screen-widget {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.screen-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>

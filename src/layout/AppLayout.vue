@@ -23,7 +23,7 @@ import { useRoute } from 'vue-router';
 import AppHeader from './AppHeader.vue';
 import AppSidebar from './AppSidebar.vue';
 import AppFooter from './AppFooter.vue';
-import MainContent from '../views/MainContent.vue';
+import MainContent from './MainContent.vue';
 import { useAppStore } from '../stores/useAppStore';
 
 type LayoutConfig = {

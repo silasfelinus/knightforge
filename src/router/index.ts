@@ -1,36 +1,47 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import AppLayout from '../layout/AppLayout.vue';
+import ScreenWidget from '../views/ScreenWidget.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layout/AppLayoutWrapper.vue'),
+    component: AppLayout,
     children: [
       {
         path: '',
-        component: () => import('layout/ScreenWidget.vue'),
+        component: ScreenWidget,
         meta: {
           layout: { showHeader: true, showFooter: true, showSidebar: true },
+          leftSidebar: { show: true },
+          rightSidebar: { show: true },
         },
       },
       {
         path: '/splash',
-        component: () => import('views/SplashImage.vue'),
+        component: () => import('../views/SplashImage.vue'),
+        meta: {
+          layout: { showHeader: true, showFooter: true, showSidebar: false },
+          leftSidebar: { show: true },
+          rightSidebar: { show: true },
+        },
       },
       {
         path: '/login',
-        component: () => import('views/LoginForm.vue'),
-      },
-      {
-        path: '/remote-control',
-        component: () => import('views/RemoteControl.vue'),
+        component: () => import('../views/LoginForm.vue'),
+        meta: {
+          layout: { showHeader: true, showFooter: true, showSidebar: false },
+          leftSidebar: { show: true },
+          rightSidebar: { show: true },
+        },
       },
       {
         path: '/under-construction',
-        component: () => import('views/UnderConstruction.vue'),
-      },
-      {
-        path: '/title-bar',
-        component: () => import('views/TitleBar.vue'),
+        component: () => import('../views/UnderConstruction.vue'),
+        meta: {
+          layout: { showHeader: true, showFooter: true, showSidebar: false },
+          leftSidebar: { show: false },
+          rightSidebar: { show: false },
+        },
       },
       // Add additional routes here as needed
     ],
@@ -38,7 +49,12 @@ const routes: RouteRecordRaw[] = [
   // Catch-all route
   {
     path: '/:catchAll(.*)',
-    component: () => import('views/ErrorNotFound.vue'),
+    component: () => import('../views/ErrorNotFound.vue'),
+    meta: {
+      layout: { showHeader: true, showFooter: true, showSidebar: false },
+      leftSidebar: { show: false },
+      rightSidebar: { show: false },
+    },
   },
 ];
 
