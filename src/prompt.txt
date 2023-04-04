@@ -59,7 +59,7 @@ Pinia (https://pinia.vuejs.org/)
 useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
 [PROGRESS]
-Installed modules, setup variable references and SCSS styling, configured stores, designed routing and page structures, updated dependencies, iterated through files and rebuilt structure to follow design specs
+Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs and re-reach gui functionality
 
 [PRIMARY FILES]
 index.html: Quasar Entry Point
@@ -86,42 +86,5 @@ src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change Sp
 2. Improved code or request for file(s)
 3. Additional comments
 
-
 [STATUS]
-No GUI since project redesign. the goal is a functional gui, and then build in testing.
-I'm working from this list of files, and marking them [DONE] when we've looked them over:
 
-Configuration Files [DONE]]
-[DONE]quasar.config.js
-[DONE]tsconfig.json
-[DONE]postcss.config.js
-[DONE].eslintrc.js
-[DONE].prettierrc
-[DONE]package.json
-
-Entry Points (2 files)
-[DONE]src/main.ts
-[DONE]src/router/index.ts
-
-State Management (1 file)
-[DONE]src/stores/useAppStore.ts
-
-Layout Components (6 files)
-[DONE]src/layout/AppLayout.vue
-[DONE]src/layout/AppHeader.vue
-[DONE]src/layout/AppSidebar.vue
-[DONE]src/layout/AppFooter.vue
-[DONE]src/layout/MainContent.vue
-[DONE]src/layout/ScreenWidget.vue
-
-View Components (7 files)
-[DONE]src/views/ErrorNotFound.vue
-[DONE]src/views/UnderConstruction.vue
-[DONE]src/views/LoginForm.vue
-[DONE]src/views/RemoteControl.vue
-[DONE]src/views/SplashImage.vue
-[DONE]src/components/ScreenCard.vue
-
-
-[REQUEST]
-Please double-check my file names, be sure everything is consistent, that I didn't miss any important files, the directory structure is clear and unambiguous, and point out any inconsistensies or areas of improvement.
