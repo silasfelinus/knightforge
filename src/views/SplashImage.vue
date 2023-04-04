@@ -25,3 +25,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.splash-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

@@ -1,17 +1,41 @@
 <template>
   <q-footer>
-    <RemoteControl />
+    <q-input class="footer-input" outlined v-model="inputText" placeholder="Enter text" />
+    <div class="color-background-filler" />
   </q-footer>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import RemoteControl from '../views/RemoteControl.vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'AppFooter',
-  components: {
-    RemoteControl,
+  setup() {
+    const inputText = ref('');
+
+    return {
+      inputText,
+    };
   },
 });
 </script>
+
+<style scoped lang="scss">
+.q-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.footer-input {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.color-background-filler {
+  width: 100px;
+  height: 100%;
+  background-color: #4caf50;
+}
+</style>

@@ -72,12 +72,12 @@ src/layout/AppLayout.vue: qlayout, creates boundaries between different componen
 src/layout/AppHeader.vue: qHeader, includes sidebar toggles, Project Title from state , login/ link, and login status indicator
 src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
 src/layout/AppSidebar.vue: q-drawer (Right), imports RemoteControl
-src/layout/AppFooter.vue: qFooter, uses useAppStore for night mode toggle
+src/layout/AppFooter.vue: qFooter, text input window, color background filler for later output
 src/layout/MainContent.vue: launches main display ScreenWidget
 src/views/ScreenWidget.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
 src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
-src/components/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
-src/views/: ErrorNotFound, TitleBar, UnderConstruction - end-point static pages
+src/views/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
+src/views/: ErrorNotFound, UnderConstruction - end-point static pages
 src/views/LoginForm.vue: Demo login interface
 src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
 
