@@ -59,7 +59,7 @@ Pinia (https://pinia.vuejs.org/)
 useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
 [PROGRESS]
-Installed modules, setup variable references and SCSS styling, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs and re-reach gui functionality
+Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs and re-reach gui functionality
 
 [PRIMARY FILES]
 index.html: Quasar Entry Point
