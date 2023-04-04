@@ -87,86 +87,53 @@ src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change Sp
 3. Additional comments
 
 [STATUS]
-IT's time to get the GUI back together. I'm rebuilding my files, first we'll cobble together a dummy version that just *works*, then we'll add functionality. So. I'm including basic code in a working configuration, let's stitch together each file again, polishing as we go, and I'll make sure that everything stays working as we build.
+IT's time to get the GUI back together. I'm rebuilding my files, first we'll cobble together a dummy version that just *works*, then we'll add functionality. I'm including basic code in a working configuration, let's stitch together each file again, polishing as we go. Once we get a file operational and good or better than the last version, I'll move it to fully operational. I'll make sure that everything stays working as we build.
 
-[WORKING GUI WIH MINIMAL OPTIONS]
-MAIN.TS, APP.VUE, ROUTER/INDEX.TS, HOMEPAGE
-[MAIN.TS]
-import { createApp } from 'vue';
-import router from './router';
-import App from '/App.vue';
-import { createPinia } from 'pinia';
+[FULLY OPERATIONAL & REBUILT]
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue
 
-// Create a new Vue app instance
-const app = createApp(App);
+[WORKING WIH MINIMAL OPTIONS]
+APP.VUE, ROUTER/INDEX.TS
 
-// Set up a global error handler for the app
-app.config.errorHandler = (err, _vm, _info) => {
-  console.error('Captured in global errorHandler:', err);
-};
-
-// Use the router and Pinia for state management
-app.use(router);
-app.use(createPinia());
-
-// Mount the app to the DOM
-app.mount('#app');
-
-[APP.VUE]
+[APP.VUE][SIMPLE]
 <template>
-  <div id="app" :class="{ 'night-mode': nightMode }">
-    <router-view />
+  <div id="app">
+    <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useAppStore } from './stores/useAppStore';
 
 export default defineComponent({
   name: 'App',
-  setup() {
-    // Access the app store
-    const appStore = useAppStore();
-
-    // Destructure the nightMode property from the app store
-    const { nightMode } = appStore;
-
-    return {
-      nightMode,
-    };
-  },
 });
 </script>
 
-<style lang="scss">
-.night-mode {
-  // Apply styles for night mode
-  background-color: $dark-page;
-  color: $info;
-
-  // Style anchor tags in night mode
-  a {
-    color: $info;
-  }
+<style scoped>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 </style>
 
-[INDEX]
+
+[INDEX.TS][SIMPLE]
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomePage from '../views/HomePage.vue';
 import ErrorNotFound from '../views/ErrorNotFound.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'HomePage',
-    component: HomePage,
+    name: 'ErrorNotFound',
+    component: ErrorNotFound,
   },
   {
     path: '/:pathMatch(.*)*',
-    name: 'ErrorNotFound',
-    component: ErrorNotFound,
+    redirect: '/',
   },
 ];
 
@@ -176,32 +143,3 @@ const router = createRouter({
 });
 
 export default router;
-
-[HOMEPAGE]
-<template>
-  <div>
-    <h1>Home Page</h1>
-    <button @click="toggleNightMode">Toggle Night Mode</button>
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { useAppStore } from '../stores/useAppStore';
-
-export default defineComponent({
-  name: 'HomePage',
-  setup() {
-    const appStore = useAppStore();
-
-    const toggleNightMode = () => {
-      appStore.nightMode = !appStore.nightMode;
-    };
-
-    return {
-      toggleNightMode,
-    };
-  },
-});
-</script>
-
