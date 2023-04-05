@@ -31,7 +31,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { QImg, QBtn } from 'quasar';
+import { QBtn } from 'quasar';
 
 interface ImageImport {
   default: string;
