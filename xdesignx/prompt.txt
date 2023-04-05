@@ -51,8 +51,14 @@ Pinia (https://pinia.vuejs.org/)
 │ └── tests/
 └── public/images/
 
-[STATE MANAGEMENT]
-useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
+[STATE MANAGEMENT: useAppStore.ts]
+State:
+Getters:
+Actions:
+user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
+
+[TYPES: types.ts]
+Interface: User, Screencard, ComponentVisibility
 
 [PROGRESS]
 Installed modules, basic routing and page structures, created HomePage as new launch portal, added accordion gallery, moved style and design sections to independent "WonderForge Styleguide", created ExampleProject and ComponentStatus to test routing and component juggling
@@ -82,9 +88,6 @@ src/views/ComponentStatus.vue - Admin page to identify working routes and organi
 3. Additional comments
 
 [REQUEST]
-
-
-
 
 
 

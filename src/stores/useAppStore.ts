@@ -1,24 +1,6 @@
 // src/stores/useAppStore.ts
 import { defineStore } from 'pinia';
 
-interface User {
-  email: string;
-  id: number;
-}
-
-interface ScreenCard {
-  id: number;
-  content: string;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-}
-
-interface ComponentVisibility {
-  [key: string]: boolean;
-}
-
 export const useAppStore = defineStore('app', {
   state: () => ({
     user: null as User | null,
