@@ -21,14 +21,14 @@ export default defineComponent({
   name: 'AccordionGallery',
   components: {
     QAccordion,
-    QAccordionItem,
+    QAccordionItem
   },
   props: {
     items: {
       type: Array as () => { title: string; imageUrl: string }[],
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 });
 </script>
 
