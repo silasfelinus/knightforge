@@ -61,7 +61,7 @@ use "import(/* @vite-ignore */"... when importing dynamically
 useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
 [PROGRESS]
-Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs, reached gui functionality with simple design, created homepage as new launch portal, stitching in components as we go
+Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs, reached gui functionality with simple design, created HomePage as new launch portal, added accordion gallery, stitching in components as we go.
 
 [PRIMARY FILES]
 index.html: Quasar Entry Point
@@ -117,12 +117,16 @@ App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
 useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, MagicFrame, SplashImage, ScreenCard, LoginForm, RemoteControl
 
 [SPRITZING]
-AccordionGallery
+// HomePage.vue - The main landing page for the WonderForge application.
+// - Displays a gallery of splash images.
+// - Toggle Night Mode button to switch between day and night modes.
+// - Images are loaded dynamically using Vite's `/@vite-ignore/` directive.
 
 [CODE-SPRITZED]
 
 [We're polishing code and incorporating the new comment style. If you have any ideas, give them, then an optimized <template> section,
 then return the <script> section beginning  with comments, followed by a fresh code-spritz based on that comment design. I'm hoping this
 will tighten up the code process and make it easier to track what each component is doing. Finish with a revised version of the comment
-for use in this outline. I'll add the section to code-spritzed, and then we'll repeat with the next file.]
+for use in this outline. I'll add the section to code-spritzed, and then we'll repeat with the next when we're done with this one file.]
 
+[HomePage]

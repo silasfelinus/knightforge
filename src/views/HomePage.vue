@@ -1,34 +1,3 @@
-<template>
-  <div :class="{ 'night-mode': nightMode, home: true }">
-    <q-header class="header">
-      <q-toolbar>
-        <q-toolbar-title class="text-h4">WonderForge</q-toolbar-title>
-      </q-toolbar>
-    </q-header>
-
-    <div class="container">
-      <h1></h1>
-      <div class="gallery-wrap">
-        <div
-          v-for="(image, index) in splashImages"
-          :key="image.id"
-          :class="['item', `item-${index + 1}`]"
-          :style="{ backgroundImage: `url(${image.default})` }"
-        ></div>
-      </div>
-    </div>
-
-    <q-footer class="footer">
-      <q-toolbar>
-        <q-space />
-        <q-btn class="toggle-button" color="primary" @click="toggleNightMode">
-          Toggle Night Mode
-        </q-btn>
-        <q-space />
-      </q-toolbar>
-    </q-footer>
-  </div>
-</template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { QBtn } from 'quasar';
@@ -54,7 +23,7 @@ export default defineComponent({
       '../assets/splash/splash04.png',
     ];
 
-    const loadImages = async () => {
+    const loadImages = async (): Promise<ImageImport[]> => {
       const imageImports: ImageImport[] = await Promise.all(
         imagePaths.map((path, index) =>
           import(/* @vite-ignore */ path).then((img) => ({
@@ -89,6 +58,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss">
 .night-mode {
   background-color: #333;
