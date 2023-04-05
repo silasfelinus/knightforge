@@ -20,14 +20,16 @@ Pinia (https://pinia.vuejs.org/)
 [MODULES]
 📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates
 
-[UPDATE]
-"ncu" && "ncu -u"
-
-[RUN COMMAND]
-🚀 "quasar dev"
+[COMMANDS]
+"npm run lint -- --fix" //auto-fix prettier
+"ncu" && "ncu -u" //update node modules
+🚀 "quasar dev"  //launch dev mode
 
 [STANDARDS]
 🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, Kaizen, DRY Principle
+No unused references
+declare types
+use "import(/* @vite-ignore */"... when importing dynamically
 
 [COLORS]
 🎨 $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
@@ -59,7 +61,7 @@ Pinia (https://pinia.vuejs.org/)
 useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
 [PROGRESS]
-Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs and re-reach gui functionality
+Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs, reached gui functionality with simple design, created homepage as new launch portal, stitching in components as we go
 
 [PRIMARY FILES]
 index.html: Quasar Entry Point
@@ -73,27 +75,54 @@ src/layout/AppHeader.vue: qHeader, includes sidebar toggles, Project Title from 
 src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
 src/layout/AppSidebar.vue: q-drawer (Right), imports RemoteControl
 src/layout/AppFooter.vue: qFooter, text input window, color background filler for later output
-src/layout/MainContent.vue: launches main display ScreenWidget
-src/views/ScreenWidget.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
+src/layout/MainContent.vue: launches main display MagicFrame
+src/views/MagicFrame.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
 src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
 src/views/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
 src/views/: ErrorNotFound, UnderConstruction, HomePage - end-point static pages
 src/views/LoginForm.vue: Demo login interface
 src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
+src/views/HomePage.vue - New Entry Portal
+src/views/AccordionGallery.vue - Displays images in an accordion view
 
 [SUGGESTED REPLY FORMAT]
 1. Emoticon and brief project assessment
 2. Improved code or request for file(s)
 3. Additional comments
 
+[CODING GUIDE]
+<script lang="ts">
+<style "lang=scss">
+
+[COMMENT GUIDE]
+// ComponentName.vue - A brief description of the component's purpose and functionality.
+// - Key features or requirements specific to the script section (e.g., props, data, methods, computed properties).
+// - External components or libraries utilized, along with their purpose, and any important props, events, or methods.
+
+[COMMENT GENERIC EXAMPLE]
+// GenericCard.vue - A reusable card component for displaying information in a consistent format.
+// - Props: title (String), content (String), imageUrl (String), and isFeatured (Boolean, default: false)
+// - Utilizes 'ExternalLibrary' for handling animations; important methods: 'animateIn()' and 'animateOut()'
+
 [FULLY OPERATIONAL]
 index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction
 
+[BUG-HUNTING]
+AccordionGallery
+
 [WORKING BUT SIMPLIFIED]
-App.vue(disabled useAppStore), HomePage.vue (disabled useAppStore), index.ts (disabled AppLayout)
+App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
 
-[STILL NEED TO STITCH]
-useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, ScreenWidget, SplashImage, ScreenCard, LoginForm, RemoteControl
+[UNCLASSIFIED]
+useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, MagicFrame, SplashImage, ScreenCard, LoginForm, RemoteControl
 
+[SPRITZING]
+AccordionGallery
 
-[
+[CODE-SPRITZED]
+
+[We're polishing code and incorporating the new comment style. If you have any ideas, give them, then an optimized <template> section,
+then return the <script> section beginning  with comments, followed by a fresh code-spritz based on that comment design. I'm hoping this
+will tighten up the code process and make it easier to track what each component is doing. Finish with a revised version of the comment
+for use in this outline. I'll add the section to code-spritzed, and then we'll repeat with the next file.]
+
