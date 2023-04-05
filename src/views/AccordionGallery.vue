@@ -1,63 +1,39 @@
 <template>
-  <div class="gallery-wrap">
-    <div
-      v-for="(image, index) in splashImages"
-      :key="image.id"
-      :class="['item', `item-${index + 1}`]"
-      :style="{ backgroundImage: `url(${image.default})` }"
-    ></div>
+  <div class="accordion-gallery">
+    <q-accordion v-for="(item, index) in items" :key="index">
+      <q-accordion-item>
+        <template v-slot:header>
+          <div class="item-header">{{ item.title }}</div>
+        </template>
+        <img :src="item.imageUrl" :alt="item.title" class="item-image" />
+      </q-accordion-item>
+    </q-accordion>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-
-interface ImageImport {
-  default: string;
-  id: number;
-  alt: string;
-}
+// AccordionGallery.vue - Displays images in an accordion view.
+// - Props: items (Array, required) - Objects with "title" and "imageUrl" properties.
+// - Components: QAccordion, QAccordionItem (Quasar) - Accordion functionality.
+import { defineComponent } from 'vue';
+import { QAccordion, QAccordionItem } from 'quasar';
 
 export default defineComponent({
   name: 'AccordionGallery',
+  components: {
+    QAccordion,
+    QAccordionItem,
+  },
   props: {
-    imagePaths: {
-      type: Array as () => string[],
+    items: {
+      type: Array,
       required: true,
     },
-  },
-  setup(props) {
-    const loadImages = async () => {
-      const imageImports: ImageImport[] = await Promise.all(
-        props.imagePaths.map((path, index) =>
-          import(/* @vite-ignore */ path).then((img) => ({
-            default: img.default,
-            id: index + 1,
-            alt:
-              index < 2
-                ? `Splash Image 0${index}`
-                : `Secret Image 0${index - 2}`,
-          }))
-        )
-      );
-
-      return imageImports;
-    };
-
-    const splashImages = ref<ImageImport[]>([]);
-
-    loadImages().then((images) => {
-      splashImages.value = images;
-    });
-
-    return {
-      splashImages,
-    };
   },
 });
 </script>
 
-<style scoped>
+<style lang="scss">
 .gallery-wrap {
   display: flex;
   flex-direction: row;

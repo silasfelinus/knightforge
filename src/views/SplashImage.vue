@@ -20,9 +20,9 @@ export default defineComponent({
     });
 
     return {
-      randomImage,
+      randomImage
     };
-  },
+  }
 });
 </script>
 

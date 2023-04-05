@@ -31,8 +31,8 @@ export default defineComponent({
   props: {
     cards: {
       type: Array as PropType<Card[]>,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props) {
     const { cards } = props;
@@ -44,8 +44,8 @@ export default defineComponent({
 
     return {
       cards,
-      changeImage,
+      changeImage
     };
-  },
+  }
 });
 </script>

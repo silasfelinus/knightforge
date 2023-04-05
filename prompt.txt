@@ -92,7 +92,7 @@ src/views/AccordionGallery.vue - Displays images in an accordion view
 
 [CODING GUIDE]
 <script lang="ts">
-<style scoped "lang=scss"
+<style "lang=scss"
 
 [COMMENT GUIDE]
 // ComponentName.vue - A brief description of the component's purpose and functionality.
@@ -105,7 +105,7 @@ src/views/AccordionGallery.vue - Displays images in an accordion view
 // - Utilizes 'ExternalLibrary' for handling animations; important methods: 'animateIn()' and 'animateOut()'
 
 [FULLY OPERATIONAL]
-index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction, AccordionGallery
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction,AccordionGallery
 
 [WORKING BUT SIMPLIFIED]
 App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
@@ -113,7 +113,13 @@ App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
 [STILL NEED TO STITCH]
 useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, MagicFrame, SplashImage, ScreenCard, LoginForm, RemoteControl
 
-[I've finally got a homepage gui back! It's coming together. I added in an AccordionGallery, and I want to test out my new commenting styling. If you have any feedback on it, please say. Otherwise, I'm going to give you file by file, you give the code a check for consistency and intent, then return the <template> and <script> sections with the new comments and a fresh codespritz entirely based on that comment design. I'm hoping this will tighten up the code process and make it easier to track what each component is doing.]
+[CODESPRITZED]
+// AccordionGallery.vue - A component to display images in an accordion-style gallery.
+// - Props: items (Array of Objects with "title" and "imageUrl" properties)
+// - Utilizes 'QAccordion' and 'QAccordionItem' components from Quasar library for accordion functionality.
+
+[I testing out my new commenting styling. If you have any feedback, please say. Check code for consistency and intent, return the <template> and <script> sections with the new comments and a fresh codespritz entirely based on that comment design. I'm hoping this will reinforce the code development process and make it easier to track what each component is doing.]
+End with a concise revised section for this outline summarizing efficiently in non-natural language the vital part of the description. We have to keep character limit down, so efficiency is important.
 
 [AccordionGallery]
 

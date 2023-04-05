@@ -18,7 +18,6 @@
         <h1></h1>
         <accordion-gallery :image-paths="imagePaths"></accordion-gallery>
       </div>
-      <MagicFrame :cards="generateScreenCards(splashImages)" />
     </main>
 
     <footer class="footer">
@@ -39,23 +38,11 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import MagicFrame from '@/views/MagicFrame.vue';
 import AccordionGallery from './AccordionGallery.vue';
-
-interface Image {
-  id: number;
-  src: string | undefined;
-  alt: string;
-}
-
-interface ImageImports {
-  [path: string]: Promise<{ default?: string }> | undefined;
-}
 
 export default defineComponent({
   name: 'HomePage',
   components: {
-    MagicFrame,
     AccordionGallery,
   },
   setup() {
@@ -75,58 +62,13 @@ export default defineComponent({
       // Other images...
     ];
 
-    const splashImages = ref<Image[]>([]);
-
-    const imageImports: ImageImports = imagePaths.reduce(
-      (acc: ImageImports, path: string) => {
-        // ...
-      },
-      {} as ImageImports
-    );
-
-    Promise.all(
-      imagePaths.map(async (path, index) => {
-        const imageModule = await imageImports[path];
-        return {
-          id: index + 1,
-          src: imageModule?.default,
-          alt:
-            index < 2 ? `Splash Image 0${index}` : `Secret Image 0${index - 2}`,
-        };
-      })
-    ).then((resolvedSplashImages: Image[]) => {
-      splashImages.value = resolvedSplashImages;
-    });
-
     const toggleNightMode = () => {
       nightMode.value = !nightMode.value;
       backgroundColor.value = nightMode.value ? '#333' : '#f0f0f0';
     };
-
-    const generateScreenCards = (
-      images: Image[]
-    ): {
-      id: number;
-      width: number;
-      height: number;
-      imageSrc: string | undefined;
-      imageAlt: string;
-    }[] => {
-      return images.slice(0, 2).map((image, index) => ({
-        id: index,
-        width: 300, // Set default width
-        height: 200, // Set default height
-        imageSrc: image.src,
-        imageAlt: image.alt,
-      }));
-    };
-
     return {
-      nightMode,
-      backgroundColor,
-      splashImages,
       toggleNightMode,
-      generateScreenCards,
+      imagePaths,
     };
   },
 });
