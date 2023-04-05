@@ -89,7 +89,7 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
+<style lang="scss">
 .night-mode {
   background-color: #333;
   color: #f0f0f0;
