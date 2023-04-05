@@ -1,0 +1,526 @@
+[TERMINOLOGY]
+Function: A reusable block of code that performs a specific action, can accept input (parameters), and return an output (return value).
+Parameter: A variable used in a function's declaration to represent the input passed to the function when it is called.
+Argument: A value passed to a function when it is called, corresponding to a specific parameter in the function's declaration.
+Variable: A named container used to store a value in memory.
+Constant: A named container used to store a value in memory that cannot be changed after it is assigned.
+Callback: A function passed as an argument to another function, to be executed later.
+Promise: A JavaScript object representing the eventual completion (or failure) of an asynchronous operation, and its resulting value.
+Async/Await: Syntax for working with Promises that makes asynchronous code look and behave more like synchronous code.
+Component: A reusable and self-contained piece of code that represents a part of the user interface (UI).
+Directive: A special attribute added to an element in the template that tells the Vue.js compiler to attach a specified behavior to that element.
+Event: An action or occurrence detected by the program, such as a user's interaction or an update in the application state.
+Prop: Short for "property," a custom attribute used to pass data from a parent component to a child component.
+Lifecycle Hook: A function that gets called at a specific stage of a component's life, allowing you to execute code at specific points in time.
+Computed Property: A property that depends on one or more other properties and is automatically updated when any of its dependencies change.
+Reactive Data: Data that automatically updates when its dependencies change, causing the UI to update as well.
+
+[EXAMPLES]
+🚀 Function
+A reusable block of code that performs a specific action, can accept input (parameters), and return an output (return value).
+
+Generic Example:
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+Specific Example:
+// In src/views/RemoteControl.vue
+function isSelected(id) {
+  return useAppStore().selectedCardIds.value.includes(id);
+}
+
+📦 Parameter
+A variable used in a function's declaration to represent the input passed to the function when it is called.
+
+Generic Example:
+function multiply(a, b) {
+  return a * b;
+}
+
+Specific Example:
+// In src/views/RemoteControl.vue
+function toggleSelection(cardId) {
+  // ... Implementation
+}
+
+🎯 Argument
+A value passed to a function when it is called, corresponding to a specific parameter in the function's declaration.
+
+Generic Example:
+const result = multiply(3, 4);
+
+Specific Example:
+// In src/views/RemoteControl.vue
+toggleSelection(5);
+
+🧩 Variable
+A named container used to store a value in memory.
+
+Generic Example:
+let counter = 0;
+
+Specific Example:
+// In src/views/LoginForm.vue
+let username = ref('');
+
+🔒 Constant
+A named container used to store a value in memory that cannot be changed after it is assigned.
+
+Generic Example:
+const pi = 3.14159;
+
+Specific Example:
+// In src/stores/useAppStore.ts
+const defaultNightMode = false;
+
+🔄 Callback
+A function passed as an argument to another function, to be executed later.
+
+Generic Example:
+function processData(data, callback) {
+  const result = data * 2;
+  callback(result);
+}
+
+Specific Example:
+// In src/views/HomePage.vue
+watchEffect(() => {
+  const nightMode = useAppStore().nightMode.value;
+  document.body.classList.toggle('night-mode', nightMode);
+});
+
+🎁 Promise
+A JavaScript object representing the eventual completion (or failure) of an asynchronous operation and its resulting value.
+
+Generic Example:
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Data fetched successfully!');
+    }, 2000);
+  });
+}
+
+Specific Example:
+// In a hypothetical API service file, e.g., src/services/api.ts
+function fetchImages() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([
+        { id: 1, url: 'path/to/image1.png' },
+        { id: 2, url: 'path/to/image2.png' },
+      ]);
+    }, 1000);
+  });
+}
+
+⏳ Async/Await
+Syntax for working with Promises that makes asynchronous code look and behave more like synchronous code.
+
+Generic Example:
+async function fetchAndDisplayData() {
+  const data = await fetchData();
+  console.log(data);
+}
+
+Specific Example:
+// In src/views/AccordionGallery.vue
+async function fetchAndDisplayImages() {
+  const images = await fetchImages();
+  imageList.value = images;
+}
+
+🧬 Component
+A reusable and self-contained piece of code that represents a part of the user interface (UI).
+
+Generic Example:
+<!-- GenericButton.vue -->
+<template>
+  <button @click="onClick">{{ label }}</button>
+</template>
+<script>
+export default {
+  props: {
+    label: String,
+  },
+  methods: {
+    onClick() {
+      this.$emit('click');
+    },
+  },
+};
+</script>
+
+Specific Example:
+<!-- src/views/SplashImage.vue -->
+<template>
+  <img :src="imagePath" alt="Splash Image" />
+</template>
+<script>
+export default {
+  props: {
+    image: String,
+  },
+  computed: {
+    imagePath() {
+      return `src/assets/splash/${this.image}`;
+    },
+  },
+};
+</script>
+
+🧲 Directive
+A special attribute added to an element in the template that tells the Vue.js compiler to attach a specified behavior to that element.
+
+Generic Example:
+<!-- GenericTooltip.vue -->
+<template>
+  <div v-if="showTooltip" class="tooltip">{{ tooltipText }}</div>
+</template>
+<script>
+export default {
+  directives: {
+    tooltip: {
+      inserted(el, binding) {
+        el.addEventListener('mouseenter', () => {
+          el.showTooltip = true;
+          el.tooltipText = binding.value;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.showTooltip = false;
+        });
+      },
+    },
+  },
+};
+</script>
+
+Specific Example:
+<!-- src/views/SplashImage.vue -->
+<template>
+  <img v-tooltip="imageDescription" :src="imagePath" alt="Splash Image" />
+</template>
+<script>
+export default {
+  props: {
+    image: String,
+    imageDescription: String,
+  },
+  directives: {
+    tooltip: {
+      // ...Implementation of tooltip directive...
+    },
+  },
+  computed: {
+    imagePath() {
+      return `src/assets/splash/${this.image}`;
+    },
+  },
+};
+</script>
+
+[🎉 Event]
+An action or occurrence detected by the program, such as a user's interaction or an update in the application state.
+
+Generic Example:
+<!-- GenericInput.vue -->
+<template>
+  <input @input="onInput" />
+</template>
+<script>
+export default {
+  methods: {
+    onInput(event) {
+      this.$emit('input', event.target.value);
+    },
+  },
+};
+</script>
+
+Specific Example:
+<!-- src/views/RemoteControl.vue -->
+<template>
+  <button @click="toggleNightMode">Toggle Night Mode</button>
+</template>
+<script>
+import { useAppStore } from '../stores/useAppStore';
+export default {
+  setup() {
+    const appStore = useAppStore();
+
+    function toggleNightMode() {
+      appStore.toggleNightMode();
+    }
+
+    return {
+      toggleNightMode,
+    };
+  },
+};
+</script>
+
+🧲 Directive
+A special attribute added to an element in the template that tells the Vue.js compiler to attach a specified behavior to that element.
+
+Generic Example:
+<!-- GenericTooltip.vue -->
+<template>
+  <div v-if="showTooltip" class="tooltip">{{ tooltipText }}</div>
+</template>
+<script>
+export default {
+  directives: {
+    tooltip: {
+      inserted(el, binding) {
+        el.addEventListener('mouseenter', () => {
+          el.showTooltip = true;
+          el.tooltipText = binding.value;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.showTooltip = false;
+        });
+      },
+    },
+  },
+};
+</script>
+
+Specific Example:
+<!-- src/views/SplashImage.vue -->
+<template>
+  <img v-tooltip="imageDescription" :src="imagePath" alt="Splash Image" />
+</template>
+<script>
+export default {
+  props: {
+    image: String,
+    imageDescription: String,
+  },
+  directives: {
+    tooltip: {
+      // ...Implementation of tooltip directive...
+    },
+  },
+  computed: {
+    imagePath() {
+      return `src/assets/splash/${this.image}`;
+    },
+  },
+};
+</script>
+
+🎉 Event
+An action or occurrence detected by the program, such as a user's interaction or an update in the application state.
+
+Generic Example:
+<!-- GenericInput.vue -->
+<template>
+  <input @input="onInput" />
+</template>
+<script>
+export default {
+  methods: {
+    onInput(event) {
+      this.$emit('input', event.target.value);
+    },
+  },
+};
+</script>
+
+Specific Example:
+<!-- src/views/RemoteControl.vue -->
+<template>
+  <button @click="toggleNightMode">Toggle Night Mode</button>
+</template>
+<script>
+import { useAppStore } from '../stores/useAppStore';
+export default {
+  setup() {
+    const appStore = useAppStore();
+
+    function toggleNightMode() {
+      appStore.toggleNightMode();
+    }
+
+    return {
+      toggleNightMode,
+    };
+  },
+};
+</script>
+
+📦 Prop
+Short for "property," a custom attribute used to pass data from a parent component to a child component.
+Generic Example:
+<!-- GenericCard.vue -->
+<template>
+  <div class="card">
+    <h2>{{ title }}</h2>
+    <p>{{ content }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    title: String,
+    content: String,
+  },
+};
+</script>
+Specific Example:
+<!-- src/views/ScreenCard.vue -->
+<template>
+  <div class="screen-card">
+    <h3>{{ cardTitle }}</h3>
+    <SplashImage :image="cardImage" />
+  </div>
+</template>
+<script>
+import SplashImage from './SplashImage.vue';
+
+export default {
+  components: {
+    SplashImage,
+  },
+  props: {
+    cardTitle: String,
+    cardImage: String,
+  },
+};
+</script>
+
+⏰ Lifecycle Hook
+A function that gets called at a specific stage of a component's life, allowing you to execute code at specific points in time.
+
+Generic Example:
+<!-- GenericList.vue -->
+<template>
+  <ul>
+    <li v-for="item in items" :key="item.id">{{ item.text }}</li>
+  </ul>
+</template>
+<script>
+export default {
+  props: {
+    apiUrl: String,
+  },
+  data() {
+    return {
+      items: [],
+    };
+  },
+  async mounted() {
+    const response = await fetch(this.apiUrl);
+    this.items = await response.json();
+  },
+};
+</script>
+
+Specific Example:
+<!-- src/views/AccordionGallery.vue -->
+<template>
+  <!-- ...AccordionGallery template... -->
+</template>
+<script>
+export default {
+  data() {
+    return {
+      images: [],
+    };
+  },
+  async mounted() {
+    this.images = await this.fetchImages();
+  },
+  methods: {
+    async fetchImages() {
+      // ...Implementation for fetching images...
+    },
+  },
+};
+</script>
+
+🧮 Computed Property
+A property that depends on one or more other properties and is automatically updated when any of its dependencies change.
+
+Generic Example:
+<!-- GenericAvatar.vue -->
+<template>
+  <img :src="avatarUrl" alt="Avatar" />
+</template>
+<script>
+export default {
+  props: {
+    userId: Number,
+  },
+  computed: {
+    avatarUrl() {
+      return `https://example.com/avatars/${this.userId}.png`;
+    },
+  },
+};
+</script>
+
+Specific Example:
+<!-- src/views/SplashImage.vue -->
+<template>
+  <img :src="imagePath" alt="Splash Image" />
+</template>
+<script>
+export default {
+  props: {
+    image: String,
+  },
+  computed: {
+    imagePath() {
+      return `src/assets/splash/${this.image}`;
+    },
+  },
+};
+</script>
+
+🔄 Reactive Data
+Data that automatically updates when its dependencies change, causing the UI to update as well.
+Generic Example:
+<!-- GenericCounter.vue -->
+<template>
+  <button @click="increment">{{ count }}</button>
+</template>
+<script>
+import { ref } from 'vue';
+export default {
+  setup() {
+    const count = ref(0);
+
+    function increment() {
+      count.value++;
+    }
+
+    return {
+      count,
+      increment,
+    };
+  },
+};
+</script>
+
+Specific Example:
+<!-- src/views/RemoteControl.vue -->
+<template>
+  <div>{{ nightModeStatus }}</div>
+</template>
+<script>
+import { useAppStore } from '../stores/useAppStore';
+export default {
+  setup() {
+    const appStore = useAppStore();
+
+    const nightModeStatus = appStore.nightMode ? 'Night Mode' : 'Day Mode';
+
+    return {
+      nightModeStatus,
+    };
+  },
+};
+</script>

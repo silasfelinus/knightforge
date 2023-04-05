@@ -6,6 +6,7 @@ import UnderConstruction from '../views/UnderConstruction.vue';
 import HomePage from '../views/HomePage.vue';
 import LoginForm from '../views/LoginForm.vue';
 import RemoteControl from '../views/RemoteControl.vue';
+import ExampleHomepage from '../example/ExampleHomepage.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -17,6 +18,11 @@ const routes: RouteRecordRaw[] = [
     path: '/under-construction',
     name: 'UnderConstruction',
     component: UnderConstruction,
+  },
+  {
+    path: '/example-homepage',
+    name: 'ExampleHomepage',
+    component: ExampleHomepage,
   },
   {
     path: '/login',

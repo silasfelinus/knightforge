@@ -19,7 +19,7 @@ light indicators.
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
 import StatusLight from '@/components/StatusLight.vue';
 
@@ -53,9 +53,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-.component-status {
-  // Your styles...
-}
-</style>

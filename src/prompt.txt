@@ -27,12 +27,6 @@ Pinia (https://pinia.vuejs.org/)
 
 [STANDARDS]
 🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, Kaizen, DRY Principle
-No unused references
-declare types
-use "import(/* @vite-ignore */"... when importing dynamically
-
-[COLORS]
-🎨 $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
 
 [DEVELOPING FEATURES]
 🌈 Step-Based Save System, User Logins, Night Mode, Chat, PlaySpace Toys
@@ -57,36 +51,15 @@ use "import(/* @vite-ignore */"... when importing dynamically
 │ └── tests/
 └── public/images/
 
-[TERMINOLOGY]
-Function: A reusable block of code that performs a specific action, can accept input (parameters), and return an output (return value).
-Parameter: A variable used in a function's declaration to represent the input passed to the function when it is called.
-Argument: A value passed to a function when it is called, corresponding to a specific parameter in the function's declaration.
-Variable: A named container used to store a value in memory.
-Constant: A named container used to store a value in memory that cannot be changed after it is assigned.
-Callback: A function passed as an argument to another function, to be executed later.
-Promise: A JavaScript object representing the eventual completion (or failure) of an asynchronous operation, and its resulting value.
-Async/Await: Syntax for working with Promises that makes asynchronous code look and behave more like synchronous code.
-Component: A reusable and self-contained piece of code that represents a part of the user interface (UI).
-Directive: A special attribute added to an element in the template that tells the Vue.js compiler to attach a specified behavior to that element.
-Event: An action or occurrence detected by the program, such as a user's interaction or an update in the application state.
-Prop: Short for "property," a custom attribute used to pass data from a parent component to a child component.
-Lifecycle Hook: A function that gets called at a specific stage of a component's life, allowing you to execute code at specific points in time.
-Computed Property: A property that depends on one or more other properties and is automatically updated when any of its dependencies change.
-Reactive Data: Data that automatically updates when its dependencies change, causing the UI to update as well.
-
 [STATE MANAGEMENT]
 useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
 [PROGRESS]
-Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs, reached gui functionality with simple design, created HomePage as new launch portal, added accordion gallery, stitching in components as we go.
+Installed modules, basic routing and page structures, created HomePage as new launch portal, added accordion gallery, moved style and design sections to independent "WonderForge Styleguide", created ExampleProject and ComponentStatus to test routing and component juggling
 
-[PRIMARY FILES]
-index.html: Quasar Entry Point
-quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json: Configuration files
-src/main.ts: Entry point for the Vue application, imports Vue, router, and Pinia store
-src/App.vue: Root Vue component
-src/stores/useAppStore.ts: Pinia global state management
-src/router/index.ts: Calls AppLayout for route layout with meta styling
+[CONFIGURATION FILES]
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, App.vue, useAppStore.ts, router/index.ts, types.ts
+
 src/layout/AppLayout.vue: qlayout, creates boundaries between different components (AppHeader, AppSidebar, MainContent, and AppFooter) based on meta styling
 src/layout/AppHeader.vue: qHeader, includes sidebar toggles, Project Title from state , login/ link, and login status indicator
 src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
@@ -107,25 +80,7 @@ src/views/AccordionGallery.vue - Displays images in an accordion view
 2. Improved code or request for file(s)
 3. Additional comments
 
-[CODING GUIDE]
-<script lang="ts">
-<style "lang=scss">
-
-[COMMENT GUIDE]
-// ComponentName.vue - A brief description of the component's purpose and functionality.
-// - Key features or requirements specific to the script section (e.g., props, data, methods, computed properties).
-// - External components or libraries utilized, along with their purpose, and any important props, events, or methods.
-
-[COMMENT GENERIC EXAMPLE]
-// GenericCard.vue - A reusable card component for displaying information in a consistent format.
-// - Props: title (String), content (String), imageUrl (String), and isFeatured (Boolean, default: false)
-// - Utilizes 'ExternalLibrary' for handling animations; important methods: 'animateIn()' and 'animateOut()'
-
-
 [REQUEST]
-Reply with an outline for a management vue page that will tell me which of my app components have active routes. Include aspects like a status light nmonitor, and components sorted into various sections. Assume that any required functions can be created. Also, give me a glossary of terms that I can use to accurately describe this project. I'm coming from python and seeing this from a design lens, and I don't know how to describe things in javascript like functions, parameters, and variables.
-
-
 
 
 
