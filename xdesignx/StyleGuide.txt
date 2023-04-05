@@ -1,50 +1,43 @@
 [TERMINOLOGY]
-Function: A reusable block of code that performs a specific action, can accept input (parameters), and return an output (return value).
-Parameter: A variable used in a function's declaration to represent the input passed to the function when it is called.
-Argument: A value passed to a function when it is called, corresponding to a specific parameter in the function's declaration.
-Variable: A named container used to store a value in memory.
-Constant: A named container used to store a value in memory that cannot be changed after it is assigned.
-Callback: A function passed as an argument to another function, to be executed later.
-Promise: A JavaScript object representing the eventual completion (or failure) of an asynchronous operation, and its resulting value.
-Async/Await: Syntax for working with Promises that makes asynchronous code look and behave more like synchronous code.
-Component: A reusable and self-contained piece of code that represents a part of the user interface (UI).
-Directive: A special attribute added to an element in the template that tells the Vue.js compiler to attach a specified behavior to that element.
-Event: An action or occurrence detected by the program, such as a user's interaction or an update in the application state.
-Prop: Short for "property," a custom attribute used to pass data from a parent component to a child component.
-Lifecycle Hook: A function that gets called at a specific stage of a component's life, allowing you to execute code at specific points in time.
-Computed Property: A property that depends on one or more other properties and is automatically updated when any of its dependencies change.
-Reactive Data: Data that automatically updates when its dependencies change, causing the UI to update as well.
+Function: Reusable block of code for specific actions, accepts input (parameters), returns output (return value).
+Parameter: Variable in a function's declaration, represents input passed when called.
+Argument: Value passed to a function when called, corresponding to a specific parameter.
+Variable: Named container for storing values in memory.
+Constant: Named container for storing unchangeable values in memory.
+Callback: Function passed as an argument, executed later.
+Promise: JavaScript object for eventual completion/failure of async operation and resulting value.
+Async/Await: Syntax for working with Promises, making async code behave like synchronous code.
+Component: Reusable, self-contained code representing UI parts.
+Directive: Special attribute for attaching specified behavior to template elements.
+Event: Action or occurrence detected by the program (e.g., user interaction, state update).
+Prop: Custom attribute for passing data between parent and child components.
+Lifecycle Hook: Function called at a specific component life stage, allowing timed code execution.
+Computed Property: Property automatically updated when dependencies change.
+Reactive Data: Data automatically updating when dependencies change, causing UI updates.
 
 [RULES]
-ComponentNames should always be TwoWord
-always use relative pathing
-<script lang='ts'>
-<style lang='scss'>
+TwoWord ComponentNames
+Relative pathing
+Use <script lang='ts'> and <style lang='scss'>
 No unused references
-declare types
-use 'import(/* @vite-ignore */...)' when importing dynamically
+Declare types
+Use import(/* @vite-ignore */...) for dynamic imports
 No empty rulesets
 
 [PRETTIER]
 singleQuote: true
 semi: true
 endOfLine: auto
-
 [COLORS]
 🎨 $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
 
-[CODING GUIDE]
-<script lang="ts">
-<style "lang=scss">
+[COMPONENT IMPLEMENTATION]
+Script: <script lang="ts">, define TypeScript using Composition API (props, reactive data, computed properties, methods), import libraries, components, or store modules.
+Template: Create template with HTML and Vue directives (v-if, v-else, v-for, etc.), bind data and methods to DOM elements.
+Style: Define SCSS styles, follow Material Design guidelines, use predefined color variables, ensure responsiveness.
 
-[COMMENT GUIDE]
 
-[COMMENT GENERIC EXAMPLE]
-// GenericCard.vue - A reusable card component for displaying information in a consistent format.
-// - Props: title (String), content (String), imageUrl (String), and isFeatured (Boolean, default: false)
-// - Utilizes 'ExternalLibrary' for handling animations; important methods: 'animateIn()' and 'animateOut()'
-
-[NEW COMPONENT OUTLINE]
+[COMPONENT OUTLINE]
 ComponentName.vue
 Purpose and Scope: Briefly describe the component's purpose, functionality, and its relation to the rest of the project.
 Component Design: Identify the structure of the component, including its props, data, computed properties, methods, and lifecycle hooks.
@@ -54,7 +47,12 @@ File and Component Modifications: Identify which existing files and components n
 Specify the necessary changes, such as importing the new component, adjusting global state, or modifying existing components.
 
 [COMPONENT IMPLEMENTATION]
-a. Script: <Script lang="ts">, Define the component's TypeScript code using the Composition API, including props, reactive data, computed properties, and methods. Import any necessary external libraries, child components, or store modules.
+a. Script: Follow <Script lang="ts">. with comments explicitly define the props, reactive data, computed properties, and methods. Import any necessary external libraries, child components, or store modules.
+
+[GENERIC COMMENT]
+// GenericCard.vue - A reusable card component for displaying information in a consistent format.
+// - Props: title (String), content (String), imageUrl (String), and isFeatured (Boolean, default: false)
+// - Utilizes 'ExternalLibrary' for handling animations; important methods: 'animateIn()' and 'animateOut()'
 
 // ComponentName.vue - A brief description of the component's purpose and functionality.
 // - Key features or requirements specific to the script section (e.g., props, data, methods, computed properties).
@@ -70,7 +68,7 @@ Ensure responsiveness and adaptability to different screen sizes.
 Write unit tests for the component using Jest and Vue Test Utils, ensuring correct behavior for various inputs and interactions.
 
 [INTEGRATION]
-Integrate the new component into the project, following the specified file and component modifications.
+Integrate the new component into the project, following the specified file and component modifications. (can we make this a single action with a global component registry?)
 
 //add to appropriate section(s) of /router/index.ts
 import ExampleHomepage from '../example/ExampleHomepage.vue';
@@ -80,6 +78,6 @@ import ExampleHomepage from '../example/ExampleHomepage.vue';
     component: ExampleHomepage,
   },
 
-//add to homePage
+//add <ComponentName>to homePage
 
 //Change ComponentStatus to Active in useAppStore/useComponentManager
