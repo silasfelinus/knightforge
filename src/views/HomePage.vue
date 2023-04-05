@@ -1,28 +1,34 @@
 <template>
   <div :class="{ 'night-mode': nightMode, home: true }">
-    <h1 class="text-h3 q-mb-lg">Welcome to WonderForge</h1>
-    <p class="text-h5 q-mb-xl">
-      A really pleasing GUI sandbox for coding projects
-    </p>
-    <div class="row q-gutter-md images-container">
-      <q-img
-        v-for="image in splashImages"
-        :key="image.id"
-        :src="image.default"
-        :alt="image.alt"
-        class="splash-image"
-      />
+    <q-header class="header">
+      <q-toolbar>
+        <q-toolbar-title class="text-h4">WonderForge</q-toolbar-title>
+      </q-toolbar>
+    </q-header>
+
+    <div class="container">
+      <h1></h1>
+      <div class="gallery-wrap">
+        <div
+          v-for="(image, index) in splashImages"
+          :key="image.id"
+          :class="['item', `item-${index + 1}`]"
+          :style="{ backgroundImage: `url(${image.default})` }"
+        ></div>
+      </div>
     </div>
-    <q-btn
-      class="toggle-button q-mt-xl"
-      color="primary"
-      @click="toggleNightMode"
-    >
-      Toggle Night Mode
-    </q-btn>
+
+    <q-footer class="footer">
+      <q-toolbar>
+        <q-space />
+        <q-btn class="toggle-button" color="primary" @click="toggleNightMode">
+          Toggle Night Mode
+        </q-btn>
+        <q-space />
+      </q-toolbar>
+    </q-footer>
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { QImg, QBtn } from 'quasar';
@@ -36,7 +42,6 @@ interface ImageImport {
 export default defineComponent({
   name: 'HomePage',
   components: {
-    QImg,
     QBtn,
   },
   setup() {
@@ -90,25 +95,44 @@ export default defineComponent({
   color: #f0f0f0;
 }
 
-.text-h3,
-.text-h5 {
-  text-align: center;
+.header,
+.footer {
+  z-index: 1;
 }
 
-.images-container {
+.container {
+  padding: 75px 0;
+  margin: 0 auto;
+  width: 900px;
+}
+
+h1 {
+  position: relative;
+  margin-bottom: 45px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 44px;
+  text-transform: uppercase;
+  color: #424242;
+}
+
+.gallery-wrap {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  height: 70vh;
 }
 
-.splash-image {
-  max-width: 20%;
-  padding: 1rem;
+.item {
+  flex: 1;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: flex 0.8s ease;
 }
 
-.toggle-button {
-  display: block;
-  margin: 2rem auto;
+.item:hover {
+  flex: 7;
 }
 
 /* Add the following CSS to make the content fit in one page */
@@ -127,7 +151,6 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
 }
 </style>
