@@ -1,17 +1,17 @@
 <template>
   <div class="main-content">
-    <ScreenWidget />
+    <MagicFrame />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ScreenWidget from '../views/ScreenWidget.vue';
+import MagicFrame from '../views/MagicFrame.vue';
 
 export default defineComponent({
   name: 'MainContent',
   components: {
-    ScreenWidget
+    MagicFrame
   }
 });
 </script>

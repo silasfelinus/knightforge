@@ -27,6 +27,8 @@ Pinia (https://pinia.vuejs.org/)
 
 [STANDARDS]
 🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, Kaizen, DRY Principle
+No unused references
+declare types
 
 [COLORS]
 🎨 $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
@@ -58,7 +60,7 @@ Pinia (https://pinia.vuejs.org/)
 useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
 [PROGRESS]
-Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs, reached gui functionality with simple design, created homepage as new launch portal, stitching in components
+Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs, reached gui functionality with simple design, created homepage as new launch portal, stitching in components as we go
 
 [PRIMARY FILES]
 index.html: Quasar Entry Point
@@ -72,8 +74,8 @@ src/layout/AppHeader.vue: qHeader, includes sidebar toggles, Project Title from 
 src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
 src/layout/AppSidebar.vue: q-drawer (Right), imports RemoteControl
 src/layout/AppFooter.vue: qFooter, text input window, color background filler for later output
-src/layout/MainContent.vue: launches main display ScreenWidget
-src/views/ScreenWidget.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
+src/layout/MainContent.vue: launches main display MagicFrame
+src/views/MagicFrame.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
 src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
 src/views/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
 src/views/: ErrorNotFound, UnderConstruction, HomePage - end-point static pages
@@ -90,12 +92,229 @@ src/views/HomePage.vue - Demo landing page while building app function
 index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction
 
 [WORKING BUT SIMPLIFIED]
-App.vue(disabled useAppStore), HomePage.vue (disabled useAppStore), index.ts (disabled AppLayout)
+App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
 
 [STILL NEED TO STITCH]
-useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, ScreenWidget, SplashImage, ScreenCard, LoginForm, RemoteControl
+useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, MagicFrame, SplashImage, ScreenCard, LoginForm, RemoteControl
 
-[I'm spending the evening avoiding adding features beyond necessary, and trying to think about design as much as possible.
-analyze this HomePage for content, image layout, sentence structure, appeal, pizzazz, wonder, and make a design that consistently uses up all the screen available, no more, no less. Keep nightmode toggle in the footer, use all of the splash images splash00.png - splash11.png, make a few of them randomized, add an auto-album, I don't care. Every one of them should involve a call to our ScreenWidget component, something like ScreenWidget("splash00.png""), but I don't know the terminology, help make it work, make an efficient set of function calls and we'll add them to ScreenWidget as appropriate.
+[I'm focusing on design before launching into restitching
+analyze this HomePage for content, image layout, sentence structure, appeal, pizzazz, wonder. Suggest ways to improve it with every iteration. This is kaizen: iterative improvements to design. Give suggestions as if you are a designer steeped in design theory and knowledgable about ways to effectively create attention grabbing websites.]
 
-[HomePage.vue]
+[HomePage Design Goal]
+10% header at top, 10% footer at bottom with nightmode toggle. MagicFrame in the main section, with two ScreenCards, one with splash00.png, the other with SplashImage. display should be screen size, footer should always be at the bottom. Magicframe is currently only showing one screencard, but that could be a problem with the screencard. Can we give a visual styling for our side of the MagicFrame?, and make sure we are calling one MagicFrame with two ScreenCards inside it? and separate the NightMode toggle on it's own line above the links and copywrite.
+
+[Note: use import(/* @vite-ignore */...) when importing dynamically]
+
+[Homepage]
+<template>
+  <div id="app" :class="{ 'night-mode': nightMode }">
+    <header class="header">
+      <h1 class="project-title">WonderForge</h1>
+    </header>
+
+    <main class="content">
+      <h1 class="welcome-title">Welcome to WonderForge</h1>
+      <p class="welcome-subtitle">
+        A really pleasing GUI sandbox for coding projects
+      </p>
+      <MagicFrame :cards="generateScreenCards(splashImages)" />
+    </main>
+
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="#">Cafe Fred</a>
+        <a href="#">Cafe Purr</a>
+      </div>
+      <div class="toggle-container">
+        <button class="toggle-button" @click="toggleNightMode">
+          Toggle Night Mode
+        </button>
+      </div>
+      <div class="copyright">
+        &copy; 2023 Silas Knight. All rights reserved.
+      </div>
+    </footer>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import MagicFrame from '@/views/MagicFrame.vue';
+
+export default defineComponent({
+  name: 'HomePage',
+  components: {
+    MagicFrame
+  },
+  setup() {
+    const nightMode = ref(false);
+    const imagePaths = [
+      '../../assets/splash/splash00.png'
+      // Other images...
+    ];
+
+    const imageImports = imagePaths.reduce((acc, path) => {
+      acc[path] = import(path).catch(error => {
+        console.error(`Failed to load ${path}:`, error);
+      });
+      return acc;
+    }, {});
+
+    const splashImages = imagePaths.map((path, index) => {
+      return {
+        id: index + 1,
+        src: imageImports[path]?.default,
+        alt: index < 2 ? `Splash Image 0${index}` : `Secret Image 0${index - 2}`
+      };
+    });
+
+    const toggleNightMode = () => {
+      nightMode.value = !nightMode.value;
+    };
+
+    const generateScreenCards = images => {
+      return images.slice(0, 2).map((image, index) => ({
+        id: index,
+        width: 300, // Set default width
+        height: 200, // Set default height
+        imageSrc: image.src,
+        imageAlt: image.alt
+      }));
+    };
+
+    return {
+      nightMode,
+      splashImages,
+      toggleNightMode,
+      generateScreenCards
+    };
+  }
+});
+</script>
+
+<style scoped lang="scss">
+/* Typography */
+.project-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.welcome-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+/* Grid-based layout for the main section */
+.content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 1rem;
+}
+
+/* Footer styling */
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.toggle-container {
+  display: flex;
+}
+
+.toggle-button {
+  background-color: $primary;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+  background-color: $secondary;
+}
+
+.copyright {
+  font-size: 0.8rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#app {
+  animation: fadeIn 1s;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header,
+.footer {
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.night-mode {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+.toggle-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.toggle-button:hover {
+  background-color: #0056b3;
+}
+</style>

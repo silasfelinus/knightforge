@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import AppLayout from '../layout/AppLayout.vue';
-import ScreenWidget from '../views/ScreenWidget.vue';
+import MagicFrame from '../views/MagicFrame.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        component: ScreenWidget,
+        component: MagicFrame,
         meta: {
           layout: { showHeader: true, showFooter: true, showSidebar: true },
           leftSidebar: { show: true },

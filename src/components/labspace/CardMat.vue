@@ -38,7 +38,7 @@ export default defineComponent({
     const cableStart = ref({ x: 0, y: 0 });
     const cableEnd = ref({ x: 0, y: 0 });
 
-    function handlePortPosition(index, { type, x, y }) {
+    function handlePortPosition(index, { x, y }) {
       if (!cableVisible.value) {
         cableStart.value = { x, y };
         cableVisible.value = true;
