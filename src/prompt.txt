@@ -57,6 +57,23 @@ use "import(/* @vite-ignore */"... when importing dynamically
 │ └── tests/
 └── public/images/
 
+[TERMINOLOGY]
+Function: A reusable block of code that performs a specific action, can accept input (parameters), and return an output (return value).
+Parameter: A variable used in a function's declaration to represent the input passed to the function when it is called.
+Argument: A value passed to a function when it is called, corresponding to a specific parameter in the function's declaration.
+Variable: A named container used to store a value in memory.
+Constant: A named container used to store a value in memory that cannot be changed after it is assigned.
+Callback: A function passed as an argument to another function, to be executed later.
+Promise: A JavaScript object representing the eventual completion (or failure) of an asynchronous operation, and its resulting value.
+Async/Await: Syntax for working with Promises that makes asynchronous code look and behave more like synchronous code.
+Component: A reusable and self-contained piece of code that represents a part of the user interface (UI).
+Directive: A special attribute added to an element in the template that tells the Vue.js compiler to attach a specified behavior to that element.
+Event: An action or occurrence detected by the program, such as a user's interaction or an update in the application state.
+Prop: Short for "property," a custom attribute used to pass data from a parent component to a child component.
+Lifecycle Hook: A function that gets called at a specific stage of a component's life, allowing you to execute code at specific points in time.
+Computed Property: A property that depends on one or more other properties and is automatically updated when any of its dependencies change.
+Reactive Data: Data that automatically updates when its dependencies change, causing the UI to update as well.
+
 [STATE MANAGEMENT]
 useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
@@ -103,6 +120,17 @@ src/views/AccordionGallery.vue - Displays images in an accordion view
 // GenericCard.vue - A reusable card component for displaying information in a consistent format.
 // - Props: title (String), content (String), imageUrl (String), and isFeatured (Boolean, default: false)
 // - Utilizes 'ExternalLibrary' for handling animations; important methods: 'animateIn()' and 'animateOut()'
+
+
+[REQUEST]
+Reply with an outline for a management vue page that will tell me which of my app components have active routes. Include aspects like a status light nmonitor, and components sorted into various sections. Assume that any required functions can be created. Also, give me a glossary of terms that I can use to accurately describe this project. I'm coming from python and seeing this from a design lens, and I don't know how to describe things in javascript like functions, parameters, and variables.
+
+
+
+
+
+
+
 
 [FULLY OPERATIONAL]
 index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction
