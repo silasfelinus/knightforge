@@ -1,80 +1,81 @@
 <template>
-  <div class="gallery-wrap">
-    <div
-      v-for="(image, index) in splashImages"
-      :key="image.id"
-      :class="['item', `item-${index + 1}`]"
-      :style="{ backgroundImage: `url(${image.default})` }"
-    ></div>
-  </div>
+  <q-expansion-item
+    v-for="(item, index) in items"
+    :key="index"
+    :label="item.title"
+    expand-icon="arrow_drop_down"
+    default-opened
+    class="accordion-item"
+  >
+    <img :src="item.imageUrl" alt="" />
+  </q-expansion-item>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-
-interface ImageImport {
-  default: string;
-  id: number;
-  alt: string;
-}
+// AccordionGallery.vue - Displays images in an accordion view with collapsible items.
+// - Props: items (Array, required) - Objects with "title" and "imageUrl" properties.
+// - Components: QExpansionItem (Quasar) - Accordion functionality and styling.
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'AccordionGallery',
   props: {
-    imagePaths: {
-      type: Array as () => string[],
+    items: {
+      type: Array as () => { title: string; imageUrl: string }[],
       required: true,
     },
-  },
-  setup(props) {
-    const loadImages = async () => {
-      const imageImports: ImageImport[] = await Promise.all(
-        props.imagePaths.map((path, index) =>
-          import(/* @vite-ignore */ path).then((img) => ({
-            default: img.default,
-            id: index + 1,
-            alt:
-              index < 2
-                ? `Splash Image 0${index}`
-                : `Secret Image 0${index - 2}`,
-          }))
-        )
-      );
-
-      return imageImports;
-    };
-
-    const splashImages = ref<ImageImport[]>([]);
-
-    loadImages().then((images) => {
-      splashImages.value = images;
-    });
-
-    return {
-      splashImages,
-    };
   },
 });
 </script>
 
-<style scoped>
-.gallery-wrap {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 70vh;
-}
+<style lang="scss">
+.accordion-item {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 16px;
 
-.item {
-  flex: 1;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  transition: flex 0.8s ease;
-}
+  .q-expansion-item__header {
+    background-color: $primary;
+    color: $dark-page;
+    padding: 12px 16px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1.2;
+    border-radius: 4px;
 
-.item:hover {
-  flex: 7;
+    .q-item__section {
+      flex-grow: 1;
+    }
+
+    .q-item__label {
+      justify-content: space-between;
+    }
+
+    .q-item__icon {
+      color: $dark-page;
+      font-size: 24px;
+    }
+
+    .q-expansion-item__toggle {
+      color: $dark-page;
+      font-size: 24px;
+      padding: 4px;
+    }
+
+    &:hover {
+      background-color: $primary-dark;
+    }
+  }
+
+  .q-expansion-item__container {
+    background-color: $dark-page;
+    padding: 16px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 </style>
