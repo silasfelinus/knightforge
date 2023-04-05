@@ -79,16 +79,13 @@ export default defineComponent({
 
     const imageImports: ImageImports = imagePaths.reduce(
       (acc: ImageImports, path: string) => {
-        acc[path] = import(/* @vite-ignore */ path).catch((error) => {
-          console.error(`Failed to load ${path}:`, error);
-        });
-        return acc;
+        // ...
       },
       {} as ImageImports
     );
 
-    imagePaths
-      .map(async (path, index) => {
+    Promise.all(
+      imagePaths.map(async (path, index) => {
         const imageModule = await imageImports[path];
         return {
           id: index + 1,
@@ -97,11 +94,9 @@ export default defineComponent({
             index < 2 ? `Splash Image 0${index}` : `Secret Image 0${index - 2}`,
         };
       })
-      .then((splashImagesPromises) => {
-        Promise.all(splashImagesPromises).then((resolvedSplashImages) => {
-          splashImages.value = resolvedSplashImages;
-        });
-      });
+    ).then((resolvedSplashImages: Image[]) => {
+      splashImages.value = resolvedSplashImages;
+    });
 
     const toggleNightMode = () => {
       nightMode.value = !nightMode.value;
