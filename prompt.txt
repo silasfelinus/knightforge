@@ -1,91 +1,156 @@
-Hi, ChatGPT! I'm Silas Knight. I have a vue.js Quasar project.
-I'm building a gui development lab that I can use to develop future tools.
-My goal is to make something that will allow me to chain api calls to natural language processors
-with a friendly and pleasing interface that also looks great as a portfolio showpiece.
-I have the following structure and I'm trying to follow current best practices:
+<template>
+  <div :class="{ 'night-mode': nightMode, home: true }">
+    <q-header class="header">
+      <q-toolbar>
+        <q-toolbar-title class="text-h4">WonderForge</q-toolbar-title>
+      </q-toolbar>
+    </q-header>
 
-[Project]
-WonderForge
+    <div class="container">
+      <h1></h1>
+      <div class="gallery-wrap">
+        <div
+          v-for="(image, index) in splashImages"
+          :key="image.id"
+          :class="['item', `item-${index + 1}`]"
+          :style="{ backgroundImage: `url(${image.default})` }"
+        ></div>
+      </div>
+    </div>
 
-[INTENT]
-An inviting sandbox to make and chain programmatic API calls with a friendly, pleasing interface that also serves as a portfolio showpiece.
+    <q-footer class="footer">
+      <q-toolbar>
+        <q-space />
+        <q-btn class="toggle-button" color="primary" @click="toggleNightMode">
+          Toggle Night Mode
+        </q-btn>
+        <q-space />
+      </q-toolbar>
+    </q-footer>
+  </div>
+</template>
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import { QBtn } from 'quasar';
 
-[DEV ENVIRONMENT]
-Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
+interface ImageImport {
+  default: string;
+  id: number;
+  alt: string;
+}
 
-[MODULES]
-Vue 3, TypeScript, SASS, Quasar, Vuex
+export default defineComponent({
+  name: 'HomePage',
+  components: {
+    QBtn,
+  },
+  setup() {
+    const nightMode = ref(false);
 
-[STANDARDS]
-Material Design, Composition API, Prettify, SASS
+    const imagePaths = [
+      '../assets/splash/splash00.png',
+      '../assets/splash/splash01.png',
+      '../assets/splash/splash05.png',
+      '../assets/splash/splash04.png',
+    ];
 
-[ICONSET]
-fontawesome-v6
+    const loadImages = async () => {
+      const imageImports: ImageImport[] = await Promise.all(
+        imagePaths.map((path, index) =>
+          import(/* @vite-ignore */ path).then((img) => ({
+            default: img.default,
+            id: index + 1,
+            alt:
+              index < 2
+                ? `Splash Image 0${index}`
+                : `Secret Image 0${index - 2}`,
+          }))
+        )
+      );
 
-[ADDITIONAL GOALS]
-Step-Based Save System
-User Logins
-Night Mode
-Live Chat
-OpenAI Secure Key Storage
-ChatGPT Chat
-Suite of PlaySpace Tools (e.g., Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects, etc.)
-Toolshed - Draggable, Droppable, and Resizable Icons (e.g., Drop-down Selections, Buttons, Wires, Data Displays)
-[Supported File Types]
-txt, yaml, json, jpg, png, wmv, mp4, db, pdf
+      return imageImports;
+    };
 
-[NOTES]
-Use Quasar preset variables for colors
-Use Quasar components when possible
-Components should use Vuex store for preset and screen names
-Adhere to current TypeScript standards
-Maintain code consistency and avoid brittle code
-No duplicate code or redundant functions
+    const splashImages = ref<ImageImport[]>([]);
 
-[File Structure]
-Installed Quasar CLI, Vue3, SASS
-Created App.vue, HeaderWidget.vue, ScreenWidget.vue, and FooterWidget.vue
-Set up variable references and SCSS styling
-Created NavigationWidget with Vuex store for screen and preset management
-Established naming conventions for components and subcomponents
-Imported images for secret and splash screens
+    loadImages().then((images) => {
+      splashImages.value = images;
+    });
 
-[LAYOUT NOTES]
-ScreenWidgets should not overlap with header and footer
-Components should interact only through Vuex
-FooterWidget.vue should always be at the bottom, stretched to both sides
+    const toggleNightMode = () => {
+      nightMode.value = !nightMode.value;
+    };
 
-[COMPONENTS]
-LabSpace (API Chain Project)
+    return {
+      nightMode,
+      splashImages,
+      toggleNightMode,
+    };
+  },
+});
+</script>
+<style lang="scss">
+.night-mode {
+  background-color: #333;
+  color: #f0f0f0;
+}
 
-CodeCard.vue
-CardCable.vue
-CardManager.vue
-CardMat.vue
-TextInput.vue
-RedSwitch.vue
-DataUpload.vue
-WonderForge (Development Limbo)
+.header,
+.footer {
+  z-index: 1;
+}
 
-LabSpaceWidget.vue
-ToolBox.vue
-PlaySpace (Silly Widgets, Games, Social Chat)
+.container {
+  padding: 75px 0;
+  margin: 0 auto;
+  width: 900px;
+}
 
-Paintbox.vue
-PaintCanvas.vue
-SplashWidget.vue
-ChatWidget.vue
+h1 {
+  position: relative;
+  margin-bottom: 45px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 44px;
+  text-transform: uppercase;
+  color: #424242;
+}
 
-[ITERATION]
-./src/main.ts
-./src/store/index.ts
-./src/types.ts
-./src/App.vue (qlayout: HeaderWidget; gutter[ScreenWidget(left, small, vertical), ScreenWidget(center, large, square), ScreenWidget(right, small, vertical)]; FooterWidget.)
-./src/css/quasar.variables.scss
-./src/components/HeaderWidget.vue
-./src/components/RemoteWidget.vue
-./src/components/ScreenWidget.vue
-./src/components/FooterWidget.vue
+.gallery-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 70vh;
+}
 
-[STATUS]
-Reiterating through files, fixing errors to achieve basic layout functions
+.item {
+  flex: 1;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: flex 0.8s ease;
+}
+
+.item:hover {
+  flex: 7;
+}
+
+/* Add the following CSS to make the content fit in one page */
+html,
+body {
+  height: 100%;
+}
+
+#q-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+</style>
