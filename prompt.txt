@@ -92,7 +92,7 @@ src/views/AccordionGallery.vue - Displays images in an accordion view
 
 [CODING GUIDE]
 <script lang="ts">
-<style "lang=scss"
+<style "lang=scss">
 
 [COMMENT GUIDE]
 // ComponentName.vue - A brief description of the component's purpose and functionality.
@@ -105,234 +105,24 @@ src/views/AccordionGallery.vue - Displays images in an accordion view
 // - Utilizes 'ExternalLibrary' for handling animations; important methods: 'animateIn()' and 'animateOut()'
 
 [FULLY OPERATIONAL]
-index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction,AccordionGallery
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction
+
+[BUG-HUNTING]
+AccordionGallery
 
 [WORKING BUT SIMPLIFIED]
 App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
 
-[STILL NEED TO STITCH]
+[UNCLASSIFIED]
 useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, MagicFrame, SplashImage, ScreenCard, LoginForm, RemoteControl
 
-[CODESPRITZED]
-// AccordionGallery.vue - A component to display images in an accordion-style gallery.
-// - Props: items (Array of Objects with "title" and "imageUrl" properties)
-// - Utilizes 'QAccordion' and 'QAccordionItem' components from Quasar library for accordion functionality.
+[SPRITZING]
+AccordionGallery
 
-[I testing out my new commenting styling. If you have any feedback, please say. Check code for consistency and intent, return the <template> and <script> sections with the new comments and a fresh codespritz entirely based on that comment design. I'm hoping this will reinforce the code development process and make it easier to track what each component is doing.]
-End with a concise revised section for this outline summarizing efficiently in non-natural language the vital part of the description. We have to keep character limit down, so efficiency is important.
+[CODE-SPRITZED]
 
-[AccordionGallery]
 
-[Homepage]
-<template>
-  <div id="app" :class="{ 'night-mode': nightMode }">
-    <header class="header">
-      <h1 class="project-title">WonderForge</h1>
-    </header>
-
-    <main class="content">
-      <h1 class="welcome-title">Welcome to WonderForge</h1>
-      <p class="welcome-subtitle">
-        A really pleasing GUI sandbox for coding projects
-      </p>
-      <MagicFrame :cards="generateScreenCards(splashImages)" />
-    </main>
-
-    <footer class="footer">
-      <div class="footer-links">
-        <a href="#">Cafe Fred</a>
-        <a href="#">Cafe Purr</a>
-      </div>
-      <div class="toggle-container">
-        <button class="toggle-button" @click="toggleNightMode">
-          Toggle Night Mode
-        </button>
-      </div>
-      <div class="copyright">
-        &copy; 2023 Silas Knight. All rights reserved.
-      </div>
-    </footer>
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import MagicFrame from '@/views/MagicFrame.vue';
-
-export default defineComponent({
-  name: 'HomePage',
-  components: {
-    MagicFrame
-  },
-  setup() {
-    const nightMode = ref(false);
-    const imagePaths = [
-      '../../assets/splash/splash00.png'
-      // Other images...
-    ];
-
-    const imageImports = imagePaths.reduce((acc, path) => {
-      acc[path] = import(path).catch(error => {
-        console.error(`Failed to load ${path}:`, error);
-      });
-      return acc;
-    }, {});
-
-    const splashImages = imagePaths.map((path, index) => {
-      return {
-        id: index + 1,
-        src: imageImports[path]?.default,
-        alt: index < 2 ? `Splash Image 0${index}` : `Secret Image 0${index - 2}`
-      };
-    });
-
-    const toggleNightMode = () => {
-      nightMode.value = !nightMode.value;
-    };
-
-    const generateScreenCards = images => {
-      return images.slice(0, 2).map((image, index) => ({
-        id: index,
-        width: 300, // Set default width
-        height: 200, // Set default height
-        imageSrc: image.src,
-        imageAlt: image.alt
-      }));
-    };
-
-    return {
-      nightMode,
-      splashImages,
-      toggleNightMode,
-      generateScreenCards
-    };
-  }
-});
-</script>
-
-<style scoped lang="scss">
-/* Typography */
-.project-title {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.welcome-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.welcome-subtitle {
-  font-size: 1.2rem;
-  font-weight: 400;
-  margin-bottom: 2rem;
-}
-
-/* Grid-based layout for the main section */
-.content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  padding: 1rem;
-}
-
-/* Footer styling */
-.footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 1rem;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.footer-links a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.toggle-container {
-  display: flex;
-}
-
-.toggle-button {
-  background-color: $primary;
-  border: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.toggle-button:hover {
-  background-color: $secondary;
-}
-
-.copyright {
-  font-size: 0.8rem;
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-#app {
-  animation: fadeIn 1s;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.header,
-.footer {
-  height: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.night-mode {
-  background-color: #333;
-  color: #f0f0f0;
-}
-
-.toggle-button {
-  background-color: #007bff;
-  border: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.toggle-button:hover {
-  background-color: #0056b3;
-}
-</style>
+[We're polishing code and incorporating the new comment style. If you have any ideas, give them, then an optimized <template> section,
+then return the <script> section beginning  with comments, followed by a fresh code-spritz based on that comment design. I'm hoping this
+will tighten up the code process and make it easier to track what each component is doing. Finish with a revised version of the comment
+for use in this outline. I'll add the section to code-spritzed, and then we'll repeat with the next file.]
