@@ -29,6 +29,7 @@ Pinia (https://pinia.vuejs.org/)
 🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, Kaizen, DRY Principle
 No unused references
 declare types
+use "import(/* @vite-ignore */"... when importing dynamically
 
 [COLORS]
 🎨 $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
@@ -81,7 +82,7 @@ src/views/ScreenCard.vue: q-card, selectable, resizable, and movable, representi
 src/views/: ErrorNotFound, UnderConstruction, HomePage - end-point static pages
 src/views/LoginForm.vue: Demo login interface
 src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
-src/views/HomePage.vue - Demo landing page while building app function
+src/views/HomePage.vue - New Entry Portal
 
 [SUGGESTED REPLY FORMAT]
 1. Emoticon and brief project assessment
@@ -97,13 +98,7 @@ App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
 [STILL NEED TO STITCH]
 useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, MagicFrame, SplashImage, ScreenCard, LoginForm, RemoteControl
 
-[I'm focusing on design before launching into restitching
-analyze this HomePage for content, image layout, sentence structure, appeal, pizzazz, wonder. Suggest ways to improve it with every iteration. This is kaizen: iterative improvements to design. Give suggestions as if you are a designer steeped in design theory and knowledgable about ways to effectively create attention grabbing websites.]
-
-[HomePage Design Goal]
-10% header at top, 10% footer at bottom with nightmode toggle. MagicFrame in the main section, with two ScreenCards, one with splash00.png, the other with SplashImage. display should be screen size, footer should always be at the bottom. Magicframe is currently only showing one screencard, but that could be a problem with the screencard. Can we give a visual styling for our side of the MagicFrame?, and make sure we are calling one MagicFrame with two ScreenCards inside it? and separate the NightMode toggle on it's own line above the links and copywrite.
-
-[Note: use import(/* @vite-ignore */...) when importing dynamically]
+[I'm focusing on design before launching into restitching. analyze this HomePage. Suggest ways to improve itas if you are a designer steeped in design theory and knowledgable about ways to effectively create attention grabbing websites.]
 
 [Homepage]
 <template>
