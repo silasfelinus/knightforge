@@ -14,25 +14,9 @@
     </div>
   </div>
 </template>
-<template>
-  <div class="MagicFrame">
-    <div
-      v-for="(card, index) in cards"
-      :key="card.id"
-      class="ScreenCard"
-      :style="{ width: card.width + 'px', height: card.height + 'px' }"
-    >
-      <img
-        :src="card.imageSrc"
-        :alt="card.imageAlt"
-        @click="changeImage(index)"
-      />
-    </div>
-  </div>
-</template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
 interface Card {
   id: number;

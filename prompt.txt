@@ -83,14 +83,29 @@ src/views/: ErrorNotFound, UnderConstruction, HomePage - end-point static pages
 src/views/LoginForm.vue: Demo login interface
 src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
 src/views/HomePage.vue - New Entry Portal
+src/views/AccordionGallery.vue - Displays images in an accordion view
 
 [SUGGESTED REPLY FORMAT]
 1. Emoticon and brief project assessment
 2. Improved code or request for file(s)
 3. Additional comments
 
+[CODING GUIDE]
+<script lang="ts">
+<style scoped "lang=scss"
+
+[COMMENT GUIDE]
+// ComponentName.vue - A brief description of the component's purpose and functionality.
+// - Key features or requirements specific to the script section (e.g., props, data, methods, computed properties).
+// - External components or libraries utilized, along with their purpose, and any important props, events, or methods.
+
+[COMMENT GENERIC EXAMPLE]
+// GenericCard.vue - A reusable card component for displaying information in a consistent format.
+// - Props: title (String), content (String), imageUrl (String), and isFeatured (Boolean, default: false)
+// - Utilizes 'ExternalLibrary' for handling animations; important methods: 'animateIn()' and 'animateOut()'
+
 [FULLY OPERATIONAL]
-index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction, AccordionGallery
 
 [WORKING BUT SIMPLIFIED]
 App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
@@ -98,7 +113,9 @@ App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
 [STILL NEED TO STITCH]
 useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, MagicFrame, SplashImage, ScreenCard, LoginForm, RemoteControl
 
-[I'm focusing on design before launching into restitching. analyze this HomePage. Suggest ways to improve itas if you are a designer steeped in design theory and knowledgable about ways to effectively create attention grabbing websites.]
+[I've finally got a homepage gui back! It's coming together. I added in an AccordionGallery, and I want to test out my new commenting styling. If you have any feedback on it, please say. Otherwise, I'm going to give you file by file, you give the code a check for consistency and intent, then return the <template> and <script> sections with the new comments and a fresh codespritz entirely based on that comment design. I'm hoping this will tighten up the code process and make it easier to track what each component is doing.]
+
+[AccordionGallery]
 
 [Homepage]
 <template>

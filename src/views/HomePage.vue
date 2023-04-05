@@ -14,6 +14,10 @@
       <p class="welcome-subtitle">
         A really pleasing GUI sandbox for coding projects
       </p>
+      <div class="container">
+        <h1></h1>
+        <accordion-gallery :image-paths="imagePaths"></accordion-gallery>
+      </div>
       <MagicFrame :cards="generateScreenCards(splashImages)" />
     </main>
 
@@ -36,6 +40,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import MagicFrame from '@/views/MagicFrame.vue';
+import AccordionGallery from './AccordionGallery.vue';
 
 interface Image {
   id: number;
@@ -51,6 +56,7 @@ export default defineComponent({
   name: 'HomePage',
   components: {
     MagicFrame,
+    AccordionGallery,
   },
   setup() {
     const nightMode = ref(false);
@@ -69,6 +75,8 @@ export default defineComponent({
       // Other images...
     ];
 
+    const splashImages = ref<Image[]>([]);
+
     const imageImports: ImageImports = imagePaths.reduce(
       (acc: ImageImports, path: string) => {
         acc[path] = import(/* @vite-ignore */ path).catch((error) => {
@@ -79,14 +87,21 @@ export default defineComponent({
       {} as ImageImports
     );
 
-    const splashImages = imagePaths.map((path, index) => {
-      return {
-        id: index + 1,
-        src: imageImports[path]?.default,
-        alt:
-          index < 2 ? `Splash Image 0${index}` : `Secret Image 0${index - 2}`,
-      };
-    });
+    imagePaths
+      .map(async (path, index) => {
+        const imageModule = await imageImports[path];
+        return {
+          id: index + 1,
+          src: imageModule?.default,
+          alt:
+            index < 2 ? `Splash Image 0${index}` : `Secret Image 0${index - 2}`,
+        };
+      })
+      .then((splashImagesPromises) => {
+        Promise.all(splashImagesPromises).then((resolvedSplashImages) => {
+          splashImages.value = resolvedSplashImages;
+        });
+      });
 
     const toggleNightMode = () => {
       nightMode.value = !nightMode.value;
@@ -255,38 +270,6 @@ export default defineComponent({
 
 .toggle-button:hover {
   background-color: #0056b3;
-}
-
-/* Additional styles for improvements */
-.MagicFrame {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.03);
-}
-/* Additional styles for improvements */
-.MagicFrame {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.03);
-  transition: 0.3s;
-}
-
-.MagicFrame:hover {
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.ScreenCard img {
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
-}
-
-.ScreenCard img:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive design */
