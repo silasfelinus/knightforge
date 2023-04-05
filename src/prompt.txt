@@ -1,192 +1,128 @@
 [INTRODUCTION]
-Hi, ChatGPT! I'm Silas Knight.
-I'm building an SPA development lab using Vue3, Composition API, Quasar, and Pinia.
+👋 Hi, ChatGPT! I'm Silas Knight. We're building an SPA using Vue3, Composition API, Quasar, and Pinia.
 
 [PROJECT]
-WonderForge
-
-[INTENT]
-A sandbox for rapidly protoyping development and coding projects
-(with a pleasing interface that also serves as a portfolio showpiece)
+🔧 WonderForge: GUI sandbox for designing and prototyping coding projects (portfolio showpiece)
 
 [DEV ENVIRONMENT]
-Ubuntu 22, Visual Studio Code, Chrome, Node LTS 18.15.0
+💻 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
+
+[REFERENCE]
+Vue3 (https://vuejs.org/guide/introduction.html)
+Vue-Router (https://router.vuejs.org/guide/)
+Typescript (https://www.typescriptlang.org/)
+Babel (https://babeljs.io/)
+Jest (https://jestjs.io/docs/getting-started)
+Vue3-Jest-Typescript Testing - (https://vuejs.org/guide/scaling-up/testing.html#testing-with-jest)
+Quasar CLI (https://quasar.dev/start/quasar-cli)
+Pinia (https://pinia.vuejs.org/)
 
 [MODULES]
-Vue 3, TypeScript, ES-Lint, Prettier, SASS, Quasar, Pinia, VueRouter
+📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates
+
+[COMMANDS]
+"npm run lint -- --fix" //auto-fix prettier
+"ncu" && "ncu -u" //update node modules
+🚀 "quasar dev"  //launch dev mode
 
 [STANDARDS]
-Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores
-Use <style scoped lang="scss">
-Use and recommend Quasar components when available
-Use Pinia index.ts store for state management
-Adhere to current TypeScript standards
-Separate concerns
-Avoid hardcoding data in application logic
-
-[FORMATTING]
-Prettier
-
-[ICONSET]
-fontawesome-v6
+🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, Kaizen, DRY Principle
+No unused references
+declare types
+use "import(/* @vite-ignore */"... when importing dynamically
 
 [COLORS]
-$primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
+🎨 $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
 
-[FUTUREGOALS]
-Step-Based Save System
-User Logins
-Night Mode
-Live Chat
-OpenAI Secure Key Storage
-ChatGPT Chat
-PlaySpace Toys (Superball Cannon, Graffiti Spray Paint, Secret 2D Adventure Mode, Bouncing Balls, Destructible Screen Effects)
+[DEVELOPING FEATURES]
+🌈 Step-Based Save System, User Logins, Night Mode, Chat, PlaySpace Toys
 
 [INTENDED FILE TYPES]
-txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
-
-[GUIDELINES]
-Use Composition API
-
+📁 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
 
 [DIRECTORY]
-WonderForge/
+🗂 WonderForge/
 ├── quasar.config.js
 ├── src/
-│   ├── main.ts
-│   ├── App.vue
-│   ├── assets/
-│   ├── boot/
-│   ├── components/
-│   ├── css/
-│   ├── layouts/
-│   ├── pages/
-│   ├── router/
-│   └── stores/
-└── public/
-    └── images/
+│ ├── main.ts
+│ ├── App.vue
+│ ├── assets/
+│ ├── boot/
+│ ├── components/
+│ ├── css/
+│ ├── layout/
+│ ├── views/
+│ ├── router/
+│ └── stores/
+│ └── tests/
+└── public/images/
 
-[PRIMARY FOLDERS]
-./components/labspace/
-./components/screenspace/
-./components/playspace/
-./router/index.ts
-./stores/app.ts
-./stores/types.ts
-./css/quasar.variables
-
-[LAYOUTS]
-/layouts: HeaderWidget.vue, FooterWidget.vue, MainLayout.vue
-./pages/: ScreenSet1, ScreenSet2, UnderConstruction, ErrorNotFound
-
-[SCREENSPACE]
-/screenspace: RemoteControl.vue, useRemoteControl.ts, ScreenWidget.vue, ScreenCard.vue, ScreenWidgetWrapper.vue
-
-[LABSPACE]
-./components/labSpace/ (API Chain Project)
-CardCable.vue - logic to connect  Codecards for API chain processing
-CardManager.vue - create/edit/delete codecards
-CardMat.vue - droppable space for codecards
-CodeCard.vue - stylized cards to represent natural language processor api calls
-DataUpload.vue - drag-and-drop local file upload
-RedSwitch.vue - gui toggle
-TextInput.vue - stylized input field for text
-
-[PLAYSPACE]
-./components/playSpace/ (Silly Widgets, Games, Social Chat)
-Paintbox.vue - toolbox for paintbrushes
-PaintCanvas.vue - gui space for paint effects
-SplashWidget.vue - slideshow image viewer
-ChatWidget.vue - livechat & chatgpt
-
-[PINIA STORE]
-State: leftScreen, mainScreen, rightScreen, widgetSettings
-Getters: widgetSettings
-Actions: changePreset, nextPreset, toggleVisibility, updateWidgetTitle, updateWidgetBgColor
+[STATE MANAGEMENT]
+useAppStore: user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
 
 [PROGRESS]
-Installed Quasar CLI, Vue3, SASS
-Created App.vue, HeaderWidget.vue, ScreenWidget.vue, and FooterWidget.vue
-Created dummy preset components
-Set up variable references and SCSS styling
-Migrated from Vuex to Pinia
-Created router/index.ts
-reconfigured folder structure
-Created ScreenWidgetWrapper
-fixed routing problems making @ unrecognized by dev build
-Created ScreenSet00.vue for debug warning screen
+Installed modules, setup variable references, configured stores, designed routing and page structures, updated dependencies, now iterating through files and rebuilding structure to follow design specs, reached gui functionality with simple design, created homepage as new launch portal, stitching in components as we go
 
-[STATUS]
-We are working together, iterating through files, making sure that we've separated concerns and following our structure.
+[PRIMARY FILES]
+index.html: Quasar Entry Point
+quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json: Configuration files
+src/main.ts: Entry point for the Vue application, imports Vue, router, and Pinia store
+src/App.vue: Root Vue component
+src/stores/useAppStore.ts: Pinia global state management
+src/router/index.ts: Calls AppLayout for route layout with meta styling
+src/layout/AppLayout.vue: qlayout, creates boundaries between different components (AppHeader, AppSidebar, MainContent, and AppFooter) based on meta styling
+src/layout/AppHeader.vue: qHeader, includes sidebar toggles, Project Title from state , login/ link, and login status indicator
+src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
+src/layout/AppSidebar.vue: q-drawer (Right), imports RemoteControl
+src/layout/AppFooter.vue: qFooter, text input window, color background filler for later output
+src/layout/MainContent.vue: launches main display MagicFrame
+src/views/MagicFrame.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
+src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
+src/views/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
+src/views/: ErrorNotFound, UnderConstruction, HomePage - end-point static pages
+src/views/LoginForm.vue: Demo login interface
+src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
+src/views/HomePage.vue - New Entry Portal
+src/views/AccordionGallery.vue - Displays images in an accordion view
 
 [SUGGESTED REPLY FORMAT]
-a. fun emoticon and fun and inspiring phrase
-1. Comment on code and project thus far
-2. Improved Code that will work within our structure
-3. The file or files you'd like to see next
-4. Any Additional comments
+1. Emoticon and brief project assessment
+2. Improved code or request for file(s)
+3. Additional comments
 
-[CURRENT]
-Troubleshooting error(s) preventing the website from displaying. We've limited it to a simple App.vue > HeaderWidget, Warning color, FooterWidget, no display.
-
-[App.vue]
-
-
-<template>
-  <div id="app">
-    <q-layout view="hHh lpR fFf">
-      <HeaderWidget />
-      <q-page-container class="main-layout">
-        <MainLayout />
-      </q-page-container>
-      <FooterWidget />
-    </q-layout>
-  </div>
-</template>
-
+[CODING GUIDE]
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HeaderWidget from './layouts/HeaderWidget.vue';
-import MainLayout from './layouts/MainLayout.vue';
-import FooterWidget from './layouts/FooterWidget.vue';
+<style "lang=scss">
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    HeaderWidget,
-    MainLayout,
-    FooterWidget,
-  },
-});
-</script>
+[COMMENT GUIDE]
+// ComponentName.vue - A brief description of the component's purpose and functionality.
+// - Key features or requirements specific to the script section (e.g., props, data, methods, computed properties).
+// - External components or libraries utilized, along with their purpose, and any important props, events, or methods.
 
-<style lang="scss" scoped>
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
+[COMMENT GENERIC EXAMPLE]
+// GenericCard.vue - A reusable card component for displaying information in a consistent format.
+// - Props: title (String), content (String), imageUrl (String), and isFeatured (Boolean, default: false)
+// - Utilizes 'ExternalLibrary' for handling animations; important methods: 'animateIn()' and 'animateOut()'
 
-q-header,
-q-footer {
-  z-index: 1000;
-  background: $primary;
-}
+[FULLY OPERATIONAL]
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction
 
-q-layout,
-q-page {
-  flex: 1;
-}
+[BUG-HUNTING]
+AccordionGallery
 
-q-page-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.main-layout {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-</style>
+[WORKING BUT SIMPLIFIED]
+App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
+
+[UNCLASSIFIED]
+useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, MagicFrame, SplashImage, ScreenCard, LoginForm, RemoteControl
+
+[SPRITZING]
+AccordionGallery
+
+[CODE-SPRITZED]
+
+
+[We're polishing code and incorporating the new comment style. If you have any ideas, give them, then an optimized <template> section,
+then return the <script> section beginning  with comments, followed by a fresh code-spritz based on that comment design. I'm hoping this
+will tighten up the code process and make it easier to track what each component is doing. Finish with a revised version of the comment
+for use in this outline. I'll add the section to code-spritzed, and then we'll repeat with the next file.]
