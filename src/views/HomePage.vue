@@ -1,26 +1,42 @@
 <template>
-  <div :class="{ 'night-mode': nightMode }">
-    <h1 class="title">Welcome to WonderForge</h1>
-    <p class="subtitle">
-      The ultimate GUI sandbox for designing and prototyping coding projects
-    </p>
-    <div class="images-container">
-      <img
-        v-for="image in splashImages"
-        :key="image.id"
-        :src="image.src"
-        :alt="image.alt"
-        class="splash-image"
-      />
+  <div :class="{ 'night-mode': nightMode, home: true }">
+    <q-header class="header">
+      <q-toolbar>
+        <q-toolbar-title class="text-h4">WonderForge</q-toolbar-title>
+      </q-toolbar>
+    </q-header>
+
+    <div class="content">
+      <h1 class="text-h3 q-mb-lg">Welcome to WonderForge</h1>
+      <p class="text-h5 q-mb-xl">
+        A really pleasing GUI sandbox for coding projects
+      </p>
+      <div class="row q-gutter-md images-container">
+        <SplashImage
+          v-for="image in splashImages"
+          :key="image.id"
+          :src="image.default"
+          :alt="image.alt"
+          class="splash-image"
+        />
+      </div>
     </div>
-    <q-btn class="toggle-button" color="primary" @click="toggleNightMode">
-      Toggle Night Mode
-    </q-btn>
+
+    <q-footer class="footer">
+      <q-toolbar>
+        <q-space />
+        <q-btn class="toggle-button" color="primary" @click="toggleNightMode">
+          Toggle Night Mode
+        </q-btn>
+        <q-space />
+      </q-toolbar>
+    </q-footer>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import SplashImage from '@/views/SplashImage.vue';
 
 export default defineComponent({
   name: 'HomePage',
@@ -55,49 +71,68 @@ export default defineComponent({
     return {
       nightMode,
       splashImages,
-      toggleNightMode
+      toggleNightMode,
+      SplashImage
     };
   }
 });
 </script>
 
 <style lang="scss">
-.title {
-  font-size: 3em;
-  font-weight: bold;
-  text-align: center;
-  margin: 1.5em 0;
+.night-mode {
+  background-color: #333;
+  color: #f0f0f0;
 }
 
-.subtitle {
-  font-size: 1.5em;
+.header,
+.footer {
+  z-index: 1;
+}
+
+.text-h3,
+.text-h5 {
   text-align: center;
-  margin-bottom: 2em;
 }
 
 .images-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1em;
-  margin-bottom: 2em;
 }
 
 .splash-image {
-  max-width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 20%;
+  padding: 1rem;
 }
 
 .toggle-button {
   display: block;
-  margin: 0 auto;
 }
 
-.night-mode {
-  background-color: #212121;
-  color: #fff;
+/* Add the following CSS to make the content fit in one page */
+html,
+body {
+  height: 100%;
+}
+
+#q-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
