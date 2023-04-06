@@ -1,50 +1,71 @@
 <template>
-  <div class="q-pa-md">
-    <q-draggable
-      :prevent-scroll="true"
-      :scroll-target="scrollContainer"
-      @drag="onDrag"
-    >
-      <q-resizable
-        :prevent-scroll="true"
-        :min-width="50"
-        :min-height="50"
-        @resize="onResize"
-      >
-        <div
-          ref="magicScreen"
-          class="magic-screen bg-primary text-white text-center q-gutter-md"
-          :style="styleObject"
-        >
-          <p>Magic Screen</p>
-        </div>
-      </q-resizable>
-    </q-draggable>
+  <div
+    ref="magicScreen"
+    class="magic-screen bg-primary text-white text-center q-gutter-md"
+    :style="styleObject"
+    @interact-dragmove="onDrag"
+    @interact-resizemove="onResize"
+  >
+    <p>Magic Screen</p>
   </div>
 </template>
 
 <script>
+import interact from 'interactjs';
+
 export default {
   data() {
     return {
-      scrollContainer: null,
       styleObject: {
         width: '200px',
         height: '100px',
+        position: 'absolute',
+        transform: 'translate(0px, 0px)',
       },
     };
   },
   mounted() {
-    this.scrollContainer = this.$refs.magicScreen.parentElement.parentElement;
+    interact(this.$refs.magicScreen)
+      .draggable({
+        inertia: true,
+        restrict: {
+          restriction: 'parent',
+          elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
+        },
+        onmove: this.onDrag,
+        onend: this.onDragEnd,
+      })
+      .resizable({
+        edges: { left: true, right: true, bottom: true, top: true },
+        restrictEdges: {
+          outer: 'parent',
+          endOnly: true,
+        },
+        restrictSize: {
+          min: { width: 50, height: 50 },
+        },
+        onmove: this.onResize,
+      });
   },
   methods: {
-    onDrag(_, event) {
-      this.styleObject.left = event.left + 'px';
-      this.styleObject.top = event.top + 'px';
+    onDrag(event) {
+      const x =
+        (parseFloat(this.styleObject.transform.split(',')[0].split('(')[1]) ||
+          0) + event.dx;
+      const y =
+        (parseFloat(this.styleObject.transform.split(',')[1]) || 0) + event.dy;
+      this.styleObject.transform = `translate(${x}px, ${y}px)`;
     },
-    onResize(_, event) {
-      this.styleObject.width = event.width + 'px';
-      this.styleObject.height = event.height + 'px';
+    onResize(event) {
+      this.styleObject.width = event.rect.width + 'px';
+      this.styleObject.height = event.rect.height + 'px';
+      const x =
+        (parseFloat(this.styleObject.transform.split(',')[0].split('(')[1]) ||
+          0) + event.deltaRect.left;
+      const y =
+        (parseFloat(this.styleObject.transform.split(',')[1]) || 0) +
+        event.deltaRect.top;
+      this.styleObject.transform = `translate(${x}px, ${y}px)`;
     },
   },
 };

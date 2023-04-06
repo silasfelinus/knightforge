@@ -2,17 +2,20 @@
   <div id="app-header">
     <!-- Your other header components -->
   </div>
+  <full-page-wrapper></full-page-wrapper>
   <AccordionGallery />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AccordionGallery from './AccordionGallery.vue';
+import FullPageWrapper from './FullPageWrapper.vue';
 
 export default defineComponent({
   name: 'HomePage',
   components: {
     AccordionGallery,
+    FullPageWrapper,
   },
 });
 </script>
