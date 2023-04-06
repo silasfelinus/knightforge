@@ -1,6 +1,16 @@
+<!-- HomePage.vue -->
+<template>
+  <div id="app-header">
+    <!-- Your other header components -->
+    <button @click="toggleButterflyEffect">Toggle Butterfly Effect</button>
+  </div>
+  <ButterflyEffectWrapper />
+</template>
+
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { QBtn } from 'quasar';
+import { useAppStore } from '@/stores/useAppStore';
+import ButterflyEffectWrapper from '@/butterfly/ButterflyEffectWrapper.vue';
 
 interface ImageImport {
   default: string;
@@ -11,10 +21,11 @@ interface ImageImport {
 export default defineComponent({
   name: 'HomePage',
   components: {
-    QBtn,
+    ButterflyEffectWrapper,
   },
   setup() {
     const nightMode = ref(false);
+    const appStore = useAppStore();
 
     const imagePaths = [
       '../assets/splash/splash00.png',
@@ -50,10 +61,15 @@ export default defineComponent({
       nightMode.value = !nightMode.value;
     };
 
+    const toggleButterflyEffect = () => {
+      appStore.toggleButterflyEffect();
+    };
+
     return {
       nightMode,
       splashImages,
       toggleNightMode,
+      toggleButterflyEffect,
     };
   },
 });
@@ -122,3 +138,5 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+</style>
