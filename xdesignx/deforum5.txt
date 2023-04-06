@@ -77,9 +77,6 @@ Currently only available in 2D & 3D mode, the timestamp is saved as the settings
 yyyymmddhhmmss - a timestamp of when the run was started to diffuse.
 
 
-
-prompts on next page →
-
 2b. PROMPTS
 
 In the above example, we have two groupings of prompts: the still frames *prompts* on top, and the animation_prompts below. During the “NONE” animation mode, the diffusion will look to the top group of prompts to produce images. In all other modes, (2D, 3D etc) the diffusion will reference the second lower group of prompts.
