@@ -34,7 +34,8 @@ Let's create a visually stunning showpiece that wows people when they go to the 
 [PROMPTS]
 Prompts are either global or start at a frame. A positive prompt will encourage the video to generate images with that phrase, a nagative prompt will do the opposite. This can create powerful effects by combining frame (f) with positive and negative prompts and using prompt weights.
 
-Prompt Weights are numbers after a prompt "apple:1" is equivalent to "apple", "apple:1.3" would be a notable increase in apple-ness. We'll be using ranges from .01 to 2.0. Prompt Weights should not be negative or zero.
+Prompt Weights are numbers after a prompt "apple:1" is equivalent to "apple", "apple:1.3" would be a notable increase in apple-ness. We'll be using ranges from .00 to 2.0. Prompt Weights should not be negative, they should just have a positive weight in the negative section.
+
 
 [MATHS]
  "apple:`where(cos(t)>=0, cos(t), 0)`, snow --neg strawberry:`where(cos(t)<0, -cos(t), 0)`"
