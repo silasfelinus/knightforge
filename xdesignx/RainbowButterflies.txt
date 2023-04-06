@@ -1,0 +1,80 @@
+[PROJECT OUTLINE] Project: Rainbow Butterflies A dynamic and interactive
+application featuring draggable and droppable screens where butterflies can
+land.
+
+[COMPONENTS AND REQUIREMENTS]
+FullPageWrapper.vue
+Purpose: Wraps the
+entire display for adding visual effects and managing layout.
+
+MagicScreen.vue
+Purpose: Create draggable and droppable screens that butterflies can land onto.
+Props: screenId (String) Events: screenDropped (emits screenId)
+
+RainbowButterfly.vue
+Purpose: A base component for the butterfly.
+Props: butterflyId (String), color (String) Events: butterflyLanded (emits butterflyId)
+
+ButterflyAnimation.ts
+Purpose: Contains the logic for butterfly animations.
+Methods: animateFlight(), animateLanding() ButterflySvg.ts Purpose: Provides the
+math and SVG paths for butterfly animations. Methods: getSvgPath()
+
+ButterflySwarm.vue
+Purpose: Handles butterfly interactions and manages their
+positions on screens.
+Reactive Data: butterflies (Array)
+Methods:
+addButterfly(), removeButterfly() ButterflyManager.vue
+Purpose: Provides
+controls for adding and removing butterflies.
+Methods: addButterfly(),removeButterfly()
+ScreenManager.vue
+Purpose: Provides controls for adding and
+removing Magic Screens.
+Methods: addScreen(), removeScreen()
+
+[STEPS]
+1. Create FullPageWrapper.vue:
+
+Add a div or another suitable HTML element to wrap the entire display.
+Style the wrapper as needed to manage the layout.
+
+2. Develop MagicScreen.vue:
+
+Use the Vue draggable library or another suitable library to create a draggable and droppable screen.
+Make sure to include the screenId prop and emit the screenDropped event with screenId when the screen is dropped.
+
+
+3. Build RainbowButterfly.vue:
+
+Create a basic butterfly component using the provided props butterflyId and color.
+Make sure to emit the butterflyLanded event with butterflyId when the butterfly lands on a screen.
+
+4. Implement ButterflyAnimation.ts:
+
+Create functions animateFlight() and animateLanding() that handle the animation of butterflies during flight and landing.
+
+5. Create ButterflySvg.ts:
+
+Write a function getSvgPath() to generate the SVG paths for the butterflies.
+
+6. Develop ButterflySwarm.vue:
+
+Use the reactive data butterflies to store the current state of the butterflies.
+Implement methods addButterfly() and removeButterfly() to manage butterfly addition and removal.
+Utilize the functions from ButterflyAnimation.ts and ButterflySvg.ts to animate the butterflies.
+
+
+7. Build ButterflyManager.vue:
+
+Create a UI for adding and removing butterflies using the methods addButterfly() and removeButterfly().
+
+8. Develop ScreenManager.vue:
+
+Create a UI for adding and removing Magic Screens using the methods addScreen() and removeScreen().
+
+9. Integrate the components:
+
+Add MagicScreen.vue, RainbowButterfly.vue, ButterflySwarm.vue, ButterflyManager.vue, and ScreenManager.vue into FullPageWrapper.vue.
+Ensure that the interactions between the components are working correctly, such as adding/removing butterflies and screens, and butterflies landing on screens.

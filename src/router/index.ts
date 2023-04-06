@@ -8,12 +8,14 @@ import LoginForm from '../views/LoginForm.vue';
 import RemoteControl from '../views/RemoteControl.vue';
 import ExampleHome from '../example/ExampleHome.vue';
 import AccordionGallery from '../layout/AccordionGallery.vue';
+import ButterflyPage from '../layout/ButterflyPage.vue';
+import FullPageWrapper from '../layout/FullPageWrapper.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'AccordionGalleryHome',
-    component: AccordionGallery,
+    component: HomePage,
   },
   {
     path: '/home',
@@ -44,6 +46,16 @@ const routes: RouteRecordRaw[] = [
     path: '/remote',
     name: 'RemoteControl',
     component: RemoteControl,
+  },
+  {
+    path: '/butterfly',
+    name: 'ButterflyPage',
+    component: ButterflyPage,
+  },
+  {
+    path: '/wrapper',
+    name: 'FullPageWrapper',
+    component: FullPageWrapper,
   },
   {
     path: '/:pathMatch(.*)*',

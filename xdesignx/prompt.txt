@@ -101,3 +101,37 @@ useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainConten
 // - Images are loaded dynamically using Vite's `/@vite-ignore/` directive.
 
 [REQUEST]
+Help with this component by walking through steps. We'll make fully new files for each part. Offer help stitching in where appropriate.
+
+[PROJECT OUTLINE]
+Project: Rainbow Butterflies
+A dynamic and interactive application featuring draggable and droppable screens where butterflies can land.
+
+[COMPONENTS AND REQUIREMENTS]
+
+FullPageWrapper.vue
+Purpose: Wraps the entire display for adding visual effects and managing layout.
+MagicScreen.vue
+Purpose: Create draggable and droppable screens that butterflies can land onto.
+Props: screenId (String)
+Events: screenDropped (emits screenId)
+RainbowButterfly.vue
+Purpose: A base component for the butterfly.
+Props: butterflyId (String), color (String)
+Events: butterflyLanded (emits butterflyId)
+ButterflyAnimation.ts
+Purpose: Contains the logic for butterfly animations.
+Methods: animateFlight(), animateLanding()
+ButterflySvg.ts
+Purpose: Provides the math and SVG paths for butterfly animations.
+Methods: getSvgPath()
+ButterflySwarm.vue
+Purpose: Handles butterfly interactions and manages their positions on screens.
+Reactive Data: butterflies (Array)
+Methods: addButterfly(), removeButterfly()
+ButterflyManager.vue
+Purpose: Provides controls for adding and removing butterflies.
+Methods: addButterfly(), removeButterfly()
+ScreenManager.vue
+Purpose: Provides controls for adding and removing Magic Screens.
+Methods: addScreen(), removeScreen()

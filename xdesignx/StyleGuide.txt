@@ -67,17 +67,15 @@ Ensure responsiveness and adaptability to different screen sizes.
 [TESTING][UNDEVELOPED]
 Write unit tests for the component using Jest and Vue Test Utils, ensuring correct behavior for various inputs and interactions.
 
-[INTEGRATION]
-Integrate the new component into the project, following the specified file and component modifications. (can we make this a single action with a global component registry?)
-
-//add to appropriate section(s) of /router/index.ts
-import ExampleHomepage from '../example/ExampleHomepage.vue';
-  {
-    path: '/example-homepage',
-    name: 'ExampleHomepage',
-    component: ExampleHomepage,
-  },
-
-//add <ComponentName>to homePage
-
-//Change ComponentStatus to Active in useAppStore/useComponentManager
+Please Polish this outline:
+[Project]
+Rainbow Butterflies
+Requires:
+FullPageWrapper: Wraps the display for effects
+MagicScreen.vue: draggable droppable screens that the Butterfly can land onto
+RainbowButterfly.vue - Butterfly base component
+ButteflyAnimation.ts - Butterfly animation logic
+ButterflySvg.ts - math for the animation
+ButterflySwarm.vue: butterfly interaction logic
+ButterflyManager.vue: Add, Remove Butterflies
+ScreenManager: Add, remove Magic Screens
