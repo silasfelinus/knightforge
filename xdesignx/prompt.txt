@@ -61,27 +61,21 @@ user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHisto
 Interface: User, Screencard, ComponentVisibility
 
 [PROGRESS]
-Installed modules, basic routing and page structures, created HomePage as new launch portal, added accordion gallery, moved style and design sections to independent "WonderForge Styleguide", created ExampleProject and ComponentStatus to test routing and component juggling
+Installed modules, basic routing and page structures, created HomePage, added accordion gallery, moved style and design sections to independent "WonderForge Styleguide", created ExampleProject and ComponentStatus to test routing and component juggling, started on ButterflyMascot and UnderConstruction page.
 
 [CONFIGURATION FILES]
 index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, App.vue, useAppStore.ts, router/index.ts, types.ts
 
-src/layout/AppLayout.vue: qlayout, creates boundaries between different components (AppHeader, AppSidebar, MainContent, and AppFooter) based on meta styling
-src/layout/AppHeader.vue: qHeader, includes sidebar toggles, Project Title from state , login/ link, and login status indicator
-src/layout/AppSidebar.vue: q-drawer (Left), imports UnderConstruction view
-src/layout/AppSidebar.vue: q-drawer (Right), imports RemoteControl
-src/layout/AppFooter.vue: qFooter, text input window, color background filler for later output
-src/layout/MainContent.vue: launches main display MagicFrame
 src/views/MagicFrame.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
 src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
 src/views/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
-src/views/: ErrorNotFound, UnderConstruction, HomePage - end-point static pages
-src/views/LoginForm.vue: Demo login interface
+src/views/: ErrorNotFound, UnderConstruction - end-point static pages
+src/views/LoginForm.vue: Demo login interface [disabled]
 src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
-src/views/HomePage.vue - New Entry Portal
+src/views/HomePage.vue - Entry Portal
 src/views/AccordionGallery.vue - Displays images in an accordion view
 src/views/ComponentStatus.vue - Admin page to identify working routes and organize components
-src/components/HolographicButterfly.vue - Website mascot and inspiration for fancy js effects
+src/butterfly/ButterflyEffectWrapper.vue - Website mascot and inspiration for fancy js effects
 
 [SUGGESTED REPLY FORMAT]
 1. Emoticon and brief project assessment
@@ -89,10 +83,10 @@ src/components/HolographicButterfly.vue - Website mascot and inspiration for fan
 3. Additional comments
 
 [FULLY OPERATIONAL]
-index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction, AccordionGallery
 
 [BUG-HUNTING]
-AccordionGallery
+ButterflyWrapper
 
 [WORKING BUT SIMPLIFIED]
 App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)

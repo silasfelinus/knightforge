@@ -6,10 +6,11 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import { useAppStore } from '@/stores/useAppStore';
 import ButterflyMascot from './ButterflyMascot.vue';
 
-export default {
+export default defineComponent({
   name: 'ButterflyEffectWrapper',
   components: {
     ButterflyMascot,
@@ -22,5 +23,5 @@ export default {
       showButterflyEffect,
     };
   },
-};
+});
 </script>

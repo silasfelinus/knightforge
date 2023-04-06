@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Accordion Gallery</h1>
+    <h1>Welcome to the WonderForge</h1>
     <div class="gallery-wrap">
       <div
         v-for="image in splashImages"

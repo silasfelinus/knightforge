@@ -12,21 +12,26 @@ import AccordionGallery from '../views/AccordionGallery.vue';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    name: 'AccordionGallery',
+    component: AccordionGallery,
+  },
+  {
+    path: '/home',
     name: 'HomePage',
     component: HomePage,
   },
   {
-    path: '/under-construction',
+    path: '/construction',
     name: 'UnderConstruction',
     component: UnderConstruction,
   },
   {
     path: '/gallery',
-    name: 'Gallery',
+    name: 'AccordionGallery',
     component: AccordionGallery,
   },
   {
-    path: '/example-homepage',
+    path: '/example',
     name: 'ExampleHome',
     component: ExampleHome,
   },
@@ -36,7 +41,7 @@ const routes: RouteRecordRaw[] = [
     component: LoginForm,
   },
   {
-    path: '/remote-control',
+    path: '/remote',
     name: 'RemoteControl',
     component: RemoteControl,
   },

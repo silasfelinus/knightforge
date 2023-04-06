@@ -1,60 +1,55 @@
-<template>
-  <div id="butterfly-mascot" ref="container">
-    <!-- Create an SVG container for the butterfly -->
-    <svg ref="svg" width="100%" height="100%" @mousemove="onMouseMove"></svg>
-  </div>
-</template>
-
-<script>
+<script lang="ts">
+import { defineComponent, onMounted, ref } from 'vue';
 import { createButterflySvg } from './butterflySvg';
 import {
   animateButterfly,
   updateButterflyPosition,
 } from './ButterflyAnimation';
 
-export default {
+export default defineComponent({
   name: 'ButterflyMascot',
-  data() {
+  setup() {
+    const container = ref<HTMLElement | null>(null);
+    const svg = ref<SVGElement | null>(null);
+    const butterfly = ref<SVGElement | null>(null);
+    const mouseX = ref(0);
+    const mouseY = ref(0);
+
+    onMounted(() => {
+      initSvg();
+      createButterfly();
+    });
+
+    function initSvg() {
+      if (container.value && svg.value) {
+        svg.value.setAttribute(
+          'viewBox',
+          `0 0 ${container.value.clientWidth} ${container.value.clientHeight}`
+        );
+      }
+    }
+
+    function createButterfly() {
+      butterfly.value = createButterflySvg();
+      if (svg.value) {
+        svg.value.appendChild(butterfly.value);
+        animateButterfly(butterfly.value);
+      }
+    }
+
+    function onMouseMove(event: MouseEvent) {
+      mouseX.value = event.clientX;
+      mouseY.value = event.clientY;
+      if (butterfly.value) {
+        updateButterflyPosition(butterfly.value, mouseX.value, mouseY.value);
+      }
+    }
+
     return {
-      butterfly: null,
-      mouseX: 0,
-      mouseY: 0,
+      container,
+      svg,
+      onMouseMove,
     };
   },
-  mounted() {
-    // Initialize the SVG and create the butterfly
-    this.initSvg();
-    this.createButterfly();
-  },
-  methods: {
-    initSvg() {
-      const container = this.$refs.container;
-      this.$refs.svg.setAttribute(
-        'viewBox',
-        `0 0 ${container.clientWidth} ${container.clientHeight}`
-      );
-    },
-    createButterfly() {
-      this.butterfly = createButterflySvg();
-      this.$refs.svg.appendChild(this.butterfly);
-      animateButterfly(this.butterfly);
-    },
-    onMouseMove(event) {
-      // Update the mouse coordinates when the mouse moves
-      this.mouseX = event.clientX;
-      this.mouseY = event.clientY;
-      updateButterflyPosition(this.butterfly, this.mouseX, this.mouseY);
-    },
-  },
-};
+});
 </script>
-
-<style scoped>
-#butterfly-mascot {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-</style>

@@ -3,6 +3,7 @@
   <div id="app-header">
     <!-- Your other header components -->
     <button @click="toggleButterflyEffect">Toggle Butterfly Effect</button>
+    <router-link to="/gallery">Go to Accordion Gallery</router-link>
   </div>
   <ButterflyEffectWrapper />
 </template>
@@ -10,7 +11,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useAppStore } from '@/stores/useAppStore';
-import ButterflyEffectWrapper from '@/butterfly/ButterflyEffectWrapper.vue';
+import ButterflyEffectWrapper from '../butterfly/ButterflyEffectWrapper.vue';
 
 export default defineComponent({
   name: 'HomePage',
@@ -30,6 +31,8 @@ export default defineComponent({
   },
 });
 </script>
+
+<!-- The rest of the style from the previous response -->
 
 <style lang="scss">
 .night-mode {
