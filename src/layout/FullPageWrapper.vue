@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import MagicScreen from './MagicScreen.vue';
+import MagicScreen from './MagicScreenJS.vue';
 
 export default {
   components: {
@@ -18,6 +18,6 @@ export default {
 .full-page-wrapper {
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
 }
 </style>
