@@ -1,0 +1,81 @@
+[INTRODUCTION]
+
+Design me a video for WonderForge, my gui development lab. My inspiration was Unreal Editor and Chainner, I wanted something that I could use to chain together API calls to natural language processors like yourself, in a pleasing interface. I want this to be my flagship portfolio piece, and so I want an impressive, high production experience when people view the website. I've built a very consistent and reliable set of tools to make quality animation videos,  I want to parlay that into a visually stunning showpiece that wows people when they go to the site. Knock them off their feet impressive with tricks and styling. I have ideas, by using starting the video within a synthetic website frame, and then breaking out of that structure by creating more frames and establishing a patterned structure, but then breaking the structuere in the end with fourth-wall breaking js effects.
+
+You will send back ten scenes for my video that will play at the beginning of the website launch, in the first synthetic frame. At the very end, we need a particular scene in order to morph into the rest of the effects: Cybernetic butterflies flying away, which will trigger a butterly effect that breaks the fourth wall by covering th eentire screen (I intend to make a butterfly js effect where they will randomly fly about....if I can manage, they will help move screen elements once I add in voice activated screen manipulation...I'm very excited!)
+
+So, that was background and perhaps some general inspiration. This is
+So, we need 10 scenes for the video, directed as best as possible, for a
+video language generator (deforum). Eventually, we will stitch them together into the framework
+for Deforum, but for now, just know that we can set the scene and then direct it as we go with additional options.
+In general, think of reasonably achievably affects, but we want each scene to highlight at least one or more cinematography techniques, most affects are *easily* achievable with our video editing software, all we need are natural language directions. So, please, think of specific effects and literal directions to achieve them
+
+The concept is introducing the Wonderforge, and the butterfly mascot. I'm creating the mascot now, using a wide range of prompts and modellers to find a good design. ONE of the design pitches is "bio-engineered butterfly, chameleon wings, large robotic eyes, contrasting entities, microcosmic wonder, elemental synergy, fluo fishscale accents, design by pixar and Zdzislaw Beksinski, Unreal 5, DAZ, hyperrealistic, Octane Render, cosplay, RPG portrait, dynamic shadows, meticulous detail, harvest-toned vibrancy, cinematic, chromatic spectrum". Another of the pitches is "stylized artistic blueprint schematics of cybernetic butterfly, stylized art schematics, leonardo da vinci art style, blue lab blueprint schematics, whimsy, robot butterfly, scribbles, "cat ears?" "cat tail?", decorative question mark scribbles, grid-based layout, unrolled blueprint framing"
+
+ Use whatever techniques you know of website splash effects, give any recommendations to improve this concept, and reply back with a series of10 with logical transitions, captivating camera work, fun, modern effects, and high-end production values. Please also include a collection of prompt phrases that can be used for mood and general animation style. I want something visually stunning, with hypersaturated colors, and lush, flowing animation, like Paprika, Promare, or Demon Slayer: Kimetsu no Yaiba, but not using any of those specific titles, just describing their essential elements.
+ FRAMENUMBER: SCENE (please suggest length and number of frames, also remember that scenes do not have to have the same number of frames, use modern techniques to make a creative but visually captivating and cohesive experience) Beats should include describing the incredibly wonderous wonderforge, the creation of a cybernetic butterfly, it rising up magestically, and a glorious ending with butterflies flying everywhere in a swirl of rainbow colors.
+
+[SCENE PITCH]
+Scene 1: WonderForge Introduction (Duration: 4 seconds, 96 frames)
+
+Start with a synthetic website frame fading in, with a dark, sleek background.
+The WonderForge logo emerges with a bright, hypersaturated color palette, accompanied by a gentle lens flare effect.
+Dynamic shadows and light flicker around the logo, showcasing the lab's cutting-edge technology.
+Scene 2: Blueprint Concept (Duration: 6 seconds, 144 frames)
+
+Transition to a blueprint-style background with grid-based layout and Leonardo da Vinci art style.
+Stylized artistic schematics of cybernetic butterfly components appear one by one with whimsical question mark scribbles.
+The camera zooms in on various parts, emphasizing meticulous details and creating a sense of wonder.
+Scene 3: Chameleon Wings Assembly (Duration: 5 seconds, 120 frames)
+
+With dynamic camera work, follow the cybernetic butterfly components coming together to form chameleon wings.
+Incorporate elemental synergy and fluo fishscale accents for visual appeal.
+Use Octane Render for a hyperrealistic appearance and flowing animation.
+Scene 4: Large Robotic Eyes Activation (Duration: 4 seconds, 96 frames)
+
+Show the large robotic eyes of the butterfly mascot flickering to life with vibrant colors.
+Use depth of field and dynamic shadows to enhance the sense of depth and focus on the eyes.
+Add subtle, chromatic aberration effects to create a more immersive and captivating visual.
+Scene 5: Butterfly Mascot Emergence (Duration: 6 seconds, 144 frames)
+
+The butterfly mascot rises up majestically with a dramatic camera pan from below.
+Showcase contrasting entities, such as bio-engineered butterfly components and artistic blueprint elements.
+Use a harvest-toned vibrancy to create a cinematic atmosphere.
+Scene 6: Cybernetic Butterfly Flight (Duration: 7 seconds, 168 frames)
+
+The butterfly mascot takes flight, leaving a trail of stylized blueprint schematics.
+The camera follows the butterfly, revealing the vast, 3D space of the WonderForge lab.
+Utilize a parallax effect to emphasize depth and create a sense of scale.
+Scene 7: Elemental Synergy Showcase (Duration: 5 seconds, 120 frames)
+
+Display the butterfly mascot interacting with different elements, such as fire, water, and wind.
+Use dynamic camera work and cuts to create a sense of energy and excitement.
+Emphasize the harmony of elemental synergy through color and animation.
+Scene 8: The WonderForge Lab (Duration: 6 seconds, 144 frames)
+
+Pan across the lab, showcasing various innovative tools and software used in the development process.
+Use depth of field, dynamic shadows, and reflections to emphasize the lab's cutting-edge technology.
+Implement smooth transitions and flowing animation to guide the viewer's eye.
+Scene 9: The Butterfly Effect (Duration: 7 seconds, 168 frames)
+
+Show multiple cybernetic butterflies emerging from the lab, each with unique designs and vibrant colors.
+Use a combination of slow-motion and fast cuts to highlight the diversity of the butterflies.
+Create a sense of wonder with intense colors and dramatic lighting.
+Scene 10: Climactic Finale (Duration: 8 seconds, 192 frames)
+
+Cybernetic butterflies fill the screen, flying everywhere in a swirl of rainbow colors.
+Trigger the butterfly effect, breaking the fourth wall with a dazzling JS effect.
+Transition seamlessly to the website's homepage, as the butterfly swarm disperses to reveal the website content.
+Mood and Animation Style Prompts:
+
+Hypersaturated colors
+Lush, flowing animation
+Dynamic camera work
+Depth of field and parallax effects
+Elemental synergy
+----
+[DEFORUM NOTES]
+Prompt weights less than zero don't work! Split the positive and the negative prompt in the json section using --neg argument like:
+
+ "apple:`where(cos(t)>=0, cos(t), 0)`, snow --neg strawberry:`where(cos(t)<0, -cos(t), 0)`"
+
