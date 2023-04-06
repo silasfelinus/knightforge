@@ -6,7 +6,8 @@ import UnderConstruction from '../views/UnderConstruction.vue';
 import HomePage from '../views/HomePage.vue';
 import LoginForm from '../views/LoginForm.vue';
 import RemoteControl from '../views/RemoteControl.vue';
-import ExampleHomepage from '../example/ExampleHomepage.vue';
+import ExampleHome from '../example/ExampleHome.vue';
+import AccordionGallery from '../views/AccordionGallery.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -20,9 +21,14 @@ const routes: RouteRecordRaw[] = [
     component: UnderConstruction,
   },
   {
+    path: '/gallery',
+    name: 'Gallery',
+    component: AccordionGallery,
+  },
+  {
     path: '/example-homepage',
-    name: 'ExampleHomepage',
-    component: ExampleHomepage,
+    name: 'ExampleHome',
+    component: ExampleHome,
   },
   {
     path: '/login',

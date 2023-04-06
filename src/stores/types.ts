@@ -15,3 +15,10 @@ interface ScreenCard {
 interface ComponentVisibility {
   [key: string]: boolean;
 }
+
+const imagePaths = [
+  '../assets/splash/splash00.png',
+  '../assets/splash/splash01.png',
+  '../assets/splash/splash05.png',
+  '../assets/splash/splash04.png',
+];

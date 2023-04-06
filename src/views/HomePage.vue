@@ -8,15 +8,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { useAppStore } from '@/stores/useAppStore';
 import ButterflyEffectWrapper from '@/butterfly/ButterflyEffectWrapper.vue';
-
-interface ImageImport {
-  default: string;
-  id: number;
-  alt: string;
-}
 
 export default defineComponent({
   name: 'HomePage',
@@ -24,51 +18,13 @@ export default defineComponent({
     ButterflyEffectWrapper,
   },
   setup() {
-    const nightMode = ref(false);
     const appStore = useAppStore();
-
-    const imagePaths = [
-      '../assets/splash/splash00.png',
-      '../assets/splash/splash01.png',
-      '../assets/splash/splash05.png',
-      '../assets/splash/splash04.png',
-    ];
-
-    const loadImages = async (): Promise<ImageImport[]> => {
-      const imageImports: ImageImport[] = await Promise.all(
-        imagePaths.map((path, index) =>
-          import(/* @vite-ignore */ path).then((img) => ({
-            default: img.default,
-            id: index + 1,
-            alt:
-              index < 2
-                ? `Splash Image 0${index}`
-                : `Secret Image 0${index - 2}`,
-          }))
-        )
-      );
-
-      return imageImports;
-    };
-
-    const splashImages = ref<ImageImport[]>([]);
-
-    loadImages().then((images) => {
-      splashImages.value = images;
-    });
-
-    const toggleNightMode = () => {
-      nightMode.value = !nightMode.value;
-    };
 
     const toggleButterflyEffect = () => {
       appStore.toggleButterflyEffect();
     };
 
     return {
-      nightMode,
-      splashImages,
-      toggleNightMode,
       toggleButterflyEffect,
     };
   },

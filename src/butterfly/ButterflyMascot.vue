@@ -10,7 +10,7 @@ import { createButterflySvg } from './butterflySvg';
 import {
   animateButterfly,
   updateButterflyPosition,
-} from './butterflyAnimation';
+} from './ButterflyAnimation';
 
 export default {
   name: 'ButterflyMascot',
