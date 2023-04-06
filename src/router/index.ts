@@ -3,16 +3,16 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import ErrorNotFound from '../views/ErrorNotFound.vue';
 import UnderConstruction from '../views/UnderConstruction.vue';
-import HomePage from '../views/HomePage.vue';
+import HomePage from '../layout/HomePage.vue';
 import LoginForm from '../views/LoginForm.vue';
 import RemoteControl from '../views/RemoteControl.vue';
 import ExampleHome from '../example/ExampleHome.vue';
-import AccordionGallery from '../views/AccordionGallery.vue';
+import AccordionGallery from '../layout/AccordionGallery.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'AccordionGallery',
+    name: 'AccordionGalleryHome',
     component: AccordionGallery,
   },
   {

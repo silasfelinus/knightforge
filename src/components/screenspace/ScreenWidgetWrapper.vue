@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import ScreenWidget from '../../views/ScreenWidget.vue';
+import ScreenWidget from '../../layout/ScreenWidget.vue';
 
 export default defineComponent({
   name: 'ScreenWidgetWrapper',
