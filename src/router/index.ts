@@ -12,7 +12,7 @@ import AccordionGallery from '../views/AccordionGallery.vue';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'AccordionGallery',
+    name: 'AccordionGalleryHome',
     component: AccordionGallery,
   },
   {
