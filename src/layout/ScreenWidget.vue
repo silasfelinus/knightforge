@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SplashImage from './SplashImage.vue';
+import SplashImage from '../views/SplashImage.vue';
 
 export default defineComponent({
   name: 'ScreenWidget',
