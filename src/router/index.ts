@@ -5,7 +5,7 @@ import ErrorNotFound from '../views/ErrorNotFound.vue';
 import UnderConstruction from '../views/UnderConstruction.vue';
 import HomePage from '../layout/HomePage.vue';
 import LoginForm from '../views/LoginForm.vue';
-import RemoteControl from '../views/RemoteControl.vue';
+import RemoteControl from '../layout/RemoteControl.vue';
 import ExampleHome from '../example/ExampleHome.vue';
 import AccordionGallery from '../layout/AccordionGallery.vue';
 import ButterflyPage from '../layout/ButterflyPage.vue';

@@ -1,5 +1,5 @@
 SETTINGS
-2a. Animation Settings
+[1. Animation Settings]
 
 Animation modes:
 NONE, When selected, will ignore all functions in animation mode and will output batches of images coherently unrelated to each other, as specified by the prompts list. The prompts used will follow the non-scheduled, non-animation list. The number of images that are to be produced is defined in a later cell under “n_batches”.
@@ -77,7 +77,7 @@ Currently only available in 2D & 3D mode, the timestamp is saved as the settings
 yyyymmddhhmmss - a timestamp of when the run was started to diffuse.
 
 
-2b. PROMPTS
+[2. PROMPTS]
 
 In the above example, we have two groupings of prompts: the still frames *prompts* on top, and the animation_prompts below. During the “NONE” animation mode, the diffusion will look to the top group of prompts to produce images. In all other modes, (2D, 3D etc) the diffusion will reference the second lower group of prompts.
 
@@ -93,9 +93,8 @@ Many resources exist for the context of what a prompt should include. It is up t
 Ex. “A Sculpture of a Purple Fox by Alex Grey, with tiny ornaments, popular on CGSociety”,
 
 
-run on next page →
 
-3. Run
+[3. Run]
 
 Load Settings:
 override_settings_with_file, when checked ,ignores all settings and refers to a .txt file
@@ -169,74 +168,11 @@ mask_constract_adjust,  clamps min/max values of the mask to limit areas of diff
 
 create video from frames on next page →
 
-4. Create video from frames
+[4. Create video from frames]
 
 skip_video_for_run_all, when running-all this notebook, video construction will be skipped until manually checked and the cell is re-run. It is off by default.
 fps, framerate at which the video will be rendered
 image_path, location of images intended to be stitched in sequence. The user must update this parameter to reflect the timestamp needed.
 mp4_path, location to save the resulting video to
 max_frames, the quantity of images to be prepared for stitching
-
-
-[MATHS IN DEFORUM]
-MATHs in Deforum v05
-
-This guide is an introduction to some of the parameters within deforum that can be controlled and altered using math expressions and functions. It aims to assist intermediate and advanced users of animation scheduling, by providing examples and descriptions of use cases. MATH functions are not mandatory in the functionality of deforum’s parameters, and only serve as a dynamic tool to better enhance manipulation of values during an animation.
-
-The specific tool documentation that has been added to Deforum V05 can be found here:
-NumExpr 2.0 User Guide — numexpr 2.6.3.dev0 documentation
-
-1.)
-Parameters that can be altered using MATH:
-In deforum, any parameter that accepts a string format of instructions (type = `string`) can be altered using a math expression, a schedule, or a combination of both. These parameters are typically denoted with 0:(0) where the preceding number is the frame, and the parentheses number is the value to be enforced during the designated frame. In the example of 0:(0), the render will reference frame0 and assign 0.0 as its value indefinitely unless instructed otherwise.
-Parameters that are controlled by strings are as follows: angle, zoom, translations_xyz, rotations_3D_xyz, perspective_flips_theta,phi,gamma,fv , noise_schdule, strength_schedule, and contrast_schdule.
-Scheduled values will “tween” linearly between two instructional elements in a string. In the example of 0:(-2), 100:(4) The render will start at frame0 with a value of -2 and rise up over time, increasing its value to 4 by the time it reaches frame100. During frame50 of that render, we would observe a value of 1.0 being enforced, since the midpoint between frame0 and frame100 falls on the line drawn between the two values at 1.0
-When using math expressions however, the “tweening” follows an approximation of values within elements of the string in such a way that a curve is drawn between values. Consider the following example: 0:(sin(t)), 100:(4) The function at frame 0 in this case is a sine wave, where “t” represents the frame number. The value at frame 0 will start to calculate the sin(t) to produce its initial value, and quickly fluctuate causing peaks and valleys, while it slowly climbs to a constant value of 4 by frame100. We can observe an effect of the sine wave starting at full strength, and finally losing all amplitude 100 frames later - a “ripple” effect.
-If a math expression is used as the sole element of a string, it will indefinitely calculate and produce its value for as long as it is defined, without interruption. If at any point, a parameter falls out of the range of acceptable values, the render will adhere to the next available calculation of that function. (ex. A value approaches infinity, asymptotic or undefined) This can sometimes be a desired effect if a “pulsing” or “sawtooth” function is to be achieved.
-
-
-
-
-
-2.)
-How MATH expressions affect the animation:
-Many combinations and complex functions can be expressed during an animation schedule to achieve patterns and motion that would otherwise take extremely long strings of manual information to achieve. Consider a sine function, where previously, we would have to enter in each frame’s respective value to simulate a waving pattern. The longer our animation, the more frame instructions we’d have to manually enter. Now, with MATH functions, we can populate a never-ending list of instructions simply contained in one expression. The method that we use is to reference the variable “t”. When we use that variable in our math statements, a calculation is performed such that “t” = the current frame number. Since the frame number steadily increases in increments of +1, we can now define an “x axis”. With that aspect in place, we can use “t” to alter the value across the “y axis” in sequence. A frames (time) progresses forward, the MATHs performed on “t” will allow us to control what values are to be enforced at that exact snapshot in time. In the default notebook of deforumV05, the “translation_x” schedule is defined as: 0:(10*sin(2*3.14*t/10)) We can see “t” along with a sine wave (sin) being performed. This will cause the image to translate left and right over time. We will examine in more detail how this function works.
-
-3.)
-Anatomy of a simple MATH expression:
-We saw the expression 0:(10*sin(2*3.14*t/10)) being used in the default notebook of deforumV05. Let’s observe how it is “driving” our parameter. When we use the most simple of math expressions 0:(t) we define the value at any frame to be equal to its frame number. However, this value will soon rise off into unusable values above any recommended range within the animation parameters. At frame0, we start at 0, by frame1, we’re at 1, and by frame 200, we’re at 200 - so on and so forth. So a method of “containing” this value must be expressed somehow, as to prevent the number from flying off into infinity. The 2 best methods are sine/cosine functions as well as modulus functions (more info on modulus later).
-	So, in our example, we can see a “sin( )” being used. If we were to take the sine of our frame number, or “sin(t)”, we’d generate a wave shape. The value would swing up and down quickly as each frame was calculated.
-While this does keep our value from ever increasing - it is not enough to control our parameter in a realistic way. A simple sine wave is too fast, shallow and rapid. So our example includes more expressions being performed. We see that a familiar value 3.14 is multiplied by “t”. This causes the period of our sine wave to fall on integers (approximately) at its wavelength. More specifically, this wavelength is 2. So our example goes further to multiply that variable by 2 also. When we take the sin(2*3.14*t) , we yield a wave that has a period of 1 and an amplitude of 1 (it peaks and valleys between -1 and 1). All that is left is to add math that will control how high the value should bounce(amplitude), and how often(frequency). So our example finally multiplies the whole expression by 10, and also divides “t” by 10. This results in a wave that will alternate between +10 and -10 and repeat every 10 frames.  → cont on next page
-
-
-
-->cont.
-
-But what if we wanted even MORE control. We notice our example suffers the property of always passing through 0 as its baseline - but what if we wanted the baseline to start at -3? We just need to take the whole expression, and subtract 3 from it, and our new baseline is established.  0:(10*sin(2*3.14*t/10)-3) Now our wave bounces between 7 and -13, keeping its amplitude and frequency intact. More functionality can be added as we build our expression, including exponents, cosine properties, and negative amplitudes.
-
-A recap of our examples anatomy: 0:(10*sin(2*3.14*t/10))
-0: = the current frame instruction
-10 = the amplitude or “height”
-t = frame count
-10 = the frequency or wavelength
-
-
-4.)
-Advanced Expression to drive your parameters
-When constructing a complex schedule of effects during your animation, more control and special techniques will yield a better dynamic result. Let’s examine a specific use case. The artist wants to use a constant value of 0.8 as their strength schedule. However, they wish they could have more detail appear in their animation. A value of 0.45 is great for adding new enriched content to a scene, but it causes very little coherency. The artist decides that they should only introduce the value of 0.45 periodically about every 25 frames, yet keep it 0.8 for most of the sequence. How should the artist express this using MATHs?
-Let’s observe the following solution, then discuss.
-0:(-0.35*(cos(3.141*t/25)**100)+0.8)
-A massively powerful function, with a simple elegance to it. Our artist uses this function in their example to achieve the desired result. At frame 0 and all frames after, a value is being calculated. In this expression we’re selecting a cosine function (cos) to allow our wave to have small periodic dips instead of peaks. The double asterisk acts as an exponent function and brings the cosine to the 100th power, tightening the dips into small indents along the timeline. The addition of +0.8 sets the baseline at 0.8 which the artist agreed was desirable for the animation, and starts the function with -0.35 knowing that it will dip below the established baseline from 0.8 down to 0.45 as expected. An approximation of pi is being used again (3.141) to align the frames to integers, and t is being divided by 25 to enforce the dip to occur only at frames that are multiples of 25. Our artist has achieved the schedule using one expression that will be calculated for the duration of the animation frames.
-
-Remember that expressions can be changed along the schedule to “tween” along the frames.
-0:(10*sin(2*3.14*t/10)), 50:(20*sin(4*3.14*t/40)), 100:(cos(t/10)) is an acceptable format.
-Another useful tool is the modulus function. Represented by “%” is typically used to calculate the remainder of a function. In deforum, we use modulus to affect “t” frame count as a repeating limiter. Consider the following syntax:
-translate_3D_z:     0:(0.375*(t%5)+15)
-If “t” is the frame count, it would increase indefinitely, however in our example, we’ve set the modulus to 5. This means as the frame rises (01,2,3,4,5,6,7,8… etc) the value of “t” will repeat a sequence of 0,1,2,3,4,5,0,1,2,3,4,5,0,1… etc, without ever increasing over 5. This graphically produces a sawtooth wave. In order to bend the “blades” of the sawtooth to stretch over time, we multiply by 0.375. This acts as the slope of each line. A multiplier of 1 would yield a 45° line. Higher multipliers will increase the frequency even further, while numbers closer to 0 will lay the line near flat. Since we’re controlling the Z translate in 3D mode, we want our baseline to be at 15, hence our addition of it at the end of the syntax. The overall effect of this parameter causes our animation to consistently zoom forward, yet with pulses, similar to the perspective of nodding your head to music while riding in a car.
-
-Many more clever approaches can be used to create elaborate functions and animations, as well as just simplifying the instruction of long frame counts. There are tools that exist such as graphing calculators to better help envision what a function would look like linearly. This can be simulated by the format of y = x instead of deforum’s 0: (t) where “y” is the frame, and “x” is t
-This calculator can be used to solve similar functions, yet some syntax may vary.
-Desmos | Graphing Calculator
-
-We encourage the users to share their experiences with formulas and expressions, since there will be endless discoveries with how MATHs can work in unique applications.
 
