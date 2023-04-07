@@ -78,3 +78,6 @@ Create a UI for adding and removing Magic Screens using the methods addScreen() 
 
 Add MagicScreen.vue, RainbowButterfly.vue, ButterflySwarm.vue, ButterflyManager.vue, and ScreenManager.vue into FullPageWrapper.vue.
 Ensure that the interactions between the components are working correctly, such as adding/removing butterflies and screens, and butterflies landing on screens.
+
+[REQUEST]
+New Butterfly design. I want the maximum amount of butterflies on the screen as possible. Figure out how to create a flapping butterfly animation that we can replicate: 2d image, an angled body segment (thorax+antennae), and side-profile of heart-shape suggestive wing shape, with larger curve over one wing. Elegant geometry. It'll be plugged into the segment we currently have for an SVG that is waaaay to logical and symetrical and boring. I'm imagining a rainbow swarm of seven different color butterflies in javascript. We have the RainbowButterfly class and logic, we just don't have a stylized butterfly design that is elegant, replicable, and gorgeous. Think swoop, curve, nike swoosh, golden ratio. We can simply condense the wing shape in order to create the "flap" effect, although I'm open to another solution if it still allows us to have a swarm of butterfly effect that works in javascript with most modern processors.
