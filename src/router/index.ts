@@ -10,6 +10,7 @@ import ExampleHome from '../example/ExampleHome.vue';
 import AccordionGallery from '../layout/AccordionGallery.vue';
 import ButterflyPage from '../butterfly/ButterflyPage.vue';
 import FullPageWrapper from '../layout/FullPageWrapper.vue';
+import VueViewer from '../views/VueViewer.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -26,6 +27,11 @@ const routes: RouteRecordRaw[] = [
     path: '/construction',
     name: 'UnderConstruction',
     component: UnderConstruction,
+  },
+  {
+    path: '/view',
+    name: 'VueViewer',
+    component: VueViewer,
   },
   {
     path: '/gallery',

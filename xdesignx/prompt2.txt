@@ -1,0 +1,101 @@
+[INTRODUCTION]
+👋 Hi, ChatGPT! I'm Silas Knight. We're building an SPA using Vue3, Composition API, Quasar, and Pinia.
+
+[PROJECT]
+🔧 WonderForge: GUI sandbox for designing and prototyping coding projects (portfolio showpiece)
+
+[PITCH]
+What if creating webapp level gimmicks and effects could be as simple as describing your idea in natural language, and a magical device interface named WonderForge turns it into reality? Empowering users to create fun, engaging, and interactive web applications by leveraging natural language processing and machine learning capabilities, all without having to write a single line of code.
+
+[EXTENDED PITCH]
+WonderForge is a magical device interface designed to enable users to create interactive web applications by simply describing their ideas in natural language. By utilizing advanced natural language processing (NLP) capabilities, such as ChatGPT, and cutting-edge machine learning techniques, such as Stable-Diffusion, WonderForge generates powerful results with just a few lines of high-level code. With a user-friendly GUI inspired by the Unreal Editor and seamless integration with popular code repositories, users can quickly turn their creative visions into reality.
+
+[BIG PICTURE]
+Natural Language Processing (NLP) using ChatGPT for understanding user input and generating appropriate code snippets.
+Stable-Diffusion for training machine learning models and generating interactive effects.
+Vue.js framework for building the front-end web application and user interface.
+Kaizen principles to enable continuous, subtle, and incremental improvements to the tool and its features.
+Transpilation to convert high-level code projects into a digestible format compatible with various interfaces and platforms.
+API integrations with popular code repositories (GitHub, Gradio, Codepen) and browser plugins (Chrome) for seamless project import/export and collaboration.
+By combining these advanced technologies and principles, WonderForge will revolutionize the way people create interactive web applications and bring their ideas to life with minimal coding knowledge.
+
+[DEV ENVIRONMENT]
+💻 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
+
+[REFERENCE]
+Vue3 (https://vuejs.org/guide/introduction.html)
+Vue-Router (https://router.vuejs.org/guide/)
+Typescript (https://www.typescriptlang.org/)
+Babel (https://babeljs.io/)
+Jest (https://jestjs.io/docs/getting-started)
+Vue3-Jest-Typescript Testing - (https://vuejs.org/guide/scaling-up/testing.html#testing-with-jest)
+Quasar CLI (https://quasar.dev/start/quasar-cli)
+Pinia (https://pinia.vuejs.org/)
+
+[MODULES]
+📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs vuedraggable
+
+[COMMANDS]
+"npm run lint -- --fix" //auto-fix prettier
+"ncu" && "ncu -u" //update node modules
+🚀 "quasar dev"  //launch dev mode
+
+[STANDARDS]
+🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, Kaizen, DRY Principle
+
+[DEVELOPING FEATURES]
+🌈 Step-Based Save System, User Logins, Night Mode, Chat, PlaySpace Toys
+
+[INTENDED FILE TYPES]
+📁 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
+
+[DIRECTORY]
+🗂 WonderForge/
+├── quasar.config.js
+├── src/
+│ ├── main.ts
+│ ├── App.vue
+│ ├── assets/
+│ ├── boot/
+│ ├── components/
+│ ├── css/
+│ ├── layout/
+│ ├── views/
+│ ├── router/
+│ └── stores/
+│ └── tests/
+└── public/images/
+
+[STATE MANAGEMENT: useAppStore.ts]
+State:
+Getters:
+Actions:
+user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
+
+[TYPES: types.ts]
+Interface: User, Screencard, ComponentVisibility
+
+[PROGRESS]
+Installed modules, basic routing and page structures, created HomePage, added accordion gallery, moved style and design sections to independent "WonderForge Styleguide", created ExampleProject and ComponentStatus to test routing and component juggling, started on ButterflyMascot and UnderConstruction page.
+
+[CONFIGURATION FILES]
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, App.vue, useAppStore.ts, router/index.ts, types.ts
+
+src/views/MagicFrame.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
+src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
+src/views/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
+src/views/: ErrorNotFound, UnderConstruction - end-point static pages
+src/views/LoginForm.vue: Demo login interface [disabled]
+src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
+src/views/HomePage.vue - Entry Portal
+src/views/AccordionGallery.vue - Displays images in an accordion view
+src/views/ComponentStatus.vue - Admin page to identify working routes and organize components
+src/butterfly/ButterflyEffectWrapper.vue - Website mascot and inspiration for fancy js effects
+
+[SUGGESTED REPLY FORMAT]
+1. Emoticon and brief project assessment
+2. Improved code or request for file(s)
+3. Additional comments
+
+[Reply With]
+VueViewer.vue Displays my router/index.ts routes as cards with image, status indicator, and error handling in case the route is inactive
