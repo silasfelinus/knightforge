@@ -115,3 +115,158 @@ Methods: addButterfly(), removeButterfly()
 ScreenManager.vue
 Purpose: Provides controls for adding and removing Magic Screens.
 Methods: addScreen(), removeScreen()
+
+[ButterflyPage]
+<template>
+  <full-page-wrapper>
+    <butterfly-swarm></butterfly-swarm>
+  </full-page-wrapper>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import FullPageWrapper from '../layout/FullPageWrapper.vue';
+import ButterflySwarm from './ButterflySwarm.vue';
+
+export default defineComponent({
+  name: 'ButterflyPage',
+  components: {
+    FullPageWrapper,
+    ButterflySwarm,
+  },
+});
+</script>
+
+<style lang="scss">
+.div {
+  background: $primary;
+}
+</style>
+
+<template>
+  <div class="butterfly-swarm">
+    <RainbowButterfly
+      v-for="butterfly in butterflies"
+      :key="butterfly.id"
+      :butterflyId="butterfly.id"
+      :color="butterfly.color"
+      :x="butterfly.x"
+      :y="butterfly.y"
+      @butterflyLanded="handleButterflyLanded"
+    />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import RainbowButterfly from './RainbowButterfly.vue';
+
+export default defineComponent({
+  name: 'ButterflySwarm',
+  components: {
+    RainbowButterfly,
+  },
+  setup() {
+    const butterflies = ref([{ id: '1', color: 'red', x: 100, y: 100 }]);
+
+    const addButterfly = (butterfly) => {
+      butterflies.value.push(butterfly);
+    };
+
+    const removeButterfly = (butterflyId) => {
+      butterflies.value = butterflies.value.filter(
+        (butterfly) => butterfly.id !== butterflyId
+      );
+    };
+
+    const handleButterflyLanded = () => {
+      // Implement logic when a butterfly lands on a screen
+    };
+
+    const moveButterflies = () => {
+      butterflies.value = butterflies.value.map((butterfly) => {
+        return {
+          ...butterfly,
+          x: butterfly.x + Math.floor(Math.random() * 21) - 10,
+          y: butterfly.y + Math.floor(Math.random() * 21) - 10,
+        };
+      });
+    };
+
+    setInterval(moveButterflies, 1000);
+
+    return {
+      butterflies,
+      addButterfly,
+      removeButterfly,
+      handleButterflyLanded,
+    };
+  },
+});
+</script>
+
+<template>
+  <div class="rainbow-butterfly" @click="emitLanded" :style="positionStyle">
+    <svg
+      class="butterfly"
+      :style="{ fill: color }"
+      width="50"
+      height="50"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M21.997 12c0 5.522-4.477 10-9.998 10-5.52 0-10-4.478-10-10 0-5.523 4.48-10 10-10 5.521 0 9.998 4.477 9.998 10zm-9.998-6c-3.314 0-6 2.687-6 6s2.686 6 6 6 6-2.688 6-6-2.686-6-6-6zm1 9h-2v-2h2v2zm0-4h-2v-4h2v4z"
+      />
+    </svg>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  // ...
+  props: {
+    butterflyId: {
+      type: String,
+      required: true,
+    },
+    color: {
+      type: String,
+      required: true,
+    },
+    x: {
+      type: Number,
+      required: true,
+    },
+    y: {
+      type: Number,
+      required: true,
+    },
+  },
+  computed: {
+    positionStyle() {
+      return {
+        left: this.x + 'px',
+        top: this.y + 'px',
+      };
+    },
+  },
+  methods: {
+    emitLanded() {
+      this.$emit('butterflyLanded', this.butterflyId);
+    },
+  },
+});
+</script>
+<style scoped>
+.rainbow-butterfly {
+  position: absolute;
+  transition: all 0.5s ease;
+}
+
+.butterfly {
+  width: 50px;
+  height: 50px;
+}
+</style>
