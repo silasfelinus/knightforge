@@ -23,6 +23,7 @@ No unused references
 Declare types
 Use import(/* @vite-ignore */...) for dynamic imports
 No empty rulesets
+@typescript-eslint/no-var-requires
 
 [PRETTIER]
 singleQuote: true
