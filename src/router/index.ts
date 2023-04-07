@@ -17,51 +17,61 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'AccordionGalleryHome',
     component: HomePage,
+    meta: { isActive: true },
   },
   {
     path: '/home',
     name: 'HomePage',
     component: HomePage,
+    meta: { isActive: true },
   },
   {
     path: '/construction',
     name: 'UnderConstruction',
     component: UnderConstruction,
+    meta: { isActive: true },
   },
   {
     path: '/view',
     name: 'VueViewer',
     component: VueViewer,
+    meta: { isActive: false },
   },
   {
     path: '/gallery',
     name: 'AccordionGallery',
     component: AccordionGallery,
+    meta: { isActive: true },
   },
   {
     path: '/example',
     name: 'ExampleHome',
     component: ExampleHome,
+    meta: { isActive: false },
   },
   {
     path: '/login',
     name: 'LoginForm',
     component: LoginForm,
+    meta: { isActive: false },
   },
   {
     path: '/remote',
     name: 'RemoteControl',
     component: RemoteControl,
+    meta: { isActive: false },
   },
   {
     path: '/butterfly',
     name: 'ButterflyPage',
     component: ButterflyPage,
+    meta: { isActive: true },
   },
   {
     path: '/wrapper',
     name: 'FullPageWrapper',
     component: FullPageWrapper,
+    meta: { isActive: false },
   },
   {
     path: '/:pathMatch(.*)*',
@@ -76,3 +86,4 @@ const router = createRouter({
 });
 
 export default router;
+export { routes };

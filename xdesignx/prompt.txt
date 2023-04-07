@@ -98,4 +98,4 @@ src/butterfly/ButterflyEffectWrapper.vue - Website mascot and inspiration for fa
 3. Additional comments
 
 [REQUEST]
-Whatdyathink? Be honest.
+Make me a splash message generator that will display a random message from a list. Please generate 30 sentences to greet people when they arrive at the Wonderforge. They should be fun, inviting, witty, and occassionally hilarious.
