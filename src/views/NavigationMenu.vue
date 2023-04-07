@@ -16,14 +16,16 @@ import { routes } from '../router/index';
 
 export default {
   name: 'NavigationMenu',
+  props: {
+    routes: {
+      type: Array,
+      default: () => [],
+    },
+  },
   computed: {
     activeRoutes() {
-      return routes.filter((route) => route.meta && route.meta.isActive);
+      return this.routes.filter((route) => route.meta && route.meta.isActive);
     },
   },
 };
 </script>
-
-<style lang="scss">
-/* Add your styles here */
-</style>
