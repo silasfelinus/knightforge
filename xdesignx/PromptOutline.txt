@@ -91,4 +91,26 @@ src/butterfly/ButterflyEffectWrapper.vue - Website mascot and inspiration for fa
 3. Additional comments
 
 [REQUEST]
-Make me a splash message generator that will display a random message from a list. Please generate 30 sentences to greet people when they arrive at the Wonderforge. They should be fun, inviting, witty, and occassionally hilarious.
+Help me add Annyang and Speechkitt. This is the tutorial script, I've updated the addresses to local files in the same directory.
+
+<script src="./annyang.min.js"></script>
+<script src="./speechkitt.min.js"></script>
+<script>
+if (annyang) {
+  // Add our commands to annyang
+  annyang.addCommands({
+    hello: function () {
+      alert('Hello world!');
+    },
+  });
+
+  // Tell KITT to use annyang
+  SpeechKITT.annyang();
+
+  // Define a stylesheet for KITT to use
+  SpeechKITT.setStylesheet('./flat.css');
+
+  // Render KITT's interface
+  SpeechKITT.vroom();
+}
+</script>

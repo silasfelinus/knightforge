@@ -13,9 +13,12 @@ import FullPageWrapper from '../layout/FullPageWrapper.vue';
 import VueViewer from '../views/VueViewer.vue';
 import ZooPage from '../zoo/ZooPage.vue';
 import CannonGame from '../cannon/TwoPlayerGame.vue';
-import TalkPage from '../annyang/TalkPage.vue';
+import TalkPage from '../annyang/NewAnnyang.vue';
 import GraphPaper from '../zoo/GraphPaper.vue';
+import ChromaChameleon from '../zoo/ChromaChameleon.vue';
+import FlockingBirds from '../zoo/FlockingBirds.vue';
 import SoapBubbles from '../zoo/SoapBubbles.vue';
+import WeatherEffect from '../zoo/RainEffect.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -82,7 +85,7 @@ const routes: RouteRecordRaw[] = [
     path: '/zoo',
     name: 'ZooPage',
     component: ZooPage,
-    meta: { isActive: true },
+    meta: { isActive: false },
   },
   {
     path: '/cannon',
@@ -106,6 +109,24 @@ const routes: RouteRecordRaw[] = [
     path: '/bubbles',
     name: 'SoapBubbles',
     component: SoapBubbles,
+    meta: { isActive: true },
+  },
+  {
+    path: '/chroma',
+    name: 'ChromaChameleon',
+    component: ChromaChameleon,
+    meta: { isActive: true },
+  },
+  {
+    path: '/birds',
+    name: 'FlockingBirds',
+    component: FlockingBirds,
+    meta: { isActive: true },
+  },
+  {
+    path: '/weather',
+    name: 'WeatherEffect',
+    component: WeatherEffect,
     meta: { isActive: true },
   },
   {
