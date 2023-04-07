@@ -4,6 +4,21 @@
 [PROJECT]
 🔧 WonderForge: GUI sandbox for designing and prototyping coding projects (portfolio showpiece)
 
+[PITCH]
+What if creating webapp level gimmicks and effects could be as simple as describing your idea in natural language, and a magical device interface named WonderForge turns it into reality? Empowering users to create fun, engaging, and interactive web applications by leveraging natural language processing and machine learning capabilities, all without having to write a single line of code.
+
+[EXTENDED PITCH]
+WonderForge is a magical device interface designed to enable users to create interactive web applications by simply describing their ideas in natural language. By utilizing advanced natural language processing (NLP) capabilities, such as ChatGPT, and cutting-edge machine learning techniques, such as Stable-Diffusion, WonderForge generates powerful results with just a few lines of high-level code. With a user-friendly GUI inspired by the Unreal Editor and seamless integration with popular code repositories, users can quickly turn their creative visions into reality.
+
+[BIG PICTURE]
+Natural Language Processing (NLP) using ChatGPT for understanding user input and generating appropriate code snippets.
+Stable-Diffusion for training machine learning models and generating interactive effects.
+Vue.js framework for building the front-end web application and user interface.
+Kaizen principles to enable continuous, subtle, and incremental improvements to the tool and its features.
+Transpilation to convert high-level code projects into a digestible format compatible with various interfaces and platforms.
+API integrations with popular code repositories (GitHub, Gradio, Codepen) and browser plugins (Chrome) for seamless project import/export and collaboration.
+By combining these advanced technologies and principles, WonderForge will revolutionize the way people create interactive web applications and bring their ideas to life with minimal coding knowledge.
+
 [DEV ENVIRONMENT]
 💻 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
 
@@ -83,190 +98,4 @@ src/butterfly/ButterflyEffectWrapper.vue - Website mascot and inspiration for fa
 3. Additional comments
 
 [REQUEST]
-Help with this component by walking through steps. We'll make fully new files for each part. Offer help stitching in where appropriate.
-
-[PROJECT OUTLINE]
-Project: Rainbow Butterflies
-A dynamic and interactive application featuring draggable and droppable screens where butterflies can land.
-
-[COMPONENTS AND REQUIREMENTS]
-
-*CREATED*FullPageWrapper.vue - Wraps the entire display for adding visual effects and managing layout.
-*CREATED* MagicScreen.vue -  Create draggable and droppable screens that butterflies can land onto.
-Props: screenId (String)
-Events: screenDropped (emits screenId)
-RainbowButterfly.vue
-Purpose: A base component for the butterfly.
-Props: butterflyId (String), color (String)
-Events: butterflyLanded (emits butterflyId)
-ButterflyAnimation.ts
-Purpose: Contains the logic for butterfly animations.
-Methods: animateFlight(), animateLanding()
-ButterflySvg.ts
-Purpose: Provides the math and SVG paths for butterfly animations.
-Methods: getSvgPath()
-ButterflySwarm.vue
-Purpose: Handles butterfly interactions and manages their positions on screens.
-Reactive Data: butterflies (Array)
-Methods: addButterfly(), removeButterfly()
-ButterflyManager.vue
-Purpose: Provides controls for adding and removing butterflies.
-Methods: addButterfly(), removeButterfly()
-ScreenManager.vue
-Purpose: Provides controls for adding and removing Magic Screens.
-Methods: addScreen(), removeScreen()
-
-[ButterflyPage]
-<template>
-  <full-page-wrapper>
-    <butterfly-swarm></butterfly-swarm>
-  </full-page-wrapper>
-</template>
-
-<script lang="ts">
-import { defineComponent } from 'vue';
-import FullPageWrapper from '../layout/FullPageWrapper.vue';
-import ButterflySwarm from './ButterflySwarm.vue';
-
-export default defineComponent({
-  name: 'ButterflyPage',
-  components: {
-    FullPageWrapper,
-    ButterflySwarm,
-  },
-});
-</script>
-
-<style lang="scss">
-.div {
-  background: $primary;
-}
-</style>
-
-<template>
-  <div class="butterfly-swarm">
-    <RainbowButterfly
-      v-for="butterfly in butterflies"
-      :key="butterfly.id"
-      :butterflyId="butterfly.id"
-      :color="butterfly.color"
-      :x="butterfly.x"
-      :y="butterfly.y"
-      @butterflyLanded="handleButterflyLanded"
-    />
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import RainbowButterfly from './RainbowButterfly.vue';
-
-export default defineComponent({
-  name: 'ButterflySwarm',
-  components: {
-    RainbowButterfly,
-  },
-  setup() {
-    const butterflies = ref([{ id: '1', color: 'red', x: 100, y: 100 }]);
-
-    const addButterfly = (butterfly) => {
-      butterflies.value.push(butterfly);
-    };
-
-    const removeButterfly = (butterflyId) => {
-      butterflies.value = butterflies.value.filter(
-        (butterfly) => butterfly.id !== butterflyId
-      );
-    };
-
-    const handleButterflyLanded = () => {
-      // Implement logic when a butterfly lands on a screen
-    };
-
-    const moveButterflies = () => {
-      butterflies.value = butterflies.value.map((butterfly) => {
-        return {
-          ...butterfly,
-          x: butterfly.x + Math.floor(Math.random() * 21) - 10,
-          y: butterfly.y + Math.floor(Math.random() * 21) - 10,
-        };
-      });
-    };
-
-    setInterval(moveButterflies, 1000);
-
-    return {
-      butterflies,
-      addButterfly,
-      removeButterfly,
-      handleButterflyLanded,
-    };
-  },
-});
-</script>
-
-<template>
-  <div class="rainbow-butterfly" @click="emitLanded" :style="positionStyle">
-    <svg
-      class="butterfly"
-      :style="{ fill: color }"
-      width="50"
-      height="50"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M21.997 12c0 5.522-4.477 10-9.998 10-5.52 0-10-4.478-10-10 0-5.523 4.48-10 10-10 5.521 0 9.998 4.477 9.998 10zm-9.998-6c-3.314 0-6 2.687-6 6s2.686 6 6 6 6-2.688 6-6-2.686-6-6-6zm1 9h-2v-2h2v2zm0-4h-2v-4h2v4z"
-      />
-    </svg>
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  // ...
-  props: {
-    butterflyId: {
-      type: String,
-      required: true,
-    },
-    color: {
-      type: String,
-      required: true,
-    },
-    x: {
-      type: Number,
-      required: true,
-    },
-    y: {
-      type: Number,
-      required: true,
-    },
-  },
-  computed: {
-    positionStyle() {
-      return {
-        left: this.x + 'px',
-        top: this.y + 'px',
-      };
-    },
-  },
-  methods: {
-    emitLanded() {
-      this.$emit('butterflyLanded', this.butterflyId);
-    },
-  },
-});
-</script>
-<style scoped>
-.rainbow-butterfly {
-  position: absolute;
-  transition: all 0.5s ease;
-}
-
-.butterfly {
-  width: 50px;
-  height: 50px;
-}
-</style>
+Whatdyathink? Be honest.
