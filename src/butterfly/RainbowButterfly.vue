@@ -5,11 +5,22 @@
       :style="{ fill: color }"
       width="50"
       height="50"
-      viewBox="0 0 24 24"
+      viewBox="0 0 50 50"
     >
-      <path
-        d="M21.997 12c0 5.522-4.477 10-9.998 10-5.52 0-10-4.478-10-10 0-5.523 4.48-10 10-10 5.521 0 9.998 4.477 9.998 10zm-9.998-6c-3.314 0-6 2.687-6 6s2.686 6 6 6 6-2.688 6-6-2.686-6-6-6zm1 9h-2v-2h2v2zm0-4h-2v-4h2v4z"
-      />
+      <!-- Left Wing - Upper Part -->
+      <path d="M25,15 Q15,12 10,2 C10,2 20,2 25,15" />
+      <!-- Left Wing - Lower Part -->
+      <path d="M25,15 Q15,18 10,32 C10,32 20,32 25,15" />
+      <!-- Right Wing - Upper Part -->
+      <path d="M25,15 Q35,12 40,2 C40,2 30,2 25,15" />
+      <!-- Right Wing - Lower Part -->
+      <path d="M25,15 Q35,18 40,32 C40,32 30,32 25,15" />
+      <!-- Body -->
+      <path d="M25,15 Q25,20 25,32" stroke-width="3" stroke-linecap="round" />
+      <!-- Antenna - Left -->
+      <path d="M25,2 Q22,5 20,8" stroke-width="1" stroke-linecap="round" />
+      <!-- Antenna - Right -->
+      <path d="M25,2 Q28,5 30,8" stroke-width="1" stroke-linecap="round" />
     </svg>
   </div>
 </template>
@@ -53,6 +64,20 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+@keyframes hover {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.rainbow-butterfly {
+  position: absolute;
+  animation: hover 1s ease-in-out infinite;
+}
 .rainbow-butterfly {
   position: absolute;
   transition: all 0.5s ease;

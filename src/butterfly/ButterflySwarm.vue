@@ -1,6 +1,5 @@
 <template>
   <div class="butterfly-swarm">
-    <MagicScreen />
     <RainbowButterfly
       v-for="butterfly in butterflies"
       :key="butterfly.id"
@@ -16,7 +15,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import MagicScreen from '../layout/MagicScreen.vue';
 import RainbowButterfly from './RainbowButterfly.vue';
 
 interface Butterfly {
@@ -24,17 +22,27 @@ interface Butterfly {
   color: string;
   x: number;
   y: number;
+  mode: string;
+  targetX: number;
+  targetY: number;
 }
 
 export default defineComponent({
   name: 'ButterflySwarm',
   components: {
-    MagicScreen,
     RainbowButterfly,
   },
   setup(_, { emit }) {
     const butterflies = ref<Butterfly[]>([
-      { id: '1', color: 'red', x: 100, y: 100 },
+      {
+        id: '1',
+        color: 'red',
+        x: 100,
+        y: 100,
+        mode: 'travel',
+        targetX: 0,
+        targetY: 0,
+      },
     ]);
 
     const addButterfly = (butterfly: Butterfly) => {
@@ -55,33 +63,89 @@ export default defineComponent({
       emit('butterflyClicked', butterflyId);
     };
 
-    const moveButterflies = () => {
+    const generateNewTarget = () => {
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
 
-      butterflies.value = butterflies.value.map((butterfly) => {
-        const newX = Math.max(
-          0,
-          Math.min(
-            screenWidth,
-            butterfly.x + Math.floor(Math.random() * 21) - 10
-          )
-        );
-        const newY = Math.max(
-          0,
-          Math.min(
-            screenHeight,
-            butterfly.y + Math.floor(Math.random() * 21) - 10
-          )
-        );
+      return {
+        x: Math.floor(Math.random() * (screenWidth - 50)),
+        y: Math.floor(Math.random() * (screenHeight - 50)),
+      };
+    };
 
-        return {
-          ...butterfly,
-          x: newX,
-          y: newY,
-        };
+    const updateButterflyPosition = (
+      butterfly: Butterfly,
+      newX: number,
+      newY: number
+    ) => {
+      return {
+        ...butterfly,
+        x: newX,
+        y: newY,
+      };
+    };
+
+    const updateButterflyModeAndTarget = (
+      butterfly: Butterfly,
+      mode: string,
+      targetX: number,
+      targetY: number
+    ) => {
+      return {
+        ...butterfly,
+        mode,
+        targetX,
+        targetY,
+      };
+    };
+
+    const moveButterflies = () => {
+      butterflies.value = butterflies.value.map((butterfly) => {
+        if (butterfly.mode === 'hover') {
+          return updateButterflyPosition(
+            butterfly,
+            butterfly.x + Math.floor(Math.random() * 21) - 10,
+            butterfly.y + Math.floor(Math.random() * 21) - 10
+          );
+        } else {
+          const travelSpeed = 5;
+          const dx = butterfly.targetX - butterfly.x;
+          const dy = butterfly.targetY - butterfly.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < travelSpeed) {
+            const newTarget = generateNewTarget();
+            return updateButterflyModeAndTarget(
+              updateButterflyPosition(
+                butterfly,
+                butterfly.targetX,
+                butterfly.targetY
+              ),
+              'hover',
+              newTarget.x,
+              newTarget.y
+            );
+          } else {
+            return updateButterflyPosition(
+              butterfly,
+              butterfly.x + (dx / distance) * travelSpeed,
+              butterfly.y + (dy / distance) * travelSpeed
+            );
+          }
+        }
       });
     };
+
+    // Initialize the target position for each butterfly
+    butterflies.value = butterflies.value.map((butterfly) => {
+      const newTarget = generateNewTarget();
+      return updateButterflyModeAndTarget(
+        butterfly,
+        'travel',
+        newTarget.x,
+        newTarget.y
+      );
+    });
 
     setInterval(moveButterflies, 1000);
 
