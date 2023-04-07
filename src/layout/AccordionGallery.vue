@@ -60,7 +60,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .container {
   padding: 75px 0;
   margin: 0 auto;

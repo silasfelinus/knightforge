@@ -1,25 +1,22 @@
 <template>
-  <div id="app-header">
-    <!-- Your other header components -->
-  </div>
   <full-page-wrapper>
-    <AccordionGallery />
     <magic-screen></magic-screen>
+    <butterfly-swarm></butterfly-swarm>
   </full-page-wrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AccordionGallery from './AccordionGallery.vue';
-import FullPageWrapper from './FullPageWrapper.vue';
-import MagicScreen from './MagicScreen.vue';
+import MagicScreen from '../layout/MagicScreen.vue';
+import FullPageWrapper from '../layout/FullPageWrapper.vue';
+import ButterflySwarm from './ButterflySwarm.vue';
 
 export default defineComponent({
   name: 'HomePage',
   components: {
-    AccordionGallery,
-    FullPageWrapper,
     MagicScreen,
+    FullPageWrapper,
+    ButterflySwarm,
   },
 });
 </script>

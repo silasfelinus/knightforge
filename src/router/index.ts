@@ -8,7 +8,7 @@ import LoginForm from '../views/LoginForm.vue';
 import RemoteControl from '../layout/RemoteControl.vue';
 import ExampleHome from '../example/ExampleHome.vue';
 import AccordionGallery from '../layout/AccordionGallery.vue';
-import ButterflyPage from '../layout/ButterflyPage.vue';
+import ButterflyPage from '../butterfly/ButterflyPage.vue';
 import FullPageWrapper from '../layout/FullPageWrapper.vue';
 
 const routes: RouteRecordRaw[] = [

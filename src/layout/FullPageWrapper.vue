@@ -1,16 +1,12 @@
 <template>
   <div class="full-page-wrapper">
-    <magic-screen></magic-screen>
     <!-- Your other components will go here -->
+    <slot></slot>
   </div>
 </template>
 <script>
-import MagicScreen from './MagicScreen.vue';
-
 export default {
-  components: {
-    MagicScreen,
-  },
+  components: {},
 };
 </script>
 
@@ -19,5 +15,6 @@ export default {
   position: relative;
   width: 100vw;
   height: 100vh;
+  background-color: bisque;
 }
 </style>

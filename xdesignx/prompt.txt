@@ -82,24 +82,6 @@ src/butterfly/ButterflyEffectWrapper.vue - Website mascot and inspiration for fa
 2. Improved code or request for file(s)
 3. Additional comments
 
-[FULLY OPERATIONAL]
-index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, ErrorNotFound.vue, UnderConstruction, AccordionGallery
-
-[BUG-HUNTING]
-ButterflyWrapper
-
-[WORKING BUT SIMPLIFIED]
-App.vue(disabled useAppStore), HomePage.vue, index.ts (disabled AppLayout)
-
-[UNCLASSIFIED]
-useAppStore, AppLayout, AppHeader, AppSidebar, AppSidebar, AppFooter, MainContent, MagicFrame, SplashImage, ScreenCard, LoginForm, RemoteControl
-
-[SPRITZED COMMMENTS]
-// HomePage.vue - The main landing page for the WonderForge application.
-// - Displays a gallery of splash images.
-// - Toggle Night Mode button to switch between day and night modes.
-// - Images are loaded dynamically using Vite's `/@vite-ignore/` directive.
-
 [REQUEST]
 Help with this component by walking through steps. We'll make fully new files for each part. Offer help stitching in where appropriate.
 
@@ -109,10 +91,8 @@ A dynamic and interactive application featuring draggable and droppable screens 
 
 [COMPONENTS AND REQUIREMENTS]
 
-FullPageWrapper.vue
-Purpose: Wraps the entire display for adding visual effects and managing layout.
-MagicScreen.vue
-Purpose: Create draggable and droppable screens that butterflies can land onto.
+*CREATED*FullPageWrapper.vue - Wraps the entire display for adding visual effects and managing layout.
+*CREATED* MagicScreen.vue -  Create draggable and droppable screens that butterflies can land onto.
 Props: screenId (String)
 Events: screenDropped (emits screenId)
 RainbowButterfly.vue
