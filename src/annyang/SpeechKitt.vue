@@ -1,5 +1,5 @@
-<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/1.0.0/speechkitt.min.js"></script>
+<script src="./annyang.min.js"></script>
+<script src="./speechkitt.min.js"></script>
 <script>
 if (annyang) {
   // Add our commands to annyang
@@ -13,9 +13,7 @@ if (annyang) {
   SpeechKITT.annyang();
 
   // Define a stylesheet for KITT to use
-  SpeechKITT.setStylesheet(
-    '//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/1.0.0/themes/flat.css'
-  );
+  SpeechKITT.setStylesheet('./flat.css');
 
   // Render KITT's interface
   SpeechKITT.vroom();

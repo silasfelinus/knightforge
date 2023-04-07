@@ -53,7 +53,9 @@ export default defineComponent({
       };
     },
     async playSoundEffect(soundFile: string) {
-      const soundModule = await import(`@/assets/${soundFile}`);
+      const soundModule = await import(
+        /* @vite-ignore */ `@/assets/${soundFile}`
+      );
       const audio = new Audio(soundModule.default);
       audio.play();
     },

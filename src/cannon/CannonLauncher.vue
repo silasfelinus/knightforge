@@ -33,7 +33,12 @@ export default {
   },
   methods: {
     rotateCannon(direction) {
-      this.cannonAngle += direction;
+      const minAngle = -45; // Set the minimum angle (can be any value)
+      const maxAngle = 90; // Set the maximum angle (can be any value)
+      this.cannonAngle = Math.min(
+        maxAngle,
+        Math.max(minAngle, this.cannonAngle + direction)
+      );
     },
     shootCannonball() {
       if (this.projectileVisible) return;
@@ -42,7 +47,9 @@ export default {
       this.playSoundEffect('cannon_fire.mp3');
     },
     async playSoundEffect(soundFile) {
-      const soundModule = await import(`@/assets/${soundFile}`);
+      const soundModule = await import(
+        /* @vite-ignore */ `@/assets/${soundFile}`
+      );
       const audio = new Audio(soundModule.default);
       audio.play();
     },

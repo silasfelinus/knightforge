@@ -6,12 +6,16 @@
 
 <script>
 import annyang from 'annyang';
-import SpeechKITT from 'speechkitt';
 
 export default {
   name: 'SpeechRecognition',
-  mounted() {
-    if (annyang) {
+  async mounted() {
+    // Load SpeechKITT as an external script
+    await this.loadScript('./speechkitt.min.js');
+
+    if (annyang && window.SpeechKITT) {
+      const SpeechKITT = window.SpeechKITT;
+
       // Add our commands to annyang
       annyang.addCommands({
         hello: function () {
@@ -23,13 +27,23 @@ export default {
       SpeechKITT.annyang();
 
       // Define a stylesheet for KITT to use
-      SpeechKITT.setStylesheet(
-        '//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/1.0.0/themes/flat.css'
-      );
+      SpeechKITT.setStylesheet('./flat.css');
 
       // Render KITT's interface
       SpeechKITT.vroom();
     }
+  },
+  methods: {
+    loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = () => resolve(script);
+        script.onerror = () =>
+          reject(new Error(`Failed to load script: ${src}`));
+        document.head.appendChild(script);
+      });
+    },
   },
 };
 </script>
