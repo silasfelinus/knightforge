@@ -66,17 +66,11 @@ Pinia (https://pinia.vuejs.org/)
 │ └── tests/
 └── public/images/
 
-[STATE MANAGEMENT: useAppStore.ts]
-State:
-Getters:
-Actions:
-user, isLoggedIn, nightMode, screenCards, nextCardId, selectedCardIds, stepHistory, componentVisibility, gridWidth, gridHeight, gridCellSize
-
-[TYPES: types.ts]
-Interface: User, Screencard, ComponentVisibility
+[useAppStore]
+Removed until necessary
 
 [PROGRESS]
-Installed modules, basic routing and page structures, created HomePage, added accordion gallery, moved style and design sections to independent "WonderForge Styleguide", created ExampleProject and ComponentStatus to test routing and component juggling, started on ButterflyMascot and UnderConstruction page.
+Installed modules, basic routing and page structures, created HomePage, added accordion gallery, moved style and design sections to independent "WonderForge Styleguide", created ExampleProject and ComponentStatus to test routing and component juggling, started on ButterflyMascot and UnderConstruction page, developing RainbowButterfly and splash video
 
 [CONFIGURATION FILES]
 index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, App.vue, useAppStore.ts, router/index.ts, types.ts
