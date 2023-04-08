@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import RainbowButterfly from './RainbowButterfly.vue';
+import RainbowButterfly from './NewButterfly.vue';
 
 interface Butterfly {
   id: string;

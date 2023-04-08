@@ -23,9 +23,8 @@ import RainEffect from '../zoo/RainEffect.vue';
 import ScreenCard from '../layout/ScreenCard.vue';
 import MagicCard from '../layout/MagicCard.vue';
 import LavaLamp from '../lava/LavaLamp.vue';
-import TitleBar from '../codepen/TitleBar.vue';
-import RainbowCircle from '../codepen/RainbowCircle.vue';
-import Butterfly from '/../butterfly/NewButterflyPage.vue';
+import TitleBar from '../views/TitleBar.vue';
+import Butterfly2 from '../butterfly/NewButterfly.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -161,12 +160,6 @@ const routes: RouteRecordRaw[] = [
     meta: { isActive: true },
   },
   {
-    path: '/rainbow',
-    name: 'RainbowCircle',
-    component: RainbowCircle,
-    meta: { isActive: true },
-  },
-  {
     path: '/lava',
     name: 'LavaLamp',
     component: LavaLamp,
@@ -174,8 +167,8 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/butter2',
-    name: 'Butterfly',
-    component: NewButterfly,
+    name: 'Butterfly2',
+    component: Butterfly2,
     meta: { isActive: true },
   },
   {
