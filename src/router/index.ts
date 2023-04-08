@@ -6,7 +6,7 @@ import UnderConstruction from '../views/UnderConstruction.vue';
 import HomePage from '../layout/HomePage.vue';
 import LoginForm from '../views/LoginForm.vue';
 import RemoteControl from '../layout/RemoteControl.vue';
-import ExampleHome from '../example/ExampleHome.vue';
+import ExampleHome from '../layout/ExampleHome.vue';
 import AccordionGallery from '../layout/AccordionGallery.vue';
 import ButterflyPage from '../butterfly/ButterflyPage.vue';
 import FullPageWrapper from '../layout/FullPageWrapper.vue';
@@ -25,6 +25,10 @@ import MagicCard from '../layout/MagicCard.vue';
 import LavaLamp from '../lava/LavaLamp.vue';
 import TitleBar from '../views/TitleBar.vue';
 import Butterfly2 from '../butterfly/NewButterfly.vue';
+import WildMessage from '../views/WildMessage.vue';
+import MagicFrame from '../layout/MagicFrame.vue';
+import NavigationMenu from '../views/NavigationMenu.vue';
+import SplashMessage from '../views/SplashMessage.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -61,7 +65,14 @@ const routes: RouteRecordRaw[] = [
     path: '/example',
     name: 'ExampleHome',
     component: ExampleHome,
-    meta: { isActive: false },
+    meta: {
+      isActive: true,
+      headerContent: TitleBar,
+      leftSidebarContent: NavigationMenu,
+      rightSidebarContent: RemoteControl,
+      footerContent: SplashMessage,
+      mainScreenContent: MagicFrame,
+    },
   },
   {
     path: '/login',
@@ -169,6 +180,12 @@ const routes: RouteRecordRaw[] = [
     path: '/butter2',
     name: 'Butterfly2',
     component: Butterfly2,
+    meta: { isActive: true },
+  },
+  {
+    path: '/motivation',
+    name: 'Motivation',
+    component: WildMessage,
     meta: { isActive: true },
   },
   {

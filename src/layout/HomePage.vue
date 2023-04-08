@@ -1,13 +1,31 @@
 <template>
-  <div id="app-header">
-    <navigation-menu></navigation-menu>
-    <!-- Your other header components -->
-  </div>
-  <full-page-wrapper>
-    <splash-message></splash-message>
-    <AccordionGallery />
-    <magic-screen></magic-screen>
-  </full-page-wrapper>
+  <q-layout view="hHh lpR fFf">
+    <q-drawer show-if-above partial-hide>
+      <navigation-menu></navigation-menu>
+    </q-drawer>
+    <q-header>
+      <q-toolbar>
+        <q-btn
+          flat
+          round
+          dense
+          @click="leftDrawerOpen = !leftDrawerOpen"
+          icon="menu"
+        />
+        <q-toolbar-title>
+          <TitleBar />
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-header>
+
+    <full-page-wrapper>
+      <AccordionGallery />
+      <magic-screen></magic-screen>
+    </full-page-wrapper>
+    <q-footer>
+      <splash-message></splash-message>
+    </q-footer>
+  </q-layout>
 </template>
 
 <script lang="ts">
@@ -17,6 +35,7 @@ import FullPageWrapper from './FullPageWrapper.vue';
 import MagicScreen from './MagicScreen.vue';
 import NavigationMenu from '../views/NavigationMenu.vue';
 import SplashMessage from '../views/SplashMessage.vue';
+import TitleBar from '../views/TitleBar.vue';
 
 export default defineComponent({
   name: 'HomePage',
@@ -26,6 +45,12 @@ export default defineComponent({
     MagicScreen,
     NavigationMenu,
     SplashMessage,
+    TitleBar,
+  },
+  data() {
+    return {
+      leftDrawerOpen: true,
+    };
   },
 });
 </script>

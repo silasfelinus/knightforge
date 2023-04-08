@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Welcome to the WonderForge</h1>
+    <splash-message></splash-message>
     <div class="gallery-wrap">
       <div
         v-for="image in splashImages"
@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import SplashMessage from '../views/SplashMessage.vue';
 
 interface ImageImport {
   default: string;
@@ -22,12 +23,12 @@ interface ImageImport {
 }
 
 const imagePaths = [
-  '../assets/splash/splash00.png',
-  '../assets/splash/splash01.png',
-  '../assets/splash/splash05.png',
-  '../assets/splash/splash04.png',
-  '../assets/splash/splash08.png',
-  '../assets/splash/splash07.png',
+  '../assets/large/large1.webp',
+  '../assets/large/large2.webp',
+  '../assets/large/large3.webp',
+  '../assets/large/large4.webp',
+  '../assets/large/large5.webp',
+  '../assets/large/large6.webp',
 ];
 
 const loadImages = async (): Promise<ImageImport[]> => {
@@ -46,6 +47,9 @@ const loadImages = async (): Promise<ImageImport[]> => {
 
 export default defineComponent({
   name: 'AccordionGallery',
+  components: {
+    SplashMessage,
+  },
   setup() {
     const splashImages = ref<ImageImport[]>([]);
 
