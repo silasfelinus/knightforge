@@ -7,13 +7,18 @@
       :style="{
         left: randomXPosition() + 'px',
         top: randomYPosition() + 'px',
-        animationDuration: randomDuration() + 's',
+        animationDuration: calculateDuration(randomSize()) + 's',
         animationDelay: randomDelay() + 's',
         width: randomSize() + 'px',
         height: randomSize() * 5 + 'px',
         transform: initialTransform(),
       }"
-    ></div>
+    >
+      <div
+        class="splash"
+        :style="{ animationDelay: calculateDuration(randomSize()) + 's' }"
+      ></div>
+    </div>
   </div>
 </template>
 
@@ -24,7 +29,7 @@ export default defineComponent({
   props: {
     intensity: {
       type: Number as PropType<number>,
-      default: 1,
+      default: 2,
     },
     numberOfDrops: {
       type: Number as PropType<number>,
@@ -46,23 +51,32 @@ export default defineComponent({
       return Math.floor(Math.random() * window.innerWidth);
     },
     randomYPosition(): number {
-      return Math.floor(Math.random() * window.innerHeight);
+      // Ensures the rain always starts above the display
+      return Math.floor(Math.random() * -window.innerHeight);
     },
-    randomDuration(): number {
-      const minDuration = 5;
-      const maxDuration = 10;
+    calculateDuration(size: number): number {
       const duration =
-        minDuration + Math.random() * (maxDuration - minDuration);
+        (window.innerHeight / (50 * this.intensity)) * (size / 2);
       return duration;
     },
     randomDelay(): number {
       return Math.random() * 2;
     },
     randomSize(): number {
-      return 1 + Math.random() * 2;
+      return 1 + Math.random() * 3;
+    },
+    randomWindAngle(): number {
+      // Generate a random wind angle between -10 and 10 degrees
+      return this.windAngle + Math.floor(Math.random() * 21) - 10;
     },
     initialTransform(): string {
-      return `translateY(-100%)`;
+      // Use the random wind angle when initializing the raindrop position
+      const randomAngle = this.randomWindAngle();
+      document.documentElement.style.setProperty(
+        '--wind-angle',
+        `${randomAngle}deg`
+      );
+      return `translateY(-100%) rotate(${randomAngle}deg)`;
     },
     fallAnimationName(): string {
       return `fall-${this.windAngle}`;
@@ -70,8 +84,10 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
+<!-- The weather-container class sets the size and position of the animation container. -->
+<!-- The rain-drop class defines the appearance, animation, and properties of individual raindrops. -->
+<!-- The fall keyframes animation is responsible for the falling motion and rotation of the raindrops. -->
+<style lang="scss">
 .weather-container {
   overflow: hidden;
   position: absolute;
@@ -79,22 +95,55 @@ export default defineComponent({
   left: 0;
   width: 100%;
   height: 100%;
+  background: $dark; /* Added for transparent background */
 }
 .rain-drop {
   position: absolute;
   background-color: #00b0ff;
   opacity: 0.5;
-  border-radius: 50% 50% 60% 60%;
+  border-radius: 40% 40% 50% 50%;
   animation: fall linear infinite forwards;
   will-change: transform;
 }
-
+.splash {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 3px;
+  background-color: #00b0ff;
+  opacity: 0;
+  border-radius: 50%;
+  animation: splash linear 0.5s forwards;
+}
 @keyframes fall {
   0% {
-    transform: translateY(-100%) rotate(0deg);
+    transform: translateY(-100%) rotate(var(--wind-angle, 0deg));
   }
   100% {
-    transform: translateY(calc(100% + 100vh)) rotate(var(--wind-angle, 0deg));
+    transform: translateY(calc(100% + 100vh))
+      rotate(calc(var(--wind-angle, 0deg) * 2));
+  }
+}
+@keyframes splash {
+  0% {
+    opacity: 0.5;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+  }
+  50% {
+    opacity: 0.5;
+    width: 20px;
+    height: 5px;
+    border-radius: 20% 20% 80% 80%;
+  }
+  100% {
+    opacity: 0;
+    width: 40px;
+    height: 10px;
+    border-radius: 40% 40% 60% 60%;
   }
 }
 </style>
