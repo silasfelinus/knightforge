@@ -1,12 +1,21 @@
 <template>
   <div class="soap-bubbles">
-    <div
+    <svg
       v-for="(bubble, index) in bubbles"
       :key="index"
       class="bubble"
       :style="bubbleStyle(bubble)"
       @click="popBubble(index)"
-    ></div>
+    >
+      <circle
+        :cx="bubble.size / 2"
+        :cy="bubble.size / 2"
+        :r="bubble.size / 2"
+        :fill="`hsla(${bubble.hue}, 100%, 50%, 0.2)`"
+        :stroke="`hsla(${bubble.hue}, 100%, 50%, 0.5)`"
+        stroke-width="2"
+      ></circle>
+    </svg>
   </div>
 </template>
 
@@ -20,22 +29,23 @@ export default {
   },
   methods: {
     createBubble() {
-      const size = Math.random() * 50 + 20;
-      const x = Math.random() * (window.innerWidth - size);
-      const y = window.innerHeight - size;
-      const duration = Math.random() * 3 + 2;
+      const size = Math.random() * 15 + 3;
+      const x = Math.random() * (100 - size);
+      const y = 0;
+      const duration = Math.random() * 6 + 4;
+      const hue = Math.floor(Math.random() * 360);
 
-      this.bubbles.push({ x, y, size, duration });
+      this.bubbles.push({ x, y, size, duration, hue });
     },
     popBubble(index) {
       this.bubbles.splice(index, 1);
     },
     bubbleStyle(bubble) {
       return {
-        left: `${bubble.x}px`,
-        bottom: `${bubble.y}px`,
-        width: `${bubble.size}px`,
-        height: `${bubble.size}px`,
+        left: `${bubble.x}vw`,
+        bottom: `${bubble.y}vh`,
+        width: `${bubble.size}vw`,
+        height: `${bubble.size}vw`,
         animationDuration: `${bubble.duration}s`,
       };
     },
@@ -59,9 +69,7 @@ export default {
 
 .bubble {
   position: absolute;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+  pointer-events: auto;
   animation: floatBubbles linear infinite;
 }
 
@@ -70,7 +78,7 @@ export default {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-100%);
+    transform: translateY(-100vh);
   }
 }
 </style>

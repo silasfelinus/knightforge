@@ -14,11 +14,14 @@ import VueViewer from '../views/VueViewer.vue';
 import ZooPage from '../zoo/ZooPage.vue';
 import CannonGame from '../cannon/TwoPlayerGame.vue';
 import TalkPage from '../annyang/NewAnnyang.vue';
+import SpeechKitt from '../annyang/SpeechKitt.vue';
 import GraphPaper from '../zoo/GraphPaper.vue';
 import ChromaChameleon from '../zoo/ChromaChameleon.vue';
 import FlockingBirds from '../zoo/FlockingBirds.vue';
 import SoapBubbles from '../zoo/SoapBubbles.vue';
 import RainEffect from '../zoo/RainEffect.vue';
+import ScreenCard from '../layout/ScreenCard.vue';
+import MagicCard from '../layout/MagicCard.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -100,6 +103,12 @@ const routes: RouteRecordRaw[] = [
     meta: { isActive: true },
   },
   {
+    path: '/kitt',
+    name: 'SpeechKitt',
+    component: SpeechKitt,
+    meta: { isActive: true },
+  },
+  {
     path: '/graph',
     name: 'GraphPaper',
     component: GraphPaper,
@@ -127,6 +136,18 @@ const routes: RouteRecordRaw[] = [
     path: '/rain',
     name: 'RainEffect',
     component: RainEffect,
+    meta: { isActive: true },
+  },
+  {
+    path: '/card',
+    name: 'ScreenCard',
+    component: ScreenCard,
+    meta: { isActive: true },
+  },
+  {
+    path: '/magic',
+    name: 'MagicCard',
+    component: MagicCard,
     meta: { isActive: true },
   },
   {
