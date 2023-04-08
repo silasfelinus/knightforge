@@ -18,7 +18,7 @@ import GraphPaper from '../zoo/GraphPaper.vue';
 import ChromaChameleon from '../zoo/ChromaChameleon.vue';
 import FlockingBirds from '../zoo/FlockingBirds.vue';
 import SoapBubbles from '../zoo/SoapBubbles.vue';
-import WeatherEffect from '../zoo/RainEffect.vue';
+import RainEffect from '../zoo/RainEffect.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -124,9 +124,9 @@ const routes: RouteRecordRaw[] = [
     meta: { isActive: true },
   },
   {
-    path: '/weather',
-    name: 'WeatherEffect',
-    component: WeatherEffect,
+    path: '/rain',
+    name: 'RainEffect',
+    component: RainEffect,
     meta: { isActive: true },
   },
   {
