@@ -22,6 +22,10 @@ import SoapBubbles from '../zoo/SoapBubbles.vue';
 import RainEffect from '../zoo/RainEffect.vue';
 import ScreenCard from '../layout/ScreenCard.vue';
 import MagicCard from '../layout/MagicCard.vue';
+import LavaLamp from '../lava/LavaLamp.vue';
+import TitleBar from '../codepen/TitleBar.vue';
+import RainbowCircle from '../codepen/RainbowCircle.vue';
+import Butterfly from '/../butterfly/NewButterflyPage.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -148,6 +152,30 @@ const routes: RouteRecordRaw[] = [
     path: '/magic',
     name: 'MagicCard',
     component: MagicCard,
+    meta: { isActive: true },
+  },
+  {
+    path: '/title',
+    name: 'TitleBar',
+    component: TitleBar,
+    meta: { isActive: true },
+  },
+  {
+    path: '/rainbow',
+    name: 'RainbowCircle',
+    component: RainbowCircle,
+    meta: { isActive: true },
+  },
+  {
+    path: '/lava',
+    name: 'LavaLamp',
+    component: LavaLamp,
+    meta: { isActive: true },
+  },
+  {
+    path: '/butter2',
+    name: 'Butterfly',
+    component: NewButterfly,
     meta: { isActive: true },
   },
   {
