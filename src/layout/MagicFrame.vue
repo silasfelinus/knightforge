@@ -1,35 +1,21 @@
 <template>
-  <MagicScreen ref="magicFrame" @mounted="setFrameId">
-    <div class="display-screen">
-      <slot></slot>
-    </div>
-  </MagicScreen>
+  <div class="magic-frame">
+    <component
+      v-for="(child, index) in children"
+      :key="index"
+      :is="child"
+    ></component>
+  </div>
 </template>
 
 <script>
-import MagicScreen from './MagicScreen.vue';
-
 export default {
-  components: {
-    MagicScreen,
-  },
-  data() {
-    return {
-      frameId: null,
-    };
-  },
-  methods: {
-    setFrameId(id) {
-      this.frameId = id;
+  name: 'MagicFrame',
+  props: {
+    children: {
+      type: Array,
+      default: () => [],
     },
   },
 };
 </script>
-
-<style scoped>
-.display-screen {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-</style>

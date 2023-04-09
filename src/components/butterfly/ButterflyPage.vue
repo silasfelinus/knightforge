@@ -10,9 +10,9 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import FullPageWrapper from '../layout/FullPageWrapper.vue';
+import FullPageWrapper from '@/components/layout/FullPageWrapper.vue';
 import ButterflySwarm from './ButterflySwarm.vue';
-import MagicScreen from '../layout/MagicScreen.vue';
+import MagicScreen from '@/components/layout/MagicScreen.vue';
 
 export default defineComponent({
   name: 'ButterflyPage',

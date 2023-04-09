@@ -1,4 +1,3 @@
-<!-- components/NavigationMenu.vue -->
 <template>
   <nav>
     <ul>
@@ -12,7 +11,7 @@
 </template>
 
 <script>
-import { routes } from '../router/index';
+import { routes } from '@/router/index';
 
 export default {
   name: 'NavigationMenu',
