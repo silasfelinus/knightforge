@@ -8,44 +8,24 @@ const components = {
   HomePage: () => import('../layout/HomePage.vue'),
   ErrorPage: () => import('../views/ErrorNotFound.vue'),
   ConstructionPage: () => import('../views/UnderConstruction.vue'),
+  //AdventurePage
 
-  // Website Layout
+  // Structure
   TitleBar: () => import('../views/TitleBar.vue'),
-  NavigationMenu: () => import('../views/NavigationMenu.vue'),
-  NavigationGallery: () => import('../layout/AccordionGallery.vue'),
-  MagicFrame: () => import('../layout/MagicFrame.vue'),
-  AvatarCard: () => import('../layout/ScreenCard.vue'),
-  ChatWindow: () => import('../layout/TextInput.vue'),
-  DisplayController: () => import('../layout/RemoteControl.vue'),
-  ToyController
-  AssetManager
-
-  //content
-  RandomMessage: () => import('../views/SplashMessage.vue'),
-  RandomImage: () => import('../views/SplashRandom.vue'),
-
-  //Managers
-  AssetManager: () => import('../views/VueViewer.vue'),
-  SpeechKitt: () => import('../components/annyang/SpeechKitt.vue'),
-
-  //Interactibles
-  MagicScreen: () => import('../layout/MagicScreen.vue'),
-  ButterflyPage: () => import('../components/butterfly/NewButterfly.vue'),
-
-  //Screen Effects
-  RainEffect: () => import('../components/zoo/RainEffect.vue'),
-  LavaLamp: () => import('../components/lava/LavaLamp.vue'),
-  SoapBubbles: () => import('../components/zoo/SoapBubbles.vue'),
-
-  //Not Working
-  ZooPage: () => import('../components/zoo/ZooPage.vue'),
-  CannonGame: () => import('../components/cannon/TwoPlayerGame.vue'),
-  ChromaChameleon: () => import('../components/zoo/ChromaChameleon.vue'),
-  FlockingBirds: () => import('../components/zoo/FlockingBirds.vue'),
-  GraphPaper: () => import('../components/zoo/GraphPaper.vue'),
-
-  //Undeveloped but need
-  //
+  NavigationMenu: () => import('../views/NavigationMenu.vue'), //future accordion implementation
+  AccordionGallery: () => import('../layout/AccordionGallery.vue'), //future gallery viewer
+  AssetManager: () => import('../views/VueViewer.vue'), //asset crud
+  VoiceControl: () => import('../components/annyang/SpeechKitt.vue'), //needs polish
+  UserSettings: () => import('../componens/UserLogin.vue'), //not implemented
+  GameController: () => import('../layout/RemoteControl.vue'), //screen controller
+  MagicFrame: () => import('../layout/MagicScreen.vue'), //window frame with Mascot integration
+  AvatarCard: () => import('../layout/ScreenCard.vue'), //custom card
+  
+  //Assets
+  RandomMessage: () => import('../views/SplashMessage.vue'), //random motivational message
+  RandomImage: () => import('../views/SplashRandom.vue'), //random image from "random" gallery
+  SampleMascot: () => import('../components/butterfly/NewButterfly.vue'),
+  SampleEffect: () => import('../components/zoo/RainEffect.vue'),
 };
 
 export const defaultActiveRoutes = Object.entries(components).map(
@@ -54,38 +34,3 @@ export const defaultActiveRoutes = Object.entries(components).map(
     component,
   })
 );
-
-//Web Framework
-export const HomePage = components.HomePage;
-export const ErrorPage = components.ErrorNotFound;
-export const UnderConstruction = components.UnderConstruction;
-export const MessageHistory = components.VueViewer;
-
-//Web Pieces
-export const TitleBar = components.TitleBar;
-export const AccordionGallery = components.AccordionGallery;
-export const NavigationMenu = components.NavigationMenu;
-export const MagicFrame = components.MagicFrame;
-export const AvatarCard = components.MagicCard;
-
-//Content
-export const RandomMessage = components.SplashMessage;
-export const RandomImage = components.SplashRandom;
-
-//Social
-export const UserManager = components.TextInput;
-export const ChatManager = components.TextInput;
-
-//Managers
-export const ContentManager = components.SpeechKitt;
-export const CSSManager = components.TextInput;
-export const CommunicationManager = components.TextInput;
-export const AudioManager = components.SpeechKitt;
-
-export const DisplayManager = components.RemoteControl;
-
-//Designers
-export const BotDesigner = components.LavaLamp;
-export const PromptDesigner = components.TextInput;
-export const ProjectDesigner = components.VueViewer;
-export const ArtDesigner = components.VueViewer;
