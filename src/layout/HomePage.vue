@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HomeComponents from '../router/HomeComponents.vue';
+import HomeComponents from './HomeComponents.vue';
 
 export default defineComponent({
   components: {

@@ -1,36 +1,36 @@
 <template>
-  <div class="screen-widget">
-    <div class="screen-content">
-      <SplashImage />
+  <div class="game-screen">
+    <h2>Game Screen</h2>
+    <div class="game-container">
+      <!-- Your game content goes here -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SplashImage from '../screenfx/SplashImage.vue';
 
 export default defineComponent({
-  name: 'ScreenWidget',
-  components: {
-    SplashImage,
-  },
+  name: 'GameScreen',
 });
 </script>
 
 <style scoped>
-.screen-widget {
+.game-screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100%;
+  padding: 1rem;
 }
 
-.screen-content {
+.game-container {
+  width: 100%;
+  height: 600px;
+  border: 1px solid #ccc;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #f9f9f9;
+  position: relative;
 }
 </style>

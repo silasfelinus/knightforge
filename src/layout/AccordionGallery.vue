@@ -23,12 +23,12 @@ interface ImageImport {
 }
 
 const imagePaths = [
-  '@/assets/large/large1.webp',
-  '@/assets/large/large2.webp',
-  '@/assets/large/large3.webp',
-  '@/assets/large/large4.webp',
-  '@/assets/large/large5.webp',
-  '@/assets/large/large6.webp',
+  '@/assets/images/chest001.webp',
+  '@/assets/images/chest002.webp',
+  '@/assets/images/chest003.webp',
+  '@/assets/images/chest004.webp',
+  '@/assets/images/chest005.webp',
+  '@/assets/images/chest006.webp',
 ];
 
 const loadImages = async (): Promise<ImageImport[]> => {

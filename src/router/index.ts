@@ -1,6 +1,6 @@
 // src/router/index.ts
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomeComponents from './HomeComponents.vue';
+import HomeComponents from '../layout/HomeComponents.vue';
 import ErrorScreen from '../layout/ErrorScreen.vue';
 
 const routes: RouteRecordRaw[] = [
