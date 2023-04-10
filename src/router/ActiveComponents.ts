@@ -5,7 +5,7 @@
 
 const components = {
   // Website Layout
-  HomePage: () => import('../layout/HomePage.vue'), //Home
+  HomePage: () => import('../layout/HomePageOld.vue'), //Home
   ErrorScreen: () => import('../layout/ErrorScreen.vue'), //404
   UnderConstruction: () => import('../layout/UnderConstruction.vue'), //Under Construction
   TitleBar: () => import('../layout/TitleBar.vue'), //stylized title

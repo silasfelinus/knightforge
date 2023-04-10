@@ -54,77 +54,125 @@ Pinia (https://pinia.vuejs.org/)
 │ ├── views/
 │ ├── router/index.ts
 │ ├── router/ActiveComponents.ts
+│ ├── router/HomeComponents.ts
 │ └── stores/useAppStore.ts
 │ └── stores/types.ts
 └── public/images/
 
 [PROGRESS]
-Installed modules, basic routing and page structures, created HomePage layout, beginning voice integration with SpeechKitt, accordion gallery, moved style and design sections to "WonderForge Styleguide", ButterflyMascot interactible, draggable-resizable magicscreen, remodeled router to use ActiveComponents, setup lazy loading, redesigned overall site structure.
+Installed modules, basic routing and page structures, created HomePage layout, beginning voice integration with SpeechKitt, accordion gallery, moved style and design sections to "WonderForge Styleguide", ButterflyMascot interactible, draggable-resizable magicscreen, remodeled router to use ActiveComponents, setup lazy loading, Setup HomeComponents Wrapper
 
 [CONFIGURATION FILES]
 index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json
 
 [./layout]
-HomePage: () => import('../layout/HomePage.vue'), //Home
-ErrorScreen: () => import('../layout/ErrorScreen.vue'), //404
-UnderConstruction: () => import('../layout/UnderConstruction.vue'), //Under Construction
-TitleBar: () => import('../layout/TitleBar.vue'), //stylized title
-NavigationMenu: () => import('../layout/NavigationMenu.vue'), //isActive components
-AccordionGallery: () => import('../layout/AccordionGallery.vue'), //website configuration
-ChatInterface: () => import('../layout/ChatInterface.vue'), // Chatroom Interface
-VoiceControl: () => import('../layout/VoiceControl.vue'), //basic voice pickup and text output
-UserLogin: () => import('../layout/UserLogin.vue'), //User Login
-SettingsPanel: () => import('../layout/SettingsPanel.vue'), //User Settings
-RandomText: () => import('../layout/RandomMessage.vue'), //RandomText(parameters)
-RandomImage: () => import('../layout/RandomImage.vue'), // RandomImage(parameters)
-TextInput: () => import('../layout/TextInput.vue'), // Text Input Window
+HomePage //Home
+ErrorScreen //404
+UnderConstruction //Under Construction
+TitleBar //stylized title
+NavigationMenu //isActive components
+AccordionGallery //website configuration
+ChatInterface // Chatroom Interface
+VoiceControl //basic voice pickup and text output
+UserLogin //User Login
+SettingsPanel //User Settings
+RandomText  //RandomText(parameters)
+RandomImage // RandomImage(parameters)
+TextInput // Text Input Window
 
 [./components/assetmanager/]
-AssetManager: () => import('../components/manage/AssetManager.vue'), // Asset manager
-EffectsManager: () => import('../components/manage/EffectsManager.vue'), // AssetManager customized for background screen effects
-ToyboxManager: () => import('../components/manage/ToyboxManager.vue'), // EffectsManager customized for user interactions
-ArtManager: () => import('../components/manage/ArtManager.vue'), // AssetManager customized for images
-GameManager: () => import('../components/manage/GameManager.vue'), // AssetManager customized for gamescreen games
-PromptDesigner: () => import('../components/manage/PromptDesigner.vue'), //AssetManager customized for text management
-ProjectManager: () => import('../components/manage/ProjectManager.vue'), //AssetManager customized for project planning
-CardDesigner: () => import('../components/manage/CardDesigner.vue'), //AssetManager customized for interface design
-CodeDesigner: () => import('../components/manage/CodeDesigner.vue'), //AssetManager customized for code design
-ApiManager: () => import('../components/manage/ApiManager.vue'), //AssetManager customized for Api interactions
-SiteDesigner: () => import('../components/manage/SiteDesigner.vue'), //AssetManager customized for website design
-GalleryDesigner: () => import('../components/manage/GalleryDesigner.vue'), //SiteDesigner customized for art gallery design
-TaskManager: () => import('../components/manage/TaskManager.vue'), //SiteDesigner customized for task management lists
+AssetManager  // Asset manager
 
 [./components/codecards/]
-CodeCard: () => import('../components/cards/CodeCard.vue'), // Base class for customizable cards
-AvatarCard: () => import('../components/cards/AvatarCard.vue'), // Avatar CodeCard
-UserCard: () => import('../components/cards/UserCard.vue'), //AvatarCard for custom user avatar
-RobotCard: () => import('../components/cards/RobotCard.vue'), //AvatarCard with API Implementation
-ChatGPTCard: () => import('../components/cards/ChatGPTCard.vue'), //RobotCard with ChatGPT Implementation
-PromptCard: () => import('../components/cards/PromptCard.vue'), //ChatGPTCard with PromptDesigner implementation
-ArtistCard: () => import('../components/cards/ArtistCard.vue'), //AvatarCard for Stable Diffusion Modeller Implementation
-ArtCard: () => import('../components/cards/ArtCard.vue'), //CodeCard for Art Assets
-AlexaCard: () => import('../components/cards/AlexaCard.vue'), //RobotCard with Alexa implementation
+CodeCard // Base class for customizable cards
+
 
 [./components/screenfx/]
-RainDrops: () => import('../components/screenfx/RainEffect.vue'), //background screen effect
-LavaLamp: () => import('../components/screenfx/LavaLamp.vue'), //background screen effect
-SoapBubbles: () => import('../components/screenfx/SoapBubbles.vue'), //background screen effect
-SplashImage: () => import('../components/screenfx/SplashImage.vue'), //background screen effect
-ButterflyMascot: () => import('../components/screenfx/ButterflyMascot.vue'), //website mascot interactible
-MagicFrame: () => import('../components/screenfx/MagicFrame.vue'), //resizeable and draggable stylized window frame
-MagicRemote: () => import('../components/screenfx/MagicRemote.vue'), //modular interface controller
+RainDrops //background screen effect
+LavaLamp //background screen effect
+SoapBubbles //background screen effect
+SplashImage //background screen effect
+ButterflyMascot //website mascot interactible
+MagicFrame //resizeable and draggable stylized window frame
+MagicRemote //modular interface controller
 
 [./components/gamescreen/]
-GameScreen: () => import('../components/game/GameScreen.vue'), //modular screen display interface with step-based save system
-MiniPlanet: () => import('../components/game/MiniPlanet.vue'), //Gamescreen panel with minimal interface and layer management
-ChatBot: () => import('../components/game/ChatBot.vue'), //Gamescreen interface panel for openai chat
-ArtAcademy: () => import('../components/game/ArtAcademy.vue'), //Gamescreen interface panel for Stable Diffusion Art Generation
-AdventurePanel: () => import('../components/game/AdventurePanel.vue'), //Gamescreen interface panel for text adventures
-CosmosGame: () => import('../components/game/CosmosGame.vue'), //AdventurePanel with PromptCard implementation
-SerendipityGame: () => import('../components/game/SerendipityGame.vue'), //CosmosGame with TaskManagement implementation
+GameScreen //modular screen display interface with step-based save system
 
-[./componentsartgallery/]
-ArtGallery: () => import('../components/gallery/ArtGallery.vue'), //customizable Art Asset gallery viewer
-GiftShop: () => import('../components/gallery/GiftShop.vue'), //Art Gallery with POD integration
-MembershipClub: () => import('../components/gallery/MembershipClub.vue'), //subscription portal
-ShoppingCart: () => import('../components/gallery/ShoppingCart.vue'), //shopping cart
+[./components/artgallery/]
+ArtGallery //customizable Art Asset gallery viewer
+
+
+[REQUEST]
+I just redesigned my layout, and now I'm missing some of my base files. Get me working copies of anything I'm missing so we can put up a working gui again. First step, I need a HomePage.vue that loads from this route command:
+  {
+    path: '/',
+    alias: '/home',
+    name: 'HomePage',
+    component: HomeComponents,
+    meta: {
+      isActive: true,
+      requiresAuth: false,
+    },
+  },
+
+  [HomeComponents]
+  <template>
+  <div>
+    <TitleBar />
+    <NavigationMenu />
+    <AccordionGallery />
+    <ChatInterface />
+    <RandomText />
+    <RandomImage />
+    <TextInput />
+    <AssetManager />
+    <CodeCard />
+    <MagicRemote />
+    <ButterflyMascot />
+    <MagicFrame />
+    <GameScreen />
+    <ArtGallery />
+  </div>
+</template>
+
+<script>
+import TitleBar from '@/layout/TitleBar.vue';
+import NavigationMenu from '@/router/NavigationMenu.vue';
+import AccordionGallery from '@/layout/AccordionGallery.vue';
+import ChatInterface from '@/layout/ChatInterface.vue';
+import RandomText from '@/layout/RandomMessage.vue';
+import RandomImage from '@/layout/RandomImage.vue';
+import TextInput from '@/layout/TextInput.vue';
+import AssetManager from '@/components/manage/AssetManager.vue';
+import CodeCard from '@/components/cards/CodeCard.vue';
+import MagicRemote from '@/components/screenfx/MagicRemote.vue';
+import ButterflyMascot from '@/components/screenfx/ButterflyMascot.vue';
+import MagicFrame from '@/components/screenfx/MagicFrame.vue';
+import GameScreen from '@/components/game/GameScreen.vue';
+import ArtGallery from '@/components/gallery/ArtGallery.vue';
+
+export default {
+  components: {
+    TitleBar,
+    NavigationMenu,
+    AccordionGallery,
+    ChatInterface,
+    RandomText,
+    RandomImage,
+    TextInput,
+    AssetManager,
+    CodeCard,
+    MagicRemote,
+    ButterflyMascot,
+    MagicFrame,
+    GameScreen,
+    ArtGallery,
+  },
+};
+</script>
+
+<style scoped>
+/* Add any required styles for the WrapperComponent */
+</style>
+

@@ -1,58 +1,73 @@
 <template>
-  <div class="vue-viewer">
-    <q-card v-for="route in routes" :key="route.path" class="route-card">
-      <q-card-section>
-        <div class="text-h6">{{ route.name }}</div>
-      </q-card-section>
-      <q-img :src="route.meta.image" />
-      <q-card-section>
-        <div class="status-indicator" :class="route.meta.status"></div>
-        <router-link :to="route.path">View Route</router-link>
-      </q-card-section>
-    </q-card>
+  <div class="asset-manager">
+    <h2>Asset Manager</h2>
+    <div class="assets-container">
+      <div v-for="(asset, index) in assets" :key="index" class="asset">
+        <img :src="asset.src" :alt="asset.name" />
+        <div class="asset-info">
+          <p>{{ asset.name }}</p>
+          <p>{{ asset.type }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useRouter } from 'vue-router';
 
 export default defineComponent({
-  name: 'VueViewer',
-  setup() {
-    const router = useRouter();
-    const routes = router
-      .getRoutes()
-      .filter((route) => route.meta && route.meta.image);
-
-    return { routes };
+  name: 'AssetManager',
+  data() {
+    return {
+      assets: [
+        {
+          src: '@/assets/images/splash02-WEBREADY.webp',
+          name: 'Asset 1',
+          type: 'Image',
+        },
+        {
+          src: '@/assets/images/splash09-WEBREADY.webp',
+          name: 'Asset 2',
+          type: 'Image',
+        },
+        // Add more assets here
+      ],
+    };
   },
 });
 </script>
 
-<style lang="scss">
-.vue-viewer {
+<style scoped>
+.asset-manager {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.assets-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 1rem;
 }
 
-.route-card {
-  text-align: center;
+.asset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.status-indicator {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.asset img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 
-  &.active {
-    background-color: green;
-  }
-
-  &.inactive {
-    background-color: red;
-  }
+.asset-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 </style>
