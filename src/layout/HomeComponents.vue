@@ -8,7 +8,6 @@
     <RandomImage />
     <TextInput />
     <AssetManager />
-    <CodeCard />
     <MagicRemote />
     <ButterflyMascot />
     <MagicFrame />
@@ -26,7 +25,6 @@ import RandomText from '@/layout/RandomMessage.vue';
 import RandomImage from '@/layout/RandomImage.vue';
 import TextInput from '@/layout/TextInput.vue';
 import AssetManager from '@/components/assetmanager/AssetManager.vue';
-import CodeCard from '@/components/codecards/CodeCard.vue';
 import MagicRemote from '@/components/screenfx/MagicRemote.vue';
 import ButterflyMascot from '@/components/screenfx/ButterflyMascot.vue';
 import MagicFrame from '@/components/screenfx/MagicFrame.vue';
@@ -43,7 +41,6 @@ export default {
     RandomImage,
     TextInput,
     AssetManager,
-    CodeCard,
     MagicRemote,
     ButterflyMascot,
     MagicFrame,
