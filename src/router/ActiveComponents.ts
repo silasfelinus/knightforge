@@ -21,6 +21,7 @@ const components = {
 
   //AssetManager
   AssetManager: () => import('../components/manage/AssetManager.vue'), // Asset manager
+  //Extras
   EffectsManager: () => import('../components/manage/EffectsManager.vue'), // AssetManager customized for background screen effects
   ToyboxManager: () => import('../components/manage/ToyboxManager.vue'), // EffectsManager customized for user interactions
   ArtManager: () => import('../components/manage/ArtManager.vue'), // AssetManager customized for images
@@ -36,6 +37,7 @@ const components = {
 
   //CodeCards
   CodeCard: () => import('../components/cards/CodeCard.vue'), // Base class for customizable cards
+  //Extras
   AvatarCard: () => import('../components/cards/AvatarCard.vue'), // Avatar CodeCard
   UserCard: () => import('../components/cards/UserCard.vue'), //AvatarCard for custom user avatar
   RobotCard: () => import('../components/cards/RobotCard.vue'), //AvatarCard with API Implementation
@@ -65,6 +67,7 @@ const components = {
 
   //ArtGallery
   ArtGallery: () => import('../components/gallery/ArtGallery.vue'), //customizable Art Asset gallery viewer
+  //Extras
   GiftShop: () => import('../components/gallery/GiftShop.vue'), //Art Gallery with POD integration
   MembershipClub: () => import('../components/gallery/MembershipClub.vue'), //subscription portal
   ShoppingCart: () => import('../components/gallery/ShoppingCart.vue'), //shopping cart
