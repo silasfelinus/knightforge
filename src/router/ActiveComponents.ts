@@ -9,7 +9,7 @@ const components = {
   ErrorScreen: () => import('../layout/ErrorScreen.vue'), //404
   UnderConstruction: () => import('../layout/UnderConstruction.vue'), //Under Construction
   TitleBar: () => import('../layout/TitleBar.vue'), //stylized title
-  NavigationMenu: () => import('../layout/NavigationMenu.vue'), //isActive components
+  NavigationMenu: () => import('../router/NavigationMenu.vue'), //isActive components
   AccordionGallery: () => import('../layout/AccordionGallery.vue'), //website configuration
   ChatInterface: () => import('../layout/ChatInterface.vue'), // Chatroom Interface
   VoiceControl: () => import('../layout/VoiceControl.vue'), //basic voice pickup and text output
@@ -46,17 +46,17 @@ const components = {
   AlexaCard: () => import('../components/cards/AlexaCard.vue'), //RobotCard with Alexa implementation
 
   //ScreenFX
+  MagicRemote: () => import('../components/screenfx/MagicRemote.vue'), //modular interface controller
   RainDrops: () => import('../components/screenfx/RainEffect.vue'), //background screen effect
   LavaLamp: () => import('../components/screenfx/LavaLamp.vue'), //background screen effect
   SoapBubbles: () => import('../components/screenfx/SoapBubbles.vue'), //background screen effect
   SplashImage: () => import('../components/screenfx/SplashImage.vue'), //background screen effect
   ButterflyMascot: () => import('../components/screenfx/ButterflyMascot.vue'), //website mascot interactible
   MagicFrame: () => import('../components/screenfx/MagicFrame.vue'), //resizeable and draggable stylized window frame
-  MagicRemote: () => import('../components/screenfx/MagicRemote.vue'), //modular interface controller
 
   //Gamescreen
   GameScreen: () => import('../components/game/GameScreen.vue'), //modular screen display interface with step-based save system
-  MiniPlanet: () => import('../components/game/MiniPlanet.vue'), //Gamescreen panel with minimal interface and layer management
+  MiniPlanet: () => import('../components/game/MiniPlanet.vue'), //Gamescreen panel with clickable interface and layer management
   ChatBot: () => import('../components/game/ChatBot.vue'), //Gamescreen interface panel for openai chat
   ArtAcademy: () => import('../components/game/ArtAcademy.vue'), //Gamescreen interface panel for Stable Diffusion Art Generation
   AdventurePanel: () => import('../components/game/AdventurePanel.vue'), //Gamescreen interface panel for text adventures

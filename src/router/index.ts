@@ -1,25 +1,24 @@
 // src/router/index.ts
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { HomePage, ErrorPage } from './ActiveComponents';
+import HomeComponents from './HomeComponents.vue';
+import ErrorScreen from '../layout/ErrorScreen.vue';
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     alias: '/home',
     name: 'HomePage',
-    component: HomePage,
+    component: HomeComponents,
     meta: {
       isActive: true,
-      sidebarLeftToggle: true,
-      sidebarRightToggle: true,
-      chatBarToggle: true,
-      remoteToggle: true,
+      requiresAuth: false,
     },
   },
   // 😱 ErrorNotFound, the abyss of the unknown!
   {
     path: '/:pathMatch(.*)*',
-    name: 'ErrorPage',
-    component: ErrorPage,
+    name: 'ErrorScreen',
+    component: ErrorScreen,
   },
 ];
 

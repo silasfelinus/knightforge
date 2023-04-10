@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { routes } from '@/router/index';
+import { routes } from './index';
 
 export default {
   name: 'NavigationMenu',
