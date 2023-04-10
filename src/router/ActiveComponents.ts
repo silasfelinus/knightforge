@@ -21,6 +21,7 @@ const components = {
 
   //AssetManager
   AssetManager: () => import('../components/manage/AssetManager.vue'), // Asset manager
+  //Extras
   EffectsManager: () => import('../components/manage/EffectsManager.vue'), // AssetManager customized for background screen effects
   ToyboxManager: () => import('../components/manage/ToyboxManager.vue'), // EffectsManager customized for user interactions
   ArtManager: () => import('../components/manage/ArtManager.vue'), // AssetManager customized for images
@@ -36,6 +37,7 @@ const components = {
 
   //CodeCards
   CodeCard: () => import('../components/cards/CodeCard.vue'), // Base class for customizable cards
+  //Extras
   AvatarCard: () => import('../components/cards/AvatarCard.vue'), // Avatar CodeCard
   UserCard: () => import('../components/cards/UserCard.vue'), //AvatarCard for custom user avatar
   RobotCard: () => import('../components/cards/RobotCard.vue'), //AvatarCard with API Implementation
@@ -46,16 +48,19 @@ const components = {
   AlexaCard: () => import('../components/cards/AlexaCard.vue'), //RobotCard with Alexa implementation
 
   //ScreenFX
+  MagicRemote: () => import('../components/screenfx/MagicRemote.vue'), //modular interface controller
+  //Extras
   RainDrops: () => import('../components/screenfx/RainEffect.vue'), //background screen effect
   LavaLamp: () => import('../components/screenfx/LavaLamp.vue'), //background screen effect
   SoapBubbles: () => import('../components/screenfx/SoapBubbles.vue'), //background screen effect
   SplashImage: () => import('../components/screenfx/SplashImage.vue'), //background screen effect
   ButterflyMascot: () => import('../components/screenfx/ButterflyMascot.vue'), //website mascot interactible
   MagicFrame: () => import('../components/screenfx/MagicFrame.vue'), //resizeable and draggable stylized window frame
-  MagicRemote: () => import('../components/screenfx/MagicRemote.vue'), //modular interface controller
+
 
   //Gamescreen
   GameScreen: () => import('../components/game/GameScreen.vue'), //modular screen display interface with step-based save system
+  //Extras
   MiniPlanet: () => import('../components/game/MiniPlanet.vue'), //Gamescreen panel with minimal interface and layer management
   ChatBot: () => import('../components/game/ChatBot.vue'), //Gamescreen interface panel for openai chat
   ArtAcademy: () => import('../components/game/ArtAcademy.vue'), //Gamescreen interface panel for Stable Diffusion Art Generation
@@ -65,6 +70,7 @@ const components = {
 
   //ArtGallery
   ArtGallery: () => import('../components/gallery/ArtGallery.vue'), //customizable Art Asset gallery viewer
+  //Extras
   GiftShop: () => import('../components/gallery/GiftShop.vue'), //Art Gallery with POD integration
   MembershipClub: () => import('../components/gallery/MembershipClub.vue'), //subscription portal
   ShoppingCart: () => import('../components/gallery/ShoppingCart.vue'), //shopping cart
