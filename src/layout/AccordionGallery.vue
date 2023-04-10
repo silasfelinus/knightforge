@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import SplashMessage from './SplashMessage.vue';
+import SplashMessage from './RandomMessage.vue';
 
 interface ImageImport {
   default: string;

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import NavigationMenu from './NavigationMenu.vue';
-import AccordionGallery from './AccordionGallery.vue';
+import NavigationMenu from '../../views/NavigationMenu.vue';
+import AccordionGallery from '../../views/AccordionGallery.vue';
 
 export default {
   name: 'AccordionNavGallery',

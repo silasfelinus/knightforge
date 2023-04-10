@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import useRemoteControl from '../components/screenspace/useRemoteControl';
+import useRemoteControl from './screenspace/useRemoteControl';
 
 export default defineComponent({
   name: 'RemoteControl',

@@ -14,7 +14,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import SplashImage from './SplashImage.vue';
+import SplashImage from '../screenfx/SplashImage.vue';
 
 export default defineComponent({
   name: 'ScreenCard',

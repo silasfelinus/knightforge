@@ -1,6 +1,6 @@
 // src/router/index.ts
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { HomePage, ErrorNotFound } from './ActiveComponents';
+import { HomePage, ErrorPage } from './ActiveComponents';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -18,8 +18,8 @@ const routes: RouteRecordRaw[] = [
   // 😱 ErrorNotFound, the abyss of the unknown!
   {
     path: '/:pathMatch(.*)*',
-    name: 'ErrorNotFound',
-    component: ErrorNotFound,
+    name: 'ErrorPage',
+    component: ErrorPage,
   },
 ];
 
