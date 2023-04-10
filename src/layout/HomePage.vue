@@ -30,9 +30,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AccordionGallery from './AccordionGallery.vue';
-import FullPageWrapper from './FullPageWrapper.vue';
-import MagicScreen from './MagicScreen.vue';
+import AccordionGallery from '../views/AccordionGallery.vue';
+import FullPageWrapper from '../views/FullPageWrapper.vue';
+import MagicScreen from '../views/MagicScreen.vue';
 import NavigationMenu from '../views/NavigationMenu.vue';
 import SplashMessage from '../views/SplashMessage.vue';
 import TitleBar from '../views/TitleBar.vue';

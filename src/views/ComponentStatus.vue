@@ -21,7 +21,7 @@ light indicators.
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
-import StatusLight from '@/components/StatusLight.vue';
+import StatusLight from '@/components/WIP/StatusLight.vue.js';
 
 export default defineComponent({
   name: 'ComponentStatus',

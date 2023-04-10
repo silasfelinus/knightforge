@@ -1,0 +1,78 @@
+[INTRODUCTION]
+👋 Hi, ChatGPT! I'm Silas Knight. We're building an SPA using Vue3, Composition API, Quasar, and Pinia.
+
+[PROJECT]
+🔧 WonderForge: GUI sandbox for designing and prototyping coding projects (portfolio showpiece)
+
+[DEV ENVIRONMENT]
+💻 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
+
+[REFERENCE]
+Vue3 (https://vuejs.org/guide/introduction.html)
+Vue-Router (https://router.vuejs.org/guide/)
+Typescript (https://www.typescriptlang.org/)
+Babel (https://babeljs.io/)
+Jest (https://jestjs.io/docs/getting-started)
+Vue3-Jest-Typescript Testing - (https://vuejs.org/guide/scaling-up/testing.html#testing-with-jest)
+Quasar CLI (https://quasar.dev/start/quasar-cli)
+Pinia (https://pinia.vuejs.org/)
+
+[MODULES]
+📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs
+
+[COMMANDS]
+"npm run lint -- --fix" //auto-fix prettier
+"ncu" && "ncu -u" //update node modules
+🚀 "quasar dev"  //launch dev mode
+
+[STANDARDS]
+🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, Kaizen, DRY Principle
+
+[DEVELOPING FEATURES]
+🌈 Gamescreen Interface, interactibles, Asset Management
+
+[INTENDED FILE TYPES]
+📁 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
+
+[DIRECTORY]
+🗂 WonderForge/
+├── quasar.config.js
+├── src/
+│ ├── main.ts
+│ ├── App.vue
+│ ├── assets/
+│ ├── boot/
+│ ├── components/
+│ ├── css/
+│ ├── layout/
+│ ├── views/
+│ ├── router/
+│ └── stores/
+└── public/images/
+
+
+
+[PROGRESS]
+Installed modules, basic routing and page structures, created HomePage layout, beginning voice integration with SpeechKitt, accordion gallery, moved style and design sections to "WonderForge Styleguide", ButterflyMascot interactible, draggable-resizable magicscreen, remodeled router to use ActiveComponents, setup lazy loading, redesigned overall site structure.
+
+
+[CONFIGURATION FILES]
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, App.vue, useAppStore.ts, router/index.ts, types.ts
+
+src/views/MagicFrame.vue: q-page-container, boundary for ScreenCards, utilizes SplashImage for background
+src/views/SplashImage.vue: Displays a random background image from the src/assets/splash folder
+src/views/ScreenCard.vue: q-card, selectable, resizable, and movable, representing an abstracted API call, utilizes SplashImage for inner display
+src/views/: ErrorNotFound, UnderConstruction - end-point static pages
+src/views/LoginForm.vue: Demo login interface [disabled]
+src/views/RemoteControl.vue: GUI interface to Add, Select, Remove, and Change SplashImage on ScreenCards using useAppStore
+src/views/HomePage.vue - Entry Portal
+src/views/AccordionGallery.vue - Displays images in an accordion view
+src/butterfly/ButterflyE.vue - Website mascot and inspiration for fancy js effects
+
+[SUGGESTED REPLY FORMAT]
+1. Emoticon and brief project assessment
+2. Improved code or request for file(s)
+3. Additional comments
+
+[REQUEST]
+Evaluate my new ActiveComponents.ts file for routing

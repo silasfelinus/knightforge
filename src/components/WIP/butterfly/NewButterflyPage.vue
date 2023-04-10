@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Butterfly from './NewButterfly.vue';
+import Butterfly from '../NewButterfly.vue';
 
 export default {
   components: {
