@@ -11,10 +11,11 @@
   </div>
 </template>
 
-<script>
-import { ref, onMounted } from 'vue';
+<script lang="ts">
+import { defineComponent, ref, onMounted } from 'vue';
 
-export default {
+export default defineComponent({
+  name: 'ButterflyMascot',
   setup() {
     const x = ref(0);
     const y = ref(0);
@@ -49,7 +50,7 @@ export default {
       animate,
     };
   },
-};
+});
 </script>
 
 <style scoped>
