@@ -5,7 +5,7 @@
         <q-btn flat round dense icon="menu" @click="toggleLeftDrawer" />
       </q-toolbar-title>
       <q-space />
-      <h1>WonderFORGE Opening Soon</h1>
+      <h1>WonderFORGE (Opening Soon)</h1>
       <q-space />
       <q-toolbar-title>
         <q-btn
