@@ -24,5 +24,8 @@ export default {
 </script>
 
 <style lang="scss">
-/* Add your styles here */
+nav {
+  background-color: #f5f5f5;
+  padding: 1rem;
+}
 </style>

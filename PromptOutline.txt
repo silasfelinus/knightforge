@@ -41,7 +41,7 @@ Pinia (https://pinia.vuejs.org/)
 │ ├── main.ts, App.vue
 │ ├── assets/audio/
 │ ├── assets/images/
-│ ├── assets/text/
+│ ├── assets/prompts/
 │ ├── boot/
 │ ├── components/artgallery/
 │ ├── components/assetmanager/
@@ -53,21 +53,29 @@ Pinia (https://pinia.vuejs.org/)
 │ ├── layout/
 │ ├── views/
 │ ├── router/index.ts
-│ ├── router/ActiveComponents.ts
-│ ├── router/HomeComponents.ts
-│ └── stores/useAppStore.ts
+│ └── stores/projects.ts
 │ └── stores/types.ts
 └── public/images/
 
 [PROGRESS]
-Installed modules, basic routing and page structures, created HomePage layout, beginning voice integration with SpeechKitt, accordion gallery, moved style and design sections to "WonderForge Styleguide", ButterflyMascot interactible, draggable-resizable magicscreen, remodeled router to use ActiveComponents, setup lazy loading, Setup HomeComponents Wrapper
+Installed modules, basic routing and page structures, created HomePage layout, beginning voice integration with SpeechKitt, accordion gallery, moved style and design sections to "WonderForge Styleguide", ButterflyMascot interactible, draggable-resizable magicscreen, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, with quasar.variables.scss for css variables.
 
-[CONFIGURATION FILES]
-index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json
+[CONFIG FILES]
+index.html, quasar.config.js, app.scss, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, app.vue
 
-[./layout]
+[BASE FILES RECREATED]
+stores/types.ts
+stores/projects.ts
+routes/index.ts
 HomePage //Home
 ErrorScreen //404
+ButterflyMascot //website mascot interactible
+
+[CURRENTLY WORKING ON]
+LayoutEditor.vue //scss manager
+
+
+[LEFT TO STITCH IN]
 UnderConstruction //Under Construction
 TitleBar //stylized title
 NavigationMenu //isActive components
@@ -92,7 +100,6 @@ RainDrops //background screen effect
 LavaLamp //background screen effect
 SoapBubbles //background screen effect
 SplashImage //background screen effect
-ButterflyMascot //website mascot interactible
 MagicFrame //resizeable and draggable stylized window frame
 MagicRemote //modular interface controller
 
@@ -102,77 +109,20 @@ GameScreen //modular screen display interface with step-based save system
 [./components/artgallery/]
 ArtGallery //customizable Art Asset gallery viewer
 
+[NOTE]
+I want to avoid outside modules unless they provide a specific desired utility. We are attempting to develop bare metal javascript vue typed code solutions with minimal dependences outside our own codebase. I am always interested in learning about related paradigms that might provide assistance with organizing our data and recovering them programmatically.
 
-[REQUEST]
-I just redesigned my layout, and now I'm missing some of my base files. Get me working copies of anything I'm missing so we can put up a working gui again. First step, I need a HomePage.vue that loads from this route command:
-  {
-    path: '/',
-    alias: '/home',
-    name: 'HomePage',
-    component: HomeComponents,
-    meta: {
-      isActive: true,
-      requiresAuth: false,
-    },
-  },
+[Personality Select]
+1. Brainstorm session
+2. High Level System Overview
+3. Focused Project Outline
+4. Step-based instructions
+5. Code Review
+6. Style Review
+7. Critical Analysis of Project
+8. Next Steps Project Outline
+9. Toggle Text Adventure Quest Mode (status: off)
+0. Custom
 
-  [HomeComponents]
-  <template>
-  <div>
-    <TitleBar />
-    <NavigationMenu />
-    <AccordionGallery />
-    <ChatInterface />
-    <RandomText />
-    <RandomImage />
-    <TextInput />
-    <AssetManager />
-    <CodeCard />
-    <MagicRemote />
-    <ButterflyMascot />
-    <MagicFrame />
-    <GameScreen />
-    <ArtGallery />
-  </div>
-</template>
-
-<script>
-import TitleBar from '@/layout/TitleBar.vue';
-import NavigationMenu from '@/router/NavigationMenu.vue';
-import AccordionGallery from '@/layout/AccordionGallery.vue';
-import ChatInterface from '@/layout/ChatInterface.vue';
-import RandomText from '@/layout/RandomMessage.vue';
-import RandomImage from '@/layout/RandomImage.vue';
-import TextInput from '@/layout/TextInput.vue';
-import AssetManager from '@/components/manage/AssetManager.vue';
-import CodeCard from '@/components/cards/CodeCard.vue';
-import MagicRemote from '@/components/screenfx/MagicRemote.vue';
-import ButterflyMascot from '@/components/screenfx/ButterflyMascot.vue';
-import MagicFrame from '@/components/screenfx/MagicFrame.vue';
-import GameScreen from '@/components/game/GameScreen.vue';
-import ArtGallery from '@/components/gallery/ArtGallery.vue';
-
-export default {
-  components: {
-    TitleBar,
-    NavigationMenu,
-    AccordionGallery,
-    ChatInterface,
-    RandomText,
-    RandomImage,
-    TextInput,
-    AssetManager,
-    CodeCard,
-    MagicRemote,
-    ButterflyMascot,
-    MagicFrame,
-    GameScreen,
-    ArtGallery,
-  },
-};
-</script>
-
-<style scoped>
-/* Add any required styles for the WrapperComponent */
-</style>
+Selection: 8,
 

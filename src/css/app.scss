@@ -23,8 +23,8 @@ body {
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-left: -calc($spacing-base / 2);
-  margin-right: -calc($spacing-base / 2);
+  margin-left: -(calc($spacing-base / 2));
+  margin-right: -(calc($spacing-base / 2));
 }
 
 .column {

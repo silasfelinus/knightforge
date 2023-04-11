@@ -19,6 +19,9 @@ function createRoute(project: Project, componentName: string): RouteRecordRaw {
   return {
     path: `/${project.name.toLowerCase()}/${componentName.toLowerCase()}`,
     name: `${project.name}-${componentName}`,
+    meta: {
+      isActive: project.isActive,
+    },
     component: () =>
       import(
         /* @vite-ignore */

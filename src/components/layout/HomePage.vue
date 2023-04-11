@@ -1,11 +1,21 @@
 <template>
   <q-layout view="hHh lpR fFf">
     <q-header>
-      <q-toolbar>
+      <q-toolbar-title>
         <q-btn flat round dense icon="menu" @click="toggleLeftDrawer" />
-        <title-bar />
-        <q-btn flat round dense icon="menu" @click="toggleRightDrawer" />
-      </q-toolbar>
+      </q-toolbar-title>
+      <q-space />
+      <h1>WonderFORGE Opening Soon</h1>
+      <q-space />
+      <q-toolbar-title>
+        <q-btn
+          flat
+          round
+          dense
+          icon="arrow_forward_ios"
+          @click="toggleRightDrawer"
+        />
+      </q-toolbar-title>
     </q-header>
     <q-drawer
       v-model="leftDrawerOpen"
@@ -13,7 +23,7 @@
       show-if-above
       class="left-drawer"
     >
-      <navigation-menu />
+      <NavigationMenu />
     </q-drawer>
     <q-page-container>
       <q-page class="flex flex-center">
@@ -42,12 +52,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import TitleBar from '../layout/TitleBar.vue';
 import NavigationMenu from '../layout/NavigationMenu.vue';
 import ButterflyMascot from '../screenfx/ButterflyMascot.vue';
 
 export default defineComponent({
-  components: { TitleBar, NavigationMenu, ButterflyMascot },
+  components: { NavigationMenu, ButterflyMascot },
   setup() {
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
