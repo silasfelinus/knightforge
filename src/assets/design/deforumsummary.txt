@@ -1,0 +1,55 @@
+Deforum Animator App Manual Summary:
+[2A]
+Deforum is an animator app that takes in commands for frames and natural language scene settings to create a video. The app offers various animation modes, motion parameters, coherence settings, 3D depth warping options, video input, interpolation, and the ability to resume animation. Here's a brief summary of the main features:
+
+Animation Modes:
+
+NONE
+2D
+3D
+video_input
+interpolation_mode
+Animation Parameters:
+
+animation_mode
+max_frames
+border
+Motion Parameters:
+
+angle
+zoom
+translation_x, translation_y, translation_z
+rotation_x, rotation_y, rotation_z
+flip_2D_perspective
+perspective_flip_theta, perspective_flip_phi, perspective_flip_gamma, perspective_flip_fv
+noise_schedule
+strength_schedule
+contrast_schedule
+Coherence:
+
+color_coherence (NONE, LAB, HSV, RGB)
+diffusion_cadence
+3D Depth Warping:
+
+use_depth_warping
+midas_weight
+fov
+padding_mode
+sampling_mode
+save_depth_map
+Video Input:
+
+video_init_path
+extract_nth_frame
+overwrite_extracted_frames
+use_video_mask
+video_mask_path
+Interpolation:
+
+interpolate_key_frames
+interpolate_x_frames
+Resume Animation:
+
+resume_from_timestring
+resume_timestring
+Please refer to the detailed manual for more in-depth information and instructions for each feature.

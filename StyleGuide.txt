@@ -1,0 +1,83 @@
+[TERMINOLOGY]
+Function: Reusable block of code for specific actions, accepts input (parameters), returns output (return value).
+Parameter: Variable in a function's declaration, represents input passed when called.
+Argument: Value passed to a function when called, corresponding to a specific parameter.
+Variable: Named container for storing values in memory.
+Constant: Named container for storing unchangeable values in memory.
+Callback: Function passed as an argument, executed later.
+Promise: JavaScript object for eventual completion/failure of async operation and resulting value.
+Async/Await: Syntax for working with Promises, making async code behave like synchronous code.
+Component: Reusable, self-contained code representing UI parts.
+Directive: Special attribute for attaching specified behavior to template elements.
+Event: Action or occurrence detected by the program (e.g., user interaction, state update).
+Prop: Custom attribute for passing data between parent and child components.
+Lifecycle Hook: Function called at a specific component life stage, allowing timed code execution.
+Computed Property: Property automatically updated when dependencies change.
+Reactive Data: Data automatically updating when dependencies change, causing UI updates.
+
+[RULES]
+MultiwordComponentNames, TwoWord is ideal
+prop definitions should be as detailed as possible
+Relative pathing
+Use <script lang='ts'> and <style lang='scss'>
+No unused references
+Declare types
+Use import(/* @vite-ignore */...) for dynamic imports
+No empty rulesets
+@typescript-eslint/no-var-requires
+
+[PRETTIER]
+singleQuote: true
+semi: true
+endOfLine: auto
+[COLORS]
+🎨 $primary, $secondary, $accent, $dark, $warning, $dark-page, $positive, $negative, $info
+
+[COMPONENT IMPLEMENTATION]
+Script: <script lang="ts">, define TypeScript using Composition API (props, reactive data, computed properties, methods), import libraries, components, or store modules.
+Template: Create template with HTML and Vue directives (v-if, v-else, v-for, etc.), bind data and methods to DOM elements.
+Style: Define SCSS styles, follow Material Design guidelines, use predefined color variables, ensure responsiveness.
+
+
+[COMPONENT OUTLINE]
+ComponentName.vue
+Purpose and Scope: Briefly describe the component's purpose, functionality, and its relation to the rest of the project.
+Component Design: Identify the structure of the component, including its props, data, computed properties, methods, and lifecycle hooks.
+Determine which functions are local, which require external components, and which are store calls to global state.
+List any dependencies, such as external libraries or child components, and their purpose.
+File and Component Modifications: Identify which existing files and components need to be modified in order to integrate the new component.
+Specify the necessary changes, such as importing the new component, adjusting global state, or modifying existing components.
+
+[COMPONENT IMPLEMENTATION]
+a. Script: Follow <Script lang="ts">. with comments explicitly define the props, reactive data, computed properties, and methods. Import any necessary external libraries, child components, or store modules.
+
+[GENERIC COMMENT]
+// GenericCard.vue - A reusable card component for displaying information in a consistent format.
+// - Props: title (String), content (String), imageUrl (String), and isFeatured (Boolean, default: false)
+// - Utilizes 'ExternalLibrary' for handling animations; important methods: 'animateIn()' and 'animateOut()'
+
+// ComponentName.vue - A brief description of the component's purpose and functionality.
+// - Key features or requirements specific to the script section (e.g., props, data, methods, computed properties).
+// - External components or libraries utilized, along with their purpose, and any important props, events, or methods.
+
+b. Template Section: Create the component's template, including all necessary HTML and Vue directives.
+Use v-if, v-else, v-for, and other directives as needed to handle conditional rendering and looping.
+Bind data and methods to the appropriate DOM elements, using event listeners and watchers as needed.
+c. Style Section: Define the component's SCSS styles, following Material Design guidelines and utilizing the predefined color variables.
+Ensure responsiveness and adaptability to different screen sizes.
+
+[TESTING][UNDEVELOPED]
+Write unit tests for the component using Jest and Vue Test Utils, ensuring correct behavior for various inputs and interactions.
+
+Please Polish this outline:
+[Project]
+Rainbow Butterflies
+Requires:
+FullPageWrapper: Wraps the display for effects
+MagicScreen.vue: draggable droppable screens that the Butterfly can land onto
+RainbowButterfly.vue - Butterfly base component
+ButteflyAnimation.ts - Butterfly animation logic
+ButterflySvg.ts - math for the animation
+ButterflySwarm.vue: butterfly interaction logic
+ButterflyManager.vue: Add, Remove Butterflies
+ScreenManager: Add, remove Magic Screens

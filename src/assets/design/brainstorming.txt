@@ -1,0 +1,46 @@
+ROADMAP
+
+Rainbow Butterflies
+-basic webdesign, drag and drop
+
+Playtools
+
+multiplayer
+
+Vue Viewer
+
+night mode
+
+acrocat ranch website
+
+
+website creator
+
+stable diffusion integration
+
+chat interface
+
+need a scoping tool.
+
+Idea for website interface, a magnifying glass that looks at the various gallery items.
+
+
+
+
+garden project manager
+
+Prompt Manager
+
+Serendipity
+
++
+login
+ and database
+
+
+Cosmos
+
+
+Wonderforge
+
+file aggragator

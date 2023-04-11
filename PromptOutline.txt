@@ -1,0 +1,178 @@
+[INTRODUCTION]
+👋 Hi, ChatGPT! I'm Silas Knight. We're building an SPA using Vue3, Composition API, Quasar, and Pinia.
+
+[PROJECT]
+🔧 WonderForge: GUI sandbox for designing and prototyping coding projects (portfolio showpiece)
+
+[DEV ENVIRONMENT]
+💻 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
+
+[REFERENCE]
+Vue3 (https://vuejs.org/guide/introduction.html)
+Vue-Router (https://router.vuejs.org/guide/)
+Typescript (https://www.typescriptlang.org/)
+Babel (https://babeljs.io/)
+Jest (https://jestjs.io/docs/getting-started)
+Vue3-Jest-Typescript Testing - (https://vuejs.org/guide/scaling-up/testing.html#testing-with-jest)
+Quasar CLI (https://quasar.dev/start/quasar-cli)
+Pinia (https://pinia.vuejs.org/)
+
+[MODULES]
+📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs
+
+[COMMANDS]
+"npm run lint -- --fix" //auto-fix prettier
+"ncu" && "ncu -u" //update node modules
+🚀 "quasar dev"  //launch dev mode
+
+[STANDARDS]
+🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, Kaizen, DRY Principle
+
+[DEVELOPING FEATURES]
+🌈 Gamescreen Interface, interactibles, Asset Management
+
+[INTENDED FILE TYPES]
+📁 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
+
+[DIRECTORY]
+🗂 WonderForge/
+├── quasar.config.js
+├── src/
+│ ├── main.ts, App.vue
+│ ├── assets/audio/
+│ ├── assets/images/
+│ ├── assets/text/
+│ ├── boot/
+│ ├── components/artgallery/
+│ ├── components/assetmanager/
+│ ├── components/codecards/
+│ ├── components/gamescreen/
+│ ├── components/screenfx/
+│ ├── css/app.scss
+│ ├── css/quasar.variables.scss
+│ ├── layout/
+│ ├── views/
+│ ├── router/index.ts
+│ ├── router/ActiveComponents.ts
+│ ├── router/HomeComponents.ts
+│ └── stores/useAppStore.ts
+│ └── stores/types.ts
+└── public/images/
+
+[PROGRESS]
+Installed modules, basic routing and page structures, created HomePage layout, beginning voice integration with SpeechKitt, accordion gallery, moved style and design sections to "WonderForge Styleguide", ButterflyMascot interactible, draggable-resizable magicscreen, remodeled router to use ActiveComponents, setup lazy loading, Setup HomeComponents Wrapper
+
+[CONFIGURATION FILES]
+index.html, quasar.config.js, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json
+
+[./layout]
+HomePage //Home
+ErrorScreen //404
+UnderConstruction //Under Construction
+TitleBar //stylized title
+NavigationMenu //isActive components
+AccordionGallery //website configuration
+ChatInterface // Chatroom Interface
+VoiceControl //basic voice pickup and text output
+UserLogin //User Login
+SettingsPanel //User Settings
+RandomText  //RandomText(parameters)
+RandomImage // RandomImage(parameters)
+TextInput // Text Input Window
+
+[./components/assetmanager/]
+AssetManager  // Asset manager
+
+[./components/codecards/]
+CodeCard // Base class for customizable cards
+
+
+[./components/screenfx/]
+RainDrops //background screen effect
+LavaLamp //background screen effect
+SoapBubbles //background screen effect
+SplashImage //background screen effect
+ButterflyMascot //website mascot interactible
+MagicFrame //resizeable and draggable stylized window frame
+MagicRemote //modular interface controller
+
+[./components/gamescreen/]
+GameScreen //modular screen display interface with step-based save system
+
+[./components/artgallery/]
+ArtGallery //customizable Art Asset gallery viewer
+
+
+[REQUEST]
+I just redesigned my layout, and now I'm missing some of my base files. Get me working copies of anything I'm missing so we can put up a working gui again. First step, I need a HomePage.vue that loads from this route command:
+  {
+    path: '/',
+    alias: '/home',
+    name: 'HomePage',
+    component: HomeComponents,
+    meta: {
+      isActive: true,
+      requiresAuth: false,
+    },
+  },
+
+  [HomeComponents]
+  <template>
+  <div>
+    <TitleBar />
+    <NavigationMenu />
+    <AccordionGallery />
+    <ChatInterface />
+    <RandomText />
+    <RandomImage />
+    <TextInput />
+    <AssetManager />
+    <CodeCard />
+    <MagicRemote />
+    <ButterflyMascot />
+    <MagicFrame />
+    <GameScreen />
+    <ArtGallery />
+  </div>
+</template>
+
+<script>
+import TitleBar from '@/layout/TitleBar.vue';
+import NavigationMenu from '@/router/NavigationMenu.vue';
+import AccordionGallery from '@/layout/AccordionGallery.vue';
+import ChatInterface from '@/layout/ChatInterface.vue';
+import RandomText from '@/layout/RandomMessage.vue';
+import RandomImage from '@/layout/RandomImage.vue';
+import TextInput from '@/layout/TextInput.vue';
+import AssetManager from '@/components/manage/AssetManager.vue';
+import CodeCard from '@/components/cards/CodeCard.vue';
+import MagicRemote from '@/components/screenfx/MagicRemote.vue';
+import ButterflyMascot from '@/components/screenfx/ButterflyMascot.vue';
+import MagicFrame from '@/components/screenfx/MagicFrame.vue';
+import GameScreen from '@/components/game/GameScreen.vue';
+import ArtGallery from '@/components/gallery/ArtGallery.vue';
+
+export default {
+  components: {
+    TitleBar,
+    NavigationMenu,
+    AccordionGallery,
+    ChatInterface,
+    RandomText,
+    RandomImage,
+    TextInput,
+    AssetManager,
+    CodeCard,
+    MagicRemote,
+    ButterflyMascot,
+    MagicFrame,
+    GameScreen,
+    ArtGallery,
+  },
+};
+</script>
+
+<style scoped>
+/* Add any required styles for the WrapperComponent */
+</style>
+

@@ -1,0 +1,10 @@
+Help me 
+
+Help me design a magical device interface. It is a WonderForge. You can use it to make anything. It is a programming interface for modern app design, my inspiration is Unreal Editor, but I want to empower people to make fun, webapp level gimmicks, effects that would be replicable in a few pages of Vue with support from natural language processors like ChatGPT and Stable-Diffusion, where simply ideas can generate powerful results. WonderForge is designed to transpilate high level code projects into a digestible interface, so whether it exists on codepen, a chrome plugin, a github project, or gradio repo, it can be replicated through api code. I want high level ideas using transpilation and kaizen (subtle incremental iterative improvement to enact significant long term change), with the following framework:
+NOVEL IDEA: What if...
+TITLE
+PROGRAMMING LANGUAGE:
+REPO INTERFACE:
+GIMMICK:
+ELEVATOR PITCH
+TECHNOLOGY

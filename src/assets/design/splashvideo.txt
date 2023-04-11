@@ -1,0 +1,77 @@
+[INTRODUCTION]
+hi ChatGPT, I'm Silas Knight, and we're building tools for my website portfolio project: Wonderforge.
+
+[PROJECT]
+Wonderforge Splash Intro
+
+[GOAL]
+Design a 10-30 second splash video for our website, using a 2d image of our "Cybernetic Butterfly" Mascot as the base.
+
+[TOOLS]
+Stable-Diffusion-Webui-Docker, Deforum, Rev-Animated modeller
+
+[CONTEXT]
+WonderForge is my gui development lab, inspired by Unreal Editor  and wanting something that would teach me the inner workings of vue.js while allowing me to modularly create my own workspace and sandbox for coding and webapp projects.
+
+I've been co-coding with ChatGPT, and developing an extensive workflow of outlines and iterative projects. As such, I'm realizing it's going to be important to focus early on design and presentation, since at some point, my big mess of projects is my portfolio, and I want to present them in as compent, stylish, and cohesive package.
+
+[MASCOT]
+The cybernetic butterfly. Appears in the website as a flock of vue.js svg code (still in development), it represents transformation, evolution, and grace after work and process. The Wonderlab uses vue.js because it makes front end design ease and smooth, and I want the mascot to represent that effortless beauty that comes after extensive design. The butterfly is a melding of organic and cybernetics, past and future, a melding of life and earth and a connection to the human animal, and the work that we will create ahead.
+
+[WONDERFORGE]
+At it's core, WonderForge is intended to help chain API calls to natural language processors such as ChatGPT and Stable Diffusion. It's the same essence of the butterfly cyborg, we are bouncing from human text prompts and permutated logic into the still-somewhat "black box" of AI call-and-response.  This is a giant step forward with the world, and WonderForge is designed to help humans gracefully navigate a more technological future.
+
+[PITCHES]
+"bio-engineered butterfly, chameleon wings, large robotic eyes, contrasting entities, microcosmic wonder, elemental synergy, fluo fishscale accents, design by pixar, Unreal 5, DAZ, hyperrealistic, Octane Render, cosplay, RPG portrait, dynamic shadows, meticulous detail, harvest-toned vibrancy, cinematic, chromatic spectrum"
+"stylized artistic blueprint schematics of cybernetic butterfly, stylized art schematics, leonardo da vinci art style, blue lab blueprint schematics, whimsy, robot butterfly, scribbles, "cat ears?" "cat tail?", decorative question mark scribbles, grid-based layout, unrolled blueprint framing"
+
+[INSPIRATION]
+Cinematic, high-production, technology, teaser, grace, rainbow, prismatic, Promare, Paprika
+
+[MOTIVATIONAL PHRASE]
+Let's create a visually stunning showpiece that wows people when they go to the site. Knock them off their feet impressive with tricks and styling.
+
+[PROMPTS]
+Prompts are either global or start at a frame. A positive prompt will encourage the video to generate images with that phrase, a nagative prompt will do the opposite. This can create powerful effects by combining frame (f) with positive and negative prompts and using prompt weights.
+
+Prompt Weights are numbers after a prompt "apple:1" is equivalent to "apple", "apple:1.3" would be a notable increase in apple-ness. We'll be using ranges from .00 to 2.0. Prompt Weights should not be negative, they should just have a positive weight in the negative section.
+
+
+[MATHS]
+ "apple:`where(cos(t)>=0, cos(t), 0)`, snow --neg strawberry:`where(cos(t)<0, -cos(t), 0)`"
+
+ That is an example that uses the FRAMENUMBER (t) to make a video with snow and either a focus on apple or strawberry or a mix of them.
+
+ I would like better understanding of how to work with this, because it makes powerful effects. For example: it allows programmatic shifts in scenes, something can be positive "open" and negative "shut" with weights changing the value, people can be male or female, young or old, living or dead, organic or mechanical.
+
+ I want each of our scenes to have 1 or more pos/neg balances that are explored in order to create our video effects. The goal is for each of the scenes to start with a static picture that follows from the previous scene, and then to use a pos/neg balance to breath life and change. We can sync the experienced to music, but for now the goal is to create the base effects. No camera work at this stage, we can render and move later, right now, we are designing the structure for the scenes and effects.
+
+
+[FINAL GOAL]
+Ten scenes, in an ordered format
+{
+  "0": "POSPROMPT:PROMPTWEIGHT, POSPROMPT:PROMPTWEIGHT... --neg NEGPROMPT:PROMPTWEIGHT, NEGPROMPT:PROMPTWEIGHT...",
+  "FRAMENUMBER": "POSPROMPT:PROMPTWEIGHT, POSPROMPT:PROMPTWEIGHT... --neg NEGPROMPT:PROMPTWEIGHT, NEGPROMPT:PROMPTWEIGHT...",
+  "FRAMENUMBER": "POSPROMPT:PROMPTWEIGHT, POSPROMPT:PROMPTWEIGHT... --neg NEGPROMPT:PROMPTWEIGHT, NEGPROMPT:PROMPTWEIGHT...",
+  "FRAMENUMBER": "POSPROMPT:PROMPTWEIGHT, POSPROMPT:PROMPTWEIGHT... --neg NEGPROMPT:PROMPTWEIGHT, NEGPROMPT:PROMPTWEIGHT...",
+  "FRAMENUMBER": "POSPROMPT:PROMPTWEIGHT, POSPROMPT:PROMPTWEIGHT... --neg NEGPROMPT:PROMPTWEIGHT, NEGPROMPT:PROMPTWEIGHT...",
+  "FRAMENUMBER": "POSPROMPT:PROMPTWEIGHT, POSPROMPT:PROMPTWEIGHT... --neg NEGPROMPT:PROMPTWEIGHT, NEGPROMPT:PROMPTWEIGHT...",
+  "FRAMENUMBER": "POSPROMPT:PROMPTWEIGHT, POSPROMPT:PROMPTWEIGHT... --neg NEGPROMPT:PROMPTWEIGHT, NEGPROMPT:PROMPTWEIGHT...",
+  "FRAMENUMBER": "POSPROMPT:PROMPTWEIGHT, POSPROMPT:PROMPTWEIGHT... --neg NEGPROMPT:PROMPTWEIGHT, NEGPROMPT:PROMPTWEIGHT...",
+  "FRAMENUMBER": "POSPROMPT:PROMPTWEIGHT, POSPROMPT:PROMPTWEIGHT... --neg NEGPROMPT:PROMPTWEIGHT, NEGPROMPT:PROMPTWEIGHT...",
+  "120": "Cybernetic butterflies, flying away, POSPROMPT:PROMPTWEIGHT, POSPROMPT:PROMPTWEIGHT... --neg NEGPROMPT:PROMPTWEIGHT, NEGPROMPT:PROMPTWEIGHT..."
+}
+
+
+[FINALE]
+ At the very end, we need a particular scene in order to morph into the rest of the effects: Cybernetic butterflies flying away, which will trigger a butterly effect that breaks the fourth wall by covering the entire screen in a glorious kalaedoskope of butterflies flying everywhere in a swirl of rainbow colors.
+
+[CURRENT GOAL]
+Single scene setup for the Cybernetic Butterfly teaser. 4 scenes, 50 frames, with every scene until the end using the same base "Cybernetic Butterfly" image, and each "scene" will be a pos/neg shift we add to the butterfly. Please use sin, cos, and the function of t for the current frame to generate balanced positive/negative prompts that raise one prompt equivalently to the lowering of another
+{
+  "0": "Cybernetic Butterfly:1, organic:`where(sin(t)>=0, sin(t), 0)`, mechanical:`where(sin(t)<0, -sin(t), 0)` --neg chameleon wings, large robotic eyes",
+  "10": "Cybernetic Butterfly:1, chameleon wings:`where(cos(t)>=0, cos(t), 0)`, large robotic eyes:`where(cos(t)<0, -cos(t), 0)` --neg organic, mechanical",
+  "20": "Cybernetic Butterfly:1, fluo fishscale accents:`where(sin(2*t)>=0, sin(2*t), 0)`, blueprint schematics:`where(sin(2*t)<0, -sin(2*t), 0)` --neg harvest-toned vibrancy, chromatic spectrum",
+  "30": "Cybernetic Butterfly:1, harvest-toned vibrancy:`where(cos(2*t)>=0, cos(2*t), 0)`, chromatic spectrum:`where(cos(2*t)<0, -cos(2*t), 0)` --neg fluo fishscale accents, blueprint schematics",
+  "40": "Cybernetic butterflies:1, flying away:1, rainbow:1 --neg organic, mechanical, chameleon wings, large robotic eyes, fluo fishscale accents, blueprint schematics, harvest-toned vibrancy, chromatic spectrum"
+}

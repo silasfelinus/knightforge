@@ -1,0 +1,5 @@
+chtgpt for prompt creation?
+
+riffusion for audio creation
+deforum for video
+framesync for music bpm matching (https://www.framesync.xyz/)
