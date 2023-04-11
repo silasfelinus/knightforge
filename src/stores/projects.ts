@@ -9,7 +9,7 @@ export const projects: Project[] = [
       'ButterflyHomePage',
       'ErrorScreen',
       // 'UnderConstruction',
-      // 'TitleBar',
+      'TitleBar',
       // 'NavigationMenu',
       // 'AccordionGallery',
       // 'RandomText',
