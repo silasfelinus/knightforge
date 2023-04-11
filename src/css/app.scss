@@ -1,113 +1,53 @@
-// Colors
-$primary: #f0c3d3;
-$secondary: #239c8e;
-$accent: #8b249c;
-$text: #333333;
-$light-text: #ffffff;
-$background: #f5f5f5;
-$dark-background: #1c1c1c;
+// Import variables
+@import './quasar.variables.scss';
 
-// Typography
-$font-family: 'Roboto', sans-serif;
-$font-size-base: 16px;
-
-// Spacing
-$spacing-base: 8px;
-
-// Breakpoints
-$small: 600px;
-$medium: 960px;
-$large: 1280px;
-
+// Global styles
+html,
 body {
   font-family: $font-family;
   font-size: $font-size-base;
   color: $text;
   background-color: $background;
   margin: 0;
+  height: 100%;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 500;
-  margin: 0;
+// Container
+.container {
+  max-width: $large;
+  margin: 0 auto;
+  padding: $spacing-base;
 }
 
-a {
-  color: $primary;
-  text-decoration: none;
+// Grid
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -calc($spacing-base / 2);
+  margin-right: -calc($spacing-base / 2);
 }
 
-button {
-  background-color: $primary;
-  color: $light-text;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.column {
+  padding-left: calc($spacing-base / 2);
+  padding-right: calc($spacing-base / 2);
+  flex-basis: 100%;
+}
 
-  &:hover {
-    background-color: darken($primary, 10%);
+// Media Queries for Grid
+@media (min-width: $small) {
+  .column.small {
+    flex-basis: 50%;
   }
 }
 
-// Night mode
-body.night-mode {
-  background-color: $dark-background;
-  color: $light-text;
-
-  a {
-    color: $accent;
+@media (min-width: $medium) {
+  .column.medium {
+    flex-basis: 33.333%;
   }
-
-  button {
-    background-color: $accent;
-    color: $dark-background;
-
-    &:hover {
-      background-color: darken($accent, 10%);
-    }
-  }
-}
-
-// Utility classes
-.mt-1 {
-  margin-top: $spacing-base * 1;
-}
-.mt-2 {
-  margin-top: $spacing-base * 2;
-}
-.mt-3 {
-  margin-top: $spacing-base * 3;
-}
-.mt-4 {
-  margin-top: $spacing-base * 4;
-}
-
-.mb-1 {
-  margin-bottom: $spacing-base * 1;
-}
-.mb-2 {
-  margin-bottom: $spacing-base * 2;
-}
-.mb-3 {
-  margin-bottom: $spacing-base * 3;
-}
-.mb-4 {
-  margin-bottom: $spacing-base * 4;
-}
-
-@media (max-width: $small) {
-  // Mobile-specific styles
-}
-
-@media (min-width: $medium) and (max-width: $large) {
-  // Tablet-specific styles
 }
 
 @media (min-width: $large) {
-  // Desktop-specific styles
+  .column.large {
+    flex-basis: 25%;
+  }
 }

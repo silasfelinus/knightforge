@@ -1,212 +1,28 @@
-// Quasar SCSS (& Sass) Variables
-// --------------------------------------------------
-// To customize the look and feel of this app, you can override
-// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
+// Import colors
+@import './colors.scss';
 
-// Check documentation for full list of Quasar variables
+// Colors
+$primary: #239c8e;
+$secondary: $rose-petal;
+$accent: #8b249c;
+$dark: #332b2b;
+$dark-page: #1a1a1a;
+$positive: #adffc0;
+$negative: #b34e00;
+$info: #c4dd3a;
+$warning: #e8b12d;
+$text: #000000;
+$light-text: #111111;
+$background: #ffffff;
 
-// Your own variables (that are declared here) and Quasar's own
-// ones will be available out of the box in your .vue/.scss/.sass files
+// Typography
+$font-family: 'Roboto', sans-serif;
+$font-size-base: 16px;
 
-// It's highly recommended to change the default colors
-// to match your app's branding.
-// Tip: Use the "Theme Builder" on Quasar's documentation website.
-// quasar.variables.scss
+// Spacing
+$spacing-base: 8px;
 
-:root {
-  --primary: #f0c3d3;
-  --secondary: #239c8e;
-  --accent: #8b249c;
-  --dark: #332b2b;
-  --dark-page: #1a1a1a;
-  --positive: #adffc0;
-  --negative: #b34e00;
-  --info: #c4dd3a;
-  --warning: #e8b12d;
-}
-
-$primary: var(--primary);
-$secondary: var(--secondary);
-$accent: var(--accent);
-$dark: var(--dark);
-$dark-page: var(--dark-page);
-$positive: var(--positive);
-$negative: var(--negative);
-$info: var(--info);
-$warning: var(--warning);
-
-// _colors.scss
-
-// Celestial Blues
-$ocean-spray: #6ec1e4;
-$angel-white: #f5fcff;
-$baby-blue: #9edff2;
-$deep-navy: #000080;
-$electric-indigo: #7df9ff;
-$royal-reign: #4169e1;
-$twilight-indigo: #4b0082;
-$sapphire-skies: #0f52ba;
-$denim-days: #1560bd;
-$skyward-blue: #87ceeb;
-$cobalt-current: #0047ab;
-
-// Enchanted Greens
-$grasshopper: #4caf50;
-$lime-zest: #8bc34a;
-$emerald-jewel: #50c878;
-$sage-whisper: #9ea587;
-$olive-harvest: #808000;
-$turquoise-oasis: #40e0d0;
-$deep-forest: #228b22;
-$lime-spritz: #32cd32;
-$jungle-depths: #006400;
-$seafoam-surf: #71eeb8;
-$deep-lagoon: #008b8b;
-$teal-temptation: #008b8b;
-
-// Radiant Reds and Pinks
-$wine-cellar: #800020;
-$blood-red: #8b0000;
-$tropical-coral: #ff7f50;
-$crimson-romance: #dc143c;
-$rose-petal: #ff66b2;
-$powder-pink: #fadadd;
-$cranberry-crush: #db5079;
-$blushing-pink: #f4afaf;
-$coral-kiss: #f88379;
-$hot-pink-passion: #ff69b4;
-$dusty-rose: #c79791;
-$dark-red: #8b0000;
-
-// Golden Yellows and Oranges
-$sunflower: #ffeb3b;
-$glimmering-gold: #ffd700;
-$golden-mustard: #e1ad01;
-$autumn-rust: #d2691e;
-$sunset-orange: #cc5500;
-$amber-glow: #ffbf00;
-$intense-orange: #ff8c00;
-$tangerine-twist: #ffa07a;
-$golden-rod: #daa520;
-$buttercup-yellow: #fdfd96;
-$golden-yellow: #ffdf00;
-
-// _colors.scss
-
-// Elegant Purples
-$amethyst: #9370db;
-$velvet-maroon: #800000;
-$lavender-dream: #e6e6fa;
-$plum-perfection: #8e4585;
-$aubergine: #614051;
-$magenta-mystery: #ff00ff;
-$eggplant: #614051;
-$deep-teal: #008b8b;
-$midnight-waltz: #191970;
-$bright-purple: #be03fd;
-
-// Earthy Browns, Tans, and Grays
-$shiny-silver: #c0c0c0;
-$desert-sand: #f5f5dc;
-$sage-whisper: #9ea587;
-$olive-harvest: #808000;
-$khaki-canvas: #f0e68c;
-$charcoal-night: #36454f;
-$slate-stone: #708090;
-$whipped-cream: #fffdd0;
-$sun-kissed-tan: #d2b48c;
-$timeless-taupe: #483c32;
-$navy-blueberry: #003c71;
-$chocolate-bliss: #3d1a00;
-$rich-chocolate-brown: #3d1a00;
-$ivory-tower: #fffff0;
-$cream: #fffdd0;
-
-// Mixed and Unique Shades
-$ancient-bronze: #cd7f32;
-$champagne-mist: #f7e7ce;
-$teal-treasure: #008080;
-$peach-sorbet: #ffdab9;
-$seafoam-green: #98ff98;
-$burnt-sienna: #e97451;
-$pale-blue: #afeeee;
-$rich-navy-blue: #003c71;
-$vintage-wine: #722f37;
-$denim-blue: #1560bd;
-$pastel-yellow: #fdfd96;
-$blush-pink: #f4afaf;
-$coral-pink: #f88379;
-$wine-red: #722f37;
-$chartreuse: #7fff00;
-$burnt-orange: #cc5500;
-$electric-blue: #7df9ff;
-$sky-blue: #87ceeb;
-$forest-green: #228b22;
-$cranberry: #db5079;
-$sapphire-blue: #0f52ba;
-$bright-blue: #0000ff;
-
-// Lovecraftian Crayola Colors
-$eldritch-cyan: #2d383a; // A color from beyond
-$cthulhu-green: #5c7c5d; // The color of the Great Old One
-$shoggoth-black: #120c0c; // The darkest of blacks
-$deep-one-teal: #1d5f5f; // The color of the Deep Ones
-$nyarlathotep-purple: #500752; // The color of the Crawling Chaos
-$cthonian-brown: #6e4c1e; // The color of the subterranean realm
-$dagon-blue: #00688b; // The color of the god of the sea
-$azathoth-yellow: #f3e70d; // The color of the Blind Idiot God
-$shub-niggurath-green: #00703c; // The color of the Black Goat of the Woods
-$mi-go-gray: #797979; // The color of the Fungi from Yuggoth
-$yithian-blue: #0084b4; // The color of the beings from the beyond
-$hastur-yellow: #ffdb58; // The color of the King in Yellow
-$elder-sign-blue: #0033aa; // The color of the symbol of protection
-$deeper-than-black: #000000; // The darkest of dark colors
-$whippoorwill-white: #f7f7f7; // The color of the mysterious bird
-$lovecraft-green: #1d865e; // The color of the author himself
-$shimmering-violet: #6b3fa0; // The color of the shimmering void
-$necronomicon-red: #9d0000; // The color of the infamous tome
-$cthulhu-tentacle-purple: #6f00ff; // The color of the Great Old One's appendages
-$mi-go-pink: #ff69b4; // The color of the strange fungi
-$elder-thing-blue: #4d4dff; // The color of the bizarre creatures
-$yog-sothoth-yellow: #e6be8a; // The color of the Lurker at the Threshold
-$azathoth-blue: #1f1f7b; // The color of the insane god
-$shoggoth-white: #f7f7f7; // The color of the amorphous beings
-$great-race-purple: #4b0082; // The color of the Great Race of Yith
-$dreamlands-green: #228b22; // The color of the mystical realm
-$mi-go-green: #00cc66; // The color of the alien beings
-$deep-one-green: #43a047; // The color of the fish-like creatures
-$yithian-yellow: #fcd116; // The color of the beings beyond time
-$hound-of-tindalos-blue: #104e8b; // The color of the strange hounds
-$necronomicon-gold: #daa520; // The color of the infamous tome's lettering
-$nyarlathotep-orange: #ff6600; // The color of the Crawling Chaos
-$elder-thing-green: #00cc99; // The color of the bizarre creatures
-$cthulhu-red: #8b0000; // The color of the Great Old One
-$shoggoth-slime-green: #6baf46; // The color of the monstrous secretions
-$ghast-gray: #8a8a8a; // The color of the ghastly beings
-$nightgaunt-black: #0a0a0a; // The color of the shadowy creatures
-$tsathoggua-brown: #8b4513; // The color of the toad-like deity
-$yog-sothoth-red: #b22222; // The color of the Gate and the Key
-$innsmouth-gray: #666666; // The color of the doomed town
-$byakhee-brown: #8b7355; // The color of the interstellar predators
-$ulthar-gold: #ffd700; // The color of the town of cats
-$rats-in-the-walls-brown: #5e2612; // The color of the infamous infestation
-$dream-quest-purple: #800080; // The color of the journey to unknown Kadath
-$ib-shimmer-green: #00ff7f; // The color of the moonbeasts' city
-$abhoth-gray: #a8a8a8; // The color of the source of all uncleanness
-$glaaki-green: #3cb371; // The color of the dweller in the lake
-$outer-gods-blue: #0000cd; // The color of the cosmic pantheon
-$leng-silver: #c0c0c0; // The color of the mysterious plateau
-$color-out-of-space-violet: #9400d3; // The color that defies description
-$azathoth-scream-orange: #ff4500; // The color of the Daemon Sultan's terrifying cry
-$dunwich-horror-brown: #704214; // The color of the monstrous being
-$gug-gray: #505050; // The color of the nocturnal beasts
-$yuggoth-night-sky-blue: #00008b; // The color of the distant planet
-$king-in-yellow-gold: #ffd700; // The color of the enigmatic figure
-$lovecraftian-dusk-purple: #301934; // The color of the unsettling twilight
-$mi-go-brain-cylinder-blue: #0f4d92; // The color of the alien containers
-$mountain-of-madness-white: #ededed; // The color of the frozen wasteland
-$nightmare-green: #00755e; // The color of dreams gone wrong
-$non-euclidean-blue: #3a75c4; // The color of warped geometry
-$pickerel-frog-brown: #9c661f; // The color of the ominous amphibians
-$pluto-gray: #575757; // The color of the far-off celestial body
-$polaris-silver: #d7d7d7; // The color of the pole star
+// Breakpoints
+$small: 600px;
+$medium: 960px;
+$large: 1280px;

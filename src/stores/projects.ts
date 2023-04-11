@@ -6,10 +6,11 @@ export const projects: Project[] = [
     name: 'layout',
     isActive: true,
     components: [
-      'ForgePage',
-      'ErrorScreen',
-      'UnderConstruction',
-      'TitleBar',
+      //'ForgePage',
+      //'ErrorScreen',
+      //'UnderConstruction',
+      //'TitleBar',
+      'TestComponent',
       // 'NavigationMenu',
       // 'AccordionGallery',
       // 'RandomText',
@@ -23,9 +24,9 @@ export const projects: Project[] = [
   },
   {
     name: 'screenfx',
-    isActive: false,
+    isActive: true,
     components: [
-      'MagicRemote',
+      //'MagicRemote',
       'ButterflyMascot',
       // 'LavaBubble',
       // 'LavaLamp',
