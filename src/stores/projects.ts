@@ -6,9 +6,9 @@ export const projects: Project[] = [
     name: 'layout',
     isActive: true,
     components: [
-      'ButterflyHomePage',
+      'ForgePage',
       'ErrorScreen',
-      // 'UnderConstruction',
+      'UnderConstruction',
       'TitleBar',
       // 'NavigationMenu',
       // 'AccordionGallery',

@@ -7,25 +7,33 @@
         <q-btn flat round dense icon="menu" @click="toggleRightDrawer" />
       </q-toolbar>
     </q-header>
-
-    <q-drawer v-model="leftDrawerOpen" side="left" show-if-above>
+    <q-drawer
+      v-model="leftDrawerOpen"
+      side="left"
+      show-if-above
+      class="left-drawer"
+    >
       <navigation-menu />
     </q-drawer>
-
     <q-page-container>
       <q-page class="flex flex-center">
         <!-- Add content that should appear in the center flex screen here -->
       </q-page>
     </q-page-container>
 
-    <q-drawer v-model="rightDrawerOpen" side="right" show-if-above>
+    <q-drawer
+      v-model="rightDrawerOpen"
+      side="right"
+      show-if-above
+      class="right-drawer"
+    >
       <butterfly-mascot />
     </q-drawer>
 
     <q-footer>
       <q-toolbar>
         <q-toolbar-title>
-          &copy; {{ new Date().getFullYear() }} Your Company
+          &copy; {{ new Date().getFullYear() }} AI Wonderforge
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
@@ -63,18 +71,19 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.q-drawer {
-  // Butterfly wing shape for the QDrawers
+.left-drawer {
+  // Butterfly wing shape for the left QDrawer
   clip-path: polygon(0 0, 100% 0, 80% 50%, 100% 100%, 0 100%);
-}
 
-.q-drawer-left {
   // Left wing color gradient
-  background-image: linear-gradient(45deg, #6b5b95, #d39bcb);
+  background-image: linear-gradient(45deg, #6b5b95, rgba(107, 91, 149, 0));
 }
 
-.q-drawer-right {
+.right-drawer {
+  // Butterfly wing shape for the right QDrawer
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 20% 50%, 0 0);
+
   // Right wing color gradient
-  background-image: linear-gradient(135deg, #6b5b95, #d39bcb);
+  background-image: linear-gradient(225deg, rgba(107, 91, 149, 0), #6b5b95);
 }
 </style>
