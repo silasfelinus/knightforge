@@ -58,7 +58,8 @@ Pinia (https://pinia.vuejs.org/)
 └── public/images/
 
 [PROGRESS]
-Installed modules, basic routing and page structures, created HomePage layout, beginning voice integration with SpeechKitt, accordion gallery, moved style and design sections to "WonderForge Styleguide", ButterflyMascot interactible, draggable-resizable magicscreen, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, with quasar.variables.scss for css variables.
+Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, with quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router.
+I've done a lot of planning, and I finally understand vue layout and the design structure. I'm building types as I go. and I can finally say I have a focus on intent, now just polishing access to base assets and rebuilding site. This is an opportunity for significant, rapid momentum, and it's exciting!
 
 [CONFIG FILES]
 index.html, quasar.config.js, app.scss, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, app.vue
@@ -69,15 +70,12 @@ stores/projects.ts
 routes/index.ts
 HomePage //Home
 ErrorScreen //404
+UnderConstruction //Under Construction
 ButterflyMascot //website mascot interactible
+TitleBar //stylized title
 
 [CURRENTLY WORKING ON]
 LayoutEditor.vue //scss manager
-
-
-[LEFT TO STITCH IN]
-UnderConstruction //Under Construction
-TitleBar //stylized title
 NavigationMenu //isActive components
 AccordionGallery //website configuration
 ChatInterface // Chatroom Interface
@@ -87,30 +85,19 @@ SettingsPanel //User Settings
 RandomText  //RandomText(parameters)
 RandomImage // RandomImage(parameters)
 TextInput // Text Input Window
-
-[./components/assetmanager/]
 AssetManager  // Asset manager
-
-[./components/codecards/]
 CodeCard // Base class for customizable cards
-
-
-[./components/screenfx/]
 RainDrops //background screen effect
 LavaLamp //background screen effect
 SoapBubbles //background screen effect
 SplashImage //background screen effect
 MagicFrame //resizeable and draggable stylized window frame
 MagicRemote //modular interface controller
-
-[./components/gamescreen/]
 GameScreen //modular screen display interface with step-based save system
-
-[./components/artgallery/]
 ArtGallery //customizable Art Asset gallery viewer
 
 [NOTE]
-I want to avoid outside modules unless they provide a specific desired utility. We are attempting to develop bare metal javascript vue typed code solutions with minimal dependences outside our own codebase. I am always interested in learning about related paradigms that might provide assistance with organizing our data and recovering them programmatically.
+I want to avoid outside modules unless they provide a specific desired utility. We are attempting to develop bare metal javascript vue typed code solutions with minimal dependences outside our own codebase. I am always interested in learning about related paradigms that might provide assistance with organizing our data and recovering them programmatically, and understanding the essence and intent of code interactions to follow wise practices. Best practices are good, but wise practices are best. Code should be easy to edit, easy to read, and easy to follow.
 
 [Personality Select]
 1. Brainstorm session
@@ -125,167 +112,14 @@ I want to avoid outside modules unless they provide a specific desired utility. 
 0. Custom
 
 Selection:
-5, I'm rebuilding files.
-[stores/types.ts]
-// Define the Component interface, which represents the structure of a single component in a project
-export interface Component {
-  projectName: string;
-  componentName: string;
-  fileName: string;
-  isActive: boolean;
-  path: string;
-  alias: string;
-  importPath: string;
-}
+1, I'm working with images. I want something simple. Bare metal access to image files at the router level or equivalent.
+I have all image files at @/assets/image/, sorted by galleryname/photoset-XXX.webp. All are 1080p wide webp files, some are square, others various rectangles.
 
-// Define the Project interface, which represents the structure of a single project
-export interface Project {
-  name: string;
-  isActive: boolean;
-  folder: string;
-  // An array of component names as strings, for easy editing and information at a glance
-  components: string[];
-}
+Options I want:
+get all galleries in @/assets/images
+get all photosets in gallery
+get random image from photoset
+get random image from any photoset in gallery
+Get random image from photoset
 
-[projects.ts]
-// src/stores/projects.ts
-import { Project } from './types';
-
-export const projects: Project[] = [
-  {
-    name: 'layout',
-    folder: 'layout',
-    isActive: true,
-    components: [
-      'ForgePage',
-      'ErrorScreen',
-      //'UnderConstruction',
-      //'TitleBar',
-      'TestComponent',
-      // 'NavigationMenu',
-      // 'AccordionGallery',
-      // 'RandomText',
-      // 'RandomImage',
-      // 'TextInput',
-      // 'ChatInterface',
-      // 'VoiceControl',
-      // 'UserLogin',
-      // 'SettingsPanel',
-    ],
-  },
-  {
-    name: 'screenfx',
-    isActive: true,
-    folder: 'screenfx',
-    components: [
-      //'MagicRemote',
-      'ButterflyMascot',
-      // 'LavaBubble',
-      // 'LavaLamp',
-      // 'MagicFrame',
-      // 'RainEffect',
-      // 'SoapBubbles',
-      // 'SplashImage',
-    ],
-  },
-  {
-    name: 'artgallery',
-    folder: 'artgallery',
-    isActive: false,
-    components: ['ArtGallery', 'GiftShop', 'MembershipClub', 'ShoppingCart'],
-  },
-  {
-    name: 'assetmanager',
-    isActive: false,
-    folder: 'assetmanager',
-    components: [
-      'AssetManager',
-      'EffectsManager',
-      'ToyboxManager',
-      'ArtManager',
-      'GameManager',
-      'PromptDesigner',
-      'ProjectManager',
-      'CardDesigner',
-      'CodeDesigner',
-      'ApiManager',
-      'SiteDesigner',
-      'GalleryDesigner',
-      'TaskManager',
-    ],
-  },
-  {
-    name: 'codecards',
-    isActive: false,
-    folder: 'codecards',
-    components: [
-      'CodeCard',
-      'AvatarCard',
-      'UserCard',
-      'RobotCard',
-      'ChatGPTCard',
-      'PromptCard',
-      'ArtistCard',
-      'ArtCard',
-      'AlexaCard',
-    ],
-  },
-  {
-    name: 'gamescreen',
-    isActive: false,
-    folder: 'gamescreen',
-    components: [
-      'GameScreen',
-      'MiniPlanet',
-      'ChatBot',
-      'ArtAcademy',
-      'AdventurePanel',
-      'CosmosGame',
-      'SerendipityGame',
-    ],
-  },
-];
-
-// Create a function that takes a project name and returns the corresponding Project object
-export function getProjectByName(projectName: string): Project | undefined {
-  return projects.find((project) => project.name === projectName);
-}
-[componentsGenerator]
-// src/componentsGenerator.ts
-import { Project, Component } from '@/stores/types';
-import { projects } from './projects';
-
-// Create a function to generate the array of Components
-function generateComponents(projects: Project[]): Component[] {
-  const components: Component[] = [];
-
-  projects.forEach((project) => {
-    project.components.forEach((component) => {
-      const isActive = project.isActive && !component.startsWith('//');
-      const componentName = component.replace(/^\/\//, '');
-      const fileName = `${componentName}.vue`;
-      const path = componentName
-        .replace(/([a-z])([A-Z])/g, '$1-$2')
-        .toLowerCase();
-      const alias = `${project.name}_${componentName}`;
-      const importPath = `() => import('@/components/${project.folder}/${fileName}')`;
-
-      components.push({
-        projectName: project.name,
-        componentName,
-        fileName,
-        isActive,
-        path,
-        alias,
-        importPath,
-      });
-    });
-  });
-
-  return components;
-}
-
-// Export the generated array of Components
-export const components: Component[] = generateComponents(projects);
-
-
+Please advise.

@@ -18,3 +18,30 @@ export interface Project {
   // An array of component names as strings, for easy editing and information at a glance
   components: string[];
 }
+
+export interface GameScreen {
+  name: string;
+  x: string;
+  y: string;
+  isVisible: boolean;
+  layer: string;
+}
+export interface Gallery {
+  name: string;
+  user: string;
+  size: string;
+}
+
+export interface Photoset {
+  galleryName: string;
+  name: string;
+  user: string;
+  filePath: string;
+}
+
+export interface Image {
+  galleryName: string;
+  photosetName: string;
+  fileName: string;
+  filePath: string;
+}
