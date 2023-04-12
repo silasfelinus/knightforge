@@ -113,7 +113,9 @@ I want to avoid outside modules unless they provide a specific desired utility. 
 
 Selection:
 1, I'm working with images. I want something simple. Bare metal access to image files at the router level or equivalent.
-I have all image files at @/assets/image/, sorted by galleryname/photoset-XXX.webp. All are 1080p wide webp files, some are square, others various rectangles.
+I have all image files at @/assets/image/, sorted by Gallery.name/Imagefilename.webp. All are 1080p wide webp files, some are square, others various rectangles.
+
+
 
 Options I want:
 get all galleries in @/assets/images

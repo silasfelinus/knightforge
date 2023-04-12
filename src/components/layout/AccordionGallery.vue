@@ -13,8 +13,6 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { Photoset } from '@/stores/types';
-
 interface ImageDisplay {
   id: string;
   filePath: string;

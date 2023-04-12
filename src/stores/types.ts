@@ -19,6 +19,8 @@ export interface Project {
   components: string[];
 }
 
+export type Src = string;
+
 export interface GameScreen {
   name: string;
   x: string;
@@ -27,21 +29,14 @@ export interface GameScreen {
   layer: string;
 }
 export interface Gallery {
-  name: string;
-  user: string;
-  size: string;
-}
-
-export interface Photoset {
-  galleryName: string;
-  name: string;
-  user: string;
-  filePath: string;
+  name?: string;
+  user?: string;
+  size?: string;
+  filePath: Src;
 }
 
 export interface Image {
-  galleryName: string;
-  photosetName: string;
-  fileName: string;
-  filePath: string;
+  galleryName?: string;
+  fileName?: string;
+  filePath: Src;
 }
