@@ -136,52 +136,51 @@ This is a note for later. We have a hosted mariadb database with modeler data. I
 I functionally want GalleryManager.vue that I can query for gallery name, photoset, modeler, tag. or image id and get back the image , set, object, or a randomized subset in simple, easy language, and GalleryViewer.vue that will display a selected subset of photos using our AccordionGallery for display. If this job is easier to separate into components, we want to set them up as well. The databasewill handle things later, so we want minimal dependencies, we want to be able to manage each laye of this chain: modeller makes photosets
 pseudocode eg: <GalleryManager name="splash"> returns gallery object with name "splash" if it exists
 >Modeller.random name="rev" returns random image from the object with modeler name "rev"
-
-export interface Gallery {
-  name: string;
-  filePath(id): string; (convert to type)
-  format: json;
-  images: Image[]
+// identification by number
+export interface ID {
+  id: number;
 }
 
-export interface Image {
-  photoset: string; default: "unsorted"
-  fileName?: string;
-  filePath(id): string;
-  modeler? string; (convert to type)
-  height: integer;
-  width: integer;
-}
-export interface Photoset: {
-  name(id): string;
-  default: "unsorted"
-  fileName?: string;
-  filePath: ;
-  modeler? string;
-  height: integer;
-  width: integer;
-
-}
-
-export interface Modeler {
-  name(id): string;
-  hash?: string;
-  default: string; "cafe-purr"
-  fileName?: string;
-  diffuserurl? string;
-  filePath?: string;
-}
-
+// Tag interface
 export interface Tag {
   name: string;
 }
-[FOLDERS]
-basefolder: @/assets
-photosetsfolders: @/assets/images/{photosets}/{images]}
-galleryfolder: @/assets/galleries
-galleryformat: json
-imageformat: webp
-modellerformat: safetensors
+
+// Gallery interface
+export interface Gallery extends Tag {
+  filePath: string;
+  format: 'json';
+  images: Image[];
+}
+
+// Image interface
+export interface Image extends Tag {
+  photoset: string;
+  fileName?: string;
+  filePath: string;
+  modeler?: string;
+  height: number;
+  width: number;
+}
+
+// Photoset interface
+export interface Photoset extends Tag {
+  default: 'unsorted';
+  fileName?: string;
+  filePath: string;
+  modeler?: string;
+  height: number;
+  width: number;
+}
+
+// Modeler interface
+export interface Modeler extends Tag {
+  hash?: string;
+  default: 'cafe-purr';
+  fileName?: string;
+  diffuserUrl?: string;
+  filePath?: string;
+}
 
 
 Please look at this idea, and help me polish into an action plan today to create these types, any stores, composables, and functions, and end up today with a working custom gallery interface. This would be a BIG BIG BIG step for me, I can use your help and polish. Look at this image design and offer any guidance.

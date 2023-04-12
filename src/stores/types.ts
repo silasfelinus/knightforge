@@ -1,54 +1,31 @@
-// identification by number
-export interface ID {
-  id: number;
-}
-
-// Tag interface
+// Tags are our high-level concept organization
 export interface Tag {
   name: string;
 }
-
-// Component interface
-export interface Component {
-  projectName: string;
-  fileName: string;
-  isActive: boolean;
-  path: string;
-  alias: string;
-  importPath: string;
-}
-
-// Project interface
-export interface Project {
-  isActive: boolean;
-  folder: string;
-  icon?: string;
-  components: string[];
-}
-
-// GameScreen interface
-export interface GameScreen extends Tag {
-  x: string;
-  y: string;
-  isVisible: boolean;
-  layer: string;
-}
-
-// Gallery interface
-export interface Gallery extends Tag {
+//filepath can be remote or local
+export interface filePath {
   filePath: string;
-  format: 'json';
-  images: Image[];
 }
-
+//asset is a tag with a filepath
+export interface Asset extends Tag {
+  filePath: filePath;
+}
+//collection is a group of tags
+export interface Collection {
+  Tags: Tag[];
+}
+//Gallery is a collection with a mask filter of another collection
+export interface Gallery extends Collection {
+  mask: Collection[];
+}
 // Image interface
 export interface Image extends Tag {
-  photoset: string;
+  photoset?: string;
   fileName?: string;
   filePath: string;
   modeler?: string;
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
 }
 
 // Photoset interface
@@ -68,4 +45,25 @@ export interface Modeler extends Tag {
   fileName?: string;
   diffuserUrl?: string;
   filePath?: string;
+}
+
+// Define the Component interface, which represents the structure of a single component in a project
+export interface Component {
+  projectName: string;
+  componentName: string;
+  fileName: string;
+  isActive: boolean;
+  path: string;
+  alias: string;
+  importPath: string;
+}
+
+// Define the Project interface, which represents the structure of a single project
+export interface Project {
+  name: string;
+  isActive: boolean;
+  folder: string;
+  icon?: string;
+  // An array of component names as strings, for easy editing and information at a glance
+  components: string[];
 }
