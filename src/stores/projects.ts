@@ -4,46 +4,50 @@ import { Project } from './types';
 export const projects: Project[] = [
   {
     name: 'layout',
+    folder: 'layout',
     isActive: true,
     components: [
-      //'ForgePage',
-      //'ErrorScreen',
-      //'UnderConstruction',
-      //'TitleBar',
+      'ForgePage',
+      'ErrorScreen',
+      'UnderConstruction',
+      'TitleBar',
       'TestComponent',
-      // 'NavigationMenu',
-      // 'AccordionGallery',
-      // 'RandomText',
-      // 'RandomImage',
-      // 'TextInput',
-      // 'ChatInterface',
-      // 'VoiceControl',
-      // 'UserLogin',
-      // 'SettingsPanel',
+      'NavigationMenu',
+      'AccordionGallery',
+      'RandomText',
+      'RandomImage',
+      'TextInput',
+      'ChatInterface',
+      'VoiceControl',
+      'UserLogin',
+      'SettingsPanel',
     ],
   },
   {
     name: 'screenfx',
     isActive: true,
+    folder: 'screenfx',
     components: [
-      //'MagicRemote',
+      'MagicRemote',
       'ButterflyMascot',
-      // 'LavaBubble',
-      // 'LavaLamp',
-      // 'MagicFrame',
-      // 'RainEffect',
-      // 'SoapBubbles',
-      // 'SplashImage',
+      'LavaBubble',
+      'LavaLamp',
+      'MagicFrame',
+      'RainEffect',
+      'SoapBubbles',
+      'SplashImage',
     ],
   },
   {
     name: 'artgallery',
+    folder: 'artgallery',
     isActive: false,
     components: ['ArtGallery', 'GiftShop', 'MembershipClub', 'ShoppingCart'],
   },
   {
     name: 'assetmanager',
     isActive: false,
+    folder: 'assetmanager',
     components: [
       'AssetManager',
       'EffectsManager',
@@ -63,6 +67,7 @@ export const projects: Project[] = [
   {
     name: 'codecards',
     isActive: false,
+    folder: 'codecards',
     components: [
       'CodeCard',
       'AvatarCard',
@@ -78,6 +83,7 @@ export const projects: Project[] = [
   {
     name: 'gamescreen',
     isActive: false,
+    folder: 'gamescreen',
     components: [
       'GameScreen',
       'MiniPlanet',
@@ -89,3 +95,8 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+// Create a function that takes a project name and returns the corresponding Project object
+export function getProjectByName(projectName: string): Project | undefined {
+  return projects.find((project) => project.name === projectName);
+}

@@ -10,17 +10,27 @@
   </nav>
 </template>
 
-<script>
-import { routes } from '@/router/index';
+<script lang="ts">
+import { defineComponent } from 'vue';
+import router from '@/router/index';
+import { components } from '@/stores/componentsGenerator';
 
-export default {
+export default defineComponent({
   name: 'NavigationMenu',
-  computed: {
-    activeRoutes() {
-      return routes.filter((route) => route.meta && route.meta.isActive);
-    },
+  setup() {
+    const activeRoutes = router.options.routes.filter(
+      (route) =>
+        route.name &&
+        components.some(
+          (component) => component.alias === route.name && component.isActive
+        )
+    );
+
+    return {
+      activeRoutes,
+    };
   },
-};
+});
 </script>
 
 <style lang="scss">

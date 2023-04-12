@@ -124,94 +124,168 @@ I want to avoid outside modules unless they provide a specific desired utility. 
 9. Toggle Text Adventure Quest Mode (status: off)
 0. Custom
 
-Selection: 0:
-Help me separate out concerns from the router/index.ts. I want to create a separate ActiveComponents.ts that reads my projects.ts file and exports the helpful bits for index.
-// src/router/index.ts
-import {
-  createRouter,
-  createWebHistory,
-  Router,
-  RouteRecordRaw,
-} from 'vue-router';
-import { Project } from '@/stores/types';
-import { projects } from '@/stores/projects';
-
-import ErrorScreen from '@/components/layout/ErrorScreen.vue';
-import HomePage from '@/components/layout/HomePage.vue';
-
-function getActiveProjects(projects: Project[]): Project[] {
-  return projects.filter((project) => project.isActive);
+Selection:
+5, I'm rebuilding files.
+[stores/types.ts]
+// Define the Component interface, which represents the structure of a single component in a project
+export interface Component {
+  projectName: string;
+  componentName: string;
+  fileName: string;
+  isActive: boolean;
+  path: string;
+  alias: string;
+  importPath: string;
 }
 
-function createRoute(project: Project, componentName: string): RouteRecordRaw {
-  return {
-    path: `/${project.name.toLowerCase()}/${componentName.toLowerCase()}`,
-    name: `${project.name}-${componentName}`,
-    meta: {
-      isActive: project.isActive,
-    },
-    component: () =>
-      import(
-        /* @vite-ignore */
-        `@/components/${project.name.toLowerCase()}/${componentName}.vue`
-      ).catch(() => {
-        console.error(
-          `Error loading component for project: ${project.name}, component: ${componentName}`
-        );
-        return Promise.reject(new Error('Failed to load component'));
-      }),
-  };
+// Define the Project interface, which represents the structure of a single project
+export interface Project {
+  name: string;
+  isActive: boolean;
+  folder: string;
+  // An array of component names as strings, for easy editing and information at a glance
+  components: string[];
 }
 
-function createRoutes(activeProjects: Project[]): RouteRecordRaw[] {
-  const routes: RouteRecordRaw[] = [];
+[projects.ts]
+// src/stores/projects.ts
+import { Project } from './types';
 
-  activeProjects.forEach((project) => {
-    project.components.forEach((componentName) => {
-      const route = createRoute(project, componentName);
-      routes.push(route);
-    });
-  });
-
-  return routes;
-}
-
-function addRoutesToRouter(router: Router, routes: RouteRecordRaw[]) {
-  routes.forEach((route: RouteRecordRaw) => {
-    router.addRoute(route);
-  });
-}
-
-function addActiveProjectsToRouter(projects: Project[], router: Router) {
-  const activeProjects = getActiveProjects(projects);
-  const routes: RouteRecordRaw[] = createRoutes(activeProjects);
-  addRoutesToRouter(router, routes);
-}
-
-// Add the HomePage route and the ErrorScreen route as the last route in the array
-const routes: RouteRecordRaw[] = [
+export const projects: Project[] = [
   {
-    path: '/', // <-- Add this route for the HomePage
-    name: 'HomePage',
-    component: HomePage,
+    name: 'layout',
+    folder: 'layout',
+    isActive: true,
+    components: [
+      'ForgePage',
+      'ErrorScreen',
+      //'UnderConstruction',
+      //'TitleBar',
+      'TestComponent',
+      // 'NavigationMenu',
+      // 'AccordionGallery',
+      // 'RandomText',
+      // 'RandomImage',
+      // 'TextInput',
+      // 'ChatInterface',
+      // 'VoiceControl',
+      // 'UserLogin',
+      // 'SettingsPanel',
+    ],
   },
   {
-    path: '/:pathMatch(.*)*',
-    name: 'ErrorScreen',
-    component: ErrorScreen,
+    name: 'screenfx',
+    isActive: true,
+    folder: 'screenfx',
+    components: [
+      //'MagicRemote',
+      'ButterflyMascot',
+      // 'LavaBubble',
+      // 'LavaLamp',
+      // 'MagicFrame',
+      // 'RainEffect',
+      // 'SoapBubbles',
+      // 'SplashImage',
+    ],
+  },
+  {
+    name: 'artgallery',
+    folder: 'artgallery',
+    isActive: false,
+    components: ['ArtGallery', 'GiftShop', 'MembershipClub', 'ShoppingCart'],
+  },
+  {
+    name: 'assetmanager',
+    isActive: false,
+    folder: 'assetmanager',
+    components: [
+      'AssetManager',
+      'EffectsManager',
+      'ToyboxManager',
+      'ArtManager',
+      'GameManager',
+      'PromptDesigner',
+      'ProjectManager',
+      'CardDesigner',
+      'CodeDesigner',
+      'ApiManager',
+      'SiteDesigner',
+      'GalleryDesigner',
+      'TaskManager',
+    ],
+  },
+  {
+    name: 'codecards',
+    isActive: false,
+    folder: 'codecards',
+    components: [
+      'CodeCard',
+      'AvatarCard',
+      'UserCard',
+      'RobotCard',
+      'ChatGPTCard',
+      'PromptCard',
+      'ArtistCard',
+      'ArtCard',
+      'AlexaCard',
+    ],
+  },
+  {
+    name: 'gamescreen',
+    isActive: false,
+    folder: 'gamescreen',
+    components: [
+      'GameScreen',
+      'MiniPlanet',
+      'ChatBot',
+      'ArtAcademy',
+      'AdventurePanel',
+      'CosmosGame',
+      'SerendipityGame',
+    ],
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
+// Create a function that takes a project name and returns the corresponding Project object
+export function getProjectByName(projectName: string): Project | undefined {
+  return projects.find((project) => project.name === projectName);
+}
+[componentsGenerator]
+// src/componentsGenerator.ts
+import { Project, Component } from '@/stores/types';
+import { projects } from './projects';
 
-// Call the addActiveProjectsToRouter function
-addActiveProjectsToRouter(projects, router);
+// Create a function to generate the array of Components
+function generateComponents(projects: Project[]): Component[] {
+  const components: Component[] = [];
 
-export default router;
-export { routes };
+  projects.forEach((project) => {
+    project.components.forEach((component) => {
+      const isActive = project.isActive && !component.startsWith('//');
+      const componentName = component.replace(/^\/\//, '');
+      const fileName = `${componentName}.vue`;
+      const path = componentName
+        .replace(/([a-z])([A-Z])/g, '$1-$2')
+        .toLowerCase();
+      const alias = `${project.name}_${componentName}`;
+      const importPath = `() => import('@/components/${project.folder}/${fileName}')`;
 
+      components.push({
+        projectName: project.name,
+        componentName,
+        fileName,
+        isActive,
+        path,
+        alias,
+        importPath,
+      });
+    });
+  });
+
+  return components;
+}
+
+// Export the generated array of Components
+export const components: Component[] = generateComponents(projects);
 
 
