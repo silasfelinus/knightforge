@@ -26,10 +26,13 @@ Pinia (https://pinia.vuejs.org/)
 🚀 "quasar dev"  //launch dev mode
 
 [STANDARDS]
-🌟 Material Design, Composition API, Prettier, SCSS, Pinia Setup Stores, TypeScript standards, Kaizen, DRY Principle
+🌟 Prettier, SCSS, Pinia, TypeScript
+
+[PRINCIPLES]
+Kaizen, DRY Principle, "Best practices are good; Wise practices are best."
 
 [DEVELOPING FEATURES]
-🌈 Gamescreen Interface, interactibles, Asset Management
+🌈 navigation menu, image gallery
 
 [INTENDED FILE TYPES]
 📁 txt, yaml, json, svg, jpg, png, gif, wmv, mp4, db, pdf, webp
@@ -42,27 +45,30 @@ Pinia (https://pinia.vuejs.org/)
 │ ├── assets/audio/
 │ ├── assets/images/
 │ ├── assets/prompts/
+│ ├── assets/galleries/
+│ ├── assets/photosets/
 │ ├── boot/
 │ ├── components/artgallery/
 │ ├── components/assetmanager/
 │ ├── components/codecards/
 │ ├── components/gamescreen/
+│ ├── components/layout/
 │ ├── components/screenfx/
 │ ├── css/app.scss
 │ ├── css/quasar.variables.scss
-│ ├── layout/
 │ ├── views/
 │ ├── router/index.ts
+│ └── stores/componentsGenerator.ts
 │ └── stores/projects.ts
 │ └── stores/types.ts
 └── public/images/
 
 [PROGRESS]
-Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router.
+Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router
 
 [TODO]
+graphic navigation menu
 setup API layer, possibly RESTful API
-
 
 [CONFIG FILES]
 index.html, quasar.config.js, app.scss, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, app.vue
@@ -99,12 +105,6 @@ MagicRemote //modular interface controller
 GameScreen //modular screen display interface with step-based save system
 ArtGallery //customizable Art Asset gallery viewer
 
-[NOTE]
-I want to avoid outside modules unless they provide a specific desired utility. We are attempting to develop bare metal javascript vue typed code solutions with minimal dependences outside our own codebase. I am always interested in learning about related paradigms that might provide assistance with organizing our data and recovering them programmatically, and understanding the essence and intent of code interactions to follow wise practices. Best practices are good, but wise practices are best. Code should be easy to edit, easy to read, and easy to follow.
-
-[EXTENDED NOTES]
-Limit required variables, give sensible defaults whenever appropriate.
-Choose the wisest sensible unique id (name or path), and add reasonable options. Beginning and end points should be clear and natural language, we are building front-end and back-end systems simultaneously.
 
 [SELECTION MENU]
 1. Brainstorm session
@@ -119,44 +119,33 @@ Choose the wisest sensible unique id (name or path), and add reasonable options.
 0. Custom
 
 Selection:
-3, I'm working with images. I want the equivalent to Bare metal access to image files at path level, and the ability to recover random images from photosets, modellers, tags, or galleries.
+8, I've retooled types, this is a base for the rest of the website structure. I want a management page that lets me view, create, manage data. I'll use that to create structure for the other types. How do I begin?
 
-[TYPES]
-Image: a single image file, currently using webp exclusively for testing. Every image is in one photoset, may have one Modeller, and may be in zero, 1 or many Galleries. Each image was created with a Modeller. A Modeller makes many images. An image currently only has one modeler, We are not currently working with the modelers, we are just tracking with modeller was used to make each image for display and information
+// Data is our base operating unit for anything tracked by id
+export interface Data {
+  id: number;
+}
 
-Gallery: a collection of images. instructed by a json in @/assets/galleries/{ gallery.name }. Many:Many relationship
-
-Photoset: a collection of images currently identified by folder grouping. Every image has a photoset. Default "unsorted". A photoset is made by a modeller. One photoset: many images
-
-Modeller: an NLP model checkpoint used to generate the images. It will be very important to sort by later when we setup galleries, so we want it worked in now. A Modeller has a unique hash id and unique natural language reference name. Modellers make photosets
-
-Tag: string identification system used to simplify categorization
-
-[DATABASE]
-This is a note for later. We have a hosted mariadb database with modeler data. I assume it is good to establish this structure on this side before we integrate, as I want this to be more agnostic. I would love advise on how to connect the two efficiently. I control both sides from the same set of servers, but they are independent machines.
-
-[Intent]
-I functionally want GalleryManager.vue that I can query for gallery name, photoset, modeler, tag. or image id and get back the image , set, object, or a randomized subset in simple, easy language, and GalleryViewer.vue that will display a selected subset of photos using our AccordionGallery for display.
-
-I rebuilt types.ts.
-Please advise:
-// Tags are our high-level concept organization
-export interface Tag {
+// Tags are our high-level concept organization, id + name
+export interface Tag extends Data {
   name: string;
-  Tags?: Tag[];
 }
-//filepath can be remote or local
-export interface filePath {
+
+// FilePath can be remote or local
+export interface FilePath extends Data {
   filePath: string;
-  Tags?: Tag[];
 }
-//image is identified by filepath
-export interface Image {
-  filepath: filePath;
-  PrimaryTag?: Tag;
-  SecondaryTags?: Tag[];
-  photoset?: Photoset;
-  modeler?: Modeler;
+
+// Image is identified by filepath
+// Variables customized for NLP ai processing
+export interface Image extends Data {
+  fileName: string;
+  filePath: string;
+  tags?: Tag[];
+  positivePrompt?: string;
+  negativePrompt?: string;
+  photoset?: string;
+  modeler?: string;
   height?: number;
   width?: number;
   steps?: number;
@@ -165,27 +154,30 @@ export interface Image {
   seed?: number;
 }
 
-// Modeler interface
-export interface Modeler {
-  name: Tag;
+// Modelers make images in a particular style
+export interface Modeler extends Tag {
   hash?: string;
   tags?: Tag[];
-  filepath?: filePath;
-  infoUrl?: filePath;
+  localPath?: string;
+  infoUrl?: string;
+  images: Image[];
 }
 
-//Photosets are themed collections of images sorted by folder
-export interface Photoset {
-  name: string;
-  path: filePath;
+// Photosets are themed image collections organized by physical folders
+export interface Photoset extends Tag {
+  src: string;
+  concept?: string;
+  folderName?: string;
+  fullPath?: string;
   tags?: Tag[];
+  images?: Image[];
 }
 
-//Gallery is a sorted collection of images
-export interface Gallery {
+// Gallery is a sorted collection of images organized programmatically
+export interface Gallery extends Tag {
   name: string;
   tags?: Tag[];
-  path?: filePath;
+  path?: FilePath;
   images?: Image[];
   photosets?: Photoset[];
   modelers?: Modeler[];

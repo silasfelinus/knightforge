@@ -1,18 +1,28 @@
-// Tags are our high-level concept organization
-export interface Tag {
+// Data is our base operating unit for anything tracked by id
+export interface Data {
+  id: number;
+}
+
+// Tags are our high-level concept organization, id + name
+export interface Tag extends Data {
   name: string;
 }
-//filepath can be remote or local
-export interface filePath {
+
+// FilePath can be remote or local
+export interface FilePath extends Data {
   filePath: string;
 }
-//image is identified by filepath
-export interface Image {
-  filepath: filePath;
-  primaryTag?: Tag;
+
+// Image is identified by filepath
+// Variables customized for NLP ai processing
+export interface Image extends Data {
+  fileName: string;
+  filePath: string;
   tags?: Tag[];
-  photoset?: Photoset;
-  modeler?: Modeler;
+  positivePrompt?: string;
+  negativePrompt?: string;
+  photoset?: string;
+  modeler?: string;
   height?: number;
   width?: number;
   steps?: number;
@@ -21,27 +31,30 @@ export interface Image {
   seed?: number;
 }
 
-// Modeler interface
-export interface Modeler {
-  modelName: Tag;
+// Modelers make images in a particular style
+export interface Modeler extends Tag {
   hash?: string;
   tags?: Tag[];
-  filepath?: filePath;
-  infoUrl?: filePath;
+  localPath?: string;
+  infoUrl?: string;
+  images: Image[];
 }
 
-//Photosets are themed collections of images sorted by folder
-export interface Photoset {
-  name: string;
-  path: filePath;
+// Photosets are themed image collections organized by physical folders
+export interface Photoset extends Tag {
+  src: string;
+  concept?: string;
+  folderName?: string;
+  fullPath?: string;
   tags?: Tag[];
+  images?: Image[];
 }
 
-//Gallery is a sorted collection of images
-export interface Gallery {
+// Gallery is a sorted collection of images organized programmatically
+export interface Gallery extends Tag {
   name: string;
   tags?: Tag[];
-  path?: filePath;
+  path?: FilePath;
   images?: Image[];
   photosets?: Photoset[];
   modelers?: Modeler[];

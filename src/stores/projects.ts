@@ -8,6 +8,7 @@ export const projects: Project[] = [
     isActive: true,
     components: [
       'ForgePage',
+      'DataManager',
       'ErrorScreen',
       'UnderConstruction',
       'TitleBar',
