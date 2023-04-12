@@ -1,10 +1,16 @@
 // Tags are our high-level concept organization
 export interface Tag {
   name: string;
+  description?: string;
 }
 //filepath can be remote or local
 export interface filePath {
   filePath: string;
+  type?: ['data', 'photoset', 'gallery', 'image'];
+}
+//Photoset extends tag with a file location
+export interface Photoset extends Tag {
+  path: filePath;
 }
 //asset is a tag with a filepath
 export interface Asset extends Tag {
@@ -17,25 +23,6 @@ export interface Collection {
 //Gallery is a collection with a mask filter of another collection
 export interface Gallery extends Collection {
   mask: Collection[];
-}
-// Image interface
-export interface Image extends Tag {
-  photoset?: string;
-  fileName?: string;
-  filePath: string;
-  modeler?: string;
-  height?: number;
-  width?: number;
-}
-
-// Photoset interface
-export interface Photoset extends Tag {
-  default: 'unsorted';
-  fileName?: string;
-  filePath: string;
-  modeler?: string;
-  height: number;
-  width: number;
 }
 
 // Modeler interface
