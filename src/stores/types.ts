@@ -1,37 +1,50 @@
 // Tags are our high-level concept organization
 export interface Tag {
   name: string;
-  description?: string;
+  Tags?: Tag[];
 }
 //filepath can be remote or local
 export interface filePath {
   filePath: string;
-  type?: ['data', 'photoset', 'gallery', 'image'];
+  Tags?: Tag[];
 }
-//Photoset extends tag with a file location
-export interface Photoset extends Tag {
-  path: filePath;
-}
-//asset is a tag with a filepath
-export interface Asset extends Tag {
-  filePath: filePath;
-}
-//collection is a group of tags
-export interface Collection {
-  Tags: Tag[];
-}
-//Gallery is a collection with a mask filter of another collection
-export interface Gallery extends Collection {
-  mask: Collection[];
+//image is identified by filepath
+export interface Image {
+  filepath: filePath;
+  PrimaryTag?: Tag;
+  SecondaryTags?: Tag[];
+  photoset?: Photoset;
+  modeler?: Modeler;
+  height?: number;
+  width?: number;
+  steps?: number;
+  cfg?: number;
+  sampler?: string;
+  seed?: number;
 }
 
 // Modeler interface
-export interface Modeler extends Tag {
+export interface Modeler {
+  name: Tag;
   hash?: string;
-  default: 'cafe-purr';
-  fileName?: string;
-  diffuserUrl?: string;
-  filePath?: string;
+  tags?: Tag[];
+  filepath?: filePath;
+  infoUrl?: filePath;
+}
+
+//Photosets are themed collections of images sorted by folder
+export interface Photoset {
+  name: string;
+  path: filePath;
+  tags?: Tag[];
+}
+
+//Gallery is a sorted collection of images
+export interface Gallery {
+  name: string;
+  tags?: Tag[];
+  path?: filePath;
+  images: Image[];
 }
 
 // Define the Component interface, which represents the structure of a single component in a project
