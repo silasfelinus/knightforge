@@ -1,15 +1,15 @@
-// Base ID interface
+// identification by number
 export interface ID {
-  id: string;
+  id: number;
 }
 
-// Base Tag interface
+// Tag interface
 export interface Tag {
   name: string;
 }
 
 // Component interface
-export interface Component extends Tag {
+export interface Component {
   projectName: string;
   fileName: string;
   isActive: boolean;
@@ -19,7 +19,7 @@ export interface Component extends Tag {
 }
 
 // Project interface
-export interface Project extends Tag {
+export interface Project {
   isActive: boolean;
   folder: string;
   icon?: string;
