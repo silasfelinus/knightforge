@@ -1,7 +1,16 @@
-// Define the Component interface, which represents the structure of a single component in a project
+// identification by number
+export interface ID {
+  id: number;
+}
+
+// Tag interface
+export interface Tag {
+  name: string;
+}
+
+// Component interface
 export interface Component {
   projectName: string;
-  componentName: string;
   fileName: string;
   isActive: boolean;
   path: string;
@@ -9,11 +18,54 @@ export interface Component {
   importPath: string;
 }
 
-// Define the Project interface, which represents the structure of a single project
+// Project interface
 export interface Project {
-  name: string;
   isActive: boolean;
   folder: string;
-  // An array of component names as strings, for easy editing and information at a glance
+  icon?: string;
   components: string[];
+}
+
+// GameScreen interface
+export interface GameScreen extends Tag {
+  x: string;
+  y: string;
+  isVisible: boolean;
+  layer: string;
+}
+
+// Gallery interface
+export interface Gallery extends Tag {
+  filePath: string;
+  format: 'json';
+  images: Image[];
+}
+
+// Image interface
+export interface Image extends Tag {
+  photoset: string;
+  fileName?: string;
+  filePath: string;
+  modeler?: string;
+  height: number;
+  width: number;
+}
+
+// Photoset interface
+export interface Photoset extends Tag {
+  default: 'unsorted';
+  fileName?: string;
+  filePath: string;
+  modeler?: string;
+  height: number;
+  width: number;
+}
+
+// Modeler interface
+export interface Modeler extends Tag {
+  hash?: string;
+  default: 'cafe-purr';
+  fileName?: string;
+  diffuserUrl?: string;
+  filePath?: string;
 }

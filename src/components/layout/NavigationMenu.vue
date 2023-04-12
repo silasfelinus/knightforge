@@ -1,19 +1,10 @@
 <template>
   <nav>
-    <select v-model="selectedProject" @change="updateActiveComponents">
-      <option
-        v-for="project in projects"
-        :key="project.name"
-        :value="project.name"
-        :disabled="!project.isActive"
-      >
-        {{ project.name }}
-      </option>
-    </select>
-    <ul v-if="activeComponents.length > 0">
-      <li v-for="component in activeComponents" :key="component.alias">
-        <router-link :to="{ name: component.alias }" active-class="active">
-          {{ component.componentName }}
+    <ul>
+      <li v-for="route in sortedActiveRoutes" :key="route.name">
+        <router-link :to="{ name: route.name }" active-class="active">
+          <i :class="route.icon"></i>
+          {{ route.displayName }}
         </router-link>
       </li>
     </ul>
@@ -41,33 +32,29 @@ interface Component {
 export default defineComponent({
   name: 'NavigationMenu',
   setup() {
-    const selectedProject = ref('');
-    const projects = computed((): Project[] => {
-      return components.reduce((acc: Project[], component: Component) => {
-        if (!acc.some((project) => project.name === component.projectName)) {
-          acc.push({
-            name: component.projectName,
-            isActive: component.isActive,
-          });
-        }
-        return acc;
-      }, []);
-    });
+    const activeRoutes = router.options.routes.filter(
+      (route) =>
+        route.name &&
+        components.some(
+          (component) => component.alias === route.name && component.isActive
+        )
+    );
 
-    const activeComponents = ref<Component[]>([]);
-
-    const updateActiveComponents = () => {
-      activeComponents.value = components.filter(
-        (component: Component) =>
-          component.projectName === selectedProject.value && component.isActive
-      );
-    };
+    const sortedActiveRoutes = activeRoutes
+      .sort((a, b) => {
+        return (a.name ?? '').localeCompare(b.name ?? '');
+      })
+      .map((route) => {
+        const component = components.find((c) => c.alias === route.name);
+        return {
+          ...route,
+          displayName: component?.componentName || route.name,
+          icon: component?.icon || 'default-icon-class',
+        };
+      });
 
     return {
-      selectedProject,
-      projects,
-      activeComponents,
-      updateActiveComponents,
+      sortedActiveRoutes,
     };
   },
 });
@@ -77,5 +64,24 @@ export default defineComponent({
 nav {
   background-color: #f5f5f5;
   padding: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+i {
+  margin-right: 0.5rem;
 }
 </style>

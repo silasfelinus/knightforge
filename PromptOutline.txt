@@ -58,7 +58,8 @@ Pinia (https://pinia.vuejs.org/)
 └── public/images/
 
 [PROGRESS]
-Installed modules, basic routing and page structures, created HomePage layout, beginning voice integration with SpeechKitt, accordion gallery, moved style and design sections to "WonderForge Styleguide", ButterflyMascot interactible, draggable-resizable magicscreen, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, with quasar.variables.scss for css variables.
+Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router.
+
 
 [CONFIG FILES]
 index.html, quasar.config.js, app.scss, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, app.vue
@@ -69,15 +70,12 @@ stores/projects.ts
 routes/index.ts
 HomePage //Home
 ErrorScreen //404
+UnderConstruction //Under Construction
 ButterflyMascot //website mascot interactible
+TitleBar //stylized title
 
 [CURRENTLY WORKING ON]
 LayoutEditor.vue //scss manager
-
-
-[LEFT TO STITCH IN]
-UnderConstruction //Under Construction
-TitleBar //stylized title
 NavigationMenu //isActive components
 AccordionGallery //website configuration
 ChatInterface // Chatroom Interface
@@ -87,32 +85,25 @@ SettingsPanel //User Settings
 RandomText  //RandomText(parameters)
 RandomImage // RandomImage(parameters)
 TextInput // Text Input Window
-
-[./components/assetmanager/]
 AssetManager  // Asset manager
-
-[./components/codecards/]
 CodeCard // Base class for customizable cards
-
-
-[./components/screenfx/]
 RainDrops //background screen effect
 LavaLamp //background screen effect
 SoapBubbles //background screen effect
 SplashImage //background screen effect
 MagicFrame //resizeable and draggable stylized window frame
 MagicRemote //modular interface controller
-
-[./components/gamescreen/]
 GameScreen //modular screen display interface with step-based save system
-
-[./components/artgallery/]
 ArtGallery //customizable Art Asset gallery viewer
 
 [NOTE]
-I want to avoid outside modules unless they provide a specific desired utility. We are attempting to develop bare metal javascript vue typed code solutions with minimal dependences outside our own codebase. I am always interested in learning about related paradigms that might provide assistance with organizing our data and recovering them programmatically.
+I want to avoid outside modules unless they provide a specific desired utility. We are attempting to develop bare metal javascript vue typed code solutions with minimal dependences outside our own codebase. I am always interested in learning about related paradigms that might provide assistance with organizing our data and recovering them programmatically, and understanding the essence and intent of code interactions to follow wise practices. Best practices are good, but wise practices are best. Code should be easy to edit, easy to read, and easy to follow.
 
-[Personality Select]
+[EXTENDED NOTES]
+Limit required variables, give sensible defaults whenever appropriate.
+Choose the wisest sensible unique id (name or path), and add reasonable options. Beginning and end points should be clear and natural language, we are building front-end and back-end systems simultaneously.
+
+[SELECTION MENU]
 1. Brainstorm session
 2. High Level System Overview
 3. Focused Project Outline
@@ -125,167 +116,72 @@ I want to avoid outside modules unless they provide a specific desired utility. 
 0. Custom
 
 Selection:
-5, I'm rebuilding files.
-[stores/types.ts]
-// Define the Component interface, which represents the structure of a single component in a project
-export interface Component {
-  projectName: string;
-  componentName: string;
-  fileName: string;
-  isActive: boolean;
-  path: string;
-  alias: string;
-  importPath: string;
-}
+3, I'm working with images. I want the equivalent to Bare metal access to image files at path level, and the ability to recover random images from photosets, modellers, tags, or galleries.
 
-// Define the Project interface, which represents the structure of a single project
-export interface Project {
+[TYPES]
+Image: a single image file, currently using webp exclusively for testing. Every image is in one photoset, may have one Modeller, and may be in zero, 1 or many Galleries. Each image was created with a Modeller. A Modeller makes many images. An image currently only has one modeler, We are not currently working with the modelers, we are just tracking with modeller was used to make each image for display and information
+
+Gallery: a collection of images. instructed by a json in @/assets/galleries/{ gallery.name }. Many:Many relationship
+
+Photoset: a collection of images currently identified by folder grouping. Every image has a photoset. Default "unsorted". A photoset is made by a modeller. One photoset: many images
+
+Modeller: an NLP model checkpoint used to generate the images. It will be very important to sort by later when we setup galleries, so we want it worked in now. A Modeller has a unique hash id and unique natural language reference name. Modellers make photosets
+
+Tag: string identification system used to simplify categorization
+
+[DATABASE]
+This is a note for later. We have a hosted mariadb database with modeler data. I assume it is good to establish this structure on this side before we integrate, as I want this to be more agnostic. I would love advise on how to connect the two efficiently. I control both sides from the same set of servers, but they are independent machines.
+
+[Intent]
+I functionally want GalleryManager.vue that I can query for gallery name, photoset, modeler, tag. or image id and get back the image , set, object, or a randomized subset in simple, easy language, and GalleryViewer.vue that will display a selected subset of photos using our AccordionGallery for display. If this job is easier to separate into components, we want to set them up as well. The databasewill handle things later, so we want minimal dependencies, we want to be able to manage each laye of this chain: modeller makes photosets
+pseudocode eg: <GalleryManager name="splash"> returns gallery object with name "splash" if it exists
+>Modeller.random name="rev" returns random image from the object with modeler name "rev"
+
+export interface Gallery {
   name: string;
-  isActive: boolean;
-  folder: string;
-  // An array of component names as strings, for easy editing and information at a glance
-  components: string[];
+  filePath(id): string; (convert to type)
+  format: json;
+  images: Image[]
 }
 
-[projects.ts]
-// src/stores/projects.ts
-import { Project } from './types';
-
-export const projects: Project[] = [
-  {
-    name: 'layout',
-    folder: 'layout',
-    isActive: true,
-    components: [
-      'ForgePage',
-      'ErrorScreen',
-      //'UnderConstruction',
-      //'TitleBar',
-      'TestComponent',
-      // 'NavigationMenu',
-      // 'AccordionGallery',
-      // 'RandomText',
-      // 'RandomImage',
-      // 'TextInput',
-      // 'ChatInterface',
-      // 'VoiceControl',
-      // 'UserLogin',
-      // 'SettingsPanel',
-    ],
-  },
-  {
-    name: 'screenfx',
-    isActive: true,
-    folder: 'screenfx',
-    components: [
-      //'MagicRemote',
-      'ButterflyMascot',
-      // 'LavaBubble',
-      // 'LavaLamp',
-      // 'MagicFrame',
-      // 'RainEffect',
-      // 'SoapBubbles',
-      // 'SplashImage',
-    ],
-  },
-  {
-    name: 'artgallery',
-    folder: 'artgallery',
-    isActive: false,
-    components: ['ArtGallery', 'GiftShop', 'MembershipClub', 'ShoppingCart'],
-  },
-  {
-    name: 'assetmanager',
-    isActive: false,
-    folder: 'assetmanager',
-    components: [
-      'AssetManager',
-      'EffectsManager',
-      'ToyboxManager',
-      'ArtManager',
-      'GameManager',
-      'PromptDesigner',
-      'ProjectManager',
-      'CardDesigner',
-      'CodeDesigner',
-      'ApiManager',
-      'SiteDesigner',
-      'GalleryDesigner',
-      'TaskManager',
-    ],
-  },
-  {
-    name: 'codecards',
-    isActive: false,
-    folder: 'codecards',
-    components: [
-      'CodeCard',
-      'AvatarCard',
-      'UserCard',
-      'RobotCard',
-      'ChatGPTCard',
-      'PromptCard',
-      'ArtistCard',
-      'ArtCard',
-      'AlexaCard',
-    ],
-  },
-  {
-    name: 'gamescreen',
-    isActive: false,
-    folder: 'gamescreen',
-    components: [
-      'GameScreen',
-      'MiniPlanet',
-      'ChatBot',
-      'ArtAcademy',
-      'AdventurePanel',
-      'CosmosGame',
-      'SerendipityGame',
-    ],
-  },
-];
-
-// Create a function that takes a project name and returns the corresponding Project object
-export function getProjectByName(projectName: string): Project | undefined {
-  return projects.find((project) => project.name === projectName);
+export interface Image {
+  photoset: string; default: "unsorted"
+  fileName?: string;
+  filePath(id): string;
+  modeler? string; (convert to type)
+  height: integer;
+  width: integer;
 }
-[componentsGenerator]
-// src/componentsGenerator.ts
-import { Project, Component } from '@/stores/types';
-import { projects } from './projects';
+export interface Photoset: {
+  name(id): string;
+  default: "unsorted"
+  fileName?: string;
+  filePath: ;
+  modeler? string;
+  height: integer;
+  width: integer;
 
-// Create a function to generate the array of Components
-function generateComponents(projects: Project[]): Component[] {
-  const components: Component[] = [];
-
-  projects.forEach((project) => {
-    project.components.forEach((component) => {
-      const isActive = project.isActive && !component.startsWith('//');
-      const componentName = component.replace(/^\/\//, '');
-      const fileName = `${componentName}.vue`;
-      const path = componentName
-        .replace(/([a-z])([A-Z])/g, '$1-$2')
-        .toLowerCase();
-      const alias = `${project.name}_${componentName}`;
-      const importPath = `() => import('@/components/${project.folder}/${fileName}')`;
-
-      components.push({
-        projectName: project.name,
-        componentName,
-        fileName,
-        isActive,
-        path,
-        alias,
-        importPath,
-      });
-    });
-  });
-
-  return components;
 }
 
-// Export the generated array of Components
-export const components: Component[] = generateComponents(projects);
+export interface Modeler {
+  name(id): string;
+  hash?: string;
+  default: string; "cafe-purr"
+  fileName?: string;
+  diffuserurl? string;
+  filePath?: string;
+}
+
+export interface Tag {
+  name: string;
+}
+[FOLDERS]
+basefolder: @/assets
+photosetsfolders: @/assets/images/{photosets}/{images]}
+galleryfolder: @/assets/galleries
+galleryformat: json
+imageformat: webp
+modellerformat: safetensors
 
 
+Please look at this idea, and help me polish into an action plan today to create these types, any stores, composables, and functions, and end up today with a working custom gallery interface. This would be a BIG BIG BIG step for me, I can use your help and polish. Look at this image design and offer any guidance.
