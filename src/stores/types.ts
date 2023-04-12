@@ -14,6 +14,7 @@ export interface Project {
   name: string;
   isActive: boolean;
   folder: string;
+  icon?: string;
   // An array of component names as strings, for easy editing and information at a glance
   components: string[];
 }

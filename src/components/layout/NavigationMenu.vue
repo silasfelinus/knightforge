@@ -1,10 +1,11 @@
 <template>
   <nav>
     <ul>
-      <li v-for="route in activeRoutes" :key="route.name">
-        <router-link :to="{ name: route.name }" active-class="active">{{
-          route.name
-        }}</router-link>
+      <li v-for="route in sortedActiveRoutes" :key="route.name">
+        <router-link :to="{ name: route.name }" active-class="active">
+          <i :class="route.icon"></i>
+          {{ route.displayName }}
+        </router-link>
       </li>
     </ul>
   </nav>
@@ -26,8 +27,21 @@ export default defineComponent({
         )
     );
 
+    const sortedActiveRoutes = activeRoutes
+      .sort((a, b) => {
+        return (a.name ?? '').localeCompare(b.name ?? '');
+      })
+      .map((route) => {
+        const component = components.find((c) => c.alias === route.name);
+        return {
+          ...route,
+          displayName: component?.componentName || route.name,
+          icon: component?.icon || 'default-icon-class',
+        };
+      });
+
     return {
-      activeRoutes,
+      sortedActiveRoutes,
     };
   },
 });
@@ -37,5 +51,24 @@ export default defineComponent({
 nav {
   background-color: #f5f5f5;
   padding: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+i {
+  margin-right: 0.5rem;
 }
 </style>
