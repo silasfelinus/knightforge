@@ -12,22 +12,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent } from 'vue';
 import { components } from '@/stores/componentsGenerator';
-interface Project {
-  name: string;
-  isActive: boolean;
-}
-
-interface Component {
-  projectName: string;
-  componentName: string;
-  fileName: string;
-  isActive: boolean;
-  path: string;
-  alias: string;
-  importPath: string;
-}
+import router from '@/router/index';
 
 export default defineComponent({
   name: 'NavigationMenu',
@@ -42,7 +29,9 @@ export default defineComponent({
 
     const sortedActiveRoutes = activeRoutes
       .sort((a, b) => {
-        return (a.name ?? '').localeCompare(b.name ?? '');
+        return ((a.name as string) ?? '').localeCompare(
+          (b.name as string) ?? ''
+        );
       })
       .map((route) => {
         const component = components.find((c) => c.alias === route.name);

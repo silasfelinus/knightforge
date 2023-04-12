@@ -60,6 +60,9 @@ Pinia (https://pinia.vuejs.org/)
 [PROGRESS]
 Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router.
 
+[TODO]
+setup API layer, possibly RESTful API
+
 
 [CONFIG FILES]
 index.html, quasar.config.js, app.scss, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, app.vue
@@ -133,54 +136,57 @@ Tag: string identification system used to simplify categorization
 This is a note for later. We have a hosted mariadb database with modeler data. I assume it is good to establish this structure on this side before we integrate, as I want this to be more agnostic. I would love advise on how to connect the two efficiently. I control both sides from the same set of servers, but they are independent machines.
 
 [Intent]
-I functionally want GalleryManager.vue that I can query for gallery name, photoset, modeler, tag. or image id and get back the image , set, object, or a randomized subset in simple, easy language, and GalleryViewer.vue that will display a selected subset of photos using our AccordionGallery for display. If this job is easier to separate into components, we want to set them up as well. The databasewill handle things later, so we want minimal dependencies, we want to be able to manage each laye of this chain: modeller makes photosets
-pseudocode eg: <GalleryManager name="splash"> returns gallery object with name "splash" if it exists
->Modeller.random name="rev" returns random image from the object with modeler name "rev"
-// identification by number
-export interface ID {
-  id: number;
-}
+I functionally want GalleryManager.vue that I can query for gallery name, photoset, modeler, tag. or image id and get back the image , set, object, or a randomized subset in simple, easy language, and GalleryViewer.vue that will display a selected subset of photos using our AccordionGallery for display.
 
-// Tag interface
+I rebuilt types.ts.
+Please advise:
+// Tags are our high-level concept organization
 export interface Tag {
   name: string;
+  Tags?: Tag[];
 }
-
-// Gallery interface
-export interface Gallery extends Tag {
+//filepath can be remote or local
+export interface filePath {
   filePath: string;
-  format: 'json';
-  images: Image[];
+  Tags?: Tag[];
 }
-
-// Image interface
-export interface Image extends Tag {
-  photoset: string;
-  fileName?: string;
-  filePath: string;
-  modeler?: string;
-  height: number;
-  width: number;
-}
-
-// Photoset interface
-export interface Photoset extends Tag {
-  default: 'unsorted';
-  fileName?: string;
-  filePath: string;
-  modeler?: string;
-  height: number;
-  width: number;
+//image is identified by filepath
+export interface Image {
+  filepath: filePath;
+  PrimaryTag?: Tag;
+  SecondaryTags?: Tag[];
+  photoset?: Photoset;
+  modeler?: Modeler;
+  height?: number;
+  width?: number;
+  steps?: number;
+  cfg?: number;
+  sampler?: string;
+  seed?: number;
 }
 
 // Modeler interface
-export interface Modeler extends Tag {
+export interface Modeler {
+  name: Tag;
   hash?: string;
-  default: 'cafe-purr';
-  fileName?: string;
-  diffuserUrl?: string;
-  filePath?: string;
+  tags?: Tag[];
+  filepath?: filePath;
+  infoUrl?: filePath;
 }
 
+//Photosets are themed collections of images sorted by folder
+export interface Photoset {
+  name: string;
+  path: filePath;
+  tags?: Tag[];
+}
 
-Please look at this idea, and help me polish into an action plan today to create these types, any stores, composables, and functions, and end up today with a working custom gallery interface. This would be a BIG BIG BIG step for me, I can use your help and polish. Look at this image design and offer any guidance.
+//Gallery is a sorted collection of images
+export interface Gallery {
+  name: string;
+  tags?: Tag[];
+  path?: filePath;
+  images?: Image[];
+  photosets?: Photoset[];
+  modelers?: Modeler[];
+}

@@ -1,18 +1,16 @@
 // Tags are our high-level concept organization
 export interface Tag {
   name: string;
-  Tags?: Tag[];
 }
 //filepath can be remote or local
 export interface filePath {
   filePath: string;
-  Tags?: Tag[];
 }
 //image is identified by filepath
 export interface Image {
   filepath: filePath;
-  PrimaryTag?: Tag;
-  SecondaryTags?: Tag[];
+  primaryTag?: Tag;
+  tags?: Tag[];
   photoset?: Photoset;
   modeler?: Modeler;
   height?: number;
@@ -25,7 +23,7 @@ export interface Image {
 
 // Modeler interface
 export interface Modeler {
-  name: Tag;
+  modelName: Tag;
   hash?: string;
   tags?: Tag[];
   filepath?: filePath;
@@ -44,7 +42,9 @@ export interface Gallery {
   name: string;
   tags?: Tag[];
   path?: filePath;
-  images: Image[];
+  images?: Image[];
+  photosets?: Photoset[];
+  modelers?: Modeler[];
 }
 
 // Define the Component interface, which represents the structure of a single component in a project
@@ -56,6 +56,7 @@ export interface Component {
   path: string;
   alias: string;
   importPath: string;
+  icon?: string;
 }
 
 // Define the Project interface, which represents the structure of a single project
