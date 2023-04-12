@@ -58,8 +58,8 @@ Pinia (https://pinia.vuejs.org/)
 └── public/images/
 
 [PROGRESS]
-Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, with quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router.
-I've done a lot of planning, and I finally understand vue layout and the design structure. I'm building types as I go. and I can finally say I have a focus on intent, now just polishing access to base assets and rebuilding site. This is an opportunity for significant, rapid momentum, and it's exciting!
+Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router.
+
 
 [CONFIG FILES]
 index.html, quasar.config.js, app.scss, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, app.vue
@@ -99,7 +99,11 @@ ArtGallery //customizable Art Asset gallery viewer
 [NOTE]
 I want to avoid outside modules unless they provide a specific desired utility. We are attempting to develop bare metal javascript vue typed code solutions with minimal dependences outside our own codebase. I am always interested in learning about related paradigms that might provide assistance with organizing our data and recovering them programmatically, and understanding the essence and intent of code interactions to follow wise practices. Best practices are good, but wise practices are best. Code should be easy to edit, easy to read, and easy to follow.
 
-[Personality Select]
+[EXTENDED NOTES]
+Limit required variables, give sensible defaults whenever appropriate.
+Choose the wisest sensible unique id (name or path), and add reasonable options. Beginning and end points should be clear and natural language, we are building front-end and back-end systems simultaneously.
+
+[SELECTION MENU]
 1. Brainstorm session
 2. High Level System Overview
 3. Focused Project Outline
@@ -112,16 +116,72 @@ I want to avoid outside modules unless they provide a specific desired utility. 
 0. Custom
 
 Selection:
-1, I'm working with images. I want something simple. Bare metal access to image files at the router level or equivalent.
-I have all image files at @/assets/image/, sorted by Gallery.name/Imagefilename.webp. All are 1080p wide webp files, some are square, others various rectangles.
+3, I'm working with images. I want the equivalent to Bare metal access to image files at path level, and the ability to recover random images from photosets, modellers, tags, or galleries.
+
+[TYPES]
+Image: a single image file, currently using webp exclusively for testing. Every image is in one photoset, may have one Modeller, and may be in zero, 1 or many Galleries. Each image was created with a Modeller. A Modeller makes many images. An image currently only has one modeler, We are not currently working with the modelers, we are just tracking with modeller was used to make each image for display and information
+
+Gallery: a collection of images. instructed by a json in @/assets/galleries/{ gallery.name }. Many:Many relationship
+
+Photoset: a collection of images currently identified by folder grouping. Every image has a photoset. Default "unsorted". A photoset is made by a modeller. One photoset: many images
+
+Modeller: an NLP model checkpoint used to generate the images. It will be very important to sort by later when we setup galleries, so we want it worked in now. A Modeller has a unique hash id and unique natural language reference name. Modellers make photosets
+
+Tag: string identification system used to simplify categorization
+
+[DATABASE]
+This is a note for later. We have a hosted mariadb database with modeler data. I assume it is good to establish this structure on this side before we integrate, as I want this to be more agnostic. I would love advise on how to connect the two efficiently. I control both sides from the same set of servers, but they are independent machines.
+
+[Intent]
+I functionally want GalleryManager.vue that I can query for gallery name, photoset, modeler, tag. or image id and get back the image , set, object, or a randomized subset in simple, easy language, and GalleryViewer.vue that will display a selected subset of photos using our AccordionGallery for display. If this job is easier to separate into components, we want to set them up as well. The databasewill handle things later, so we want minimal dependencies, we want to be able to manage each laye of this chain: modeller makes photosets
+pseudocode eg: <GalleryManager name="splash"> returns gallery object with name "splash" if it exists
+>Modeller.random name="rev" returns random image from the object with modeler name "rev"
+
+export interface Gallery {
+  name: string;
+  filePath(id): string; (convert to type)
+  format: json;
+  images: Image[]
+}
+
+export interface Image {
+  photoset: string; default: "unsorted"
+  fileName?: string;
+  filePath(id): string;
+  modeler? string; (convert to type)
+  height: integer;
+  width: integer;
+}
+export interface Photoset: {
+  name(id): string;
+  default: "unsorted"
+  fileName?: string;
+  filePath: ;
+  modeler? string;
+  height: integer;
+  width: integer;
+
+}
+
+export interface Modeler {
+  name(id): string;
+  hash?: string;
+  default: string; "cafe-purr"
+  fileName?: string;
+  diffuserurl? string;
+  filePath?: string;
+}
+
+export interface Tag {
+  name: string;
+}
+[FOLDERS]
+basefolder: @/assets
+photosetsfolders: @/assets/images/{photosets}/{images]}
+galleryfolder: @/assets/galleries
+galleryformat: json
+imageformat: webp
+modellerformat: safetensors
 
 
-
-Options I want:
-get all galleries in @/assets/images
-get all photosets in gallery
-get random image from photoset
-get random image from any photoset in gallery
-Get random image from photoset
-
-Please advise.
+Please look at this idea, and help me polish into an action plan today to create these types, any stores, composables, and functions, and end up today with a working custom gallery interface. This would be a BIG BIG BIG step for me, I can use your help and polish. Look at this image design and offer any guidance.
