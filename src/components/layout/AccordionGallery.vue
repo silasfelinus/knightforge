@@ -13,6 +13,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { Photoset } from '@/stores/types';
+
 interface ImageDisplay {
   id: string;
   filePath: string;
@@ -31,10 +33,13 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const images: ImageDisplay[] = props.photosets.map((photoset) => ({
-      id: `${photoset.galleryName}-${photoset.name}`,
-      filePath: photoset.filePath,
-    }));
+    const images: ImageDisplay[] = props.photosets.flatMap(
+      (photoset) =>
+        photoset.images?.map((image) => ({
+          id: `${photoset.name}-${image.id}`,
+          filePath: image.filePath,
+        })) ?? []
+    );
 
     return {
       images,

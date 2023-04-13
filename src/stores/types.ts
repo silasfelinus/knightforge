@@ -54,6 +54,7 @@ export interface Photoset extends Tag {
   fullPath?: string;
   tags?: Tag[];
   images?: Image[];
+  prefix: string;
 }
 
 // Gallery is a sorted collection of images organized programmatically
@@ -86,4 +87,9 @@ export interface Project {
   icon?: string;
   // An array of component names as strings, for easy editing and information at a glance
   components: string[];
+}
+
+export interface GameScreen {
+  id: number;
+  photoset?: string;
 }

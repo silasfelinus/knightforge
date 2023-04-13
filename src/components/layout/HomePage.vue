@@ -37,13 +37,12 @@
       show-if-above
       class="butterfly__sidebar--right"
     >
-      <butterfly-mascot />
+      <NavigationRemote />
     </q-drawer>
 
     <q-page-container>
       <q-page class="flex flex-center game-screen-container">
-        <MagicScreen />
-        <MagicScreen />
+        <MagicScreen v-for="gameScreen in gameScreens" :key="gameScreen.id" />
       </q-page>
     </q-page-container>
 
@@ -60,20 +59,22 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import NavigationMenu from './NavigationMenu.vue';
-import ButterflyMascot from '../screenfx/ButterflyMascot.vue';
+import NavigationRemote from './NavigationRemote.vue'; // Import NavigationRemote component
 import MagicScreen from '@/components/layout/MagicScreen.vue';
-import TitleBar from '@/components/layout/TitleBar.vue'; // Import TitleBar component
-import SplashMessage from '@/components/layout/SplashMessage.vue'; // Import SplashMessage component
+import TitleBar from '@/components/layout/TitleBar.vue';
+import SplashMessage from '@/components/layout/SplashMessage.vue';
+import { useAppStore } from '@/stores/useAppStore';
 
 export default defineComponent({
   components: {
     NavigationMenu,
-    ButterflyMascot,
+    NavigationRemote,
     MagicScreen,
     TitleBar,
     SplashMessage,
   },
   setup() {
+    const appStore = useAppStore();
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
 
@@ -85,7 +86,8 @@ export default defineComponent({
       rightDrawerOpen.value = !rightDrawerOpen.value;
     }
 
-    return {
+    return {  
+      gameScreens: appStore.gameScreens,
       leftDrawerOpen,
       rightDrawerOpen,
       toggleLeftDrawer,
