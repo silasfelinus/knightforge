@@ -13,6 +13,12 @@ export interface FilePath extends Data {
   filePath: string;
 }
 
+export interface Database {
+  database: string;
+  host: string;
+  user: string;
+  password: string;
+}
 // Image is identified by filepath
 // Variables customized for NLP ai processing
 export interface Image extends Data {
