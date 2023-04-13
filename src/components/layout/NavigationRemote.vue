@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import { useAppStore } from '@/stores/useAppStore';
+import { useAppStore } from '@/stores/useGameScreens.js';
 
 export default defineComponent({
   setup() {

@@ -1,11 +1,7 @@
-// src/stores/useAppStore.ts
-import { defineStore } from 'pinia';
-import { GameScreen, Photoset } from '@/stores/types';
+// src/stores/useGameScreens.ts
+import { GameScreen } from '@/stores/types';
 
-export const useAppStore = defineStore({
-  id: 'app',
-  state: () => ({
-    gameScreens: [] as GameScreen[],
+export const gameScreens: [] as GameScreen[],
     selectedPhotoset: 'chest',
     photosets: [
       {

@@ -63,7 +63,7 @@ import NavigationRemote from './NavigationRemote.vue';
 import MagicScreen from '@/components/layout/MagicScreen.vue';
 import TitleBar from '@/components/layout/TitleBar.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
-import { useAppStore } from '@/stores/useAppStore';
+import { useAppStore } from '@/stores/useGameScreens';
 
 export default defineComponent({
   components: {
