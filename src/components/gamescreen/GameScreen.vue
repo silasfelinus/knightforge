@@ -1,9 +1,6 @@
 <template>
   <div class="game-screen">
-    <h2>Game Screen</h2>
-    <div class="game-container">
-      <!-- Your game content goes here -->
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -15,22 +12,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss">
 .game-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-}
-
-.game-container {
   width: 100%;
-  height: 600px;
-  border: 1px solid #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f9f9f9;
-  position: relative;
+  height: 100%;
 }
 </style>

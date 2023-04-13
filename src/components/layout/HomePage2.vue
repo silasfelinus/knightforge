@@ -89,17 +89,4 @@ export default defineComponent({
   // Right wing color gradient
   background-image: linear-gradient(225deg, rgba(107, 91, 149, 0), #6b5b95);
 }
-
-.center-dialog {
-  max-width: 90%;
-  max-height: 90%;
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.game-screen-container {
-  width: 100%;
-  height: 100%;
-}
 </style>

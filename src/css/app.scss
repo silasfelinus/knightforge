@@ -1,7 +1,8 @@
-// Import variables
+// src/css/global.scss
+
 @import './quasar.variables.scss';
 
-// Global styles
+// Base styles
 html,
 body {
   font-family: $font-family;
@@ -9,45 +10,66 @@ body {
   color: $text;
   background-color: $background;
   margin: 0;
+  padding: 0;
   height: 100%;
 }
 
-// Container
-.container {
-  max-width: $large;
-  margin: 0 auto;
-  padding: $spacing-base;
+// Layout Components
+.qheader,
+.qfooter {
+  background-color: $primary;
+  color: $light-text;
 }
 
-// Grid
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -(calc($spacing-base / 2));
-  margin-right: -(calc($spacing-base / 2));
+.qheader {
+  height: 10vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
-.column {
-  padding-left: calc($spacing-base / 2);
-  padding-right: calc($spacing-base / 2);
-  flex-basis: 100%;
+.qfooter {
+  height: 10vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-// Media Queries for Grid
-@media (min-width: $small) {
-  .column.small {
-    flex-basis: 50%;
-  }
+.qsidebar {
+  background-color: $secondary;
+  color: $light-text;
+  width: 20vw;
+  height: 80vh;
+  position: fixed;
 }
 
-@media (min-width: $medium) {
-  .column.medium {
-    flex-basis: 33.333%;
-  }
+.qsidebar-left {
+  top: 10vh;
+  left: 0;
 }
 
-@media (min-width: $large) {
-  .column.large {
-    flex-basis: 25%;
-  }
+.qsidebar-right {
+  top: 10vh;
+  right: 0;
+}
+
+.centerscreen {
+  margin-top: 10vh;
+  margin-left: 20vw;
+  margin-right: 20vw;
+  height: 80vh;
+  background-color: $background;
+}
+
+// Butterfly effect
+.butterfly__sidebar--left {
+  clip-path: polygon(0 0, 100% 0, 80% 50%, 100% 100%, 0 100%);
+  background-image: linear-gradient(45deg, #6b5b95, rgba(107, 91, 149, 0));
+}
+
+.butterfly__sidebar--right {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 20% 50%, 0 0);
+  background-image: linear-gradient(225deg, rgba(107, 91, 149, 0), #6b5b95);
 }

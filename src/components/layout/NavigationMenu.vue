@@ -65,29 +65,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-nav {
-  background-color: #f5f5f5;
-  padding: 1rem;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  display: inline-block;
-  margin-right: 1rem;
-}
-
-li:hover {
-  cursor: pointer;
-}
-
-i {
-  margin-right: 0.5rem;
-}
-</style>

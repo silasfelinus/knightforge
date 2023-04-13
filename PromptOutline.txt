@@ -64,7 +64,7 @@ Kaizen, DRY Principle, "Best practices are good; Wise practices are best."
 └── public/images/
 
 [PROGRESS]
-Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router, have basic types setup for data, id, and images, now need to connect to database to store the info.
+Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router, have basic types setup for data, id, and filepaths, and images. Working to restore images and accordion menu. help me iterate through my files, make sure things are optimized, and fix where it's been broken since I rebuilt everything.
 
 [TODO]
 graphic navigation menu
