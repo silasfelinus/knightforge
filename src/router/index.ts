@@ -1,7 +1,7 @@
 // src/router/index.ts
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { components } from '@/stores/componentsGenerator';
-import HomePage from '@/components/layout/HomePage.vue';
+import HomePage from '@/components/layout/DemoPage.vue';
 
 const routes: RouteRecordRaw[] = [
   {

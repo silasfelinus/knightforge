@@ -6,9 +6,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useMyStore } from '@/stores';
 
 export default defineComponent({
-  name: 'App',
+  setup() {
+    const store = useMyStore();
+    store.increment();
+    console.log('Count:', store.count);
+    return {};
+  },
 });
 </script>
 
