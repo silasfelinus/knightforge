@@ -38,7 +38,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.10.0",
     "interactjs": "^1.10.17",
-    "pinia": "^2.0.33",
+    "pinia": "^2.0.34",
     "prettier": "^2.8.7",
     "quasar": "^2.11.10",
     "sass": "^1.60.0",

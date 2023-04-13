@@ -4,12 +4,12 @@ export interface Data {
 }
 
 // Tags are our high-level concept organization, id + name
-export interface Tag extends Data {
+export interface Tag {
   name: string;
 }
 
 // FilePath can be remote or local
-export interface FilePath extends Data {
+export interface FilePath {
   filePath: string;
 }
 
@@ -21,7 +21,7 @@ export interface Database {
 }
 // Image is identified by filepath
 // Variables customized for NLP ai processing
-export interface Image extends Data {
+export interface Image {
   fileName: string;
   filePath: string;
   tags?: Tag[];
@@ -38,7 +38,7 @@ export interface Image extends Data {
 }
 
 // Modelers make images in a particular style
-export interface Modeler extends Tag {
+export interface Modeler {
   hash?: string;
   tags?: Tag[];
   localPath?: string;
@@ -47,9 +47,10 @@ export interface Modeler extends Tag {
 }
 
 // Photosets are themed image collections organized by physical folders
-export interface Photoset extends Tag {
+export interface Photoset {
+  id: string;
   src: string;
-  concept?: string;
+  name: string;
   folderName?: string;
   fullPath?: string;
   tags?: Tag[];
@@ -58,7 +59,7 @@ export interface Photoset extends Tag {
 }
 
 // Gallery is a sorted collection of images organized programmatically
-export interface Gallery extends Tag {
+export interface Gallery {
   name: string;
   tags?: Tag[];
   path?: FilePath;

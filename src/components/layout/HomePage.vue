@@ -59,7 +59,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import NavigationMenu from './NavigationMenu.vue';
-import NavigationRemote from './NavigationRemote.vue'; // Import NavigationRemote component
+import NavigationRemote from './NavigationRemote.vue';
 import MagicScreen from '@/components/layout/MagicScreen.vue';
 import TitleBar from '@/components/layout/TitleBar.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
@@ -86,7 +86,7 @@ export default defineComponent({
       rightDrawerOpen.value = !rightDrawerOpen.value;
     }
 
-    return {  
+    return {
       gameScreens: appStore.gameScreens,
       leftDrawerOpen,
       rightDrawerOpen,

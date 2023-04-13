@@ -1,9 +1,10 @@
 // main.ts
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import router from './router';
 import App from './App.vue';
-import { createPinia } from 'pinia';
 
+const pinia = createPinia();
 // Create a new Vue app instance
 const app = createApp(App);
 
@@ -15,7 +16,7 @@ app.config.errorHandler = (err, vm, info) => {
 };
 // Use the router and Pinia for state management
 app.use(router);
-app.use(createPinia());
+app.use(pinia);
 
 // Mount the app to the DOM
 app.mount('#app');

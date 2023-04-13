@@ -9,15 +9,15 @@ export const useAppStore = defineStore({
     selectedPhotoset: 'chest',
     photosets: [
       {
-        id: 1,
+        id: '1',
         name: 'chest',
-        src: '@/assets/photosets/chest',
+        src: require('@/assets/photosets/chest'),
         prefix: 'chest',
       },
       {
-        id: 2,
+        id: '2',
         name: 'splash',
-        src: '@/assets/photosets/splash',
+        src: require('@/assets/photosets/splash'),
         prefix: 'splash',
       },
     ] as Photoset[],
