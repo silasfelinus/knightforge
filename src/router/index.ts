@@ -1,7 +1,13 @@
 // src/router/index.ts
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { components } from '@/stores/componentsGenerator';
-import HomePage from '@/components/layout/DemoPage.vue';
+import {
+  getActiveProjects,
+  getActiveComponents,
+} from '@/stores/useProjectComponents';
+import HomePage from '@/components/layout/TitleBar.vue';
+
+const activeProjects = getActiveProjects();
+const activeComponents = getActiveComponents();
 
 const routes: RouteRecordRaw[] = [
   {
@@ -12,12 +18,19 @@ const routes: RouteRecordRaw[] = [
 ];
 
 // Add active components to the routes array
-components.forEach((component) => {
-  if (component.isActive) {
+activeComponents.forEach((component) => {
+  const project = activeProjects.find((project) =>
+    project.componentStrings.includes(component)
+  );
+
+  if (project) {
     routes.push({
-      path: `/${component.path}`,
-      name: component.alias,
-      component: () => import(/* @vite-ignore */ component.importPath),
+      path: `/${component}`,
+      name: component,
+      component: () =>
+        import(
+          /* @vite-ignore */ `@/components/${project.name}/${component}.vue`
+        ),
     });
   }
 });

@@ -4,19 +4,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { useMyStore } from '@/stores';
-
-export default defineComponent({
-  setup() {
-    const store = useMyStore();
-    store.increment();
-    console.log('Count:', store.count);
-    return {};
-  },
-});
-</script>
+<script lang="ts"></script>
 
 <style scoped>
 body {

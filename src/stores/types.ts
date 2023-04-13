@@ -83,11 +83,10 @@ export interface Component {
 // Define the Project interface, which represents the structure of a single project
 export interface Project {
   name: string;
-  isActive: boolean;
-  folder: string;
+  isActive?: boolean;
   icon?: string;
-  // An array of component names as strings, for easy editing and information at a glance
-  components: string[];
+  // An array of component names as strings
+  componentStrings: string[];
 }
 
 export interface GameScreen {

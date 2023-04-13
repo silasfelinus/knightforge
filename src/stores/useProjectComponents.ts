@@ -1,12 +1,20 @@
-// src/stores/projects.ts
-import { Project } from './types';
+// src/stores/useProjectComponents.ts
 
-export const projects: Project[] = [
+// Define the Project interface, which represents the structure of a single project
+interface Project {
+  name: string;
+  isActive?: boolean;
+  icon?: string;
+  // An array of component names as strings
+  componentStrings: string[];
+}
+
+// Create and export array of all projects and their componentStrings
+const allProjects: Project[] = [
   {
     name: 'layout',
-    folder: 'layout',
     isActive: true,
-    components: [
+    componentStrings: [
       'ForgePage',
       'DataManager',
       'ErrorScreen',
@@ -29,8 +37,7 @@ export const projects: Project[] = [
   {
     name: 'screenfx',
     isActive: true,
-    folder: 'screenfx',
-    components: [
+    componentStrings: [
       'MagicRemote',
       'ButterflyMascot',
       'LavaBubble',
@@ -43,15 +50,18 @@ export const projects: Project[] = [
   },
   {
     name: 'artgallery',
-    folder: 'artgallery',
     isActive: false,
-    components: ['ArtGallery', 'GiftShop', 'MembershipClub', 'ShoppingCart'],
+    componentStrings: [
+      'ArtGallery',
+      'GiftShop',
+      'MembershipClub',
+      'ShoppingCart',
+    ],
   },
   {
     name: 'assetmanager',
     isActive: false,
-    folder: 'assetmanager',
-    components: [
+    componentStrings: [
       'AssetManager',
       'EffectsManager',
       'ToyboxManager',
@@ -70,8 +80,7 @@ export const projects: Project[] = [
   {
     name: 'codecards',
     isActive: false,
-    folder: 'codecards',
-    components: [
+    componentStrings: [
       'CodeCard',
       'AvatarCard',
       'UserCard',
@@ -86,8 +95,7 @@ export const projects: Project[] = [
   {
     name: 'gamescreen',
     isActive: false,
-    folder: 'gamescreen',
-    components: [
+    componentStrings: [
       'GameScreen',
       'MiniPlanet',
       'ChatBot',
@@ -99,7 +107,30 @@ export const projects: Project[] = [
   },
 ];
 
-// Create a function that takes a project name and returns the corresponding Project object
-export function getProjectByName(projectName: string): Project | undefined {
-  return projects.find((project) => project.name === projectName);
+// Returns all projects
+export function getAllProjects(): Project[] {
+  return allProjects;
+}
+
+// Returns active projects
+export function getActiveProjects(): Project[] {
+  return allProjects.filter((project) => project.isActive);
+}
+
+// Returns an array of component strings from all projects
+export function getAllComponents(): string[] {
+  return allProjects.reduce<string[]>(
+    (acc, project) => [...acc, ...project.componentStrings],
+    []
+  );
+}
+
+// Returns an array of component strings from all active projects
+export function getActiveComponents(): string[] {
+  return allProjects
+    .filter((project) => project.isActive)
+    .reduce<string[]>(
+      (acc, project) => [...acc, ...project.componentStrings],
+      []
+    );
 }
