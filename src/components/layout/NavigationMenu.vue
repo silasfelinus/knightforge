@@ -2,7 +2,11 @@
   <nav>
     <ul>
       <li v-for="route in sortedActiveRoutes" :key="route.name">
-        <router-link :to="{ name: route.name }" active-class="active">
+        <router-link
+          @click="navigateTo(route.name)"
+          active-class="active"
+          :to="{}"
+        >
           <i :class="route.icon"></i>
           {{ route.displayName }}
         </router-link>
@@ -15,6 +19,7 @@
 import { defineComponent } from 'vue';
 import { components } from '@/stores/componentsGenerator';
 import router from '@/router/index';
+import { RouteRecordName } from 'vue-router';
 
 export default defineComponent({
   name: 'NavigationMenu',
@@ -42,8 +47,20 @@ export default defineComponent({
         };
       });
 
+    async function navigateTo(routeName: RouteRecordName | undefined) {
+      if (routeName) {
+        try {
+          await router.push({ name: routeName });
+        } catch (error) {
+          console.error('Navigation error:', error);
+          // You can handle the error here, e.g. show a notification or message to the user
+        }
+      }
+    }
+
     return {
       sortedActiveRoutes,
+      navigateTo,
     };
   },
 });

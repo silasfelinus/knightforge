@@ -10,6 +10,8 @@ export const projects: Project[] = [
       'ForgePage',
       'DataManager',
       'ErrorScreen',
+      'HomePage2',
+      'RecordManagement',
       'UnderConstruction',
       'TitleBar',
       'TestComponent',

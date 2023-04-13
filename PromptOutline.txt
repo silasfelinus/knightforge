@@ -18,7 +18,7 @@ Quasar CLI (https://quasar.dev/start/quasar-cli)
 Pinia (https://pinia.vuejs.org/)
 
 [MODULES]
-📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs
+📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs axios
 
 [COMMANDS]
 "npm run lint -- --fix" //auto-fix prettier
@@ -64,11 +64,12 @@ Kaizen, DRY Principle, "Best practices are good; Wise practices are best."
 └── public/images/
 
 [PROGRESS]
-Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router
+Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router, have basic types setup for data, id, and images, now need to connect to database to store the info.
 
 [TODO]
 graphic navigation menu
-setup API layer, possibly RESTful API
+setup API layer
+navigation menu opens full page, want it to open in center window, need to setup homepage.
 
 [CONFIG FILES]
 index.html, quasar.config.js, app.scss, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, app.vue
@@ -119,8 +120,13 @@ ArtGallery //customizable Art Asset gallery viewer
 0. Custom
 
 Selection:
-8, I've retooled types, this is a base for the rest of the website structure. I want a management page that lets me view, create, manage data. I'll use that to create structure for the other types. How do I begin?
+8, It's time to connect to a database. I have a remote database with mariadb, and I want to spin up a local one, and I want to access both of them from the same access point to test modularity.
+Walk me through steps for express and mariadb install, a functional webpage, and advise on running both front-end and back-end from same launch and where to stitch it in.
 
+The goal will be a datamanager page that can select one of the two databases, and crud within it.
+Advise on types.ts first, then make plan.
+
+[types.ts]
 // Data is our base operating unit for anything tracked by id
 export interface Data {
   id: number;
@@ -136,49 +142,9 @@ export interface FilePath extends Data {
   filePath: string;
 }
 
-// Image is identified by filepath
-// Variables customized for NLP ai processing
-export interface Image extends Data {
-  fileName: string;
-  filePath: string;
-  tags?: Tag[];
-  positivePrompt?: string;
-  negativePrompt?: string;
-  photoset?: string;
-  modeler?: string;
-  height?: number;
-  width?: number;
-  steps?: number;
-  cfg?: number;
-  sampler?: string;
-  seed?: number;
-}
-
-// Modelers make images in a particular style
-export interface Modeler extends Tag {
-  hash?: string;
-  tags?: Tag[];
-  localPath?: string;
-  infoUrl?: string;
-  images: Image[];
-}
-
-// Photosets are themed image collections organized by physical folders
-export interface Photoset extends Tag {
-  src: string;
-  concept?: string;
-  folderName?: string;
-  fullPath?: string;
-  tags?: Tag[];
-  images?: Image[];
-}
-
-// Gallery is a sorted collection of images organized programmatically
-export interface Gallery extends Tag {
-  name: string;
-  tags?: Tag[];
-  path?: FilePath;
-  images?: Image[];
-  photosets?: Photoset[];
-  modelers?: Modeler[];
+export interface Database {
+  database: string;
+  host: string;
+  user: string;
+  password: string;
 }
