@@ -17,7 +17,7 @@ components.forEach((component) => {
     routes.push({
       path: `/${component.path}`,
       name: component.alias,
-      component: eval(component.importPath),
+      component: () => import(/* @vite-ignore */ component.importPath),
     });
   }
 });
