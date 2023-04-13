@@ -1,21 +1,20 @@
 <template>
   <div class="game-screen">
-    <component
-      v-for="(child, index) in children"
-      :key="index"
-      :is="child"
-    ></component>
+    <router-view></router-view>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'GameSCreen',
-  props: {
-    children: {
-      type: Array,
-      default: () => [],
-    },
-  },
-};
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'GameScreen',
+});
 </script>
+
+<style lang="scss">
+.game-screen {
+  width: 100%;
+  height: 100%;
+}
+</style>
