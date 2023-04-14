@@ -1,12 +1,31 @@
+// src/router/index.ts
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import {
-  getActiveProjects,
-  getActiveComponents,
-} from '@/stores/useProjectComponents';
+import { getActiveProjects, Project } from '@/stores/useProjectComponents';
 import HomePage from '@/components/layout/HomePage.vue';
+import ErrorScreen from '@/components/layout/ErrorScreen.vue';
 
-const activeProjects = getActiveProjects();
-const activeComponents = getActiveComponents();
+// Generate routes for each component
+function generateRoutesFromProjects(projects: Project[]): RouteRecordRaw[] {
+  const routes: RouteRecordRaw[] = [];
+
+  projects.forEach((project) => {
+    project.componentStrings.forEach((componentString) => {
+      const route: RouteRecordRaw = {
+        path: `/${componentString.toLowerCase()}`,
+        name: componentString,
+        component: () =>
+          import(
+            /* @vite-ignore */
+            /* webpackChunkName: "[request]" */
+            `../components/${project.id}/${componentString}.vue`
+          ),
+      };
+      routes.push(route);
+    });
+  });
+
+  return routes;
+}
 
 const routes: RouteRecordRaw[] = [
   {
@@ -14,44 +33,16 @@ const routes: RouteRecordRaw[] = [
     name: 'HomePage',
     component: HomePage,
   },
+  ...generateRoutesFromProjects(getActiveProjects()),
+  {
+    path: '/:catchAll(.*)',
+    name: 'ErrorScreen',
+    component: ErrorScreen,
+  },
 ];
 
-function toPascalCase(str: string): string {
-  return str.replace(/(^\w|-\w)/g, (c) => c.replace('-', '').toUpperCase());
-}
-
-// Add this function before the `routes` array
-async function loadComponent(projectId: string, componentName: string) {
-  try {
-    const module = await import(
-      /* @vite-ignore */ `@/components/${projectId}/${componentName}.vue`
-    );
-    return module.default;
-  } catch (error) {
-    console.error('Error loading component:', error);
-    return () => import('@/components/layout/ErrorScreen.vue');
-  }
-}
-
-// Add active components to the routes array
-activeComponents.forEach((component) => {
-  const project = activeProjects.find((project) =>
-    project.componentStrings.includes(component)
-  );
-
-  if (project) {
-    const lowerCaseComponent = component.toLowerCase();
-    const pascalCaseComponent = toPascalCase(component);
-    routes.push({
-      path: `/${lowerCaseComponent}`,
-      name: component,
-      component: () => loadComponent(project.id, pascalCaseComponent), // Replace the component property here
-    });
-  }
-});
-
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes,
 });
 
