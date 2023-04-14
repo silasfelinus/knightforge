@@ -1,10 +1,9 @@
-// src/router/index.ts
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import {
   getActiveProjects,
   getActiveComponents,
 } from '@/stores/useProjectComponents';
-import HomePage from '@/components/layout/TitleBar.vue';
+import HomePage from '@/components/layout/HomePage.vue';
 
 const activeProjects = getActiveProjects();
 const activeComponents = getActiveComponents();
@@ -17,6 +16,23 @@ const routes: RouteRecordRaw[] = [
   },
 ];
 
+function toPascalCase(str: string): string {
+  return str.replace(/(^\w|-\w)/g, (c) => c.replace('-', '').toUpperCase());
+}
+
+// Add this function before the `routes` array
+async function loadComponent(projectId: string, componentName: string) {
+  try {
+    const module = await import(
+      /* @vite-ignore */ `@/components/${projectId}/${componentName}.vue`
+    );
+    return module.default;
+  } catch (error) {
+    console.error('Error loading component:', error);
+    return () => import('@/components/layout/ErrorScreen.vue');
+  }
+}
+
 // Add active components to the routes array
 activeComponents.forEach((component) => {
   const project = activeProjects.find((project) =>
@@ -24,22 +40,14 @@ activeComponents.forEach((component) => {
   );
 
   if (project) {
+    const lowerCaseComponent = component.toLowerCase();
+    const pascalCaseComponent = toPascalCase(component);
     routes.push({
-      path: `/${component}`,
+      path: `/${lowerCaseComponent}`,
       name: component,
-      component: () =>
-        import(
-          /* @vite-ignore */ `@/components/${project.name}/${component}.vue`
-        ),
+      component: () => loadComponent(project.id, pascalCaseComponent), // Replace the component property here
     });
   }
-});
-
-// Add a catch-all route for 404 errors
-routes.push({
-  path: '/:pathMatch(.*)*',
-  name: 'NotFound',
-  component: () => import('@/components/layout/ErrorScreen.vue'),
 });
 
 const router = createRouter({

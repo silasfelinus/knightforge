@@ -1,8 +1,8 @@
 // src/stores/useProjectComponents.ts
 
 // Define the Project interface, which represents the structure of a single project
-interface Project {
-  name: string;
+export interface Project {
+  id: string;
   isActive?: boolean;
   icon?: string;
   // An array of component names as strings
@@ -12,7 +12,7 @@ interface Project {
 // Create and export array of all projects and their componentStrings
 const allProjects: Project[] = [
   {
-    name: 'layout',
+    id: 'layout',
     isActive: true,
     componentStrings: [
       'ForgePage',
@@ -35,7 +35,7 @@ const allProjects: Project[] = [
     ],
   },
   {
-    name: 'screenfx',
+    id: 'screenfx',
     isActive: true,
     componentStrings: [
       'MagicRemote',
@@ -49,7 +49,7 @@ const allProjects: Project[] = [
     ],
   },
   {
-    name: 'artgallery',
+    id: 'artgallery',
     isActive: false,
     componentStrings: [
       'ArtGallery',
@@ -59,7 +59,7 @@ const allProjects: Project[] = [
     ],
   },
   {
-    name: 'assetmanager',
+    id: 'assetmanager',
     isActive: false,
     componentStrings: [
       'AssetManager',
@@ -78,7 +78,7 @@ const allProjects: Project[] = [
     ],
   },
   {
-    name: 'codecards',
+    id: 'codecards',
     isActive: false,
     componentStrings: [
       'CodeCard',
@@ -93,7 +93,7 @@ const allProjects: Project[] = [
     ],
   },
   {
-    name: 'gamescreen',
+    id: 'gamescreen',
     isActive: false,
     componentStrings: [
       'GameScreen',

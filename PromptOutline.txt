@@ -2,7 +2,7 @@
 👋 Hi, ChatGPT! I'm Silas Knight. We're building an SPA using Vue3, Composition API, Quasar, and Pinia.
 
 [PROJECT]
-🔧 WonderForge: GUI sandbox for designing and prototyping coding projects (portfolio showpiece)
+🔧 WonderForge: A Modern GUI sandbox for interfacing with Natural Language Processors
 
 [DEV ENVIRONMENT]
 💻 Ubuntu 22, VSC, Chrome, Node LTS 18.15.0
@@ -18,7 +18,7 @@ Quasar CLI (https://quasar.dev/start/quasar-cli)
 Pinia (https://pinia.vuejs.org/)
 
 [MODULES]
-📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs axios
+📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs
 
 [COMMANDS]
 "npm run lint -- --fix" //auto-fix prettier
@@ -120,31 +120,5 @@ ArtGallery //customizable Art Asset gallery viewer
 0. Custom
 
 Selection:
-8, It's time to connect to a database. I have a remote database with mariadb, and I want to spin up a local one, and I want to access both of them from the same access point to test modularity.
-Walk me through steps for express and mariadb install, a functional webpage, and advise on running both front-end and back-end from same launch and where to stitch it in.
-
-The goal will be a datamanager page that can select one of the two databases, and crud within it.
-Advise on types.ts first, then make plan.
-
-[types.ts]
-// Data is our base operating unit for anything tracked by id
-export interface Data {
-  id: number;
-}
-
-// Tags are our high-level concept organization, id + name
-export interface Tag extends Data {
-  name: string;
-}
-
-// FilePath can be remote or local
-export interface FilePath extends Data {
-  filePath: string;
-}
-
-export interface Database {
-  database: string;
-  host: string;
-  user: string;
-  password: string;
-}
+5. I finally have a handle on types, and the router is
+routing

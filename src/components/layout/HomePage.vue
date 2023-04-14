@@ -36,13 +36,12 @@
       side="right"
       show-if-above
       class="butterfly__sidebar--right"
-    >
-      <NavigationRemote />
+      ><ButterflyMascot></ButterflyMascot>
     </q-drawer>
 
     <q-page-container>
       <q-page class="flex flex-center game-screen-container">
-        <MagicScreen v-for="gameScreen in gameScreens" :key="gameScreen.id" />
+        <router-view></router-view>
       </q-page>
     </q-page-container>
 
@@ -59,22 +58,18 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import NavigationMenu from './NavigationMenu.vue';
-import NavigationRemote from './NavigationRemote.vue';
-import MagicScreen from '@/components/layout/MagicScreen.vue';
 import TitleBar from '@/components/layout/TitleBar.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
-import { useAppStore } from '@/stores/useGameScreens';
+import ButterflyMascot from '@/components/screenfx/ButterflyMascot.vue';
 
 export default defineComponent({
   components: {
     NavigationMenu,
-    NavigationRemote,
-    MagicScreen,
     TitleBar,
     SplashMessage,
+    ButterflyMascot,
   },
   setup() {
-    const appStore = useAppStore();
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
 
@@ -87,7 +82,6 @@ export default defineComponent({
     }
 
     return {
-      gameScreens: appStore.gameScreens,
       leftDrawerOpen,
       rightDrawerOpen,
       toggleLeftDrawer,
