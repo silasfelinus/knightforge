@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header>
+    <q-header elevated>
       <q-toolbar>
         <q-btn
           flat
@@ -37,15 +37,16 @@
       show-if-above
       class="butterfly__sidebar--right"
       ><ButterflyMascot></ButterflyMascot>
+      <MagicRemote />
     </q-drawer>
 
     <q-page-container>
-      <q-page class="flex flex-center game-screen-container">
-        <router-view></router-view>
-      </q-page>
+      <MagicFrame>
+        <router-view />
+      </MagicFrame>
     </q-page-container>
 
-    <q-footer>
+    <q-footer elevated>
       <q-toolbar>
         <q-toolbar-title>
           &copy; {{ new Date().getFullYear() }} AI Wonderforge
@@ -61,6 +62,8 @@ import NavigationMenu from './NavigationMenu.vue';
 import TitleBar from '@/components/layout/TitleBar.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
 import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
+import MagicFrame from '@/components/layout/MagicFrame.vue';
+import MagicRemote from '@/components/gamescreens/MagicRemote.vue';
 
 export default defineComponent({
   components: {
@@ -68,6 +71,8 @@ export default defineComponent({
     TitleBar,
     SplashMessage,
     ButterflyMascot,
+    MagicFrame,
+    MagicRemote,
   },
   setup() {
     const leftDrawerOpen = ref(false);

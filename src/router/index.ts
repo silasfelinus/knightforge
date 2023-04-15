@@ -1,19 +1,50 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomePage from '@/layout/HomePage.vue';
-import ButterflyMascot from '@/layout/ButterflyMascot.vue';
-import GameScreen from '@/layout/GameScreen.vue';
-import MagicFrame from '@/layout/MagicFrame.vue';
-import MagicRemote from '@/layout/MagicRemote.vue';
-import NavigationMenu from '@/layout/NavigationMenu.vue';
-import SplashMessage from '@/layout/SplashMessage.vue';
-import TitleBar from '@/layout/TitleBar.vue';
-import AccordionGallery from '@/gamescreens/AccordionGallery.vue';
-import ErrorScreen from '@/gamescreens/ErrorScreen.vue';
-import LavaLamp from '@/gamescreens/LavaLamp.vue';
-import RainEffect from '@/gamescreens/RainEffect.vue';
-import SoapBubbles from '@/gamescreens/SoapBubbles.vue';
-import SplashImage from '@/gamescreens/SplashImage.vue';
-import UnderConstruction from '@/gamescreens/UnderConstruction.vue';
+import HomePage from '@/components/layout/HomePage.vue';
+import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
+import MagicFrame from '@/components/layout/MagicFrame.vue';
+import NavigationMenu from '@/components/layout/NavigationMenu.vue';
+import SplashMessage from '@/components/layout/SplashMessage.vue';
+import TitleBar from '@/components/layout/TitleBar.vue';
+
+export const gameScreenRoutes: RouteRecordRaw[] = [
+  {
+    path: 'accordion-gallery',
+    component: () => import('@/components/gamescreens/AccordionGallery.vue'),
+  },
+  {
+    path: 'error-screen',
+    component: () => import('@/components/gamescreens/ErrorScreen.vue'),
+  },
+  {
+    path: 'game-screen',
+    component: () => import('@/components/gamescreens/GameScreen.vue'),
+  },
+  {
+    path: 'lava-lamp',
+    component: () => import('@/components/gamescreens/LavaLamp.vue'),
+  },
+
+  {
+    path: 'magic-remote',
+    component: () => import('@/components/gamescreens/MagicRemote.vue'),
+  },
+  {
+    path: 'rain-effect',
+    component: () => import('@/components/gamescreens/RainEffect.vue'),
+  },
+  {
+    path: 'soap-bubbles',
+    component: () => import('@/components/gamescreens/SoapBubbles.vue'),
+  },
+  {
+    path: 'splash-image',
+    component: () => import('@/components/gamescreens/SplashImage.vue'),
+  },
+  {
+    path: 'under-construction',
+    component: () => import('@/components/gamescreens/UnderConstruction.vue'),
+  },
+];
 
 const routes: RouteRecordRaw[] = [
   {
@@ -21,19 +52,11 @@ const routes: RouteRecordRaw[] = [
     component: HomePage,
     children: [
       { path: 'butterfly-mascot', component: ButterflyMascot },
-      { path: 'game-screen', component: GameScreen },
       { path: 'magic-frame', component: MagicFrame },
-      { path: 'magic-remote', component: MagicRemote },
       { path: 'navigation-menu', component: NavigationMenu },
       { path: 'splash-message', component: SplashMessage },
       { path: 'title-bar', component: TitleBar },
-      { path: 'accordion-gallery', component: AccordionGallery },
-      { path: 'error-screen', component: ErrorScreen },
-      { path: 'lava-lamp', component: LavaLamp },
-      { path: 'rain-effect', component: RainEffect },
-      { path: 'soap-bubbles', component: SoapBubbles },
-      { path: 'splash-image', component: SplashImage },
-      { path: 'under-construction', component: UnderConstruction },
+      ...gameScreenRoutes,
     ],
   },
 ];

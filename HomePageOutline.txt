@@ -20,12 +20,16 @@ DRY Principle: Use composables and modular code to reduce future work.
 Best Practices are good; Wise practices are better.
 
 [BASE FILES]
-quasar.config.js, main.ts, App.vue, index.html, tsconfig postcss.config.js, .eslintrc.js, .prettierrc, package.json, router/index.ts, css/app.scss, quasar.variables.scss, router/index.ts, stores/useProjectComponents.ts, stores/types.ts
+quasar.config.js, main.ts, App.vue, index.html, tsconfig postcss.config.js, .eslintrc.js, .prettierrc, package.json, router/index.ts, css/app.scss, quasar.variables.scss, router/index.ts, stores/types.ts
 
 [ASSETS/]
 /assets/galleries/*.json
 /assets/photosets/{photoset.id}/[Image.fileName].webp
 
+[LAUNCH ORDER]
+main.ts > App.vue > router/index.ts > HomePage.vue
+HomePage > [routes]
+MagicFrame > GameScreen > [gameScreenRoutes]
 
 [GLOBAL TYPES]
 Tag {name: string}
@@ -36,68 +40,28 @@ Image {fileName: string;filePath: string;tags?: Tag[]; positivePrompt?: string;n
 
 Modeler {hash?: string; tags?: Tag[]; localPath?: string; infoUrl?: string; images: Image[];}
 
-Photoset {id: string; src: string; name: string; folderName?: string; fullPath?: string; tags?: Tag[]; images?: Image[]; prefix: string;}
+GameScreen { id: number; route: string}
 
-Gallery { name: string; tags?: Tag[]; path?: FilePath; images?: Image[]; photosets?: Photoset[]; modelers?: Modeler[];}
 
-Project { name: string; isActive?: boolean; icon?: string; componentStrings: string[];}
-
-GameScreen { id: number; presest: string}
-
-[useProjectComponents]
-getAllProjects(): Project[] {
-  return allProjects;
-}
-
-[LAYOUT]
+[routes]
 ButterflyMascot //right sidebar, website mascot interactible
-DemoPage //backup layout with zero components for testing
-GameScreen //interactjs resizable screen that displays components based on preset routing
 HomePage  //base layout with header, footer, two sidebars, and flex center
-MagicFrame //center panel boundary, gamescreen manager, and step-based save system
-MagicRemote //right sidebar, selects GameScreens by id within MagicFrame //change preset of selected Gamescreen, add GameScreen to MagicFrame, Remove selected GameScreen.
-NavigationMenu //left sidebar, displays projects and componentstrings, sets the channel for NavigationReceiver.
+MagicFrame //center panel boundary, add GameScreen, Remove selected GameScreen.
+NavigationMenu //left sidebar, gamescreen links
 SplashMessage //header, random splash text
 TitleBar //q-header, stylized title
 
-[GAMESCREENS]
+[gameScreenRoutes]
 AccordionGallery //visual menu interface
 ErrorScreen //error handling
+GameScreen //interactjs resizable screen that displays components based on preset routing
+MagicRemote //selects GameScreens by id, change gamescreen component,
 LavaLamp //lava lamp screen effect
 RainEffect //raindrop screen effect
 SoapBubbles //soapbubbles screen effect
 SplashImage //random image
 UnderConstruction //under construction screen
 
-[LAUNCH ORDER]
-main.ts > App.vue > router/index.ts > HomePage.vue
-HomePage > ButterflyMascot/GameScreen/MagicFrame/MagicRemote/NavigationMenu/SplashMessage/TitleBar
-GameScreen > AccordionGallery/ErrorScreen/LavaBubble/LavaLamp/RainEffect/SoapBubbles/SplashImage/UnderConstruction
-
-[HomePage Outline]
-q-header: left sidebar toggle, Titlebar, right sidebarToggle
-q-drawer-left: NavigationMenu, special butterfly css styling
-q-drawer-right MagicRemote (contains options to select GameScreen by id, change GameScreen presets on MagicFrame, add gamescreen, remove Gamescreen)
-centerscreen: MagicFrame holding one GameScreen
-GameScreen- interactjs resizeable, moveable screen with preset displays
-Gamescreen presets [/components/screenfx/]('SplashImage','AccordionGallery', 'ErrorScreen', 'UnderConstruction','RainEffect', 'SoapBubbles', 'LavaLamp','NavigationReceiver')
-
-Help me setup a new router/index.ts, with optimal pathing for children, and these paths:
-/layout/HomePage.vue
-/layout/ButterflyMascot.vue
-/layout/GameScreen.vue
-/layout/MagicFrame.vue
-/layout/MagicRemote.vue
-/layout/NavigationMenu
-/layout/SplashMessage
-/layout/TitleBar
-/gamescreens/AccordionGallery.vue
-/gamescreens/ErrorScreen.vue
-/gamescreens/LavaLamp.vue
-/gamescreens/RainEffect.vue
-/gamescreens/SoapBubbles.vue
-/gamescreens/SplashImage.vue
-/gamescreens/UnderConstruction.vue
-
-
-
+[MagicFrame.vue]
+Revise this outline, then output code for this project
+MagicFrame: stylized full color border, background color, plus icon on top of border creates new GameScreen inside window, Remote icon creates new MagicRemote, appropriate icons to change MagicFrame background layer to lavalamp, soapbubbles, raineffect, splashimage, underconstruction
