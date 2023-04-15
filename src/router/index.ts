@@ -1,42 +1,19 @@
-// src/router/index.ts
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { getActiveProjects } from '@/stores/useProjectComponents';
-import HomePage from '@/components/layout/HomePage.vue';
-import ErrorScreen from '@/components/layout/ErrorScreen.vue';
-import MagicRemote from '@/components/MagicRemote.vue';
-import MagicFrame from '@/components/layout/MagicFrame.vue';
-import NavigationMenu from '@/components/layout/NavigationMenu.vue';
-
-interface Project {
-  id: string;
-  isActive?: boolean;
-  icon?: string;
-  // An array of component names as strings
-  componentStrings: string[];
-}
-
-// Generate routes for each component
-function generateRoutesFromProjects(projects: Project[]): RouteRecordRaw[] {
-  const routes: RouteRecordRaw[] = [];
-
-  projects.forEach((project) => {
-    project.componentStrings.forEach((componentString) => {
-      const route: RouteRecordRaw = {
-        path: `/${componentString.toLowerCase()}`,
-        name: componentString,
-        component: () =>
-          import(
-            /* @vite-ignore */
-            /* webpackChunkName: "[request]" */
-            `../components/${project.id}/${componentString}.vue`
-          ),
-      };
-      routes.push(route);
-    });
-  });
-
-  return routes;
-}
+import HomePage from '@/layout/HomePage.vue';
+import ButterflyMascot from '@/layout/ButterflyMascot.vue';
+import GameScreen from '@/layout/GameScreen.vue';
+import MagicFrame from '@/layout/MagicFrame.vue';
+import MagicRemote from '@/layout/MagicRemote.vue';
+import NavigationMenu from '@/layout/NavigationMenu.vue';
+import SplashMessage from '@/layout/SplashMessage.vue';
+import TitleBar from '@/layout/TitleBar.vue';
+import AccordionGallery from '@/gamescreens/AccordionGallery.vue';
+import ErrorScreen from '@/gamescreens/ErrorScreen.vue';
+import LavaLamp from '@/gamescreens/LavaLamp.vue';
+import RainEffect from '@/gamescreens/RainEffect.vue';
+import SoapBubbles from '@/gamescreens/SoapBubbles.vue';
+import SplashImage from '@/gamescreens/SplashImage.vue';
+import UnderConstruction from '@/gamescreens/UnderConstruction.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -45,21 +22,26 @@ const routes: RouteRecordRaw[] = [
     component: HomePage,
     children: [
       {
-        path: 'navigationmenu',
+        path: '/navigationmenu',
         component: NavigationMenu,
       },
       {
-        path: 'magicframe',
+        path: '/magicframe',
         component: MagicFrame,
         children: [
           {
-            path: 'gamescreen',
+            path: '/gamescreen',
             component: GameScreen,
+            children: [
+              {
+                path: '/gamescreen/1/',
+                component: GameScreen,
+              },
           },
         ],
       },
       {
-        path: 'magicremote',
+        path: '/magicremote',
         component: MagicRemote,
       },
     ],

@@ -23,22 +23,11 @@ Best Practices are good; Wise practices are better.
 quasar.config.js, main.ts, App.vue, index.html, tsconfig postcss.config.js, .eslintrc.js, .prettierrc, package.json, router/index.ts, css/app.scss, quasar.variables.scss, router/index.ts, stores/useProjectComponents.ts, stores/types.ts
 
 [ASSETS/]
-/assets/audio/*.mp3
-/assets/images/(*.webp)
 /assets/galleries/*.json
-/assets/photosets/{photoset.id}
+/assets/photosets/{photoset.id}/[Image.fileName].webp
 
-[COMPONENTS/]
-artgallery/
-assetmanager/
-codecards/
-gamescreen/
-layout/
-screenfx/
 
-[TYPES]
-Data {id: number}
-
+[GLOBAL TYPES]
 Tag {name: string}
 
 FilePath {filePath: string}
@@ -51,35 +40,64 @@ Photoset {id: string; src: string; name: string; folderName?: string; fullPath?:
 
 Gallery { name: string; tags?: Tag[]; path?: FilePath; images?: Image[]; photosets?: Photoset[]; modelers?: Modeler[];}
 
-export interface Project { name: string; isActive?: boolean; icon?: string; componentStrings: string[];}
+Project { name: string; isActive?: boolean; icon?: string; componentStrings: string[];}
+
+GameScreen { id: number; presest: string}
 
 [useProjectComponents]
 getAllProjects(): Project[] {
   return allProjects;
 }
 
-[MAIN VUES]
-HomePage  //base layout with header, footer, two sidebars
-ErrorScreen //error handling
-UnderConstruction //for when needed
+[LAYOUT]
 ButterflyMascot //right sidebar, website mascot interactible
-TitleBar //q-header, stylized title
+DemoPage //backup layout with zero components for testing
+GameScreen //interactjs resizable screen that displays components based on preset routing
+HomePage  //base layout with header, footer, two sidebars, and flex center
+MagicFrame //center panel boundary, gamescreen manager, and step-based save system
+MagicRemote //right sidebar, selects GameScreens by id within MagicFrame //change preset of selected Gamescreen, add GameScreen to MagicFrame, Remove selected GameScreen.
+NavigationMenu //left sidebar, displays projects and componentstrings, sets the channel for NavigationReceiver.
 SplashMessage //header, random splash text
+TitleBar //q-header, stylized title
 
-[STEP ONE, HELP ME STITCH TOGETHER THE REST OF THESE SECTIONS]
-NavigationMenu //left sidebar, opens active projects in MagicFrame
-AccordionGallery //visual menu interface in development
-MagicFrame //center screen, resizeable and draggable stylized screen display with step-based save system
-MagicRemote //right sidebar, modular interface controller for magicframe
-FlowerSpot //unmade, a visual target for the butterfly mascot to path towards to be peppered around the homepage
+[GAMESCREENS]
+AccordionGallery //visual menu interface
+ErrorScreen //error handling
+LavaLamp //lava lamp screen effect
+RainEffect //raindrop screen effect
+SoapBubbles //soapbubbles screen effect
+SplashImage //random image
+UnderConstruction //under construction screen
 
-[I'm including my router/index.ts to begin. We want to be able to create screens and change the images in the center MagicFrame with MagicRemote and NavigationMenu controls in the sidebar. The order is: main.ts > App.vue > router/index.ts > HomePage.vue + NavigationMenu/MagicRemote/MagicFrame]
+[LAUNCH ORDER]
+main.ts > App.vue > router/index.ts > HomePage.vue
+HomePage > ButterflyMascot/GameScreen/MagicFrame/MagicRemote/NavigationMenu/SplashMessage/TitleBar
+GameScreen > AccordionGallery/ErrorScreen/LavaBubble/LavaLamp/RainEffect/SoapBubbles/SplashImage/UnderConstruction
 
 [HomePage Outline]
 q-header: left sidebar toggle, Titlebar, right sidebarToggle
 q-drawer-left: NavigationMenu, special butterfly css styling
-q-drawer-right MagicRemote (contains options to change GameScreen presets on MagicFrame, add gamescreen, remove Gamescreen)
+q-drawer-right MagicRemote (contains options to select GameScreen by id, change GameScreen presets on MagicFrame, add gamescreen, remove Gamescreen)
 centerscreen: MagicFrame holding one GameScreen
 GameScreen- interactjs resizeable, moveable screen with preset displays
-Gamescreen presets (/components/screenfx/('SplashImage','AccordionGallery', "RainEffect', 'SoapBubbles', 'LavaLamp')
+Gamescreen presets [/components/screenfx/]('SplashImage','AccordionGallery', 'ErrorScreen', 'UnderConstruction','RainEffect', 'SoapBubbles', 'LavaLamp','NavigationReceiver')
+
+Help me setup a new router/index.ts, with optimal pathing for children, and these paths:
+/layout/HomePage.vue
+/layout/ButterflyMascot.vue
+/layout/GameScreen.vue
+/layout/MagicFrame.vue
+/layout/MagicRemote.vue
+/layout/NavigationMenu
+/layout/SplashMessage
+/layout/TitleBar
+/gamescreens/AccordionGallery.vue
+/gamescreens/ErrorScreen.vue
+/gamescreens/LavaLamp.vue
+/gamescreens/RainEffect.vue
+/gamescreens/SoapBubbles.vue
+/gamescreens/SplashImage.vue
+/gamescreens/UnderConstruction.vue
+
+
 

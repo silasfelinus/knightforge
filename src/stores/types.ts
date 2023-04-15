@@ -89,7 +89,12 @@ export interface Project {
   componentStrings: string[];
 }
 
+// Define GameScreen export interface
 export interface GameScreen {
-  id: number;
-  photoset?: string;
+  id: string;
+  preset: string;
+}
+//Define ScreenPreset export interface
+export interface ScreenPreset {
+  id: string;
 }

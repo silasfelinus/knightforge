@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { getAllProjects } from '@/stores/useProjectComponents';
+import { getAllProjects } from '@/components/WIP/useProjectComponents.js';
 
 export default defineComponent({
   name: 'NavigationMenu',

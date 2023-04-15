@@ -17,12 +17,12 @@ const allProjects: Project[] = [
     componentStrings: [
       'ButterflyMascot',
       'DemoPage',
+      'GameScreen',
       'MagicFrame',
       'MagicRemote',
       'NavigationMenu',
       'SplashMessage',
       'TitleBar',
-      'UnderConstruction',
     ],
   },
   {
@@ -30,11 +30,12 @@ const allProjects: Project[] = [
     isActive: true,
     componentStrings: [
       'AccordionGallery',
-      'LavaBubble',
+      'ErrorScreen',
       'LavaLamp',
       'RainEffect',
       'SoapBubbles',
       'SplashImage',
+      'UnderConstruction',
     ],
   },
 ];

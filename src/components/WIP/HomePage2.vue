@@ -47,7 +47,7 @@
 import { defineComponent, ref } from 'vue';
 import NavigationMenu from '../layout/NavigationMenu.vue';
 import ButterflyMascot from '../layout/ButterflyMascot.vue';
-import GameScreen from '@/components/screenfx/GameScreen.vue';
+import GameScreen from '@/components/layout/GameScreen.vue';
 
 export default defineComponent({
   components: { NavigationMenu, ButterflyMascot, GameScreen },
