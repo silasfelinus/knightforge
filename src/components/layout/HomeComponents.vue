@@ -25,7 +25,7 @@ import RandomText from '@/layout/RandomMessage.vue';
 import RandomImage from '@/layout/RandomImage.vue';
 import TextInput from '@/layout/TextInput.vue';
 import AssetManager from '@/components/assetmanager/AssetManager.vue';
-import MagicRemote from '@/components/screenfx/MagicRemote.vue';
+import MagicRemote from '@/components/layout/MagicRemote.vue.js';
 import ButterflyMascot from '@/components/screenfx/ButterflyMascot.vue';
 import MagicFrame from '@/components/screenfx/MagicFrame.vue';
 import GameScreen from '@/components/gamescreen/GameScreen.vue';
