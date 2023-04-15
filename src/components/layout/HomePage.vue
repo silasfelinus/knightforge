@@ -37,7 +37,7 @@
       show-if-above
       class="butterfly__sidebar--right"
       ><ButterflyMascot></ButterflyMascot>
-      <MagicRemote />
+      <ChatInterface />
     </q-drawer>
 
     <q-page-container>
@@ -63,7 +63,7 @@ import TitleBar from '@/components/layout/TitleBar.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
 import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
 import MagicFrame from '@/components/layout/MagicFrame.vue';
-import MagicRemote from '@/components/gamescreens/MagicRemote.vue';
+import ChatInterface from '@/components/layout/ChatInterface.vue';
 
 export default defineComponent({
   components: {
@@ -72,7 +72,7 @@ export default defineComponent({
     SplashMessage,
     ButterflyMascot,
     MagicFrame,
-    MagicRemote,
+    ChatInterface,
   },
   setup() {
     const leftDrawerOpen = ref(false);

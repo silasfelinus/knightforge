@@ -11,9 +11,3 @@ export default defineComponent({
   name: 'ChatWindow',
 });
 </script>
-
-<style lang="scss">
-.chat-window-section {
-  // Add your custom styles for the chat window here
-}
-</style>

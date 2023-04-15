@@ -1,17 +1,11 @@
-<!-- MagicFrame.vue -->
 <template>
   <div class="magic-frame">
     <div class="magic-frame__border">
       <q-icon name="add" @click="createGameScreen" />
       <q-icon name="remote" @click="createMagicRemote" />
-      <q-icon name="lava_lamp" @click="setBackground('lavaLamp')" />
-      <q-icon name="rain_effect" @click="setBackground('rainEffect')" />
-      <q-icon name="soap_bubbles" @click="setBackground('soapBubbles')" />
-      <q-icon name="splash_image" @click="setBackground('splashImage')" />
-      <q-icon
-        name="under_construction"
-        @click="setBackground('underConstruction')"
-      />
+      <template v-for="bgType in backgroundTypes" :key="bgType.type">
+        <q-icon :name="bgType.icon" @click="setBackground(bgType.type)" />
+      </template>
     </div>
     <div class="magic-frame__content" :class="backgroundClass">
       <router-view />
@@ -20,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed, Ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -33,9 +27,17 @@ export default defineComponent({
   name: 'MagicFrame',
   setup() {
     const router = useRouter();
-    const gameScreens: GameScreen[] = ref([]);
-    const magicRemote = ref(null);
+    const gameScreens: Ref<GameScreen[]> = ref([]);
+    const magicRemote: Ref<GameScreen | null> = ref(null);
     const backgroundType = ref('');
+
+    const backgroundTypes = [
+      { icon: 'lava_lamp', type: 'lavaLamp' },
+      { icon: 'rain_effect', type: 'rainEffect' },
+      { icon: 'soap_bubbles', type: 'soapBubbles' },
+      { icon: 'splash_image', type: 'splashImage' },
+      { icon: 'under_construction', type: 'underConstruction' },
+    ];
 
     const backgroundClass = computed(() => {
       return `magic-frame__content--${backgroundType.value}`;
@@ -67,9 +69,10 @@ export default defineComponent({
       createGameScreen,
       createMagicRemote,
       setBackground,
+      backgroundTypes,
     };
   },
 });
 </script>
-
 <style lang="scss"></style>
+1
