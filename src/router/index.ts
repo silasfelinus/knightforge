@@ -18,39 +18,23 @@ import UnderConstruction from '@/gamescreens/UnderConstruction.vue';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'HomePage',
     component: HomePage,
     children: [
-      {
-        path: '/navigationmenu',
-        component: NavigationMenu,
-      },
-      {
-        path: '/magicframe',
-        component: MagicFrame,
-        children: [
-          {
-            path: '/gamescreen',
-            component: GameScreen,
-            children: [
-              {
-                path: '/gamescreen/1/',
-                component: GameScreen,
-              },
-          },
-        ],
-      },
-      {
-        path: '/magicremote',
-        component: MagicRemote,
-      },
+      { path: 'butterfly-mascot', component: ButterflyMascot },
+      { path: 'game-screen', component: GameScreen },
+      { path: 'magic-frame', component: MagicFrame },
+      { path: 'magic-remote', component: MagicRemote },
+      { path: 'navigation-menu', component: NavigationMenu },
+      { path: 'splash-message', component: SplashMessage },
+      { path: 'title-bar', component: TitleBar },
+      { path: 'accordion-gallery', component: AccordionGallery },
+      { path: 'error-screen', component: ErrorScreen },
+      { path: 'lava-lamp', component: LavaLamp },
+      { path: 'rain-effect', component: RainEffect },
+      { path: 'soap-bubbles', component: SoapBubbles },
+      { path: 'splash-image', component: SplashImage },
+      { path: 'under-construction', component: UnderConstruction },
     ],
-  },
-  ...generateRoutesFromProjects(getActiveProjects()),
-  {
-    path: '/:catchAll(.*)',
-    name: 'ErrorScreen',
-    component: ErrorScreen,
   },
 ];
 
