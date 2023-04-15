@@ -1,0 +1,85 @@
+[PROJECT]
+🔧 WonderForge: A Modern GUI sandbox for interfacing with Natural Language Processors.
+
+[FRAMEWORK]
+💻 Vue3 SPA, Composition API, Typescript, Quasar, Vue-Router, Interactjs, ESLint, Prettier, SCSS
+
+[REFERENCE]
+Vue3 (https://vuejs.org/guide/introduction.html)
+Vue-Router (https://router.vuejs.org/guide/)
+Typescript (https://www.typescriptlang.org/)
+Quasar CLI (https://quasar.dev/start/quasar-cli)
+
+[MODULES]
+eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs
+
+[PRINCIPLES]
+Visualize. Plan. Outline. Act.
+Kaizen: Make consistent, iterative improvements towards the goal.
+DRY Principle: Use composables and modular code to reduce future work.
+Best Practices are good; Wise practices are better.
+
+[BASE FILES]
+quasar.config.js, main.ts, App.vue, index.html, tsconfig postcss.config.js, .eslintrc.js, .prettierrc, package.json, router/index.ts, css/app.scss, quasar.variables.scss, router/index.ts, stores/useProjectComponents.ts, stores/types.ts
+
+[ASSETS/]
+/assets/audio/*.mp3
+/assets/images/(*.webp)
+/assets/galleries/*.json
+/assets/photosets/{photoset.id}
+
+[COMPONENTS/]
+artgallery/
+assetmanager/
+codecards/
+gamescreen/
+layout/
+screenfx/
+
+[TYPES]
+Data {id: number}
+
+Tag {name: string}
+
+FilePath {filePath: string}
+
+Image {fileName: string;filePath: string;tags?: Tag[]; positivePrompt?: string;negativePrompt?: string;photoset?: string;modeler?: string;height?: number; width?: number; steps?: number; cfg?: number; sampler?: string; seed?: number;}
+
+Modeler {hash?: string; tags?: Tag[]; localPath?: string; infoUrl?: string; images: Image[];}
+
+Photoset {id: string; src: string; name: string; folderName?: string; fullPath?: string; tags?: Tag[]; images?: Image[]; prefix: string;}
+
+Gallery { name: string; tags?: Tag[]; path?: FilePath; images?: Image[]; photosets?: Photoset[]; modelers?: Modeler[];}
+
+export interface Project { name: string; isActive?: boolean; icon?: string; componentStrings: string[];}
+
+[useProjectComponents]
+getAllProjects(): Project[] {
+  return allProjects;
+}
+
+[MAIN VUES]
+HomePage  //base layout with header, footer, two sidebars
+ErrorScreen //error handling
+UnderConstruction //for when needed
+ButterflyMascot //right sidebar, website mascot interactible
+TitleBar //q-header, stylized title
+SplashMessage //header, random splash text
+
+[STEP ONE, HELP ME STITCH TOGETHER THE REST OF THESE SECTIONS]
+NavigationMenu //left sidebar, opens active projects in MagicFrame
+AccordionGallery //visual menu interface in development
+MagicFrame //center screen, resizeable and draggable stylized screen display with step-based save system
+MagicRemote //right sidebar, modular interface controller for magicframe
+FlowerSpot //unmade, a visual target for the butterfly mascot to path towards to be peppered around the homepage
+
+[I'm including my router/index.ts to begin. We want to be able to create screens and change the images in the center MagicFrame with MagicRemote and NavigationMenu controls in the sidebar. The order is: main.ts > App.vue > router/index.ts > HomePage.vue + NavigationMenu/MagicRemote/MagicFrame]
+
+[HomePage Outline]
+q-header: left sidebar toggle, Titlebar, right sidebarToggle
+q-drawer-left: NavigationMenu, special butterfly css styling
+q-drawer-right MagicRemote (contains options to change GameScreen presets on MagicFrame, add gamescreen, remove Gamescreen)
+centerscreen: MagicFrame holding one GameScreen
+GameScreen- interactjs resizeable, moveable screen with preset displays
+Gamescreen presets (/components/screenfx/('SplashImage','AccordionGallery', "RainEffect', 'SoapBubbles', 'LavaLamp')
+

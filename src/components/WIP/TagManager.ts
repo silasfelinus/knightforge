@@ -1,5 +1,5 @@
 // TagManager.ts
-import { Tag } from './stores/types';
+import { Tag } from '../../stores/types';
 
 export class TagManager {
   private tags: Map<number, Tag>;

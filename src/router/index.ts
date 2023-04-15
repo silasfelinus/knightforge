@@ -8,7 +8,7 @@ import MagicFrame from '@/components/layout/MagicFrame.vue';
 import NavigationMenu from '@/components/layout/NavigationMenu.vue';
 
 interface Project {
-  name: string;
+  id: string;
   isActive?: boolean;
   icon?: string;
   // An array of component names as strings
@@ -51,6 +51,12 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'magicframe',
         component: MagicFrame,
+        children: [
+          {
+            path: 'gamescreen',
+            component: GameScreen,
+          },
+        ],
       },
       {
         path: 'magicremote',

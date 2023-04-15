@@ -60,7 +60,7 @@ import { defineComponent, ref } from 'vue';
 import NavigationMenu from './NavigationMenu.vue';
 import TitleBar from '@/components/layout/TitleBar.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
-import ButterflyMascot from '@/components/screenfx/ButterflyMascot.vue';
+import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
 
 export default defineComponent({
   components: {
