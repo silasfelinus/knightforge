@@ -1,6 +1,3 @@
-I want to create a system where my mascot moves from window to window on my website. Each window will have a depth, so the mascot will increase or decrease in size depending on where it moves. I need files to complete this concept. It will need to move, increase in size, land, slow down, and other elements to achieve verisimilitude. Please assist with planned outline and then code for revised ButterflyMascot and ButterflyFlower.vue, a component to be placed inside other components and sends x/y/z data. (advise  welcome)
-
-[ButterflyMascot.vue]
 <template>
   <div class="butterfly">
     <div class="left-wing">

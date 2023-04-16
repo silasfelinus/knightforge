@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import HomePage from '@/components/layout/HomePage.vue';
-import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
+import ButterflyMascot from '@/components/layout/ButterflyMascot1.vue';
 import MagicFrame from '@/components/layout/MagicFrame.vue';
 import NavigationMenu from '@/components/layout/NavigationMenu.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';

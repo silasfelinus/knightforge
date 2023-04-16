@@ -1,26 +1,16 @@
 <template>
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          round
-          dense
-          icon="arrow_forward_ios"
-          @click="toggleLeftDrawer"
-        />
-        <q-space />
-        <TitleBar />
-        <SplashMessage />
-        <q-space />
-        <q-btn
-          flat
-          round
-          dense
-          icon="arrow_forward_ios"
-          @click="toggleRightDrawer"
-        />
-      </q-toolbar>
+      <TitleBar />
+      <SplashMessage />
+      <q-space />
+      <q-btn
+        flat
+        round
+        dense
+        icon="arrow_forward_ios"
+        @click="toggleRightDrawer"
+      />
     </q-header>
 
     <q-drawer
@@ -30,21 +20,27 @@
       class="butterfly__sidebar--left"
     >
       <NavigationMenu />
+      <ButterflyFlower @onCoordinates="handleCoordinates" />
     </q-drawer>
     <q-drawer
       v-model="rightDrawerOpen"
       side="right"
       show-if-above
       class="butterfly__sidebar--right"
-      ><ButterflyMascot></ButterflyMascot>
+    >
+      <ButterflyMascot ref="butterflyMascot" />
       <ChatInterface />
+      <ButterflyFlower @onCoordinates="handleCoordinates" />
     </q-drawer>
 
     <q-page-container>
-      <MagicFrame
-        ><MagicRemote>
-          <MagicScreen> <router-view /></MagicScreen
-        ></MagicRemote>
+      <MagicFrame>
+        <MagicRemote>
+          <MagicScreen>
+            <router-view />
+            <ButterflyFlower @onCoordinates="handleCoordinates" />
+          </MagicScreen>
+        </MagicRemote>
       </MagicFrame>
     </q-page-container>
 
@@ -54,17 +50,19 @@
           &copy; {{ new Date().getFullYear() }} AI Wonderforge
         </q-toolbar-title>
         <SplashMessage />
+        <ButterflyFlower @onCoordinates="handleCoordinates" />
       </q-toolbar>
     </q-footer>
   </q-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, Ref } from 'vue';
 import NavigationMenu from './NavigationMenu.vue';
 import TitleBar from '@/components/layout/TitleBar.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
 import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
+import ButterflyFlower from '@/components/layout/ButterflyFlower.vue';
 import MagicFrame from '@/components/layout/MagicFrame.vue';
 import MagicScreen from '@/components/layout/MagicScreen.vue';
 import MagicRemote from '@/components/layout/MagicRemote.vue';
@@ -76,6 +74,7 @@ export default defineComponent({
     TitleBar,
     SplashMessage,
     ButterflyMascot,
+    ButterflyFlower,
     MagicFrame,
     MagicRemote,
     ChatInterface,
@@ -84,6 +83,8 @@ export default defineComponent({
   setup() {
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
+    const butterflyMascot: Ref<InstanceType<typeof ButterflyMascot> | null> =
+      ref(null);
 
     function toggleLeftDrawer() {
       leftDrawerOpen.value = !leftDrawerOpen.value;
@@ -93,11 +94,19 @@ export default defineComponent({
       rightDrawerOpen.value = !rightDrawerOpen.value;
     }
 
+    function handleCoordinates(x: number, y: number, z: number) {
+      if (butterflyMascot.value) {
+        butterflyMascot.value.moveButterfly(x, y, z);
+      }
+    }
+
     return {
       leftDrawerOpen,
       rightDrawerOpen,
       toggleLeftDrawer,
       toggleRightDrawer,
+      butterflyMascot,
+      handleCoordinates,
     };
   },
 });
