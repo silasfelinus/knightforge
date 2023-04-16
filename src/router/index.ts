@@ -26,7 +26,7 @@ export const gameScreenRoutes: RouteRecordRaw[] = [
 
   {
     path: 'magic-remote',
-    component: () => import('@/components/gamescreens/MagicRemote.vue'),
+    component: () => import('@/components/layout/MagicRemote.vue'),
   },
   {
     path: 'rain-effect',

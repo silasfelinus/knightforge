@@ -41,8 +41,10 @@
     </q-drawer>
 
     <q-page-container>
-      <MagicFrame>
-        <router-view />
+      <MagicFrame
+        ><MagicRemote>
+          <MagicScreen> <router-view /></MagicScreen
+        ></MagicRemote>
       </MagicFrame>
     </q-page-container>
 
@@ -51,6 +53,7 @@
         <q-toolbar-title>
           &copy; {{ new Date().getFullYear() }} AI Wonderforge
         </q-toolbar-title>
+        <SplashMessage />
       </q-toolbar>
     </q-footer>
   </q-layout>
@@ -63,6 +66,8 @@ import TitleBar from '@/components/layout/TitleBar.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
 import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
 import MagicFrame from '@/components/layout/MagicFrame.vue';
+import MagicScreen from '@/components/layout/MagicScreen.vue';
+import MagicRemote from '@/components/layout/MagicRemote.vue';
 import ChatInterface from '@/components/layout/ChatInterface.vue';
 
 export default defineComponent({
@@ -72,7 +77,9 @@ export default defineComponent({
     SplashMessage,
     ButterflyMascot,
     MagicFrame,
+    MagicRemote,
     ChatInterface,
+    MagicScreen,
   },
   setup() {
     const leftDrawerOpen = ref(false);
