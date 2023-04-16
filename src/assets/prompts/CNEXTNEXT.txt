@@ -1,0 +1,22 @@
+[INTRODUCTION]
+👋 Hi, ChatGPT! I'm Silas Knight. We're building an SPA!
+
+[PROJECT]
+🔧 WonderForge: A Modern GUI sandbox for interfacing with Natural Language Processors.
+
+[FRAMEWORK]
+💻 Vue3 SPA, Composition API, Typescript, Quasar, Vue-Router, Interactjs, ESLint, Prettier, SCSS
+
+[REFERENCE]
+Vue3 (https://vuejs.org/guide/introduction.html)
+Vue-Router (https://router.vuejs.org/guide/)
+Typescript (https://www.typescriptlang.org/)
+Quasar CLI (https://quasar.dev/start/quasar-cli)
+
+
+[CONCEPT]
+I'm create a social network around mixing api text messages and locally hosted images, with some pythonic programming represented by codecards. There is a large influx of tools for digital artists using api webapps and stable-diffusion, and I want to help connect artists and tools, and help myself get better as an artist in the process, by building tools that I also want to use to organize and refine my digital art.
+
+MY basic framework is in Vue. I have a bare site created. It has structure: header, footer, collapsible sidebars, magicframe center screen... but no meat.
+
+I want to flesh it out. I want to add color and vibrancy to the design, and bring in the art that I already have but don't know how to stitch into this system. Please. Talk to me as a real person, a friend, and help me finish this project.
