@@ -1,6 +1,12 @@
 <template>
-  <div class="splash-image">
-    <img :src="randomImageUrl" alt="Splash image" />
+  <div class="splash-images-container">
+    <div
+      v-for="(interval, index) in intervals"
+      :key="index"
+      class="splash-image"
+    >
+      <img :src="randomImageUrls[index]" alt="Splash image" />
+    </div>
   </div>
 </template>
 
@@ -9,30 +15,53 @@ import { defineComponent, ref, onMounted } from 'vue';
 
 export default defineComponent({
   setup() {
-    const randomImageUrl = ref('');
+    const intervals = [50, 70, 130, 230];
+    const randomImageUrls = ref<string[]>([]);
 
-    const getRandomImageUrl = async () => {
+    const getRandomImageUrl = async (index: number) => {
       const images = Object.entries(
         import.meta.glob('/src/assets/images/splash/*.webp')
       );
 
       const randomIndex = Math.floor(Math.random() * images.length);
-      const [, importImage] = images[randomIndex]; // Replace '_' with ','
+      const [, importImage] = images[randomIndex];
 
       const module = await importImage();
-      randomImageUrl.value = module.default;
+      randomImageUrls.value[index] = module.default;
     };
 
-    onMounted(getRandomImageUrl);
+    const refreshImages = () => {
+      intervals.forEach((interval, index) => {
+        setTimeout(() => {
+          getRandomImageUrl(index);
+          refreshImages();
+        }, interval * 1000);
+      });
+    };
 
-    return { randomImageUrl };
+    onMounted(() => {
+      intervals.forEach(() => randomImageUrls.value.push(''));
+      refreshImages();
+    });
+
+    return { randomImageUrls, intervals };
   },
 });
 </script>
 
 <style scoped>
+.splash-images-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.splash-image {
+  flex: 1;
+}
+
 .splash-image img {
-  /* Add any styles for the image here */
   width: 100%;
   max-width: 100%;
   height: auto;
