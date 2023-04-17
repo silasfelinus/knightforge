@@ -1,3 +1,4 @@
+<!-- TitleBar.vue -->
 <template>
   <div class="title-bar">
     <div class="welcome">Welcome to</div>

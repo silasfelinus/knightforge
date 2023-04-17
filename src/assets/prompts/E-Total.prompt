@@ -1,0 +1,279 @@
+[router/index.ts]
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import HomePage from '@/components/layout/HomePage.vue';
+import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
+import ButterflyHeader from '@/components/layout/ButterflyHeader.vue';
+import ButterflyFrame from '@/components/layout/ButterflyFrame.vue';
+import ButterflyFooter from '@/components/layout/ButterflyFooter.vue';
+import ChatInterface from '@/components/layout/ChatLayout.vue';
+import LayerMenu from '@/components/layout/LayerMenu.vue';
+import SplashMessage from '@/components/layout/SplashMessage.vue';
+import TitleBar from '@/components/layout/TitleBar.vue';
+import GameScreen from '@/componenents/layout/GameScreen.vue';
+
+export const gameScreenRoutes: RouteRecordRaw[] = [
+  {
+    path: 'accordion-gallery',
+    name: 'Accordion Gallery',
+    component: () => import('@/components/gamescreens/AccordionGallery.vue'),
+  },
+  {
+    path: 'error-screen',
+    name: 'Error Screen',
+    component: () => import('@/components/gamescreens/ErrorScreen.vue'),
+  },
+  {
+    path: 'graph-paper',
+    name: 'Graph Paper',
+    component: () => import('@/components/gamescreens/GraphPaper.vue'),
+  },
+  {
+    path: 'lava-lamp',
+    name: 'Lava Lamp',
+    component: () => import('@/components/gamescreens/LavaLamp.vue'),
+  },
+  {
+    path: 'magic-remote',
+    name: 'Magic Remote',
+    component: () => import('@/components/layout/MagicRemote.vue'),
+  },
+  {
+    path: 'rain-effect',
+    name: 'Rain Effect',
+    component: () => import('@/components/gamescreens/RainEffect.vue'),
+  },
+  {
+    path: 'soap-bubbles',
+    name: 'Soap Bubbles',
+    component: () => import('@/components/gamescreens/SoapBubbles.vue'),
+  },
+  {
+    path: 'splash-image',
+    name: 'Splash Image',
+    component: () => import('@/components/gamescreens/SplashImage.vue'),
+  },
+  {
+    path: 'splash-viewer',
+    name: 'Splash Viewer',
+    component: () => import('@/components/gamescreens/SplashViewer.vue'),
+  },
+  {
+    path: 'under-construction',
+    name: 'Under Construction',
+    component: () => import('@/components/gamescreens/UnderConstruction.vue'),
+  },
+];
+
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    component: HomePage,
+    children: [
+      { path: 'butterfly-mascot', component: ButterflyMascot },
+      { path: 'butterfly-header', component: ButterflyHeader },
+      { path: 'butterfly-frame', component: ButterflyFrame },
+      { path: 'butterfly-footer', component: ButterflyFooter },
+      { path: 'layer-menu', component: LayerMenu },
+      { path: 'splash-message', component: SplashMessage },
+      { path: 'title-bar', component: TitleBar },
+      { path: 'game-screen', component: GameScreen },
+      { path: 'chat-interface', component: ChatInterface },
+      ...gameScreenRoutes,
+    ],
+  },
+];
+
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
+});
+
+export default router;
+
+[App.vue]
+<template>
+  <div id="app">
+    <router-view></router-view>
+  </div>
+</template>
+
+<script lang="ts"></script>
+
+<style scoped>
+body {
+  margin: 0;
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+</style>
+
+[main.ts]
+// main.ts
+import { createApp } from 'vue';
+import router from './router';
+import App from './App.vue';
+
+// Create a new Vue app instance
+const app = createApp(App);
+
+// Set up a global error handler for the app
+app.config.errorHandler = (err, vm, info) => {
+  console.error('Captured in global errorHandler:', err);
+  console.error('Error originated from component:', vm);
+  console.error('Additional info:', info);
+};
+// Use the router and Pinia for state management
+app.use(router);
+
+// Mount the app to the DOM
+app.mount('#app');
+
+[HomePage]
+<template>
+  <q-layout view="hHh lpR fFf">
+    <ButterflyHeader />
+
+    <q-page-container class="center-panel no-padding">
+      <div class="center-image-container">
+        <SplashImage class="center-image" />
+      </div>
+      <router-view class="main-content" />
+    </q-page-container>
+
+    <ButterflyFooter
+      :toggleLeftDrawer="toggleLeftDrawer"
+      :toggleRightDrawer="toggleRightDrawer"
+    />
+
+    <q-drawer
+      v-model="leftDrawerOpen"
+      side="left"
+      show-if-above
+      class="butterfly__sidebar--left"
+    >
+      <div class="butterfly__sidebar--left-gradient"></div>
+      <NavigationMenu />
+    </q-drawer>
+
+    <q-drawer
+      v-model="rightDrawerOpen"
+      side="right"
+      show-if-above
+      class="butterfly__sidebar--right"
+    >
+      <ButterflyMascot ref="butterflyMascot" />
+      <ChatInterface />
+    </q-drawer>
+  </q-layout>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import NavigationMenu from './LayerMenu.vue';
+import ButterflyHeader from '@/components/layout/ButterflyHeader.vue';
+import ButterflyFooter from '@/components/layout/ButterflyFooter.vue';
+import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
+import ChatInterface from '@/components/layout/ChatInterface.vue';
+import SplashImage from '@/components/gamescreens/SplashViewer.vue';
+
+export default defineComponent({
+  components: {
+    NavigationMenu,
+    ButterflyHeader,
+    ButterflyFooter,
+    ChatInterface,
+    SplashImage,
+    ButterflyMascot,
+  },
+  setup() {
+    const leftDrawerOpen = ref(false);
+    const rightDrawerOpen = ref(false);
+
+    function toggleLeftDrawer() {
+      leftDrawerOpen.value = !leftDrawerOpen.value;
+    }
+
+    function toggleRightDrawer() {
+      rightDrawerOpen.value = !rightDrawerOpen.value;
+    }
+
+    return {
+      leftDrawerOpen,
+      rightDrawerOpen,
+      toggleLeftDrawer,
+      toggleRightDrawer,
+    };
+  },
+});
+</script>
+<style lang="scss">
+.center-image-container {
+  width: auto;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  background-color: $primary; // pale teal
+}
+
+.center-image {
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  display: flex;
+  max-height: auto;
+}
+
+.butterfly__sidebar--left {
+  background-color: $accent;
+  position: relative;
+}
+.q-drawer {
+  background-color: $primary; /* Change the color code to your desired color */
+}
+.butterfly__sidebar--left-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 80% 50%, 100% 100%, 0 100%);
+  background-image: linear-gradient(45deg, $primary, transparent);
+}
+
+.butterfly__sidebar--right {
+  background-color: $accent;
+}
+
+.center-panel {
+  background-color: $accent; // pale teal
+  height: calc(100vh - 128px);
+}
+
+.main-content {
+  background-color: $primary; // pale teal
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.no-padding {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+// Butterfly effect
+.butterfly__sidebar--left {
+  clip-path: polygon(0 0, 100% 0, 80% 50%, 100% 100%, 0 100%);
+  background-image: linear-gradient(45deg, $primary, $accent);
+}
+
+.butterfly__sidebar--right {
+  background-image: linear-gradient(225deg, $accent, $primary);
+}
+</style>
+
+[Help me polish the rest of the pages. We want everything mentioned in the router, displayable as layers on the center GameScreen. First, how does it look so far?]

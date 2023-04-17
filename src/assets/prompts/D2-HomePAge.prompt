@@ -1,0 +1,122 @@
+Please upgrade HomePage. Header should have a splashImage on either side of the Titlebar. Sidebar toggles should be moved to the inside center to their respective sidebars, with a partially collapsing collapsin effect so the toggles aren't hidden.
+
+All panels need some un?ique coloring so we can tell they are working. Something subtle.
+
+
+[HomePAge]
+
+<template>
+  <q-layout view="hHh lpR fFf">
+    <q-header elevated>
+      <TitleBar />
+      <SplashMessage />
+      <q-space />
+      <q-btn
+        flat
+        round
+        dense
+        icon="arrow_forward_ios"
+        @click="toggleRightDrawer"
+      />
+    </q-header>
+
+    <q-drawer
+      v-model="leftDrawerOpen"
+      side="left"
+      show-if-above
+      class="butterfly__sidebar--left"
+    >
+      <NavigationMenu />
+      <ButterflyFlower @onCoordinates="handleCoordinates" />
+    </q-drawer>
+    <q-drawer
+      v-model="rightDrawerOpen"
+      side="right"
+      show-if-above
+      class="butterfly__sidebar--right"
+    >
+      <ButterflyMascot ref="butterflyMascot" />
+      <ChatInterface />
+      <ButterflyFlower @onCoordinates="handleCoordinates" />
+    </q-drawer>
+
+    <q-page-container>
+      <MagicFrame>
+        <MagicRemote>
+          <MagicScreen>
+            <router-view />
+            <ButterflyFlower @onCoordinates="handleCoordinates" />
+          </MagicScreen>
+        </MagicRemote>
+      </MagicFrame>
+    </q-page-container>
+
+    <q-footer elevated>
+      <q-toolbar>
+        <q-toolbar-title>
+          &copy; {{ new Date().getFullYear() }} AI Wonderforge
+        </q-toolbar-title>
+        <SplashMessage />
+        <ButterflyFlower @onCoordinates="handleCoordinates" />
+      </q-toolbar>
+    </q-footer>
+  </q-layout>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref, Ref } from 'vue';
+import NavigationMenu from './NavigationMenu.vue';
+import TitleBar from '@/components/layout/TitleBar.vue';
+import SplashMessage from '@/components/layout/SplashArtist.vue';
+import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
+import ButterflyFlower from '@/components/layout/ButterflyFlower.vue';
+import MagicFrame from '@/components/layout/MagicFrame.vue';
+import MagicScreen from '@/components/layout/MagicScreen.vue';
+import MagicRemote from '@/components/layout/MagicRemote.vue';
+import ChatInterface from '@/components/layout/ChatInterface.vue';
+
+export default defineComponent({
+  components: {
+    NavigationMenu,
+    TitleBar,
+    SplashMessage,
+    ButterflyMascot,
+    ButterflyFlower,
+    MagicFrame,
+    MagicRemote,
+    ChatInterface,
+    MagicScreen,
+  },
+  setup() {
+    const leftDrawerOpen = ref(false);
+    const rightDrawerOpen = ref(false);
+    const butterflyMascot: Ref<InstanceType<typeof ButterflyMascot> | null> =
+      ref(null);
+
+    function toggleLeftDrawer() {
+      leftDrawerOpen.value = !leftDrawerOpen.value;
+    }
+
+    function toggleRightDrawer() {
+      rightDrawerOpen.value = !rightDrawerOpen.value;
+    }
+
+    function handleCoordinates(x: number, y: number, z: number) {
+      if (butterflyMascot.value) {
+        butterflyMascot.value.moveButterfly(x, y, z);
+      }
+    }
+
+    return {
+      leftDrawerOpen,
+      rightDrawerOpen,
+      toggleLeftDrawer,
+      toggleRightDrawer,
+      butterflyMascot,
+      handleCoordinates,
+    };
+  },
+});
+</script>
+
+<style lang="scss"></style>

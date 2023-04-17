@@ -1,0 +1,334 @@
+[Request]
+HomePage redesign. I'm including the old layout. Please send back outline for plan.
+
+Title "Cafe Purr: Wonderforge"
+Gimmick:
+SplashImage: random images from our  assets/images/ folders
+Butterflyfame: a frame for homepage segments with a programmatic butterflymascot traveling between corners.
+
+Elements:
+2 splashimages with ButterflyFrames on topleft and topright corners
+sidebars should be underneath frames.
+left sidebar should have navigationmenu wrapped in ButterflyFrame
+center image should also have butterfly frame
+Butterfly frames should not overlap each other
+Right sidebar should have butterflyframe wrapping chatinterface.
+Give efficient plan for where to put travel logic.
+
+[HomePage]
+<template>
+  <q-layout view="hHh lpR fFf">
+    <q-header elevated class="header">
+      <div class="header-image-container">
+        <SplashImage class="header-image" />
+      </div>
+      <TitleBar />
+      <div class="header-image-container">
+        <SplashImage class="header-image" />
+      </div>
+      <q-btn
+        flat
+        round
+        dense
+        icon="menu"
+        @click="toggleLeftDrawer"
+        class="toggle-btn left-toggle-btn"
+      />
+      <q-btn
+        flat
+        round
+        dense
+        icon="menu"
+        @click="toggleRightDrawer"
+        class="toggle-btn right-toggle-btn"
+      />
+    </q-header>
+
+    <q-drawer
+      v-model="leftDrawerOpen"
+      side="left"
+      show-if-above
+      class="butterfly__sidebar--left"
+    >
+      <q-toolbar>
+        <q-btn
+          flat
+          round
+          dense
+          icon="arrow_forward_ios"
+          @click="toggleLeftDrawer"
+          class="toggle-btn left-toggle-btn"
+        />
+      </q-toolbar>
+      <NavigationMenu />
+    </q-drawer>
+    <q-drawer
+      v-model="rightDrawerOpen"
+      side="right"
+      show-if-above
+      class="butterfly__sidebar--right"
+    >
+      <q-toolbar>
+        <q-btn
+          flat
+          round
+          dense
+          icon="arrow_forward_ios"
+          @click="toggleRightDrawer"
+          class="toggle-btn right-toggle-btn"
+        />
+      </q-toolbar>
+      <ButterflyMascot ref="butterflyMascot" />
+      <ChatInterface />
+    </q-drawer>
+
+    <q-page-container class="center-panel">
+      <div class="center-image-container">
+        <SplashImage class="center-image" />
+      </div>
+      <router-view />
+    </q-page-container>
+
+    <q-footer elevated>
+      <q-toolbar>
+        <q-toolbar-title>
+          &copy; {{ new Date().getFullYear() }} AI Wonderforge
+        </q-toolbar-title>
+        <SplashMessage />
+      </q-toolbar>
+    </q-footer>
+  </q-layout>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref, Ref } from 'vue';
+import NavigationMenu from './NavigationMenu.vue';
+import TitleBar from '@/components/layout/TitleBar.vue';
+import SplashMessage from '@/components/layout/SplashArtist.vue';
+import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
+import ChatInterface from '@/components/layout/ChatInterface.vue';
+import SplashImage from '@/components/gamescreens/SplashImage2.vue';
+
+export default defineComponent({
+  components: {
+    NavigationMenu,
+    TitleBar,
+    SplashMessage,
+    ButterflyMascot,
+    ChatInterface,
+    SplashImage,
+  },
+  setup() {
+    const leftDrawerOpen = ref(false);
+    const rightDrawerOpen = ref(false);
+    const butterflyMascot: Ref<InstanceType<typeof ButterflyMascot> | null> =
+      ref(null);
+
+    function toggleLeftDrawer() {
+      leftDrawerOpen.value = !leftDrawerOpen.value;
+    }
+
+    function toggleRightDrawer() {
+      rightDrawerOpen.value = !rightDrawerOpen.value;
+    }
+
+    function handleCoordinates(x: number, y: number, z: number) {
+      if (butterflyMascot.value) {
+        butterflyMascot.value.moveButterfly(x, y, z);
+      }
+    }
+
+    return {
+      leftDrawerOpen,
+      rightDrawerOpen,
+      toggleLeftDrawer,
+      toggleRightDrawer,
+      butterflyMascot,
+      handleCoordinates,
+    };
+  },
+});
+</script>
+<style lang="scss">
+.header {
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.header-image-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header-image {
+  max-height: 80%;
+  width: auto;
+  margin: 0 15px;
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left-toggle-btn {
+  left: 20px;
+}
+
+.right-toggle-btn {
+  right: 20px;
+}
+
+.butterfly__sidebar--left {
+  background-color: rgba(135, 206, 235, 0.1);
+  width: 20vw;
+  min-width: 250px;
+}
+
+.butterfly__sidebar--right {
+  background-color: rgba(221, 160, 221, 0.1);
+  width: 20vw;
+  min-width: 250px;
+}
+
+.center-panel {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.center-image-container {
+  width: 100%;
+  max-height: 60vh;
+  overflow: hidden;
+}
+
+.center-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+q-footer {
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+q-toolbar {
+  justify-content: space-between;
+  align-items: center;
+}
+
+q-toolbar-title {
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.splash-artist-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-artist-text {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.butterfly-mascot {
+  height: 80px;
+  position: relative;
+}
+
+.chat-interface {
+  padding: 20px;
+  height: calc(100% - 100px);
+  overflow-y: auto;
+}
+
+.chat-message {
+  margin: 10px 0;
+}
+
+.chat-message-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.chat-message-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message-name {
+  font-weight: bold;
+}
+
+.chat-message-text {
+  margin-top: 5px;
+}
+
+.chat-message-time {
+  font-size: 12px;
+  color: #888;
+  margin-top: 5px;
+}
+</style>
+
+[SplashImage]
+<template>
+  <div class="splash-image">
+    <img :src="randomImageUrl" alt="Splash image" />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref, onMounted } from 'vue';
+
+export default defineComponent({
+  setup() {
+    const randomImageUrl = ref('');
+
+    const getRandomImageUrl = async () => {
+      try {
+        const images = import.meta.glob('@/assets/images/splash/*.webp');
+        const imageNames = Object.keys(images);
+        const randomIndex = Math.floor(Math.random() * imageNames.length);
+        const imageModule = await images[imageNames[randomIndex]]();
+        randomImageUrl.value = imageModule.default || imageModule;
+      } catch (error) {
+        console.error('Error while importing image:', error);
+      }
+    };
+
+    onMounted(() => {
+      getRandomImageUrl();
+    });
+
+    return { randomImageUrl };
+  },
+});
+</script>
+
+<style scoped>
+.splash-image img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+</style>
+

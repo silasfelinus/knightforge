@@ -45,9 +45,9 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import NavigationMenu from '../layout/NavigationMenu.vue';
-import ButterflyMascot from '../layout/ButterflyMascot1.vue';
-import GameScreen from '@/components/gamescreens/GameScreen.vue';
+import NavigationMenu from '../layout/LayerMenu.vue';
+import ButterflyMascot from '../layout/ButterflyMascot.vue';
+import GameScreen from '@/components/layout/GameScreen.vue';
 
 export default defineComponent({
   components: { NavigationMenu, ButterflyMascot, GameScreen },
