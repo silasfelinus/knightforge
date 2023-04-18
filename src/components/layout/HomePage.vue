@@ -6,7 +6,7 @@
       <div class="center-image-container">
         <SplashImage class="center-image" />
       </div>
-      <router-view name="gameScreen" />
+      <gameScreen />
     </q-page-container>
 
     <ButterflyFooter
@@ -21,7 +21,7 @@
       class="butterfly__sidebar--left"
     >
       <div class="butterfly__sidebar--left-gradient"></div>
-      <router-view name="layerMenu" />
+      <layerMenu />
     </q-drawer>
 
     <q-drawer
@@ -43,6 +43,8 @@ import ButterflyFooter from './ButterflyFooter.vue';
 import ButterflyMascot from './ButterflyMascot.vue';
 import ChatInterface from './ChatInterface.vue';
 import SplashImage from '../gamescreens/SplashViewer.vue';
+import layerMenu from './LayerMenu.vue'; // Import the layerMenu component
+import gameScreen from './GameScreen.vue'; // Import the gameScreen component
 
 export default defineComponent({
   components: {
@@ -51,6 +53,8 @@ export default defineComponent({
     ChatInterface,
     SplashImage,
     ButterflyMascot,
+    layerMenu, // Add the layerMenu component
+    gameScreen, // Add the gameScreen component
   },
   setup() {
     const leftDrawerOpen = ref(false);
@@ -74,66 +78,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.center-image-container {
-  width: auto;
-  height: auto;
-  position: relative;
-  overflow: hidden;
-  background-color: $primary; // pale teal
-}
-
-.center-image {
-  width: auto;
-  height: auto;
-  object-fit: cover;
-  display: flex;
-  max-height: auto;
-}
-
-.butterfly__sidebar--left {
-  background-color: $accent;
-  position: relative;
-}
-.q-drawer {
-  background-color: $primary; /* Change the color code to your desired color */
-}
-.butterfly__sidebar--left-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  clip-path: polygon(0 0, 100% 0, 80% 50%, 100% 100%, 0 100%);
-  background-image: linear-gradient(45deg, $primary, transparent);
-}
-
-.butterfly__sidebar--right {
-  background-color: $accent;
-}
-
-.center-panel {
-  background-color: $accent; // pale teal
-  height: calc(100vh - 128px);
-}
-
-.main-content {
-  background-color: $primary; // pale teal
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.no-padding {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-// Butterfly effect
-.butterfly__sidebar--left {
-  clip-path: polygon(0 0, 100% 0, 80% 50%, 100% 100%, 0 100%);
-  background-image: linear-gradient(45deg, $primary, $accent);
-}
-
-.butterfly__sidebar--right {
-  background-image: linear-gradient(225deg, $accent, $primary);
-}
-</style>
+<style lang="scss"></style>

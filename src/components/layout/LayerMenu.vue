@@ -72,6 +72,7 @@ export default defineComponent({
   border: 2px solid red;
   background-color: rgba(255, 255, 0, 0.3);
   padding: 16px;
+  z-index: 1000;
 }
 
 .layer-toggle {

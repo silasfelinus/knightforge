@@ -1,8 +1,8 @@
 <template>
   <div class="splash-image">
-    <q-transition :duration="5000" appear transition="slide-left">
+    <transition :duration="5000" appear name="slide-left">
       <img :key="imageKey" :src="randomImageUrl" alt="Splash image" />
-    </q-transition>
+    </transition>
   </div>
 </template>
 
@@ -55,11 +55,24 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 
 .splash-image img {
   height: 100%;
   width: auto;
   object-fit: contain;
+  position: absolute;
+  left: 0;
+}
+
+/* Add the transition styles */
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 1s;
+}
+.slide-left-enter,
+.slide-left-leave-to {
+  transform: translateX(-100vw);
 }
 </style>
