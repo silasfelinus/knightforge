@@ -1,5 +1,8 @@
 <template>
-  <div class="butterfly" :style="{ left: x + 'px', top: y + 'px' }">
+  <div
+    class="butterfly"
+    :style="{ left: x + 'px', top: y + 'px', '--wing-color': wingColor }"
+  >
     <div class="left-wing">
       <div class="top"></div>
       <div class="bottom"></div>
@@ -21,11 +24,25 @@ export default defineComponent({
     const y = ref(0);
     const directionX = ref(true);
     const directionY = ref(true);
+    const wingColor = ref(getRandomColor());
 
     onMounted(() => {
       init();
       animate();
     });
+
+    function getRandomColor() {
+      const colors = [
+        '#FFC0CB',
+        '#FFD700',
+        '#ADD8E6',
+        '#90EE90',
+        '#FFA07A',
+        '#9370DB',
+      ];
+      const randomIndex = Math.floor(Math.random() * colors.length);
+      return colors[randomIndex];
+    }
 
     function init() {
       x.value = Math.floor(Math.random() * window.innerWidth);
@@ -45,6 +62,7 @@ export default defineComponent({
       y,
       directionX,
       directionY,
+      wingColor,
       init,
       moveButterfly,
       animate,
@@ -56,6 +74,10 @@ export default defineComponent({
 <style scoped>
 body {
   background: #111;
+}
+
+:root {
+  --wing-color: pink;
 }
 
 @keyframes flutter-left {
@@ -110,7 +132,7 @@ body {
   left: 34px;
   transform: rotate3d(0, 1, 0, -20deg);
   transform-origin: 0px 50%;
-  animation: flutter-right 0.3s infinite;
+  animation: flutter-right 0.3;
 }
 
 .left-wing .top {

@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout>
     <div class="home-page">
       <butterfly-header />
       <q-drawer
@@ -81,6 +81,20 @@ export default defineComponent({
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+}
+
+butterfly-header {
+  height: 9vh;
+}
+
+butterfly-center {
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+ButterflyFooter {
+  height: 4vh;
 }
 
 .drawer-content {

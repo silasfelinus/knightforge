@@ -57,6 +57,9 @@ export default defineComponent({
   justify-content: center;
   width: 100%;
   height: 100%;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }
 
 .corner {
@@ -71,6 +74,8 @@ export default defineComponent({
   height: 20px;
   border-radius: 50%;
   background-color: #333;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .top-left {

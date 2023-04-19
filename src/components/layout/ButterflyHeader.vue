@@ -38,15 +38,17 @@ export default defineComponent({
   },
 });
 </script>
+
 <style scoped>
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   background-color: #f9f9f9;
   width: 100vw;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-top {
@@ -64,6 +66,8 @@ export default defineComponent({
   height: 100%;
   object-fit: contain;
   display: flex;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .splash-message-container {
@@ -77,5 +81,10 @@ export default defineComponent({
 .splash-message-content {
   text-align: center;
   max-width: 60%;
+  border: 2px solid #ccc;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 </style>
