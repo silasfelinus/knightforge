@@ -21,7 +21,7 @@ export default defineComponent({
     },
     timerInterval: {
       type: Number,
-      default: 5000, // Default interval of 5 seconds
+      default: 15000, // Default interval of 5 seconds
     },
     animationClass: {
       type: String,
@@ -44,6 +44,12 @@ export default defineComponent({
       randomImageUrl.value = `${serverAddress}/assets/images/${props.folderName}/${imagesList[randomIndex]}`;
     };
 
+    const randomInterval = () => {
+      const min = 5_000; // 5 seconds in milliseconds
+      const max = 20_000; // 20 seconds in milliseconds
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
     const loadImages = async () => {
       try {
         console.log(
@@ -56,10 +62,9 @@ export default defineComponent({
           console.error(await response.text());
           return;
         }
-
         imagesList = await response.json();
         getRandomImageUrl();
-        timerId = window.setInterval(getRandomImageUrl, props.timerInterval);
+        timerId = window.setInterval(getRandomImageUrl, randomInterval());
       } catch (error) {
         console.error('Error while fetching images:', error);
       }

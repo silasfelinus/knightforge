@@ -6,7 +6,9 @@ interface GameScreenRouteMeta {
   isActive: boolean;
 }
 
-function isGameScreenRouteMeta(meta: unknown): meta is GameScreenRouteMeta {
+export function isGameScreenRouteMeta(
+  meta: unknown
+): meta is GameScreenRouteMeta {
   return (
     !!meta &&
     typeof (meta as GameScreenRouteMeta).order === 'number' &&

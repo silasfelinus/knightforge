@@ -1,18 +1,22 @@
 <template>
-  <div class="layer-menu">
-    <q-btn
-      v-for="route in routesWithActive"
-      :key="route.path"
-      class="layer-toggle"
-      flat
-      :label="getRouteName(route)"
-      :title="getRouteName(route)"
-      :color="route.meta.isActive ? 'primary' : 'grey'"
-      @click="toggleLayer(route)"
-    />
+  <div class="layer-panel">
+    <div class="layer-menu">
+      <q-btn
+        v-for="route in routesWithActive"
+        :key="route.path"
+        class="layer-toggle"
+        flat
+        :label="getRouteName(route)"
+        :title="getRouteName(route)"
+        :color="route.meta.isActive ? 'primary' : 'grey'"
+        @click="toggleLayer(route)"
+      />
+    </div>
+    <div class="layer-display">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -65,14 +69,20 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.layer-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
+  padding: 16px;
+}
+
 .layer-menu {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border: 2px solid red;
-  background-color: rgba(255, 255, 0, 0.3);
-  padding: 16px;
-  z-index: 1000;
 }
 
 .layer-toggle {
@@ -80,9 +90,31 @@ export default defineComponent({
   justify-content: flex-start;
   opacity: 0.6;
   transition: opacity 0.3s;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 16px;
 }
 
 .layer-toggle:hover {
   opacity: 1;
+  background-color: #e0e0e0;
+}
+
+.layer-toggle.primary {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.layer-toggle.primary:hover {
+  background-color: #1976d2;
+}
+
+.layer-display {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 </style>
