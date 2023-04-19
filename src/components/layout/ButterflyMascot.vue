@@ -132,7 +132,7 @@ body {
   left: 34px;
   transform: rotate3d(0, 1, 0, -20deg);
   transform-origin: 0px 50%;
-  animation: flutter-right 0.3;
+  animation: flutter-right 0.3s infinite;
 }
 
 .left-wing .top {
@@ -141,7 +141,7 @@ body {
 
 .top,
 .bottom {
-  background: pink;
+  background: var(--wing-color);
   opacity: 0.7;
   position: absolute;
 }

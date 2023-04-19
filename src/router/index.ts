@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomePage from '../components/layout/ButterflyHeader.vue';
+import HomePage from '../components/layout/ButterflyHome.vue';
 import GameScreen from '../components/layout/GameScreen.vue';
 import LayerMenu from '../components/layout/LayerMenu.vue';
 

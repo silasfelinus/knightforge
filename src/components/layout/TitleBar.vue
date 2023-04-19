@@ -2,13 +2,15 @@
 <template>
   <div class="title-bar">
     <div class="welcome">Welcome to</div>
-    <div
-      class="letter"
-      v-for="(char, index) in wonderChars"
-      :key="index"
-      :class="'letter-' + (index + 1)"
-    >
-      {{ char }}
+    <div class="wonder">
+      <div
+        class="letter"
+        v-for="(char, index) in wonderChars"
+        :key="index"
+        :class="'letter-' + (index + 1)"
+      >
+        {{ char }}
+      </div>
     </div>
     <div class="forge">FORGE</div>
   </div>
@@ -19,26 +21,31 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100px;
   background-color: transparent;
   backdrop-filter: blur(10px);
+  font-family: 'Roboto', sans-serif;
 }
 
 .welcome {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
   color: var(--quasar-grey-8);
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  margin-right: 20px;
+  margin-right: 10px;
+}
+
+.wonder {
+  display: flex;
 }
 
 .letter {
-  font-size: 48px;
+  font-size: 36px;
   font-weight: bold;
   text-transform: uppercase;
   color: var(--quasar-primary-color);
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-right: 2px;
 }
 
 .letter-1 {
@@ -66,7 +73,7 @@
 }
 
 .forge {
-  font-size: 48px;
+  font-size: 36px;
   font-weight: bold;
   text-transform: uppercase;
   color: var(--quasar-grey-8);

@@ -20,7 +20,7 @@ export default defineComponent({
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 .quadrant {

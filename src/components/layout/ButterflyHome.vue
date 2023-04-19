@@ -22,8 +22,9 @@
       <ButterflyFooter
         :toggleLeftDrawer="toggleLeftDrawer"
         :toggleRightDrawer="toggleRightDrawer"
-      /></div
-  ></q-layout>
+      />
+    </div>
+  </q-layout>
 </template>
 
 <script lang="ts">
@@ -46,8 +47,8 @@ export default defineComponent({
     ButterflyFooter,
   },
   setup() {
-    const leftDrawerOpen = ref(false);
-    const rightDrawerOpen = ref(false);
+    const leftDrawerOpen = ref(true);
+    const rightDrawerOpen = ref(true);
     const leftDrawerWidth = 300;
     const rightDrawerWidth = 300;
     const leftDrawerBreakpoint = 1024;
@@ -100,9 +101,9 @@ ButterflyFooter {
 .drawer-content {
   background-color: #fff;
 }
-
 .left-drawer-content {
   background: linear-gradient(to bottom, #c0c0c0, #ffffff);
+  z-index: 1;
 }
 
 .right-drawer-content {

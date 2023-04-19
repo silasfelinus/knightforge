@@ -41,11 +41,3 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
-.artistic-message {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 2rem;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="butterfly-frame" @click="moveToCorner">
+  <div class="butterfly-frame">
     <div class="corner circle top-left"></div>
     <div class="corner circle top-right"></div>
     <div class="corner circle bottom-left"></div>
@@ -7,12 +7,19 @@
     <div class="frame-content">
       <slot></slot>
     </div>
-    <ButterflyMascot class="butterfly-mascot" />
+    <ButterflyMascot class="butterfly-mascot" ref="butterflyMascot" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {
+  defineComponent,
+  onMounted,
+  ref,
+  nextTick,
+  Ref,
+  ComponentPublicInstance,
+} from 'vue';
 import ButterflyMascot from './ButterflyMascot.vue';
 
 export default defineComponent({
@@ -20,36 +27,41 @@ export default defineComponent({
   components: {
     ButterflyMascot,
   },
-  setup(_, { emit }) {
-    function moveToCorner() {
+  setup() {
+    const butterflyMascot: Ref<ComponentPublicInstance<
+      typeof ButterflyMascot
+    > | null> = ref(null);
+
+    ref(null);
+
+    async function positionButterfly() {
+      await nextTick();
+
       const cornerPositions = [
-        { x: 0, y: 0 }, // top-left
-        { x: 100, y: 0 }, // top-right
-        { x: 0, y: 100 }, // bottom-left
-        { x: 100, y: 100 }, // bottom-right
+        'top-left',
+        'top-right',
+        'bottom-left',
+        'bottom-right',
       ];
 
-      // Choose a random corner from the cornerPositions array
       const randomIndex = Math.floor(Math.random() * cornerPositions.length);
-      const corner = cornerPositions[randomIndex];
+      const cornerClass = cornerPositions[randomIndex];
 
-      // Calculate the new coordinates (x, y, z)
-      const newX = corner.x;
-      const newY = corner.y;
-      const newZ = Math.random() * 50; // Random z value between 0 and 50
-
-      // Emit the move event with the new coordinates
-      emit('move', newX, newY, newZ);
+      if (butterflyMascot.value) {
+        butterflyMascot.value.$el.classList.add(cornerClass);
+      }
     }
 
+    onMounted(positionButterfly);
+
     return {
-      moveToCorner,
+      butterflyMascot,
     };
   },
 });
 </script>
 
-<style lang="scss">
+<style scoped>
 .butterfly-frame {
   position: relative;
   display: flex;

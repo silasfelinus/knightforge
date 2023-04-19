@@ -1,19 +1,19 @@
 <template>
   <q-layout>
     <q-header elevated class="header">
-      <div class="header-top">
-        <ButterflyFrame class="butterflyFrame">
-          <SplashImage class="header-image" folder="chest" />
+      <div class="header-left">
+        <ButterflyFrame class="butterfly-frame">
+          <SplashViewer class="header-image" folder="chest" />
         </ButterflyFrame>
-        <ButterflyMascot class="header-mascot-right" />
       </div>
-      <div class="splash-message-container">
-        <div class="splash-message-content">
-          <TitleBar />
-          <SplashMessage />
-        </div>
-        <ButterflyFrame class="butterflyFrame">
-          <SplashImage class="header-image" folder="wondershed" />
+      <div class="header-center">
+        <ButterflyMascot class="butterfly-mascot" />
+        <TitleBar />
+        <SplashMessage class="splash-message" />
+      </div>
+      <div class="header-right">
+        <ButterflyFrame class="butterfly-frame">
+          <SplashViewer class="header-image" folder="wondershed" />
         </ButterflyFrame>
       </div>
     </q-header>
@@ -24,7 +24,7 @@
 import { defineComponent } from 'vue';
 import TitleBar from './TitleBar.vue';
 import SplashMessage from './SplashMessage.vue';
-import SplashImage from '../gamescreens/SplashImage.vue';
+import SplashViewer from '../gamescreens/SplashViewer.vue';
 import ButterflyMascot from './ButterflyMascot.vue';
 import ButterflyFrame from './ButterflyFrame.vue';
 
@@ -32,7 +32,7 @@ export default defineComponent({
   components: {
     TitleBar,
     SplashMessage,
-    SplashImage,
+    SplashViewer,
     ButterflyMascot,
     ButterflyFrame,
   },
@@ -43,48 +43,59 @@ export default defineComponent({
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 1rem;
   border: 2px solid #ccc;
-  background-color: #f9f9f9;
+  background-color: #b8e0ff;
   width: 100vw;
+  height: auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-.header-top {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.header-mascot-right {
-  margin-left: 1rem;
-}
-
-.header-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: flex;
-  border: 2px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.splash-message-container {
-  flex-grow: 1;
+.header-left,
+.header-right {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
 }
 
-.splash-message-content {
-  text-align: center;
-  max-width: 60%;
-  border: 2px solid #ccc;
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.header-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.butterfly-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.header-image {
+  max-height: 100vh;
+  width: auto;
+}
+
+.butterfly-mascot {
+  margin-bottom: 1rem;
+  color: #3b5998;
+}
+
+.splash-message {
+  font-size: calc(0.8rem + 0.5vw);
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .header-left,
+  .header-right {
+    margin-bottom: 1rem;
+  }
 }
 </style>
