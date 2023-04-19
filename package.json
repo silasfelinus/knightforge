@@ -7,6 +7,9 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",
+    "dev": "quasar dev",
+    "server": "node server.js",
+    "ignite": "concurrently \"npm run dev\" \"npm run server\"",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore"
   },
   "dependencies": {
@@ -33,6 +36,7 @@
     "@vue/eslint-config-typescript": "^11.0.2",
     "annyang": "^2.6.1",
     "autoprefixer": "^10.4.14",
+    "concurrently": "^8.0.1",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
