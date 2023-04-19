@@ -1,81 +1,65 @@
 <template>
-  <div class="splash-image">
-    <transition :duration="5000" appear name="slide-left">
-      <img :key="imageKey" :src="randomImageUrl" alt="Splash image" />
-    </transition>
-  </div>
+  <transition name="slide-left" mode="out-in">
+    <SplashImage :folderName="folderName" :key="currentImageUrl" />
+  </transition>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, onUnmounted, watchEffect } from 'vue';
-
-type ImageListType = { [key: string]: { default: string } };
+import SplashImage from '@/components/gamescreens/SplashImage.vue';
+import { defineComponent, ref, watchEffect } from 'vue';
 
 export default defineComponent({
-  setup() {
-    const randomImageUrl = ref('');
-    const imageKey = ref(0);
-    const initialTimeout = 5000;
-    const refreshInterval = 20000;
-    let imagesList: ImageListType = {};
+  components: { SplashImage },
+  props: {
+    folderName: {
+      type: String,
+      default: 'splash',
+    },
+    initialTimeout: {
+      type: Number,
+      default: 5000,
+    },
+    refreshInterval: {
+      type: Number,
+      default: 10000,
+    },
+  },
+  setup(props) {
+    const currentImageUrl = ref('');
 
-    const getRandomImageUrl = () => {
-      const imageNames = Object.keys(imagesList);
-      const randomIndex = Math.floor(Math.random() * imageNames.length);
-      const imageModule = imagesList[imageNames[randomIndex]];
-      randomImageUrl.value = imageModule.default;
-      imageKey.value++;
+    const loadNewImage = () => {
+      currentImageUrl.value = '';
+      setTimeout(() => {
+        currentImageUrl.value = Math.random().toString();
+      }, 1000);
     };
 
-    const loadImages = async () => {
-      try {
-        const images = import.meta.glob('@/assets/images/splash/*.webp');
-        const imageModules = await Promise.all(
-          Object.values(images).map((importImage) => importImage())
-        );
+    watchEffect((onInvalidate) => {
+      const initialTimer = setTimeout(() => {
+        loadNewImage();
+        const refreshTimer = setInterval(loadNewImage, props.refreshInterval);
+        onInvalidate(() => {
+          clearInterval(refreshTimer);
+        });
+      }, props.initialTimeout);
 
-        imagesList = imageModules.reduce((list, module, index) => {
-          list[Object.keys(images)[index]] = module;
-          return list;
-        }, {});
-      } catch (error) {
-        console.error('Error while importing image:', error);
-      }
-
-      getRandomImageUrl();
-    };
-
-    onMounted(() => {
-      loadImages();
+      onInvalidate(() => {
+        clearTimeout(initialTimer);
+      });
     });
 
-    watchEffect(() => {
-      const timer = setTimeout(() => {
-        getRandomImageUrl();
-        clearInterval(timer);
-      }, initialTimeout);
-
-      const interval = setInterval(getRandomImageUrl, refreshInterval);
-      onUnmounted(() => clearInterval(interval));
-    });
-
-    return { randomImageUrl, imageKey };
+    return { currentImageUrl };
   },
 });
 </script>
 
 <style scoped>
-.splash-image {
-  position: relative;
-  overflow: hidden;
-}
-
 .slide-left-enter-active,
 .slide-left-leave-active {
-  transition: transform 1s;
+  transition: transform 0.5s ease;
 }
 
-.slide-left-enter-from,
+.slide-left-enter,
 .slide-left-leave-to {
   transform: translateX(100%);
 }

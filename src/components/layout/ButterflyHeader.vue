@@ -25,7 +25,7 @@
 import { defineComponent } from 'vue';
 import TitleBar from '@/components/layout/TitleBar.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
-import SplashImage from '@/components/gamescreens/SplashViewer.vue';
+import SplashImage from '@/components/WIP/SplashViewer.vue.js';
 
 export default defineComponent({
   components: {

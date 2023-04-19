@@ -36,7 +36,7 @@ export const gameScreenRoutes: RouteRecordRaw[] = [
   createGameScreenRoute(
     '/splashviewer',
     'Splash Viewer',
-    'SplashViewer',
+    'SplashViewer2',
     1,
     false
   ),

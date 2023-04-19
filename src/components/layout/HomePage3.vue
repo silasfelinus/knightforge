@@ -42,7 +42,7 @@ import ButterflyHeader from './ButterflyHeader.vue';
 import ButterflyFooter from './ButterflyFooter.vue';
 import ButterflyMascot from './ButterflyMascot.vue';
 import ChatInterface from './ChatInterface.vue';
-import SplashImage from '../gamescreens/SplashViewer.vue';
+import SplashImage from '../WIP/SplashViewer.vue';
 import LayerMenu from './LayerMenu.vue';
 import GameScreen from './GameScreen.vue';
 
