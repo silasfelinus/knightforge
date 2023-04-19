@@ -14,7 +14,7 @@ Typescript (https://www.typescriptlang.org/)
 Babel (https://babeljs.io/)
 Jest (https://jestjs.io/docs/getting-started)
 Vue3-Jest-Typescript Testing - (https://vuejs.org/guide/scaling-up/testing.html#testing-with-jest)
-Quasar CLI (https://quasar.dev/start/quasar-cli)
+Quasar CLI (https://quasar.dev/start/quasar-cli)`
 Pinia (https://pinia.vuejs.org/)
 
 [MODULES]
@@ -42,83 +42,37 @@ Kaizen, DRY Principle, "Best practices are good; Wise practices are best."
 ├── quasar.config.js
 ├── src/
 │ ├── main.ts, App.vue
-│ ├── assets/audio/
 │ ├── assets/images/
-│ ├── assets/prompts/
-│ ├── assets/galleries/
-│ ├── assets/photosets/
-│ ├── boot/
-│ ├── components/artgallery/
-│ ├── components/assetmanager/
-│ ├── components/codecards/
 │ ├── components/gamescreen/
 │ ├── components/layout/
-│ ├── components/screenfx/
 │ ├── css/app.scss
 │ ├── css/quasar.variables.scss
-│ ├── views/
 │ ├── router/index.ts
-│ └── stores/componentsGenerator.ts
-│ └── stores/projects.ts
-│ └── stores/types.ts
-└── public/images/
-
-[PROGRESS]
-Installed modules, basic routing and page structures, created HomePage layout,  ButterflyMascot interactible, remodeled router to use lazy loading, Setup HomePage with stylized butterfly wings, app.scss as global scss, quasar.variables.scss for css variables, rebuilt files from project up: types, projects, componentgenerator, router, have basic types setup for data, id, and filepaths, and images. Working to restore images and accordion menu. help me iterate through my files, make sure things are optimized, and fix where it's been broken since I rebuilt everything.
-
-[TODO]
-graphic navigation menu
-setup API layer
-navigation menu opens full page, want it to open in center window, need to setup homepage.
 
 [CONFIG FILES]
 index.html, quasar.config.js, app.scss, tsconfig.json, postcss.config.js, .eslintrc.js, .prettierrc, package.json, main.ts, app.vue
 
-[BASE FILES RECREATED]
-stores/types.ts
-stores/projects.ts
-routes/index.ts
-HomePage //Home
-ErrorScreen //404
-UnderConstruction //Under Construction
-ButterflyMascot //website mascot interactible
-TitleBar //stylized title
+[router/index.ts]
+sets gamescreenroutes and homepage
 
-[CURRENTLY WORKING ON]
-LayoutEditor.vue //scss manager
-NavigationMenu //isActive components
-AccordionGallery //website configuration
-ChatInterface // Chatroom Interface
-VoiceControl //basic voice pickup and text output
-UserLogin //User Login
-SettingsPanel //User Settings
-RandomText  //RandomText(parameters)
-RandomImage // RandomImage(parameters)
-TextInput // Text Input Window
-AssetManager  // Asset manager
-CodeCard // Base class for customizable cards
-RainDrops //background screen effect
-LavaLamp //background screen effect
-SoapBubbles //background screen effect
-SplashImage //background screen effect
-MagicFrame //resizeable and draggable stylized window frame
-MagicRemote //modular interface controller
-GameScreen //modular screen display interface with step-based save system
-ArtGallery //customizable Art Asset gallery viewer
+[LAYOUT]
+HomePage //LayerWrapper constrains vh vw boundaries for GameScreens and LayerViewer
+GameScreen //shows numbered gamescreen route
+LayerViewer //displays all active gamescreenroutes as semi-transparent layers
+LayerMenu //toggles active gamescreen layers
 
+[TransparencyLayers]
+SplashViewer //displays random images from @/assets/images/splash
+LavaLamp //lava lamp viewer
+SoapBubbles //SoapBubble transparency
+ErrorScreen
+GraphPaper
+AccordionViewer
+RainEffect
+SplashImage
+UnderConstruction
 
-[SELECTION MENU]
-1. Brainstorm session
-2. High Level System Overview
-3. Focused Project Outline
-4. Step-based instructions
-5. Code Review
-6. Style Review
-7. Critical Analysis of Project
-8. Next Steps Project Outline
-9. Toggle Text Adventure Quest Mode (status: off)
-0. Custom
+[Request]
+Please look at the current code and return with suggestions and then polished code to fit design specs.
 
-Selection:
-5. I finally have a handle on types, and the router is
-routing
+[index.ts]

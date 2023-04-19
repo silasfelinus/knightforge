@@ -1,5 +1,5 @@
 <template>
-  <div class="butterfly">
+  <div class="butterfly" :style="{ left: x + 'px', top: y + 'px' }">
     <div class="left-wing">
       <div class="top"></div>
       <div class="bottom"></div>
@@ -86,10 +86,6 @@ body {
   width: 100px;
   height: 100px;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   transform-style: preserve-3d;
   transform: rotate3d(1, 0.5, 0, 110deg);
 }

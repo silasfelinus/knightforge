@@ -7,40 +7,56 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, watchEffect } from 'vue';
+import { defineComponent, ref, onMounted, onUnmounted, watchEffect } from 'vue';
+
+type ImageListType = { [key: string]: { default: string } };
 
 export default defineComponent({
   setup() {
     const randomImageUrl = ref('');
-    const imageKey = ref(0); // Add a key ref for the image
-    const initialTimeout = 5000; // 5 seconds
-    const refreshInterval = 20000; // 10 seconds
+    const imageKey = ref(0);
+    const initialTimeout = 5000;
+    const refreshInterval = 20000;
+    let imagesList: ImageListType = {};
 
-    const getRandomImageUrl = async () => {
+    const getRandomImageUrl = () => {
+      const imageNames = Object.keys(imagesList);
+      const randomIndex = Math.floor(Math.random() * imageNames.length);
+      const imageModule = imagesList[imageNames[randomIndex]];
+      randomImageUrl.value = imageModule.default;
+      imageKey.value++;
+    };
+
+    const loadImages = async () => {
       try {
         const images = import.meta.glob('@/assets/images/splash/*.webp');
-        const imageNames = Object.keys(images);
-        const randomIndex = Math.floor(Math.random() * imageNames.length);
-        const imageModule = await images[imageNames[randomIndex]]();
-        randomImageUrl.value = imageModule.default || imageModule;
-        imageKey.value++; // Increment the image key
+        const imageModules = await Promise.all(
+          Object.values(images).map((importImage) => importImage())
+        );
+
+        imagesList = imageModules.reduce((list, module, index) => {
+          list[Object.keys(images)[index]] = module;
+          return list;
+        }, {});
       } catch (error) {
         console.error('Error while importing image:', error);
       }
+
+      getRandomImageUrl();
     };
 
     onMounted(() => {
-      getRandomImageUrl();
+      loadImages();
     });
 
     watchEffect(() => {
       const timer = setTimeout(() => {
         getRandomImageUrl();
-        const interval = setInterval(getRandomImageUrl, refreshInterval);
-        return () => clearInterval(interval);
+        clearInterval(timer);
       }, initialTimeout);
 
-      return () => clearTimeout(timer);
+      const interval = setInterval(getRandomImageUrl, refreshInterval);
+      onUnmounted(() => clearInterval(interval));
     });
 
     return { randomImageUrl, imageKey };
@@ -48,31 +64,19 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style scoped>
 .splash-image {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
 
-.splash-image img {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-  position: absolute;
-  left: 0;
-}
-
-/* Add the transition styles */
 .slide-left-enter-active,
 .slide-left-leave-active {
-  transition: all 1s;
+  transition: transform 1s;
 }
-.slide-left-enter,
+
+.slide-left-enter-from,
 .slide-left-leave-to {
-  transform: translateX(-100vw);
+  transform: translateX(100%);
 }
 </style>

@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
 
 type ToggleDrawerFunction = (evt: Event) => void;
@@ -39,11 +39,11 @@ export default defineComponent({
   },
   props: {
     toggleLeftDrawer: {
-      type: Object as () => ToggleDrawerFunction,
+      type: Function as PropType<ToggleDrawerFunction>,
       required: true,
     },
     toggleRightDrawer: {
-      type: Object as () => ToggleDrawerFunction,
+      type: Function as PropType<ToggleDrawerFunction>,
       required: true,
     },
   },

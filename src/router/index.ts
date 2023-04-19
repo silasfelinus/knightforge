@@ -1,64 +1,95 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomePage from '@/components/layout/HomePage.vue';
-import GameScreen from '@/components/layout/GameScreen.vue';
+import HomePage from '../components/layout/HomePage.vue';
+import GameScreen from '../components/layout/GameScreen.vue';
 import LayerMenu from '@/components/layout/LayerMenu.vue';
 
+interface GameScreenRouteMeta {
+  order: number;
+  isActive: boolean;
+}
+
+function isGameScreenRouteMeta(meta: unknown): meta is GameScreenRouteMeta {
+  return (
+    !!meta &&
+    typeof (meta as GameScreenRouteMeta).order === 'number' &&
+    typeof (meta as GameScreenRouteMeta).isActive === 'boolean'
+  );
+}
+
+function createGameScreenRoute(
+  path: string,
+  name: string,
+  component: string,
+  order: number,
+  isActive: boolean
+): RouteRecordRaw {
+  return {
+    path,
+    name: name as string,
+    component: () =>
+      import(/* @vite-ignore */ `../components/gamescreens/${component}.vue`),
+    meta: { order, isActive },
+  };
+}
+
 export const gameScreenRoutes: RouteRecordRaw[] = [
-  {
-    path: '/splashviewer',
-    name: 'Splash Viewer',
-    component: () => import('@/components/gamescreens/SplashViewer.vue'),
-    meta: { order: 1, isActive: false },
-  },
-  {
-    path: '/errorscreen',
-    name: 'Error Screen',
-    component: () => import('@/components/gamescreens/ErrorScreen.vue'),
-    meta: { order: 2, isActive: false },
-  },
-  {
-    path: '/graphpaper',
-    name: 'Graph Paper',
-    component: () => import('@/components/gamescreens/GraphPaper.vue'),
-    meta: { order: 3, isActive: false },
-  },
-  {
-    path: '/lavalamp',
-    name: 'Lava Lamp',
-    component: () => import('@/components/gamescreens/LavaLamp.vue'),
-    meta: { order: 4, isActive: false },
-  },
-  {
-    path: '/raineffect',
-    name: 'Rain Effect',
-    component: () => import('@/components/gamescreens/RainEffect.vue'),
-    meta: { order: 5, isActive: true },
-  },
-  {
-    path: '/soapbubbles',
-    name: 'Soap Bubbles',
-    component: () => import('@/components/gamescreens/SoapBubbles.vue'),
-    meta: { order: 6, isActive: false },
-  },
-  {
-    path: '/splashimage',
-    name: 'Splash Image',
-    component: () => import('@/components/gamescreens/SplashImage.vue'),
-    meta: { order: 7, isActive: false },
-  },
-  {
-    path: '/accordiongallery',
-    name: 'Accordion Gallery',
-    component: () => import('@/components/gamescreens/AccordionGallery.vue'),
-    meta: { order: 8, isActive: false },
-  },
-  {
-    path: '/underconstruction',
-    name: 'Under Construction',
-    component: () => import('@/components/gamescreens/UnderConstruction.vue'),
-    meta: { order: 9, isActive: false },
-  },
+  createGameScreenRoute(
+    '/splashviewer',
+    'Splash Viewer',
+    'SplashViewer',
+    1,
+    false
+  ),
+  createGameScreenRoute(
+    '/errorscreen',
+    'Error Screen',
+    'ErrorScreen',
+    2,
+    false
+  ),
+  createGameScreenRoute('/graphpaper', 'Graph Paper', 'GraphPaper', 3, false),
+  createGameScreenRoute('/lavalamp', 'Lava Lamp', 'LavaLamp', 4, false),
+  createGameScreenRoute('/raineffect', 'Rain Effect', 'RainEffect', 5, true),
+  createGameScreenRoute(
+    '/soapbubbles',
+    'Soap Bubbles',
+    'SoapBubbles',
+    6,
+    false
+  ),
+  createGameScreenRoute(
+    '/splashimage',
+    'Splash Image',
+    'SplashImage',
+    7,
+    false
+  ),
+  createGameScreenRoute(
+    '/accordiongallery',
+    'Accordion Gallery',
+    'AccordionGallery',
+    8,
+    false
+  ),
+  createGameScreenRoute(
+    '/underconstruction',
+    'Under Construction',
+    'UnderConstruction',
+    9,
+    false
+  ),
 ];
+function getActiveGameScreenRoutes(): RouteRecordRaw[] {
+  return gameScreenRoutes
+    .filter((route) => isGameScreenRouteMeta(route.meta) && route.meta.isActive)
+    .sort(
+      (a, b) =>
+        (isGameScreenRouteMeta(a.meta) ? a.meta.order : 0) -
+        (isGameScreenRouteMeta(b.meta) ? b.meta.order : 0)
+    );
+}
+
+export const activeGameScreenRoutes = getActiveGameScreenRoutes();
 
 const routes: RouteRecordRaw[] = [
   {
@@ -66,7 +97,7 @@ const routes: RouteRecordRaw[] = [
     component: HomePage,
   },
   {
-    path: '/layer',
+    path: '/layermenu',
     component: LayerMenu,
   },
   {
