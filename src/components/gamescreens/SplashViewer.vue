@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import SplashImage from '@/components/gamescreens/SplashImage.vue';
+import SplashImage from '@/components/gamescreens/SplashImage.vue.js';
 import { defineComponent, ref, watchEffect } from 'vue';
 
 export default defineComponent({

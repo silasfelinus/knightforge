@@ -54,11 +54,11 @@
 import { defineComponent, ref } from 'vue';
 import ButterflyHeader from './ButterflyHeader.vue';
 import ButterflyFooter from './ButterflyFooter.vue';
-import ButterflyMascot from './ButterflyMascot.vue';
+import ButterflyMascot from '../layout/ButterflyMascot.vue';
 import ChatInterface from '../gamescreens/ChatInterface.vue';
-import SplashImage from '../WIP/SplashViewer.vue';
-import LayerMenu from './LayerMenu.vue';
-import SplashViewer from '../WIP/SplashViewer.vue';
+import SplashImage from './SplashViewer.vue';
+import LayerMenu from '../layout/LayerMenu.vue';
+import SplashViewer from './SplashViewer.vue';
 import UnderConstruction from '../gamescreens/UnderConstruction.vue';
 import SoapBubbles from '../gamescreens/SoapBubbles.vue';
 

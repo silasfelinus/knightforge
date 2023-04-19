@@ -22,10 +22,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import TitleBar from './TitleBar.vue';
-import SplashMessage from './SplashMessage.vue';
-import SplashViewer from '../gamescreens/SplashViewer.vue';
-import ButterflyMascot from './ButterflyMascot.vue';
+import TitleBar from '../layout/TitleBar.vue';
+import SplashMessage from '../layout/SplashMessage.vue';
+import SplashViewer from '../layout/SplashFolder.vue';
+import ButterflyMascot from '../layout/ButterflyMascot.vue';
 import ButterflyFrame from './ButterflyFrame.vue';
 
 export default defineComponent({

@@ -1,0 +1,160 @@
+<template>
+  <div class="home-page">
+    <div class="left-column">
+      <div class="main-splash">
+        <SplashFolder :folderName="'splash'" />
+      </div>
+      <div class="nav-menu"><AccordionGallery /></div>
+    </div>
+    <div class="middle-column">
+      <div class="gamescreen-container"><GameScreen /></div>
+      <div class="layermenu-container"><LayerMenu /></div>
+      <div class="titlebar-message-container">
+        <TitleBar />
+        <SplashMessage />
+      </div>
+      <div class="butterfly-container">
+        <div class="quadrant"><ButterflyMascot /></div>
+        <div class="quadrant"><ButterflyMascot /></div>
+        <div class="quadrant"><ButterflyMascot /></div>
+        <div class="quadrant"><ButterflyMascot /></div>
+      </div>
+    </div>
+    <div class="right-column">
+      <div class="top-container">
+        <SplashFolder :folderName="'chest'" />
+      </div>
+      <div class="middle-container">
+        <SplashFolder :folderName="'shed'" />
+      </div>
+      <div class="bottom-container">
+        <SplashFolder :folderName="'splash'" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import SplashFolder from './SplashFolder.vue';
+import TitleBar from './TitleBar.vue';
+import SplashMessage from './SplashMessage.vue';
+import ButterflyMascot from './ButterflySimple.vue';
+import AccordionGallery from './AccordionGallery.vue';
+import GameScreen from './GameScreen.vue';
+import LayerMenu from './LayerMenu.vue';
+
+export default {
+  components: {
+    SplashFolder,
+    TitleBar,
+    SplashMessage,
+    ButterflyMascot,
+    AccordionGallery,
+    GameScreen,
+    LayerMenu,
+  },
+};
+</script>
+
+<style>
+.home-page {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.left-column {
+  flex: 0 0 60%;
+  height: 100%;
+}
+
+.middle-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #e0e0e0;
+  border-right: 2px solid #000;
+}
+
+.top-container,
+.middle-container,
+.bottom-container {
+  flex: 1;
+  margin: 2px;
+  overflow-y: auto;
+}
+
+.gamescreen-container {
+  background-color: #f0c0c0;
+}
+
+.layermenu-container {
+  background-color: #08c8c0;
+}
+
+.titlebar-message-container {
+  background-color: #c0f0c0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-message {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.butterfly-container {
+  background-color: #c0c0f0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.quadrant {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.top-section {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  background-color: #f0f0c0;
+  border-left: 2px solid #000;
+  justify-content: space-between;
+}
+
+.bottom-section {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  background-color: #c0f0c0;
+  border-left: 2px solid #000;
+  justify-content: space-between;
+}
+
+.top-section .container {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.bottom-section .container {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+</style>

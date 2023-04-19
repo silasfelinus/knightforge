@@ -16,7 +16,7 @@
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { gameScreenRoutes } from '@/router';
+import { gameScreenRoutes } from '@/router/gameScreenRoutes';
 import { RouteRecordRaw } from 'vue-router';
 
 export type RouteWithActive = RouteRecordRaw & {

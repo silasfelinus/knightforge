@@ -20,7 +20,7 @@ import {
   Ref,
   ComponentPublicInstance,
 } from 'vue';
-import ButterflyMascot from './ButterflyMascot.vue';
+import ButterflyMascot from '../layout/ButterflyMascot.vue';
 
 export default defineComponent({
   name: 'ButterflyFrame',

@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import LayerMenu from './LayerMenu.vue';
+import LayerMenu from '../layout/LayerMenu.vue';
 
 export default defineComponent({
   name: 'ButterflyLeftDrawer',

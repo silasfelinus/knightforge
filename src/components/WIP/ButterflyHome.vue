@@ -31,10 +31,10 @@
 import { defineComponent, ref } from 'vue';
 
 import ButterflyHeader from './ButterflyHeader.vue';
-import ButterflyLeftDrawer from './ButterflyLeftDrawer.vue';
-import ButterflyRightDrawer from './ButterflyRightDrawer.vue';
-import ButterflyCenter from './ButterflyCenter.vue';
-import ButterflyFooter from './ButterflyFooter.vue';
+import ButterflyLeftDrawer from '../layout./WIP/ButterflyLeftDrawer.vue';
+import ButterflyRightDrawer from '../layout./WIP/ButterflyRightDrawer.vue';
+import ButterflyCenter from '../layout./WIP/ButterflyCenter.vue';
+import ButterflyFooter from '../layout./WIP/ButterflyFooter.vue';
 
 export default defineComponent({
   name: 'HomePage',

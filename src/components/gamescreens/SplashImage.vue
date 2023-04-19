@@ -1,18 +1,11 @@
 <template>
-  <div class="splash-image">
-    <img
-      v-if="randomImageUrl"
-      :src="randomImageUrl"
-      alt="Splash image"
-      class="splash-img"
-    />
+  <div class="image-container">
+    <img v-if="randomImageUrl" :src="randomImageUrl" alt="Random Image" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
-
-type ImageListType = { [key: string]: { default: string } };
+import { defineComponent, ref, onMounted, watch } from 'vue';
 
 export default defineComponent({
   props: {
@@ -21,52 +14,61 @@ export default defineComponent({
       default: 'splash',
     },
   },
-  setup() {
-    const randomImageUrl = ref('');
-    let imagesList: ImageListType = {};
+  setup(props) {
+    const randomImageUrl = ref<string | null>(null);
+    let imagesList: string[] = [];
+
+    const serverAddress = 'http://localhost:3000';
 
     const getRandomImageUrl = () => {
-      const imageNames = Object.keys(imagesList);
-      if (imageNames.length === 0) {
+      if (imagesList.length === 0) {
         console.error('No images found in the folder');
         return;
       }
-      const randomIndex = Math.floor(Math.random() * imageNames.length);
-      const imageModule = imagesList[imageNames[randomIndex]];
-      randomImageUrl.value = imageModule.default;
+      const randomIndex = Math.floor(Math.random() * imagesList.length);
+      randomImageUrl.value = `${serverAddress}/assets/images/${props.folderName}/${imagesList[randomIndex]}`;
     };
 
     const loadImages = async () => {
       try {
-        const images = import.meta.glob('@/assets/images/splash/*.webp');
-        const imageModules = await Promise.all(
-          Object.values(images).map((importImage) => importImage())
+        console.log(
+          `Fetching images from: ${serverAddress}/images?folderName=${props.folderName}`
         );
+        const response = await fetch(
+          `${serverAddress}/images?folderName=${props.folderName}`
+        );
+        if (!response.ok) {
+          console.error(await response.text());
+          return;
+        }
 
-        imagesList = imageModules.reduce((list, module, index) => {
-          list[Object.keys(images)[index]] = module;
-          return list;
-        }, {});
+        imagesList = await response.json();
+        getRandomImageUrl();
       } catch (error) {
-        console.error('Error while importing image:', error);
+        console.error('Error while fetching images:', error);
       }
-
-      getRandomImageUrl();
     };
 
     onMounted(() => {
       loadImages();
     });
 
+    watch(
+      () => props.folderName,
+      () => {
+        loadImages();
+      }
+    );
+
     return { randomImageUrl };
   },
 });
 </script>
+
 <style scoped>
-.splash-img {
-  max-width: 100%;
-  max-height: 10vh;
-  object-fit: contain;
-  display: block;
+.image-container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 </style>
