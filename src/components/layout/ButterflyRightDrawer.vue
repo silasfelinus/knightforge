@@ -1,6 +1,6 @@
 <template>
-  <div class="chat-window-section">
-    <!-- Insert your ChatWindow content here -->
+  <div class="butterfly-right-drawer">
+    <!-- Your content here -->
   </div>
 </template>
 
@@ -8,6 +8,6 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'ChatWindow',
+  name: 'ButterflyRightDrawer',
 });
 </script>

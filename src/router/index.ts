@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomePage from '../components/layout/HomePage.vue';
+import HomePage from '../components/layout/ButterflyHeader.vue';
 import GameScreen from '../components/layout/GameScreen.vue';
-import LayerMenu from '@/components/layout/LayerMenu.vue';
+import LayerMenu from '../components/layout/LayerMenu.vue';
 
 interface GameScreenRouteMeta {
   order: number;
@@ -36,7 +36,7 @@ export const gameScreenRoutes: RouteRecordRaw[] = [
   createGameScreenRoute(
     '/splashviewer',
     'Splash Viewer',
-    'SplashViewer2',
+    'SplashViewer',
     1,
     false
   ),

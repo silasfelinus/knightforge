@@ -7,14 +7,19 @@
     <div class="frame-content">
       <slot></slot>
     </div>
+    <ButterflyMascot class="butterfly-mascot" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import ButterflyMascot from './ButterflyMascot.vue';
 
 export default defineComponent({
   name: 'ButterflyFrame',
+  components: {
+    ButterflyMascot,
+  },
   setup(_, { emit }) {
     function moveToCorner() {
       const cornerPositions = [
@@ -47,9 +52,11 @@ export default defineComponent({
 <style lang="scss">
 .butterfly-frame {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 .corner {
@@ -94,5 +101,13 @@ export default defineComponent({
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+.butterfly-mascot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-height: 10vh;
 }
 </style>

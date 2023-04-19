@@ -1,80 +1,81 @@
 <template>
-  <q-header elevated class="header">
-    <div class="header-top">
-      <div class="header-images-left">
-        <SplashImage class="header-image" />
-        <SplashImage class="header-image" />
-        <SplashImage class="header-image" />
+  <q-layout>
+    <q-header elevated class="header">
+      <div class="header-top">
+        <ButterflyFrame class="butterflyFrame">
+          <SplashImage class="header-image" folder="chest" />
+        </ButterflyFrame>
+        <ButterflyMascot class="header-mascot-right" />
       </div>
       <div class="splash-message-container">
         <div class="splash-message-content">
           <TitleBar />
           <SplashMessage />
         </div>
+        <ButterflyFrame class="butterflyFrame">
+          <SplashImage class="header-image" folder="wondershed" />
+        </ButterflyFrame>
       </div>
-      <div class="header-images-right">
-        <SplashImage class="header-image" />
-        <SplashImage class="header-image" />
-        <SplashImage class="header-image" />
-      </div>
-    </div>
-  </q-header>
+    </q-header>
+  </q-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import TitleBar from '@/components/layout/TitleBar.vue';
-import SplashMessage from '@/components/layout/SplashMessage.vue';
-import SplashImage from '@/components/WIP/SplashViewer.vue.js';
+import TitleBar from './TitleBar.vue';
+import SplashMessage from './SplashMessage.vue';
+import SplashImage from '../gamescreens/SplashImage.vue';
+import ButterflyMascot from './ButterflyMascot.vue';
+import ButterflyFrame from './ButterflyFrame.vue';
 
 export default defineComponent({
   components: {
     TitleBar,
     SplashMessage,
     SplashImage,
+    ButterflyMascot,
+    ButterflyFrame,
   },
 });
 </script>
-
-<style lang="scss">
+<style scoped>
 .header {
-  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
   width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  position: relative;
-  background-color: $primary;
-  align-items: center;
 }
 
-.header-images-left,
-.header-images-right {
+.header-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  width: calc(50vw - 20px - 50%);
-}
-.splash-message-container {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
+  width: 100%;
 }
 
-.splash-message-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.header-mascot-right {
+  margin-left: 1rem;
 }
 
 .header-image {
-  width: auto;
+  width: 100%;
   height: 100%;
   object-fit: contain;
+  display: flex;
+}
+
+.splash-message-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.splash-message-content {
+  text-align: center;
+  max-width: 60%;
 }
 </style>

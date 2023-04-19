@@ -1,6 +1,11 @@
 <template>
   <div class="splash-image">
-    <img v-if="randomImageUrl" :src="randomImageUrl" alt="Splash image" />
+    <img
+      v-if="randomImageUrl"
+      :src="randomImageUrl"
+      alt="Splash image"
+      class="splash-img"
+    />
   </div>
 </template>
 
@@ -57,3 +62,11 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+.splash-img {
+  max-width: 100%;
+  max-height: 10vh;
+  object-fit: contain;
+  display: block;
+}
+</style>

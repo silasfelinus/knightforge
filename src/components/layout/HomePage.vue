@@ -55,7 +55,7 @@ import { defineComponent, ref } from 'vue';
 import ButterflyHeader from './ButterflyHeader.vue';
 import ButterflyFooter from './ButterflyFooter.vue';
 import ButterflyMascot from './ButterflyMascot.vue';
-import ChatInterface from './ChatInterface.vue';
+import ChatInterface from '../gamescreens/ChatInterface.vue';
 import SplashImage from '../WIP/SplashViewer.vue';
 import LayerMenu from './LayerMenu.vue';
 import SplashViewer from '../WIP/SplashViewer.vue';
