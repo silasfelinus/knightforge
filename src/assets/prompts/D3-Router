@@ -1,0 +1,27 @@
+Make me a new vue router/index.ts file. I would like help organizing this idea.
+
+
+I want a router file that loads HomePage.vue and then our default homepage components depending on the homepage attributes
+
+
+LSidebar.vue
+RSideBar.vue
+TopHeader.vue
+BottomFooter.vue
+MainScreen.vue
+ContainerFrame.vue
+ImageFrame.vue
+ImageComponent.vue
+
+NavigationMenu.vue
+LayerMenu.vue
+AccordionGallery.vue
+ChatInterface.vue
+
+We'll have meta fields for isActive :boolean, priority :number, and isLayer :boolean. Do I need the frame components at this level? Are there other options that would be good to place into meta? Can you suggest a user-friendly way to handle loading HomePage with various combinations of settings?
+
+Think about what I want, and then suggest a way to structure this.
+
+
+
+This is for our art design site, we're going to need areas for a webgallery, print-on-demand giftshop, membership page
