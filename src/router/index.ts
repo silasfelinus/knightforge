@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomePage from '../components/layout/NewHome.vue';
+import HomePage from '../components/layout/SplitFlap.vue';
 import GameScreen from '../components/layout/GameScreen.vue';
 import LayerMenu from '../components/layout/LayerMenu.vue';
 

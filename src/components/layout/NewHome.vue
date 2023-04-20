@@ -1,12 +1,10 @@
 <template>
   <div class="home-page">
-    <div class="left-column">
-      <div class="main-splash">
-        <SplashFolder :folderName="'splash'" />
-      </div>
+    <div class="left-column component-container">
+      <div class="main-splash"><SplashFolder :folderName="'splash'" /></div>
       <div class="nav-menu"><AccordionGallery /></div>
     </div>
-    <div class="middle-column">
+    <div class="middle-column component-container">
       <div class="gamescreen-container"><GameScreen /></div>
       <div class="layermenu-container"><LayerMenu /></div>
       <div class="titlebar-message-container">
@@ -20,13 +18,9 @@
         <div class="quadrant"><ButterflyMascot /></div>
       </div>
     </div>
-    <div class="right-column">
-      <div class="top-container">
-        <SplashFolder :folderName="'chest'" />
-      </div>
-      <div class="middle-container">
-        <SplashFolder :folderName="'shed'" />
-      </div>
+    <div class="right-column component-container">
+      <div class="top-container"><SplashFolder :folderName="'chest'" /></div>
+      <div class="middle-container"><SplashFolder :folderName="'shed'" /></div>
       <div class="bottom-container">
         <SplashFolder :folderName="'splash'" />
       </div>
@@ -63,9 +57,15 @@ export default {
   width: 100vw;
 }
 
+.component-container {
+  overflow: hidden;
+}
+
 .left-column {
   flex: 0 0 60%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .middle-column {
@@ -74,6 +74,13 @@ export default {
   height: 100%;
   background-color: #e0e0e0;
   border-right: 2px solid #000;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
 }
 
 .top-container,
@@ -120,41 +127,11 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
-.right-column {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 100%;
-}
-
-.top-section {
-  display: flex;
-  flex-direction: column;
-  height: 50%;
-  background-color: #f0f0c0;
-  border-left: 2px solid #000;
-  justify-content: space-between;
-}
-
-.bottom-section {
-  display: flex;
-  flex-direction: column;
-  height: 50%;
-  background-color: #c0f0c0;
-  border-left: 2px solid #000;
-  justify-content: space-between;
-}
-
-.top-section .container {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-}
-
-.bottom-section .container {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
+.splash-message {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 10px;
 }
 </style>
