@@ -46,7 +46,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import NavigationMenu from '../layout/LayerMenu.vue';
-import ButterflyMascot from '../layout/ButterflyMascot.vue';
+import ButterflyMascot from './ButterflyMascot.vue';
 import GameScreen from '@/components/layout/GameScreen.vue';
 
 export default defineComponent({

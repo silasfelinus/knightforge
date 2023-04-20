@@ -25,7 +25,7 @@ import { defineComponent } from 'vue';
 import TitleBar from '../layout/TitleBar.vue';
 import SplashMessage from '../layout/SplashMessage.vue';
 import SplashViewer from '../layout/SplashFolder.vue';
-import ButterflyMascot from '../layout/ButterflyMascot.vue';
+import ButterflyMascot from './ButterflyMascot.vue';
 import ButterflyFrame from './ButterflyFrame.vue';
 
 export default defineComponent({

@@ -1,6 +1,6 @@
 <template>
   <div class="layer-panel">
-    <div class="layer-menu">
+    <div class="layer-routes">
       <q-btn
         v-for="route in routesWithActive"
         :key="route.path"
@@ -13,10 +13,15 @@
       />
     </div>
     <div class="layer-display">
-      <router-view></router-view>
+      <component
+        v-for="route in routesWithActive"
+        :key="route.path"
+        :is="route.meta.isActive ? route.component : null"
+      />
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue';
 import { useRouter } from 'vue-router';

@@ -53,7 +53,7 @@
 import { defineComponent, ref } from 'vue';
 import TitleBar from '../layout/TitleBar.vue';
 import NavigationMenu from '../layout/LayerMenu.vue';
-import ButterflyMascot from '../layout/ButterflyMascot.vue';
+import ButterflyMascot from './ButterflyMascot.vue';
 
 export default defineComponent({
   components: {
