@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import SplashMessage from '@/components/layout/SplashMessage.vue';
+import SplashMessage from '@/components/gamescreens/SplashMessage.vue.js';
 
 type ToggleDrawerFunction = (evt: Event) => void;
 

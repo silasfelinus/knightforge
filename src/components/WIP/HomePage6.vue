@@ -29,13 +29,13 @@
 </template>
 
 <script lag="ts">
-import SplashFolder from './SplashFolder.vue';
-import TitleBar from './TitleBar.vue';
-import SplashMessage from './SplashMessage.vue';
-import ButterflyMascot from './ButterflySimple.vue';
-import AccordionGallery from './AccordionGallery.vue';
-import GameScreen from './GameScreen.vue';
-import LayerMenu from './LayerMenu.vue';
+import SplashFolder from '../gamescreens/SplashFolder.vue';
+import TitleBar from '../gamescreens/TitleBar.vue';
+import SplashMessage from '../gamescreens/SplashMessage.vue';
+import ButterflyMascot from '../gamescreens/ButterflySimple.vue';
+import AccordionGallery from '../gamescreens/AccordionGallery.vue';
+import GameScreen from '../layout/GameScreen.vue';
+import LayerMenu from '../gamescreens/LayerMenu.vue';
 
 export default {
   components: {

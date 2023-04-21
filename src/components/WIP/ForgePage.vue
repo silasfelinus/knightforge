@@ -51,8 +51,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import TitleBar from '../layout/TitleBar.vue';
-import NavigationMenu from '../layout/LayerMenu.vue';
+import TitleBar from '../gamescreens/TitleBar.vue';
+import NavigationMenu from '../gamescreens/LayerMenu.vue';
 import ButterflyMascot from './ButterflyMascot.vue';
 
 export default defineComponent({

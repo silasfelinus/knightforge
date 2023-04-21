@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomePage1 from '../components/layout/HomePage3.vue';
-import HomePage2 from '../components/layout/HomePage2.vue';
-import HomePage3 from '../components/layout/HomePage1.vue';
+import HomePage1 from '../components/WIP/HomePage6.vue';
+import HomePage2 from '../components/WIP/HomePage4.vue';
+import HomePage3 from '../components/WIP/HomePage1.vue';
 import AdminPage from '../components/layout/AdminPage.vue';
 
 import { gameScreenRoutes } from './gameScreenRoutes';

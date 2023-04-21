@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SplashImage from '../gamescreens/SplashImage.vue';
+import SplashImage from './SplashImage.vue';
 
 interface Image {
   background: string;

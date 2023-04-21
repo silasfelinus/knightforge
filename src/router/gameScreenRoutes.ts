@@ -1,9 +1,10 @@
 // gameScreenRoutes.ts
 import { RouteRecordRaw } from 'vue-router';
 
-interface GameScreenRouteMeta {
+export interface GameScreenRouteMeta {
   order: number;
   isActive: boolean;
+  componentName: string;
 }
 
 export function isGameScreenRouteMeta(
@@ -28,7 +29,7 @@ function createGameScreenRoute(
     name: name as string,
     component: () =>
       import(/* @vite-ignore */ `../components/gamescreens/${component}.vue`),
-    meta: { order, isActive },
+    meta: { order, isActive, componentName: component },
   };
 }
 
