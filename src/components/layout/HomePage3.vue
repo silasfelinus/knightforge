@@ -1,92 +1,130 @@
 <template>
-  <div>
-    <TopHeader v-if="topHeader.isActive" />
-    <LSidebar v-if="lSidebar.isActive" />
-    <RSideBar v-if="rSidebar.isActive" />
-    <ContainerFrame v-if="containerFrame.isActive">
-      <MainScreen>
-        <ImageFrame v-if="imageFrame.isActive" />
-        <ImageComponent v-if="imageComponent.isActive" />
-        <NavigationMenu v-if="navigationMenu.isActive" />
-        <LayerMenu v-if="layerMenu.isActive" />
-        <AccordionGallery v-if="accordionGallery.isActive" />
-        <ChatInterface v-if="chatInterface.isActive" />
-        <FeaturedComponent
-          v-for="item in activeFeaturedComponents"
-          :key="item.id"
-          :id="item.id"
-        />
-      </MainScreen>
-      <GameScreen v-if="gameScreen.isActive" />
-    </ContainerFrame>
-    <BottomFooter v-if="bottomFooter.isActive" />
+  <div class="home-page">
+    <div class="left-column component-container">
+      <div class="main-splash"><SplashFolder :folderName="'splash'" /></div>
+      <div class="nav-menu"><AccordionGallery /></div>
+    </div>
+    <div class="middle-column component-container">
+      <div class="gamescreen-container"><GameScreen /></div>
+      <div class="layermenu-container"><LayerMenu /></div>
+      <div class="titlebar-message-container">
+        <TitleBar />
+        <SplashMessage />
+      </div>
+      <div class="butterfly-container">
+        <div class="quadrant"><ButterflyMascot /></div>
+        <div class="quadrant"><ButterflyMascot /></div>
+        <div class="quadrant"><ButterflyMascot /></div>
+        <div class="quadrant"><ButterflyMascot /></div>
+      </div>
+    </div>
+    <div class="right-column component-container">
+      <div class="top-container"><SplashFolder :folderName="'chest'" /></div>
+      <div class="middle-container"><SplashFolder :folderName="'shed'" /></div>
+      <div class="bottom-container">
+        <SplashFolder :folderName="'splash'" />
+      </div>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import TopHeader from './TopHeader.vue';
-import LSidebar from './LSidebar.vue';
-import RSideBar from './RSideBar.vue';
-import ContainerFrame from './ContainerFrame.vue';
-import BottomFooter from './BottomFooter.vue';
-import MainScreen from './MainScreen.vue';
-import GameScreen from './GameScreen.vue';
-import ImageFrame from './ImageFrame.vue';
-import ImageComponent from './ImageComponent.vue';
-import NavigationMenu from './NavigationMenu.vue';
-import LayerMenu from './LayerMenu.vue';
+<script lag="ts">
+import SplashFolder from './SplashFolder.vue';
+import TitleBar from './TitleBar.vue';
+import SplashMessage from './SplashMessage.vue';
+import ButterflyMascot from './ButterflySimple.vue';
 import AccordionGallery from './AccordionGallery.vue';
-import ChatInterface from './ChatInterface.vue';
-import FeaturedComponent from './FeaturedComponent.vue';
+import GameScreen from './GameScreen.vue';
+import LayerMenu from './LayerMenu.vue';
 
-export default defineComponent({
+export default {
   components: {
-    TopHeader,
-    LSidebar,
-    RSideBar,
-    ContainerFrame,
-    BottomFooter,
-    MainScreen,
-    GameScreen,
-    ImageFrame,
-    ImageComponent,
-    NavigationMenu,
-    LayerMenu,
+    SplashFolder,
+    TitleBar,
+    SplashMessage,
+    ButterflyMascot,
     AccordionGallery,
-    ChatInterface,
-    FeaturedComponent,
+    GameScreen,
+    LayerMenu,
   },
-  data() {
-    return {
-      topHeader: { isActive: true, priority: 1 },
-      lSidebar: { isActive: true, priority: 2 },
-      rSidebar: { isActive: true, priority: 3 },
-      containerFrame: { isActive: true, priority: 4 },
-      bottomFooter: { isActive: true, priority: 5 },
-      imageFrame: { isActive: true, priority: 6 },
-      imageComponent: { isActive: true, priority: 7 },
-      navigationMenu: { isActive: true, priority: 8 },
-      layerMenu: { isActive: true, priority: 9 },
-      accordionGallery: { isActive: true, priority: 10 },
-      chatInterface: { isActive: true, priority: 11 },
-      featuredComponents: [
-        { id: 1, isActive: true, priority: 12 },
-        { id: 2, isActive: true, priority: 13 },
-        { id: 3, isActive: true, priority: 14 },
-        { id: 4, isActive: true, priority: 15 },
-        { id: 5, isActive: true, priority: 16 },
-        { id: 6, isActive: true, priority: 17 },
-      ],
-      gameScreen: { isActive: true, priority: 18 },
-    };
-  },
-  computed: {
-    activeFeaturedComponents() {
-      return this.featuredComponents.filter(
-        (item: { isActive: boolean }) => item.isActive
-      );
-    },
-  },
-});
+};
 </script>
+
+<style lang="scss">
+.home-page {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.component-container {
+  overflow: hidden;
+}
+
+.left-column {
+  flex: 0 0 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.middle-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #e0e0e0;
+  border-right: 2px solid #000;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.top-container,
+.middle-container,
+.bottom-container {
+  flex: 1;
+  margin: 2px;
+  overflow-y: auto;
+}
+
+.gamescreen-container {
+  background-color: #f0c0c0;
+}
+
+.layermenu-container {
+  background-color: #08c8c0;
+}
+
+.titlebar-message-container {
+  background-color: #c0f0c0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-message {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.butterfly-container {
+  background-color: #c0c0f0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.quadrant {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
