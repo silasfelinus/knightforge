@@ -1,22 +1,20 @@
 import { RouteRecordRaw } from 'vue-router';
 
-export interface GameScreenRouteMeta {
+export interface ScreenRouteMeta {
   order: number;
   isActive: boolean;
   componentName: string;
 }
 
-export function isGameScreenRouteMeta(
-  meta: unknown
-): meta is GameScreenRouteMeta {
+export function isScreenRouteMeta(meta: unknown): meta is ScreenRouteMeta {
   return (
     !!meta &&
-    typeof (meta as GameScreenRouteMeta).order === 'number' &&
-    typeof (meta as GameScreenRouteMeta).isActive === 'boolean'
+    typeof (meta as ScreenRouteMeta).order === 'number' &&
+    typeof (meta as ScreenRouteMeta).isActive === 'boolean'
   );
 }
 
-function createGameScreenRoute({
+function createScreenRoute({
   path,
   name,
   order,
@@ -58,18 +56,16 @@ const routeData = [
   },
 ];
 
-export const gameScreenRoutes: RouteRecordRaw[] = routeData.map(
-  createGameScreenRoute
-);
+export const ScreenRoutes: RouteRecordRaw[] = routeData.map(createScreenRoute);
 
-function getActiveGameScreenRoutes(): RouteRecordRaw[] {
-  return gameScreenRoutes
-    .filter((route) => isGameScreenRouteMeta(route.meta) && route.meta.isActive)
-    .sort(
-      (a, b) =>
-        (isGameScreenRouteMeta(a.meta) ? a.meta.order : 0) -
-        (isGameScreenRouteMeta(b.meta) ? b.meta.order : 0)
-    );
+function getActiveScreenRoutes(): RouteRecordRaw[] {
+  return ScreenRoutes.filter(
+    (route) => isScreenRouteMeta(route.meta) && route.meta.isActive
+  ).sort(
+    (a, b) =>
+      (isScreenRouteMeta(a.meta) ? a.meta.order : 0) -
+      (isScreenRouteMeta(b.meta) ? b.meta.order : 0)
+  );
 }
 
-export const activeGameScreenRoutes = getActiveGameScreenRoutes();
+export const activeGameScreenRoutes = getActiveScreenRoutes();

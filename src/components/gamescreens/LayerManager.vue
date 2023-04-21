@@ -27,7 +27,7 @@ import {
   gameScreenRoutes,
   isGameScreenRouteMeta,
   activeGameScreenRoutes,
-} from '@/router/gameScreenRoutes';
+} from '@/router/ScreenRoutes.js';
 
 function toggleRoute(route: RouteRecordRaw) {
   if (isGameScreenRouteMeta(route.meta)) {

@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import { gameScreenRoutes } from '@/router/gameScreenRoutes';
+import { gameScreenRoutes } from '@/router/ScreenRoutes.js';
 
 interface GameScreenRouteMeta {
   order: number;

@@ -15,9 +15,9 @@ import { RouteRecordRaw } from 'vue-router';
 import ComponentFrame from './ComponentFrame.vue';
 import {
   activeGameScreenRoutes,
-  GameScreenRouteMeta,
-  isGameScreenRouteMeta,
-} from '@/router/gameScreenRoutes';
+  ScreenRouteMeta,
+  isScreenRouteMeta,
+} from '@/router/ScreenRoutes';
 
 export default defineComponent({
   components: {
@@ -26,10 +26,10 @@ export default defineComponent({
   setup() {
     const activeRoutes = computed(() => {
       return activeGameScreenRoutes.reduce((acc: RouteRecordRaw[], route) => {
-        if (isGameScreenRouteMeta(route.meta)) {
+        if (isScreenRouteMeta(route.meta)) {
           acc.push({
             ...route,
-            meta: route.meta as GameScreenRouteMeta,
+            meta: route.meta as ScreenRouteMeta,
           });
         }
         return acc;

@@ -4,7 +4,7 @@ import HomePage2 from '../components/WIP/HomePage4.vue';
 import HomePage3 from '../components/WIP/HomePage1.vue';
 import AdminPage from '../components/layout/AdminPage.vue';
 
-import { gameScreenRoutes } from './gameScreenRoutes';
+import { ScreenRoutes } from './ScreenRoutes';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -27,7 +27,7 @@ const routes: RouteRecordRaw[] = [
     path: '/admin',
     component: AdminPage,
   },
-  ...gameScreenRoutes,
+  ...ScreenRoutes,
   {
     path: '/:catchAll(.*)', // Catch-all route
     redirect: '/errorscreen', // Redirect to Error Screen
