@@ -1,7 +1,8 @@
 <template>
-  <q-drawer show-if-above class="butterfly-left-drawer">
-    <LayerMenu />
-  </q-drawer>
+  <q-layout>
+    <q-drawer show-if-above class="butterfly-left-drawer">
+      <LayerMenu /> </q-drawer
+  ></q-layout>
 </template>
 
 <script lang="ts">

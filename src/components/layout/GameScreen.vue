@@ -1,7 +1,7 @@
 <template>
   <div id="game-screen">
     <router-view
-      v-for="route in activeGameScreenRoutes"
+      v-for="route in activeScreenRoutes"
       :key="route.name"
       :name="route.name && typeof route.name === 'string' ? route.name : ''"
     />
@@ -10,36 +10,36 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import { gameScreenRoutes } from '@/router/ScreenRoutes.js';
+import { ScreenRoutes } from '@/router/ScreenRoutes';
 
-interface GameScreenRouteMeta {
+interface ScreenRouteMeta {
   order: number;
   isActive: boolean;
 }
 
-function isGameScreenRouteMeta(meta: unknown): meta is GameScreenRouteMeta {
+function isScreenRouteMeta(meta: unknown): meta is ScreenRouteMeta {
   return (
     !!meta &&
-    typeof (meta as GameScreenRouteMeta).order === 'number' &&
-    typeof (meta as GameScreenRouteMeta).isActive === 'boolean'
+    typeof (meta as ScreenRouteMeta).order === 'number' &&
+    typeof (meta as ScreenRouteMeta).isActive === 'boolean'
   );
 }
 
-function getActiveGameScreenRoutes() {
-  return gameScreenRoutes
-    .filter((route) => isGameScreenRouteMeta(route.meta) && route.meta.isActive)
-    .sort(
-      (a, b) =>
-        (isGameScreenRouteMeta(a.meta) ? a.meta.order : 0) -
-        (isGameScreenRouteMeta(b.meta) ? b.meta.order : 0)
-    );
+function getActiveScreenRoutes() {
+  return ScreenRoutes.filter(
+    (route) => isScreenRouteMeta(route.meta) && route.meta.isActive
+  ).sort(
+    (a, b) =>
+      (isScreenRouteMeta(a.meta) ? a.meta.order : 0) -
+      (isScreenRouteMeta(b.meta) ? b.meta.order : 0)
+  );
 }
 
 export default defineComponent({
   name: 'GameScreen',
   setup() {
-    const activeGameScreenRoutes = computed(() => getActiveGameScreenRoutes());
-    return { activeGameScreenRoutes };
+    const activeScreenRoutes = computed(() => getActiveScreenRoutes());
+    return { activeScreenRoutes };
   },
 });
 </script>

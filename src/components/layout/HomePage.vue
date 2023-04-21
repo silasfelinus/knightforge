@@ -20,11 +20,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import TopHeader from './ButterflyHeader.vue';
-import LSidebar from './ButterflyLeftDrawer.vue';
-import RSidebar from './ButterflyRightDrawer.vue';
-import BottomFooter from '../layout/BottomFooter.vue';
-import MainScreen from '../layout/MainScreenSimple.vue';
+import TopHeader from './TopHeader.vue';
+import LSidebar from './LeftDrawer.vue';
+import RSidebar from './RightDrawer.vue';
+import BottomFooter from './BottomFooter.vue';
+import MainScreen from './MainScreen.vue';
 
 export default defineComponent({
   components: {

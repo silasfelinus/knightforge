@@ -25,7 +25,7 @@
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { gameScreenRoutes } from '@/router/ScreenRoutes.js';
+import { ScreenRoutes } from '@/router/ScreenRoutes.js';
 import { RouteRecordRaw } from 'vue-router';
 
 export type RouteWithActive = RouteRecordRaw & {
@@ -48,7 +48,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const routesWithActive: Ref<RouteWithActive[]> = ref(
-      initializeRoutesWithActive(gameScreenRoutes)
+      initializeRoutesWithActive(ScreenRoutes)
     );
 
     function getRouteName(route: RouteWithActive): string {

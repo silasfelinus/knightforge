@@ -2,9 +2,7 @@
   <q-layout>
     <q-header elevated class="header">
       <div class="header-left">
-        <ButterflyFrame class="butterfly-frame">
-          <SplashViewer class="header-image" folder="chest" />
-        </ButterflyFrame>
+        <SplashViewer class="header-image" folder="chest" />
       </div>
       <div class="header-center">
         <ButterflyMascot class="butterfly-mascot" />
@@ -12,9 +10,7 @@
         <SplashMessage class="splash-message" />
       </div>
       <div class="header-right">
-        <ButterflyFrame class="butterfly-frame">
-          <SplashViewer class="header-image" folder="wondershed" />
-        </ButterflyFrame>
+        <SplashViewer class="header-image" folder="wondershed" />
       </div>
     </q-header>
   </q-layout>
@@ -25,8 +21,7 @@ import { defineComponent } from 'vue';
 import TitleBar from '../gamescreens/TitleBar.vue';
 import SplashMessage from '../gamescreens/SplashMessage.vue';
 import SplashViewer from '../gamescreens/SplashFolder.vue';
-import ButterflyMascot from './ButterflyMascot.vue';
-import ButterflyFrame from './ButterflyFrame.vue';
+import ButterflyMascot from '../gamescreens/ButterflySimple.vue';
 
 export default defineComponent({
   components: {
@@ -34,7 +29,6 @@ export default defineComponent({
     SplashMessage,
     SplashViewer,
     ButterflyMascot,
-    ButterflyFrame,
   },
 });
 </script>

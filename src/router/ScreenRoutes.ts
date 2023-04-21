@@ -68,4 +68,4 @@ function getActiveScreenRoutes(): RouteRecordRaw[] {
   );
 }
 
-export const activeGameScreenRoutes = getActiveScreenRoutes();
+export const activeScreenRoutes = getActiveScreenRoutes();

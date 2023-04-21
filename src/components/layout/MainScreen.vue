@@ -1,35 +1,16 @@
 <template>
   <div class="main-screen">
-    <component-frame class="game-screen" :component="GameScreen" />
-    <component-frame class="component-gallery" :component="ComponentGallery" />
-    <component-frame class="title-bar" :component="TitleBar" />
-    <component-frame class="splash-message" :component="SplashMessage" />
+    <div class="game-screen">Game Screen</div>
+    <div class="component-gallery">Component Gallery</div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ComponentFrame from './ComponentFrame.vue';
-import GameScreen from './GameScreen.vue';
-import ComponentGallery from './ScreenGallery.vue';
-import TitleBar from '../gamescreens/TitleBar.vue';
-import SplashMessage from '../gamescreens/SplashMessage.vue';
 
 export default defineComponent({
-  components: {
-    ComponentFrame,
-    GameScreen,
-    ComponentGallery,
-    TitleBar,
-    SplashMessage,
-  },
   setup() {
-    return {
-      GameScreen,
-      ComponentGallery,
-      TitleBar,
-      SplashMessage,
-    };
+    return {};
   },
 });
 </script>
@@ -38,33 +19,29 @@ export default defineComponent({
 .main-screen {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr;
   width: 100%;
   height: 100%;
 }
 
-.component-frame {
-  width: 100%;
-  height: 100%;
+.game-screen,
+.component-gallery {
+  min-width: 200px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .game-screen {
   grid-column: 1;
   grid-row: 1;
+  background-color: #f2d492;
 }
 
 .component-gallery {
   grid-column: 2;
   grid-row: 1;
-}
-
-.title-bar {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-.splash-message {
-  grid-column: 2;
-  grid-row: 2;
+  background-color: #92f2d4;
 }
 </style>
