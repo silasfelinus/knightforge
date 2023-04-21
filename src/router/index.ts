@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import HomePage from '../components/layout/HomePage.vue';
 import HomePage1 from '../components/WIP/HomePage6.vue';
 import HomePage2 from '../components/WIP/HomePage4.vue';
 import HomePage3 from '../components/WIP/HomePage1.vue';
@@ -7,6 +8,12 @@ import AdminPage from '../components/layout/AdminPage.vue';
 import { ScreenRoutes } from './ScreenRoutes';
 
 const routes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    alias: '/home',
+    name: 'HomePage',
+    component: HomePage,
+  },
   {
     path: '/',
     alias: '/home1',

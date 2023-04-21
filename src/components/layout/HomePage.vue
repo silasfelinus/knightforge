@@ -24,7 +24,7 @@ import TopHeader from './ButterflyHeader.vue';
 import LSidebar from './ButterflyLeftDrawer.vue';
 import RSidebar from './ButterflyRightDrawer.vue';
 import BottomFooter from '../layout/BottomFooter.vue';
-import MainScreen from '../layout/MainScreen.vue';
+import MainScreen from '../layout/MainScreenSimple.vue';
 
 export default defineComponent({
   components: {

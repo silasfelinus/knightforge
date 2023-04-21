@@ -4,13 +4,13 @@
       v-for="(route, index) in activeRoutes"
       :key="index"
       :class="route.name"
-      :component="route.meta.componentName"
+      :component="components[route.meta.componentName]"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, defineAsyncComponent } from 'vue';
 import { RouteRecordRaw } from 'vue-router';
 import ComponentFrame from './ComponentFrame.vue';
 import {
@@ -36,8 +36,22 @@ export default defineComponent({
       }, []);
     });
 
+    const components = activeRoutes.value.reduce(
+      (acc: { [key: string]: any }, route) => {
+        acc[route.meta.componentName] = defineAsyncComponent(
+          () =>
+            import(
+              /* @vite-ignore */ `../gamescreens/${route.meta.componentName}.vue`
+            )
+        );
+        return acc;
+      },
+      {}
+    );
+
     return {
       activeRoutes,
+      components,
     };
   },
 });
