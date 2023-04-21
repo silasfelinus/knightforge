@@ -5,7 +5,6 @@
         <SplashViewer class="header-image" folder="chest" />
       </div>
       <div class="header-center">
-        <ButterflyMascot class="butterfly-mascot" />
         <TitleBar />
         <SplashMessage class="splash-message" />
       </div>
@@ -21,14 +20,12 @@ import { defineComponent } from 'vue';
 import TitleBar from '../gamescreens/TitleBar.vue';
 import SplashMessage from '../gamescreens/SplashMessage.vue';
 import SplashViewer from '../gamescreens/SplashFolder.vue';
-import ButterflyMascot from '../gamescreens/ButterflySimple.vue';
 
 export default defineComponent({
   components: {
     TitleBar,
     SplashMessage,
     SplashViewer,
-    ButterflyMascot,
   },
 });
 </script>
