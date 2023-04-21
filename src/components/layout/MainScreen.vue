@@ -1,17 +1,17 @@
 <template>
   <div class="main-screen">
-    <component-frame class="game-screen" component="GameScreen" />
-    <component-frame class="component-gallery" component="ComponentGallery" />
-    <component-frame class="title-bar" component="TitleBar" />
-    <component-frame class="splash-message" component="SplashMessage" />
+    <component-frame class="game-screen" :component="GameScreen" />
+    <component-frame class="component-gallery" :component="ComponentGallery" />
+    <component-frame class="title-bar" :component="TitleBar" />
+    <component-frame class="splash-message" :component="SplashMessage" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ComponentFrame from './ComponentFrame.vue';
-import GameScreen from '../gamescreens/GameScreen.vue';
-import ComponentGallery from '../gamescreens/ComponentGallery.vue';
+import GameScreen from './GameScreen.vue';
+import ComponentGallery from './ScreenGallery.vue';
 import TitleBar from '../gamescreens/TitleBar.vue';
 import SplashMessage from '../gamescreens/SplashMessage.vue';
 
@@ -22,6 +22,14 @@ export default defineComponent({
     ComponentGallery,
     TitleBar,
     SplashMessage,
+  },
+  setup() {
+    return {
+      GameScreen,
+      ComponentGallery,
+      TitleBar,
+      SplashMessage,
+    };
   },
 });
 </script>
