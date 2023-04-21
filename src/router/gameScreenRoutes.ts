@@ -1,4 +1,3 @@
-// gameScreenRoutes.ts
 import { RouteRecordRaw } from 'vue-router';
 
 export interface GameScreenRouteMeta {
@@ -17,69 +16,52 @@ export function isGameScreenRouteMeta(
   );
 }
 
-function createGameScreenRoute(
-  path: string,
-  name: string,
-  component: string,
-  order: number,
-  isActive: boolean
-): RouteRecordRaw {
+function createGameScreenRoute({
+  path,
+  name,
+  order,
+  isActive,
+}: {
+  path: string;
+  name: string;
+  order: number;
+  isActive: boolean;
+}): RouteRecordRaw {
   return {
     path,
-    name: name as string,
+    name,
     component: () =>
-      import(/* @vite-ignore */ `../components/gamescreens/${component}.vue`),
-    meta: { order, isActive, componentName: component },
+      import(/* @vite-ignore */ `../components/gamescreens/${name}.vue`),
+    meta: { order, isActive, componentName: name },
   };
 }
 
-export const gameScreenRoutes: RouteRecordRaw[] = [
-  createGameScreenRoute(
-    '/splashviewer',
-    'Splash Viewer',
-    'SplashViewer',
-    1,
-    false
-  ),
-  createGameScreenRoute(
-    '/errorscreen',
-    'Error Screen',
-    'ErrorScreen',
-    2,
-    false
-  ),
-  createGameScreenRoute('/graphpaper', 'Graph Paper', 'GraphPaper', 3, false),
-  createGameScreenRoute('/lavalamp', 'Lava Lamp', 'LavaLamp', 4, false),
-  createGameScreenRoute('/raineffect', 'Rain Effect', 'RainEffect', 5, true),
-  createGameScreenRoute(
-    '/soapbubbles',
-    'Soap Bubbles',
-    'SoapBubbles',
-    6,
-    false
-  ),
-  createGameScreenRoute(
-    '/splashimage',
-    'Splash Image',
-    'SplashImage',
-    7,
-    false
-  ),
-  createGameScreenRoute(
-    '/accordiongallery',
-    'Accordion Gallery',
-    'AccordionGallery',
-    8,
-    false
-  ),
-  createGameScreenRoute(
-    '/underconstruction',
-    'Under Construction',
-    'UnderConstruction',
-    9,
-    false
-  ),
+const routeData = [
+  { path: '/splashviewer', name: 'SplashViewer', order: 1, isActive: false },
+  { path: '/errorscreen', name: 'ErrorScreen', order: 2, isActive: false },
+  { path: '/graphpaper', name: 'GraphPaper', order: 3, isActive: false },
+  { path: '/lavalamp', name: 'LavaLamp', order: 4, isActive: false },
+  { path: '/raineffect', name: 'RainEffect', order: 5, isActive: true },
+  { path: '/soapbubbles', name: 'SoapBubbles', order: 6, isActive: false },
+  { path: '/splashimage', name: 'SplashImage', order: 7, isActive: false },
+  {
+    path: '/accordiongallery',
+    name: 'AccordionGallery',
+    order: 8,
+    isActive: false,
+  },
+  {
+    path: '/underconstruction',
+    name: 'UnderConstruction',
+    order: 9,
+    isActive: false,
+  },
 ];
+
+export const gameScreenRoutes: RouteRecordRaw[] = routeData.map(
+  createGameScreenRoute
+);
+
 function getActiveGameScreenRoutes(): RouteRecordRaw[] {
   return gameScreenRoutes
     .filter((route) => isGameScreenRouteMeta(route.meta) && route.meta.isActive)

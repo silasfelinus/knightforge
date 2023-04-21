@@ -11,10 +11,12 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
+import { RouteRecordRaw } from 'vue-router';
 import ComponentFrame from './ComponentFrame.vue';
 import {
   activeGameScreenRoutes,
   GameScreenRouteMeta,
+  isGameScreenRouteMeta,
 } from '@/router/gameScreenRoutes';
 
 export default defineComponent({
@@ -23,12 +25,15 @@ export default defineComponent({
   },
   setup() {
     const activeRoutes = computed(() => {
-      return activeGameScreenRoutes.map((route) => {
-        return {
-          ...route,
-          meta: route.meta as GameScreenRouteMeta,
-        };
-      });
+      return activeGameScreenRoutes.reduce((acc: RouteRecordRaw[], route) => {
+        if (isGameScreenRouteMeta(route.meta)) {
+          acc.push({
+            ...route,
+            meta: route.meta as GameScreenRouteMeta,
+          });
+        }
+        return acc;
+      }, []);
     });
 
     return {

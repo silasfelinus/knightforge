@@ -1,53 +1,27 @@
 <template>
-  <component-frame
-    v-if="navigationMenu.isActive"
-    class="navigation-menu"
-    component="navigation-menu"
-  />
-  <component-frame
-    v-if="layerMenu.isActive"
-    class="layer-menu"
-    component="layer-menu"
-  />
-  <component-frame
-    v-if="accordionGallery.isActive"
-    class="accordion-gallery"
-    component="accordion-gallery"
-  />
-  <component-frame
-    v-if="chatInterface.isActive"
-    class="chat-interface"
-    component="chat-interface"
-  />
+  <div class="main-screen">
+    <component-frame class="game-screen" component="GameScreen" />
+    <component-frame class="component-gallery" component="ComponentGallery" />
+    <component-frame class="title-bar" component="TitleBar" />
+    <component-frame class="splash-message" component="SplashMessage" />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ComponentFrame from './ComponentFrame.vue';
-import ComponentGallery from './ComponentGallery.vue';
-import NavigationMenu from '../gamescreens/NavigationMenu.vue';
-import LayerMenu from '../gamescreens/LayerMenu.vue';
-import AccordionGallery from '../gamescreens/AccordionGallery.vue';
-import ChatInterface from './ChatInterface.vue';
+import GameScreen from '../gamescreens/GameScreen.vue';
+import ComponentGallery from '../gamescreens/ComponentGallery.vue';
+import TitleBar from '../gamescreens/TitleBar.vue';
+import SplashMessage from '../gamescreens/SplashMessage.vue';
 
 export default defineComponent({
   components: {
     ComponentFrame,
+    GameScreen,
     ComponentGallery,
-    NavigationMenu,
-    LayerMenu,
-    AccordionGallery,
-    ChatInterface,
-  },
-  data() {
-    return {
-      imageFrame: { isActive: true },
-      imageComponent: { isActive: true },
-      navigationMenu: { isActive: true },
-      layerMenu: { isActive: true },
-      accordionGallery: { isActive: true },
-      chatInterface: { isActive: true },
-    };
+    TitleBar,
+    SplashMessage,
   },
 });
 </script>
@@ -55,9 +29,10 @@ export default defineComponent({
 <style scoped>
 .main-screen {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   width: 100%;
+  height: 100%;
 }
 
 .component-frame {
@@ -65,16 +40,23 @@ export default defineComponent({
   height: 100%;
 }
 
-/* Responsive rules */
-@media (max-width: 1024px) {
-  .main-screen {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
+.game-screen {
+  grid-column: 1;
+  grid-row: 1;
 }
 
-@media (max-width: 768px) {
-  .main-screen {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
+.component-gallery {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.title-bar {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.splash-message {
+  grid-column: 2;
+  grid-row: 2;
 }
 </style>
