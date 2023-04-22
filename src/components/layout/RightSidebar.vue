@@ -1,69 +1,49 @@
 <template>
-  <div>
-    <q-page-sticky position="top-right" :offset="[48, 16]">
-      <q-drawer
-        side="right"
-        bordered
-        v-model="drawerOpen"
-        :style="{ '--sidebar-bg-color': randomBackgroundColor }"
-        :breakpoint="Number.MAX_VALUE"
-        :width="drawerWidth"
-      >
-        <soap-bubbles v-if="drawerOpen" />
-        <q-separator v-if="drawerOpen" />
-      </q-drawer>
-      <q-btn
-        :icon="drawerOpen ? 'menu_open' : 'menu'"
-        @click="toggleDrawer"
-        class="drawer-toggle-btn"
-      />
-    </q-page-sticky>
+  <div class="right-sidebar" :class="{ visible: isVisible }">
+    <button class="toggle-button" @click="isVisible = !isVisible">
+      Toggle
+    </button>
+    <soap-bubbles />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent } from 'vue';
 import SoapBubbles from '../gamescreens/SoapBubbles.vue';
 
 export default defineComponent({
+  name: 'RightSidebar',
   components: {
     SoapBubbles,
   },
-  setup() {
-    const drawerOpen = ref(true);
-
-    const toggleDrawer = () => {
-      drawerOpen.value = !drawerOpen.value;
-    };
-
-    const randomBackgroundColor = computed(() => {
-      const randomColor = () => Math.floor(Math.random() * Math.floor(256));
-      return `rgba(${randomColor()}, ${randomColor()}, ${randomColor()}, 0.7)`;
-    });
-
-    const drawerWidth = computed(() => (drawerOpen.value ? 30 : 0));
-
+  data() {
     return {
-      drawerOpen,
-      toggleDrawer,
-      randomBackgroundColor,
-      drawerWidth,
+      isVisible: true,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
-.q-drawer {
-  background-color: var(--sidebar-bg-color);
-  transition: width 0.3s ease;
-}
-.drawer-toggle-btn {
+<style>
+.right-sidebar {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: 0vh; /* adjust to your header height */
+  bottom: 60px; /* adjust to your footer height */
+  right: -160px; /* adjust to your desired collapsed width */
+  width: 160px; /* adjust to your desired expanded width, 20% thinner */
+  transition: right 0.3s;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  background-color: #5c6bc0;
-  color: #ffffff;
+}
+
+.right-sidebar.visible {
+  right: 0;
+}
+
+.toggle-button {
+  position: absolute;
+  bottom: 10px; /* move the button to the bottom */
+  right: -30px; /* adjust to your desired position */
 }
 </style>

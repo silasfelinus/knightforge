@@ -1,34 +1,19 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-const HomePage = () => import('../components/layout/HomePage.vue');
-const HomePage1 = () => import('../components/WIP/HomePage1.vue');
-const AdminPage = () => import('../components/layout/AdminPage.vue');
-const AdminPage2 = () => import('../components/layout/AdminPage2.vue');
-
-import { ScreenRoutes } from './ScreenRoutes';
+import { screenRoutes } from './modules/screenRoutes';
+import { mainRoutes } from './modules/mainRoutes';
+import { layerRoutes } from './modules/layerRoutes';
+import { adminRoutes } from './modules/adminRoutes';
+import { homeRoutes } from './modules/homeRoutes';
+import { toyboxRoutes } from './modules/toyboxRoutes';
 
 const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    alias: '/home',
-    name: 'HomePage',
-    component: HomePage,
-  },
-  {
-    path: '/',
-    alias: '/home1',
-    name: 'HomePage1',
-    component: HomePage1,
-  },
-  {
-    path: '/admin',
-    component: AdminPage,
-  },
-  {
-    path: '/admin2',
-    component: AdminPage2,
-  },
-  ...ScreenRoutes,
+  ...mainRoutes,
+  ...screenRoutes,
+  ...layerRoutes,
+  ...adminRoutes,
+  ...homeRoutes,
+  ...toyboxRoutes,
   {
     path: '/:catchAll(.*)', // Catch-all route
     redirect: '/errorscreen', // Redirect to Error Screen

@@ -46,7 +46,7 @@ export default defineComponent({
   height: 20vh;
   overflow: hidden;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between; /* Updated this line */
   align-items: center;
   background: var(--header-bg-color);
   background-image: linear-gradient(
@@ -57,11 +57,19 @@ export default defineComponent({
   border: 4px solid var(--header-border-color);
   border-radius: 8px;
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
 }
 
 .header-image {
   max-height: 100%;
   object-fit: contain;
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1; /* Added this line */
 }
 
 @media (max-width: 768px) {

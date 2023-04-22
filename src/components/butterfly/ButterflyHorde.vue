@@ -1,6 +1,6 @@
 <template>
   <div class="butterfly-horde">
-    <Butterfly
+    <ButterflyNew
       v-for="index in butterflyCount"
       :key="index"
       :wingColor="getRandomColor()"
@@ -10,12 +10,12 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import Butterfly from './ButterflyNew.vue';
+import ButterflyNew from './ButterflyNew.vue';
 
 export default defineComponent({
   name: 'ButterflyHorde',
   components: {
-    Butterfly,
+    ButterflyNew,
   },
   props: {
     count: {

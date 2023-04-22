@@ -1,16 +1,16 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <q-header elevated>
+  <q-layout view="hHh lpR fFf" class="main-layout">
+    <q-header elevated class="header">
       <top-header />
     </q-header>
-    <left-sidebar />
-    <q-page-container>
+    <left-drawer class="left-drawer" />
+    <q-page-container class="page-container">
       <q-page class="main-content q-pt-xl">
         <main-screen />
       </q-page>
     </q-page-container>
     <right-sidebar />
-    <q-footer elevated>
+    <q-footer elevated class="footer">
       <bottom-footer />
     </q-footer>
   </q-layout>
@@ -19,8 +19,8 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import TopHeader from './NewHeader.vue';
-import LeftSidebar from './LeftSidebar.vue';
-import RightSidebar from './RSidebar.vue';
+import LeftDrawer from './MagicLeftDrawer.vue';
+import RightSidebar from './RightSidebar2.vue';
 import BottomFooter from './BottomFooter.vue';
 import MainScreen from './MainScreen.vue';
 
@@ -38,7 +38,7 @@ const generateRandomGradient = () => {
 export default defineComponent({
   components: {
     TopHeader,
-    LeftSidebar,
+    LeftDrawer,
     RightSidebar,
     BottomFooter,
     MainScreen,
@@ -60,3 +60,33 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss">
+.main-layout {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.header {
+  height: 18vh;
+}
+
+.footer {
+  height: 10vh;
+}
+
+.page-container {
+  height: 80vh;
+}
+
+.left-drawer {
+  position: absolute;
+  top: 20vh;
+  height: 70vh;
+}
+
+.right-sidebar {
+  height: 100%;
+}
+</style>

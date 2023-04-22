@@ -13,16 +13,15 @@
         'partially-collapsed': isPartialCollapsed,
       }"
     >
-      <component-frame :component="currentComponent">
+      <div>
         <slot></slot>
-      </component-frame>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
-import ComponentFrame from '../layout/ComponentFrame.vue';
 
 export default defineComponent({
   props: {
@@ -49,7 +48,6 @@ export default defineComponent({
     },
   },
   components: {
-    ComponentFrame,
     // eslint-disable-next-line vue/no-unused-components
     MusicalComponent: () => import('../butterfly/MusicalComponent.vue'),
     // eslint-disable-next-line vue/no-unused-components
