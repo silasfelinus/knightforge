@@ -1,28 +1,28 @@
 <template>
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
-      <top-header />
+      <top-header v-if="topHeader.isActive" />
     </q-header>
-    <left-sidebar />
+    <left-sidebar v-show="leftSidebar.isActive" />
     <q-page-container>
       <q-page class="main-content q-pt-xl">
         <main-screen />
       </q-page>
     </q-page-container>
-    <right-sidebar />
+    <right-sidebar v-show="rightSidebar.isActive" />
     <q-footer elevated>
-      <bottom-footer />
+      <bottom-footer v-if="bottomFooter.isActive" />
     </q-footer>
   </q-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import TopHeader from './NewHeader.vue';
-import LeftSidebar from './LeftSidebar.vue';
-import RightSidebar from './RSidebar.vue';
-import BottomFooter from './BottomFooter.vue';
-import MainScreen from './MainScreen.vue';
+import TopHeader from '../layout/NewHeader.vue';
+import LeftSidebar from '../layout/LeftSidebar.vue';
+import RightSidebar from '../layout/RightSidebar.vue';
+import BottomFooter from '../layout/BottomFooter.vue';
+import MainScreen from '../layout/MainScreen.vue';
 
 const getRandomNumber = () => Math.floor(Math.random() * 256);
 

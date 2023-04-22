@@ -1,20 +1,23 @@
 <template>
   <div>
-    <q-drawer
-      side="right"
-      bordered
-      v-model="drawerOpen"
-      :style="{ '--sidebar-bg-color': randomBackgroundColor }"
-      :breakpoint="Number.MAX_VALUE"
-    >
-      <soap-bubbles />
-      <q-separator />
-    </q-drawer>
-    <q-btn
-      :icon="drawerOpen ? 'menu_open' : 'menu'"
-      @click="toggleDrawer"
-      class="drawer-toggle-btn"
-    />
+    <q-page-sticky position="top-right" :offset="[48, 16]">
+      <q-drawer
+        side="right"
+        bordered
+        v-model="drawerOpen"
+        :style="{ '--sidebar-bg-color': randomBackgroundColor }"
+        :breakpoint="Number.MAX_VALUE"
+        :width="drawerWidth"
+      >
+        <soap-bubbles v-if="drawerOpen" />
+        <q-separator v-if="drawerOpen" />
+      </q-drawer>
+      <q-btn
+        :icon="drawerOpen ? 'menu_open' : 'menu'"
+        @click="toggleDrawer"
+        class="drawer-toggle-btn"
+      />
+    </q-page-sticky>
   </div>
 </template>
 
@@ -35,13 +38,16 @@ export default defineComponent({
 
     const randomBackgroundColor = computed(() => {
       const randomColor = () => Math.floor(Math.random() * Math.floor(256));
-      return `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+      return `rgba(${randomColor()}, ${randomColor()}, ${randomColor()}, 0.7)`;
     });
+
+    const drawerWidth = computed(() => (drawerOpen.value ? 30 : 0));
 
     return {
       drawerOpen,
       toggleDrawer,
       randomBackgroundColor,
+      drawerWidth,
     };
   },
 });
@@ -50,10 +56,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 .q-drawer {
   background-color: var(--sidebar-bg-color);
+  transition: width 0.3s ease;
 }
 .drawer-toggle-btn {
   position: fixed;
-  bottom: 1rem;
+  top: 1rem;
   right: 1rem;
   z-index: 1000;
   background-color: #5c6bc0;
