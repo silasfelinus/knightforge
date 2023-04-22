@@ -1,21 +1,23 @@
 <template>
-  <q-footer reveal>
-    <div class="bottom-footer">
-      <div class="bottom-footer-inner">
-        <SplashMessage />
+  <div>
+    <q-footer reveal>
+      <div class="bottom-footer">
+        <div class="bottom-footer-inner">
+          <SplashMessage />
 
-        <p class="copyright">
-          © {{ new Date().getFullYear() }} Cafe Purr. All Rights Reserved.
-        </p>
-        <ButterflyHorde />
+          <p class="copyright">
+            © {{ new Date().getFullYear() }} Cafe Purr. All Rights Reserved.
+          </p>
+        </div>
       </div>
-    </div>
-  </q-footer>
+    </q-footer>
+    <ButterflyHorde />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ButterflyHorde from '../gamescreens/ButterflyHorde.vue';
+import ButterflyHorde from '../butterfly/ButterflyHorde2.vue';
 import SplashMessage from '../gamescreens/SplashMessage.vue';
 
 export default defineComponent({
