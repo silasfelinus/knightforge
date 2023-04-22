@@ -1,7 +1,5 @@
 <template>
-  <div class="component-gallery">
-    Component Gallery
-  </div>
+  <div class="component-gallery">Component Gallery</div>
 </template>
 
 <script lang="ts">

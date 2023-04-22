@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomePage from '../components/layout/HomePage.vue';
-import HomePage1 from '../components/WIP/HomePage6.vue';
-import HomePage2 from '../components/WIP/HomePage4.vue';
-import HomePage3 from '../components/WIP/HomePage1.vue';
-import AdminPage from '../components/layout/AdminPage.vue';
+
+const HomePage = () => import('../components/layout/HomePage.vue');
+const HomePage1 = () => import('../components/WIP/HomePage1.vue');
+const AdminPage = () => import('../components/layout/AdminPage.vue');
+const AdminPage2 = () => import('../components/layout/AdminPage2.vue');
 
 import { ScreenRoutes } from './ScreenRoutes';
 
@@ -21,18 +21,12 @@ const routes: RouteRecordRaw[] = [
     component: HomePage1,
   },
   {
-    path: '/home2',
-    name: 'HomePage2',
-    component: HomePage2,
-  },
-  {
-    path: '/home3',
-    name: 'HomePage3',
-    component: HomePage3,
-  },
-  {
     path: '/admin',
     component: AdminPage,
+  },
+  {
+    path: '/admin2',
+    component: AdminPage2,
   },
   ...ScreenRoutes,
   {

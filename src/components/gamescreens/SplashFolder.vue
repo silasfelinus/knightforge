@@ -90,6 +90,14 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
 .drop-animation {
   animation: drop 1s;
 }
@@ -97,7 +105,7 @@ export default defineComponent({
 .splash-image {
   max-height: 100%;
   max-width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 @keyframes drop {

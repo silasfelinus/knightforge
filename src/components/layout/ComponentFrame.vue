@@ -3,7 +3,11 @@
     <teleport to="body">
       <error-fallback v-if="hasError" />
     </teleport>
-    <component :is="component" v-if="!hasError" v-on:error-captured="onError" />
+    <component
+      :is="component"
+      v-if="!hasError && component"
+      v-on:error-captured="onError"
+    />
   </div>
 </template>
 
@@ -17,7 +21,8 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      required: true,
+      required: false,
+      default: undefined,
     },
   },
   components: {
@@ -47,8 +52,11 @@ export default defineComponent({
 <style scoped>
 .component-frame {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 1;
   width: 100%;
   min-height: 10px;
   height: 100%;

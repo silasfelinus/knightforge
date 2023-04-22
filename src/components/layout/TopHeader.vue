@@ -1,18 +1,20 @@
 <template>
-  <q-layout>
-    <q-header elevated class="header">
-      <div class="header-left">
-        <SplashViewer class="header-image" folder="chest" />
-      </div>
-      <div class="header-center">
-        <TitleBar />
-        <SplashMessage class="splash-message" />
-      </div>
-      <div class="header-right">
-        <SplashViewer class="header-image" folder="wondershed" />
-      </div>
-    </q-header>
-  </q-layout>
+  <q-header
+    elevated
+    class="header"
+    :style="{ '--header-bg-color': backgroundColor }"
+  >
+    <div class="header-left">
+      <SplashViewer class="header-image" folder="chest" />
+    </div>
+    <div class="header-center">
+      <TitleBar />
+      <SplashMessage class="splash-message" />
+    </div>
+    <div class="header-right">
+      <SplashViewer class="header-image" folder="wondershed" />
+    </div>
+  </q-header>
 </template>
 
 <script lang="ts">
@@ -22,6 +24,12 @@ import SplashMessage from '../gamescreens/SplashMessage.vue';
 import SplashViewer from '../gamescreens/SplashFolder.vue';
 
 export default defineComponent({
+  props: {
+    backgroundColor: {
+      type: String,
+      default: '#b8e0ff',
+    },
+  },
   components: {
     TitleBar,
     SplashMessage,
@@ -32,54 +40,21 @@ export default defineComponent({
 
 <style scoped>
 .header {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  border: 2px solid #ccc;
-  background-color: #b8e0ff;
-  width: 100vw;
-  height: auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.header-left,
-.header-right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  flex: 1;
-}
-
-.butterfly-frame {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  max-height: 100%;
+  height: 20vh;
   overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--header-bg-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-image {
-  max-height: 100vh;
-  width: auto;
+  max-height: 100%;
+  object-fit: contain;
 }
 
-.butterfly-mascot {
-  margin-bottom: 1rem;
-  color: #3b5998;
-}
-
-.splash-message {
-  font-size: calc(0.8rem + 0.5vw);
-}
-
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .header {
     flex-direction: column;
   }

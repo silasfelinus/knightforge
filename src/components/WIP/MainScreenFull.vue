@@ -9,9 +9,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ComponentFrame from './ComponentFrame.vue';
-import GameScreen from './GameScreen.vue';
-import ComponentGallery from './ScreenGallery.vue';
+import ComponentFrame from '../layout/ComponentFrame.vue';
+import GameScreen from '../layout/GameScreen.vue';
+import ComponentGallery from '../layout/ScreenGallery.vue';
 import TitleBar from '../gamescreens/TitleBar.vue';
 import SplashMessage from '../gamescreens/SplashMessage.vue';
 

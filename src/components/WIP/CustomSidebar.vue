@@ -1,8 +1,10 @@
 <template>
   <div class="custom-sidebar" :class="side">
-    <button class="toggle-btn" @click="toggleCollapse">
-      <span v-if="side === 'left'">►</span>
-      <span v-else>◄</span>
+    <button class="toggle-btn" :class="side" @click="toggleCollapse">
+      <span v-if="side === 'left' && !isCollapsed">►</span>
+      <span v-else-if="side === 'left' && isCollapsed">◄</span>
+      <span v-if="side === 'right' && !isCollapsed">◄</span>
+      <span v-else-if="side === 'right' && isCollapsed">►</span>
     </button>
     <div
       class="sidebar-content"
@@ -11,7 +13,7 @@
         'partially-collapsed': isPartialCollapsed,
       }"
     >
-      <component-frame :component="component">
+      <component-frame :component="currentComponent">
         <slot></slot>
       </component-frame>
     </div>
@@ -19,8 +21,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import ComponentFrame from './ComponentFrame.vue';
+import { defineComponent, ref, onMounted } from 'vue';
+import ComponentFrame from '../layout/ComponentFrame.vue';
 
 export default defineComponent({
   props: {
@@ -43,15 +45,20 @@ export default defineComponent({
     },
     component: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   components: {
     ComponentFrame,
+    // eslint-disable-next-line vue/no-unused-components
+    MusicalComponent: () => import('../butterfly/MusicalComponent.vue'),
+    // eslint-disable-next-line vue/no-unused-components
+    SplashFolder: () => import('../gamescreens/SplashFolder.vue'),
   },
   setup(props) {
-    const isCollapsed = ref(!props.isCollapsible);
-    const isPartialCollapsed = ref(false);
+    const isCollapsed = ref<boolean>(!props.isCollapsible);
+    const isPartialCollapsed = ref<boolean>(true);
+    const currentComponent = ref<string | undefined>(props.component);
 
     const toggleCollapse = () => {
       if (!props.hasToggle) return;
@@ -63,10 +70,21 @@ export default defineComponent({
       }
     };
 
+    onMounted(() => {
+      if (!currentComponent.value) {
+        if (props.side === 'left') {
+          currentComponent.value = 'MusicalComponent';
+        } else if (props.side === 'right') {
+          currentComponent.value = 'SplashFolder';
+        }
+      }
+    });
+
     return {
       isCollapsed,
       isPartialCollapsed,
       toggleCollapse,
+      currentComponent,
     };
   },
 });
@@ -92,6 +110,7 @@ export default defineComponent({
   position: absolute;
   top: 10px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .left.toggle-btn {
@@ -100,13 +119,5 @@ export default defineComponent({
 
 .right.toggle-btn {
   left: -20px;
-}
-
-.collapsed .sidebar-content {
-  transform: scaleX(0);
-}
-
-.partially-collapsed .sidebar-content {
-  transform: scaleX(0.5);
 }
 </style>
