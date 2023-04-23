@@ -9,6 +9,9 @@
         <ButterflyHorde v-if="hiddenButterflyVisible" />
         <ButterflyHorde v-if="voiceActivatedButterflies" />
         <SplashFolder :folderName="'wondercat'" />
+        <DraggableComponent>
+          <ButterflyHorde />
+        </DraggableComponent>
       </div>
     </div>
   </q-layout>
@@ -20,10 +23,10 @@ import ToyBox from '@/components/serendipity/ToyBox.vue';
 import SplashFolder from '@/components/gamescreens/SplashFolder.vue';
 import SerendipityVoice from '@/components/serendipity/SerendipityVoice.vue';
 import DraggableComponent from '@/components/wonderlab/DraggableComponent.vue';
-
 const hiddenButterflyVisible = ref(false);
 const voiceActivatedButterflies = ref(false);
 </script>
+
 <style lang="scss">
 * {
   margin: 0;
