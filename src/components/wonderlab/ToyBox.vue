@@ -8,9 +8,17 @@
         :to="route.path"
         class="toybox-item"
       >
-        <component :is="route.component" />
+        <div class="toybox-item-preview">
+          <div v-if="route.name === 'Butterflies'">🦋🦋🦋</div>
+          <div v-else-if="route.name === 'Butterfly'">🦋</div>
+          <div v-else-if="route.name === 'DraggableComponent'">🔮</div>
+          <div v-else-if="route.name === 'ButterflyChest'">🎁</div>
+        </div>
         <p>{{ route.name }}</p>
       </router-link>
+    </div>
+    <div class="route-container">
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -63,5 +71,16 @@ export default defineComponent({
   background-color: #eee;
   transform: scale(1.05);
   cursor: pointer;
+}
+
+.route-container {
+  margin-top: 2rem;
+}
+
+.route-container > * {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
 }
 </style>

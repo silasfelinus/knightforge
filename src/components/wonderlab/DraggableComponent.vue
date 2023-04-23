@@ -86,6 +86,7 @@ export default defineComponent({
   height: 100vh;
   top: 0;
   left: 0;
+  pointer-events: none;
 }
 
 .draggable-component {
@@ -100,6 +101,7 @@ export default defineComponent({
   user-select: none;
   cursor: grab;
   transform: translate(0, 0);
+  pointer-events: auto;
 }
 
 .draggable-component h4 {
