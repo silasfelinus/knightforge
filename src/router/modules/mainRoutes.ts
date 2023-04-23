@@ -3,6 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 const HomePage1 = () => import('@/components/layout/HomePage.vue');
 const HomePage2 = () => import('@/components/WIP/HomePage1.vue');
 const WonderSpace = () => import('@/components/wonderlab/WonderSpace.vue');
+const ComingSoon = () => import('@/components/wonderlab/ComingSoon.vue');
 
 export const mainRoutes: RouteRecordRaw[] = [
   {
@@ -21,5 +22,11 @@ export const mainRoutes: RouteRecordRaw[] = [
     alias: '/lab',
     name: 'WonderLab',
     component: WonderSpace,
+  },
+  {
+    path: '/comingsoon',
+    alias: '/coming',
+    name: 'ComingSoon',
+    component: ComingSoon,
   },
 ];
