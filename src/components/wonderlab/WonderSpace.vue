@@ -4,7 +4,10 @@
       <div class="features">
         <ButterflyHorde />
         <DraggableComponent />
+        <BubbleMessage />
         <ToyBox />
+        <SplashFolder />
+        <ButterflyChest />
       </div>
     </div>
   </q-layout>
@@ -14,6 +17,9 @@
 import ButterflyHorde from '@/components/butterfly/ButterflyHorde.vue';
 import DraggableComponent from '@/components/wonderlab/DraggableComponent.vue';
 import ToyBox from '@/components/wonderlab/ToyBox.vue';
+import BubbleMessage from '@/components/wonderlab/BubbleMessage.vue';
+import SplashFolder from '@/components/gamescreens/SplashFolder.vue';
+import ButterflyChest from '@/components/butterfly/ButterflyChest.vue';
 
 export default {
   name: 'WonderSpace',
@@ -21,6 +27,9 @@ export default {
     ButterflyHorde,
     DraggableComponent,
     ToyBox,
+    BubbleMessage,
+    SplashFolder,
+    ButterflyChest,
   },
 };
 </script>

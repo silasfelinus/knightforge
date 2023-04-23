@@ -8,7 +8,7 @@
     }"
   >
     <div class="header-left">
-      <SplashViewer class="header-image" folder="chest" />
+      <SplashViewer class="header-image" :folderName="'wonderchest'" />
     </div>
     <div class="header-center">
       <TitleBar />

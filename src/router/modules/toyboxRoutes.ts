@@ -8,6 +8,9 @@ const DraggableComponent = () =>
   import('@/components/wonderlab/DraggableComponent.vue');
 const ButterflyChest = () =>
   import('@/components/butterfly/ButterflyChest.vue');
+const WonderMessage = () => import('@/components/wonderlab/WonderMessage.vue');
+const WonderBubble = () => import('@/components/wonderlab/BubbleMessage.vue');
+const VoiceControl = () => import('@/components/wonderlab/VoiceControl.vue');
 
 export const toyboxRoutes: RouteRecordRaw[] = [
   {
@@ -30,5 +33,20 @@ export const toyboxRoutes: RouteRecordRaw[] = [
     path: '/butterflychest',
     name: 'ButterflyChest',
     component: ButterflyChest,
+  },
+  {
+    path: '/wondermessage',
+    name: 'WonderMessage',
+    component: WonderMessage,
+  },
+  {
+    path: '/wonderbubble',
+    name: 'WonderBubble',
+    component: WonderBubble,
+  },
+  {
+    path: '/voicecontrol',
+    name: 'VoiceControl',
+    component: VoiceControl,
   },
 ];

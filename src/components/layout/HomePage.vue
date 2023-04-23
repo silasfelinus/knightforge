@@ -5,9 +5,7 @@
     </q-header>
     <left-drawer class="left-drawer" />
     <q-page-container class="page-container">
-      <q-page class="main-content q-pt-xl">
-        <main-screen />
-      </q-page>
+      <q-page class="main-content q-pt-xl"> </q-page>
     </q-page-container>
     <right-sidebar />
     <q-footer elevated class="footer">
@@ -22,7 +20,6 @@ import TopHeader from './NewHeader.vue';
 import LeftDrawer from './MagicLeftDrawer.vue';
 import RightSidebar from './RightSidebar2.vue';
 import BottomFooter from './BottomFooter.vue';
-import MainScreen from './MainScreen.vue';
 
 const getRandomNumber = () => Math.floor(Math.random() * 256);
 
@@ -41,7 +38,6 @@ export default defineComponent({
     LeftDrawer,
     RightSidebar,
     BottomFooter,
-    MainScreen,
   },
   setup() {
     const topHeaderBg = ref(generateRandomGradient());
