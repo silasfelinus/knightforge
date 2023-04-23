@@ -11,6 +11,11 @@ const ButterflyChest = () =>
 const WonderMessage = () => import('@/components/wonderlab/WonderMessage.vue');
 const WonderBubble = () => import('@/components/wonderlab/BubbleMessage.vue');
 const VoiceControl = () => import('@/components/wonderlab/VoiceControl.vue');
+const MagicBox = () => import('@/components/butterfly/MagicBox.vue');
+const SerendipityVoice = () =>
+  import('@/components/wonderlab/SerendipityVoice.vue');
+const SerendipityPage = () =>
+  import('@/components/wonderlab/SerendipityPage.vue');
 
 export const toyboxRoutes: RouteRecordRaw[] = [
   {
@@ -48,5 +53,20 @@ export const toyboxRoutes: RouteRecordRaw[] = [
     path: '/voicecontrol',
     name: 'VoiceControl',
     component: VoiceControl,
+  },
+  {
+    path: '/magicbox',
+    name: 'MagicBox',
+    component: MagicBox,
+  },
+  {
+    path: '/serendipityvoice',
+    name: 'SerendipityVoice',
+    component: SerendipityVoice,
+  },
+  {
+    path: '/serendipity',
+    name: 'SerendipityPage',
+    component: SerendipityPage,
   },
 ];
