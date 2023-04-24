@@ -1,6 +1,5 @@
 <template>
   <div class="magic-window-container">
-    <h4>{{ sillyName }}</h4>
     <div
       class="magic-window"
       :style="{ backgroundColor: color, borderColor: borderColor }"
@@ -51,7 +50,7 @@ export default defineComponent({
         inertia: true,
         modifiers: [
           interact.modifiers.restrictRect({
-            restriction: document.body,
+            restriction: 'parent',
           }),
         ],
         autoScroll: true,
@@ -92,7 +91,7 @@ export default defineComponent({
   height: 100vh;
   top: 0;
   left: 0;
-  pointer-events: none;
+  overflow: hidden;
 }
 
 .magic-window {
@@ -107,16 +106,8 @@ export default defineComponent({
   pointer-events: auto;
   z-index: 1;
   opacity: 0.7;
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(0, 0, 0, 0.1) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.1) 75%,
-    transparent 75%,
-    transparent
-  );
+  overflow: hidden;
+  background-clip: padding-box;
 }
 
 .magic-window-container h4 {
@@ -127,11 +118,12 @@ export default defineComponent({
 }
 
 .background-layer {
-  position: fixed;
+  position: absolute;
   width: 100vw;
   height: 100vh;
   top: 0;
   left: 0;
+  transform: translate(-50%, -50%);
   z-index: 0;
   background: linear-gradient(
     135deg,

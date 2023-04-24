@@ -9,6 +9,7 @@
         <ButterflyHorde v-if="hiddenButterflyVisible" />
         <ButterflyHorde v-if="voiceActivatedButterflies" />
         <SplashFolder :folderName="'wondercat'" />
+        <DraggableComponent />
       </div>
     </div>
   </q-layout>
