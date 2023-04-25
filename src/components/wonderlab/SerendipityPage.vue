@@ -16,10 +16,10 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import ButterflyHorde from '@/components/butterfly/ButterflyHorde.vue';
-import ToyBox from '@/components/serendipity/ToyBox.vue';
+import ButterflyHorde from '@/components/wonderlab/ButterflyHorde.vue';
+import ToyBox from '@/components/wonderlab/ToyBox.vue';
 import SplashFolder from '@/components/gamescreens/SplashFolder.vue';
-import SerendipityVoice from '@/components/serendipity/SerendipityVoice.vue';
+import SerendipityVoice from '@/components/wonderlab/SerendipityVoice.vue';
 import DraggableComponent from '@/components/wonderlab/DraggableComponent.vue';
 
 const hiddenButterflyVisible = ref(false);

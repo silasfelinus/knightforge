@@ -8,6 +8,15 @@ const app = express();
 // Enable CORS for all routes
 app.use(cors());
 
+const userData = {
+  name: 'Silas the Amazing',
+  startPage: 'welcome',
+};
+
+app.get('/userData', (req, res) => {
+  res.json(userData);
+});
+
 // Serve static files from the "src/assets" directory
 app.use('/assets', express.static(path.join(__dirname, 'src/assets')));
 

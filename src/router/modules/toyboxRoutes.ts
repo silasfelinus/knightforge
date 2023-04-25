@@ -17,7 +17,9 @@ const SerendipityVoice = () =>
   import('@/components/wonderlab/SerendipityVoice.vue');
 const SerendipityPage = () =>
   import('@/components/wonderlab/SerendipityPage.vue');
-const RealWorld = () => import('@/components/wonderlab/RealWorld.vue');
+const OutsideGenerator = () =>
+  import('@/components/serendipity/OutsideGenerator.vue');
+import('@/components/wonderlab/SerendipityPage.vue');
 
 export const toyboxRoutes: RouteRecordRaw[] = [
   {
@@ -67,9 +69,9 @@ export const toyboxRoutes: RouteRecordRaw[] = [
     component: MagicBox,
   },
   {
-    path: '/realworld',
-    name: 'RealWorld',
-    component: RealWorld,
+    path: '/outside',
+    name: 'Outside',
+    component: OutsideGenerator,
   },
   {
     path: '/serendipityvoice',

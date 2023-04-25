@@ -19,6 +19,7 @@
     "express": "^4.18.2",
     "magic-string": "^0.30.0",
     "mariadb": "^3.1.1",
+    "pinia": "^2.0.35",
     "vue": "^3.2.47",
     "vue-resizable": "^2.1.7"
   },

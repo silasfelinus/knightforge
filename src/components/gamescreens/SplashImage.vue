@@ -60,7 +60,7 @@ export default defineComponent({
       }
     );
 
-    return { randomImageUrl };
+    return { randomImageUrl, getRandomImageUrl };
   },
 });
 </script>
