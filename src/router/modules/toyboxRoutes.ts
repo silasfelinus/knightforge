@@ -3,7 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 const ButterflyHorde = () =>
   import('@/components/gamescreens/ButterflyHorde.vue');
 const ButterflySingle = () =>
-  import('@/components/gamescreens/ButterflySimple.vue');
+  import('@/components/wonderlab/ButterflySolo.vue');
 const DraggableComponent = () =>
   import('@/components/wonderlab/DraggableComponent.vue');
 const ButterflyChest = () =>

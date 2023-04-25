@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import ButterflyNew from './ButterflySingle.vue';
+import ButterflyNew from './ButterflySolo.vue';
 
 export default defineComponent({
   name: 'ButterflyHorde',
