@@ -1,89 +1,88 @@
 <template>
-  <div class="outside-generator">
-    <div class="ground" :style="groundStyle"></div>
-    <div
-      class="landscape"
-      v-for="(landscape, index) in landscapes"
-      :key="index"
-    >
-      <img
-        v-if="landscape.url"
-        :src="landscape.url"
-        :style="landscape.style"
-        alt="Landscape Element"
-      />
+  <div class="container">
+    <div class="foreground" data-scroll>
+      <div class="frame">
+        <h1 class="text-white">Basic</h1>
+      </div>
+    </div>
+    <div class="background" ref="parallax">
+      <splash-image :folder-name="folderName" @imageUrl="setBackgroundImage" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Ref, ref, computed, onMounted } from 'vue';
-import { useRandomColor } from '@/composables/useRandomColor';
-import { useRandomImage } from '@/composables/useRandomImage';
+import { ref, onMounted, onUnmounted, Ref } from 'vue';
+import SplashImage from '@/components/gamescreens/SplashImage.vue';
 
-const { randomColor: randomGroundColor } = useRandomColor();
-const { randomImageUrl, loadImages } = useRandomImage('background');
+const folderName = 'background';
+const backgroundImage = ref('');
+const parallax: Ref<HTMLDivElement | null> = ref(null);
 
-const groundHeight = ref(Math.floor(Math.random() * 50) + 50);
-const groundStyle = computed(() => ({
-  backgroundColor: randomGroundColor.value,
-  height: `${groundHeight.value}px`,
-}));
-
-interface Landscape {
-  url: string | null;
-  style: {
-    position: 'absolute';
-    left: string;
-    bottom: string;
-    transform: string;
-  };
+function setBackgroundImage(imageUrl: string) {
+  backgroundImage.value = imageUrl;
 }
 
-const landscapes: Ref<Landscape[]> = ref([]);
-
-const generateRandomLandscape = async () => {
-  await loadImages();
-  const landscapeCount = Math.floor(Math.random() * 5) + 1;
-  const newLandscapes: Landscape[] = [];
-
-  for (let i = 0; i < landscapeCount; i++) {
-    const randomImage = randomImageUrl.value;
-    newLandscapes.push({
-      url: randomImage,
-      style: {
-        position: 'absolute',
-        left: `${Math.floor(Math.random() * 90)}%`,
-        bottom: `${Math.floor(Math.random() * groundHeight.value)}px`,
-        transform: `scale(${Math.random() * 2})`,
-      },
-    });
+function scrollHandler() {
+  const scrollY = window.scrollY;
+  if (parallax.value) {
+    parallax.value.style.transform = `translateY(${-scrollY * 0.5}px)`;
   }
-
-  landscapes.value = newLandscapes;
-};
+}
 
 onMounted(() => {
-  generateRandomLandscape();
+  window.addEventListener('scroll', scrollHandler);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', scrollHandler);
 });
 </script>
 
 <style scoped>
-.outside-generator {
+.container {
   position: relative;
-  width: 100%;
-  height: 100%;
+  height: 200vh;
+}
+
+.foreground {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.ground {
-  position: absolute;
-  bottom: 0;
+.frame {
+  border: 5px solid white;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.background {
+  width: 120vw;
+  height: 200vh;
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Scale proportionately */
+  height: auto;
+  /* Positioning */
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 100%;
+  z-index: 0;
+
+  /* Apply perspective for parallax effect */
+  transform-origin: top;
+  perspective: 1px;
 }
 
-.landscape {
-  position: absolute;
+.text-white {
+  color: white;
+  font-size: 2rem;
+  margin: 0;
 }
 </style>

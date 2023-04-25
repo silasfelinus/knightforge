@@ -19,7 +19,7 @@ const SerendipityPage = () =>
   import('@/components/wonderlab/SerendipityPage.vue');
 const OutsideGenerator = () =>
   import('@/components/serendipity/OutsideGenerator.vue');
-import('@/components/wonderlab/SerendipityPage.vue');
+const ParallaxView = () => import('@/components/serendipity/ParallaxView.vue');
 
 export const toyboxRoutes: RouteRecordRaw[] = [
   {
@@ -82,5 +82,10 @@ export const toyboxRoutes: RouteRecordRaw[] = [
     path: '/serendipity',
     name: 'SerendipityPage',
     component: SerendipityPage,
+  },
+  {
+    path: '/parallax',
+    name: 'ParallaxView',
+    component: ParallaxView,
   },
 ];
