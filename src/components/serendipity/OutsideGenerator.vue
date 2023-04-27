@@ -1,16 +1,13 @@
 <template>
   <div class="container">
     <div class="foreground" data-scroll>
-      <div class="frame">
-        <h1 class="text-white">Basic</h1>
-      </div>
+      <div class="frame"></div>
     </div>
     <div class="background" ref="parallax">
       <splash-image :folder-name="folderName" @imageUrl="setBackgroundImage" />
     </div>
   </div>
 </template>
-
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted, Ref } from 'vue';
 import SplashImage from '@/components/gamescreens/SplashImage.vue';
@@ -38,7 +35,6 @@ onUnmounted(() => {
   window.removeEventListener('scroll', scrollHandler);
 });
 </script>
-
 <style scoped>
 .container {
   position: relative;
@@ -48,6 +44,7 @@ onUnmounted(() => {
 .foreground {
   position: relative;
   z-index: 1;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -56,13 +53,15 @@ onUnmounted(() => {
 }
 
 .frame {
-  border: 5px solid white;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 80vw;
+  height: 80vh;
+  background-color: rgba(242, 241, 239, 0.9);
+  border: 15px solid rgba(221, 221, 221, 0.8);
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
 }
 
 .background {
-  width: 120vw;
+  width: 100vw;
   height: 200vh;
   min-height: 100%;
   min-width: 1024px;
@@ -78,11 +77,5 @@ onUnmounted(() => {
   /* Apply perspective for parallax effect */
   transform-origin: top;
   perspective: 1px;
-}
-
-.text-white {
-  color: white;
-  font-size: 2rem;
-  margin: 0;
 }
 </style>
