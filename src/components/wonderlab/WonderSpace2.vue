@@ -19,7 +19,7 @@
 import ButterflyHorde from '@/components/butterfly/ButterflyHorde.vue';
 import DraggableComponent from '@/components/wonderlab/DraggableComponent.vue';
 import ToyBox from '@/components/wonderlab/ToyBox.vue';
-import BubbleMessage from '@/components/wonderlab/BubbleMessage.vue';
+import BubbleMessage from '@/components/gamescreens/SplashMessage.vue';
 import SplashFolder from '@/components/gamescreens/SplashFolder.vue';
 import SerendipityVoice from '@/components/wonderlab/SerendipityVoice.vue';
 </script>

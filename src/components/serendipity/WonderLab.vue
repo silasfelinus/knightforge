@@ -18,7 +18,7 @@ import ButterflySolo from './ButterflySolo.vue';
 import ButterflyFeeder from './ButterflyFeeder.vue';
 import NavMenu from './NavMenu.vue';
 import TitleBar from './TitleBar.vue';
-import SplashMessage from './SplashMessage.vue';
+import SplashMessage from '../gamescreens/SplashMessage.vue';
 import { useRandomImage } from '../composables/useRandomImage';
 
 export default {

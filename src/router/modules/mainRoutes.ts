@@ -1,6 +1,6 @@
 //homeRoutes: Main page routes
 import { RouteRecordRaw } from 'vue-router';
-const HomePage1 = () => import('@/components/layout/HomePage.vue');
+const HomePage1 = () => import('@/compostables/AppForge.vue');
 const HomePage2 = () => import('@/components/WIP/HomePage1.vue');
 const WonderSpace1 = () => import('@/components/wonderlab/WonderSpace.vue');
 const WonderSpace2 = () => import('@/components/wonderlab/WonderSpace2.vue');

@@ -1,8 +1,7 @@
 // main.ts
 import { createApp } from 'vue';
-import App from './App.vue';
-import { createPinia } from 'pinia';
-import router from './router';
+import App from './compostables/AppForge.vue';
+import router from '@/router';
 
 // Create a new Vue app instance
 const app = createApp(App);
@@ -14,9 +13,6 @@ app.config.errorHandler = (err, vm, info) => {
   console.error('Additional info:', info);
 };
 
-const pinia = createPinia();
-app.use(pinia);
-// Use the router, Pinia for state management, and Quasar
 app.use(router);
 
 // Mount the app to the DOM
