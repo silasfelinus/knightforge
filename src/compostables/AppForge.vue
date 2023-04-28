@@ -4,13 +4,13 @@
       <q-toolbar>
         <div class="q-pa-sm q-gutter-sm">
           <SplashImage />
-          <AccordionNav />
           <NavBar />
           <IconNav />
         </div>
       </q-toolbar>
       <q-toolbar>
         <TextMessage />
+        <AccordionNav />
       </q-toolbar>
     </q-header>
     <q-page-container> </q-page-container>

@@ -1,179 +1,73 @@
 <template>
-  <div>
-    <div
-      v-for="i in number"
-      :key="'butterfly-' + i"
-      class="butterfly"
-      :style="{
-        left: butterflies[i - 1].x + 'px',
-        top: butterflies[i - 1].y + 'px',
-        '--wing-color': butterflies[i - 1].wingColor,
-      }"
-      @mouseover="$emit('butterfly-over', i)"
-    >
-      <div class="left-wing">
-        <div class="top"></div>
-        <div class="bottom"></div>
-      </div>
-      <div class="right-wing">
-        <div class="top"></div>
-        <div class="bottom"></div>
-      </div>
+  <div class="icon-nav">
+    <div class="icon-container" @click="toggleNightMode">
+      <i class="fas fa-lightbulb icon-night-mode"></i>
+      <span class="icon-label">Night Mode</span>
+    </div>
+    <div class="icon-container">
+      <i class="fas fa-easel icon-gallery"></i>
+      <span class="icon-label">Gallery</span>
+    </div>
+    <div class="icon-container">
+      <i class="fas fa-palette icon-make-art"></i>
+      <span class="icon-label">Make Art</span>
+    </div>
+    <div class="icon-container">
+      <i class="fas fa-comments icon-chat"></i>
+      <span class="icon-label">Chat</span>
+    </div>
+    <div class="icon-container">
+      <i class="fas fa-robot icon-robot-builder"></i>
+      <span class="icon-label">Robot Builder</span>
+    </div>
+    <div class="icon-container">
+      <i class="fas fa-butterfly icon-login"></i>
+      <span class="icon-label">Login</span>
+      <ButterflySolo />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, onMounted, watch } from 'vue';
+<script lang="ts" setup>
+import ButterflySolo from './ButterflySolo.vue';
 
-export default defineComponent({
-  name: 'ButterflyHorde',
-  props: {
-    number: {
-      type: Number,
-      default: 50,
-    },
-    vw: {
-      type: Number,
-      default: window.innerWidth,
-    },
-    vh: {
-      type: Number,
-      default: window.innerHeight,
-    },
-  },
-  setup(props) {
-    type Butterfly = {
-      x: number;
-      y: number;
-      wingColor: string;
-    };
-
-    const butterflies = ref<Butterfly[]>([]);
-
-    function createButterflies() {
-      butterflies.value = Array.from({ length: props.number }, () => {
-        const x = Math.random() * props.vw;
-        const y = Math.random() * props.vh;
-        const wingColor = `rgba(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()}, 0.7)`;
-        return { x, y, wingColor };
-      });
-    }
-
-    function getRandomNumber() {
-      return Math.floor(Math.random() * 256);
-    }
-
-    function animateButterflies() {
-      butterflies.value = butterflies.value.map((butterfly) => {
-        const newX = butterfly.x + (Math.random() * 10 - 5);
-        const newY = butterfly.y + (Math.random() * 10 - 5);
-        return {
-          ...butterfly,
-          x: Math.max(0, Math.min(props.vw, newX)),
-          y: Math.max(0, Math.min(props.vh, newY)),
-        };
-      });
-
-      requestAnimationFrame(animateButterflies);
-    }
-
-    watch(() => props.number, createButterflies, { immediate: true });
-
-    onMounted(() => {
-      createButterflies();
-      animateButterflies();
-    });
-
-    return { butterflies };
-  },
-});
+const toggleNightMode = () => {
+  console.log('Night mode toggled');
+  // Implement night mode toggle logic here
+};
 </script>
 
 <style scoped>
-body {
-  background: #111;
+.icon-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: #f5f5f5;
+  padding: 16px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-:root {
-  --wing-color: pink;
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
-@keyframes flutter-left {
-  0% {
-    transform: rotate3d(0, 1, 0, 20deg);
-  }
-  50% {
-    transform: rotate3d(0, 1, 0, 70deg);
-  }
-  100% {
-    transform: rotate3d(0, 1, 0, 20deg);
-  }
+.icon-night-mode,
+.icon-gallery,
+.icon-make-art,
+.icon-chat,
+.icon-robot-builder,
+.icon-login {
+  font-size: 24px;
+  margin-bottom: 8px;
 }
 
-@keyframes flutter-right {
-  0% {
-    transform: rotate3d(0, 1, 0, -20deg);
-  }
-  50% {
-    transform: rotate3d(0, 1, 0, -70deg);
-  }
-  100% {
-    transform: rotate3d(0, 1, 0, -20deg);
-  }
-}
-
-.butterfly {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  transform-style: preserve-3d;
-  transform: rotate3d(1, 0.5, 0, 110deg);
-}
-
-.left-wing,
-.right-wing {
-  width: 24px;
-  height: 42px;
-  position: absolute;
-  top: 10px;
-}
-
-.left-wing {
-  left: 10px;
-  top: 10px;
-  transform-origin: 24px 50%;
-  transform: rotate3d(0, 1, 0, 20deg);
-  animation: flutter-left 0.3s infinite;
-}
-
-.right-wing {
-  left: 34px;
-  transform: rotate3d(0, 1, 0, -20deg);
-  transform-origin: 0px 50%;
-  animation: flutter-right 0.3s infinite;
-}
-
-.left-wing .top {
-  right: 0;
-}
-
-.top,
-.bottom {
-  background: var(--wing-color);
-  opacity: 0.7;
-  position: absolute;
-}
-.top {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-}
-
-.bottom {
-  top: 18px;
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
+.icon-label {
+  font-size: 12px;
+  color: #333;
 }
 </style>

@@ -21,6 +21,7 @@
     "magic-string": "^0.30.0",
     "mariadb": "^3.1.1",
     "pinia": "^2.0.35",
+    "png-metadata": "^1.0.2",
     "vue": "^3.2.47",
     "vue-resizable": "^2.1.7"
   },

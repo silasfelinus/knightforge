@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "types": ["animejs"],
+    "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
       "@/*": ["src/*"]
     }
@@ -11,7 +12,8 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.vue",
-    "src/quasar-user-options.ts"
+    "src/quasar-user-options.ts",
+    "types/**/*.d.ts"
   ],
   "exclude": ["jest.config.js", "babel.config.js", "node_modules"]
 }

@@ -1,96 +1,106 @@
 <template>
-  <div class="container">
-    <h1>Accordion Gallery</h1>
-    <div class="gallery-wrap">
-      <a
-        v-for="(image, index) in images"
-        :key="index"
-        class="item"
-        @click="toggleAccordion(index)"
-        :style="{ backgroundImage: 'url(' + image.background + ')' }"
-      >
-        <SplashImage :folderName="image.folder" />
-        <h2>{{ image.caption }}</h2>
-      </a>
+  <div class="accordion-gallery">
+    <div
+      class="accordion-item"
+      v-for="(item, index) in accordionItems"
+      :key="index"
+      @click="expandAccordion(index)"
+      :style="{ width: accordionWidth(index) }"
+    >
+      <div class="item-title">{{ item.title }}</div>
+      <img
+        v-if="expandedIndex === index"
+        :src="randomImages[index]"
+        :alt="item.title"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import SplashImage from './SplashImage.vue';
-
-interface Image {
-  background: string;
-  folder: string;
-  caption: string;
-}
+import { defineComponent, ref, watchEffect } from 'vue';
+import { useRandomImage } from '@/composables/useRandomImage';
 
 export default defineComponent({
-  components: {
-    SplashImage,
-  },
-  props: {
-    images: {
-      type: Array as () => Image[],
-      default: () => [],
-    },
-  },
+  name: 'AccordionGallery',
   setup() {
-    const toggleAccordion = (index: number) => {
-      console.log('Toggle accordion item', index);
-    };
+    const accordionItems = ref([
+      { title: 'Make Art', folder: 'wonderchest' },
+      { title: 'Robot Builder', folder: 'wondercat' },
+      { title: 'Eureka!', folder: 'wonderlab' },
+      { title: 'Cafe Purr', folder: 'splash' },
+      { title: 'Livechat', folder: 'background' },
+    ]);
+    const expandedIndex = ref(-1);
+    const randomImages = ref<string[]>([]);
 
-    return { toggleAccordion };
+    async function loadRandomImages() {
+      for (const item of accordionItems.value) {
+        const { getRandomImage } = useRandomImage(ref(item.folder));
+        const imageUrl = await getRandomImage();
+        randomImages.value.push(imageUrl || '');
+      }
+    }
+
+    watchEffect(() => {
+      loadRandomImages();
+    });
+
+    function expandAccordion(index: number): void {
+      expandedIndex.value = expandedIndex.value === index ? -1 : index;
+    }
+
+    function accordionWidth(index: number): string {
+      if (expandedIndex.value === -1) {
+        return '20%';
+      }
+      return expandedIndex.value === index ? '80%' : '5%';
+    }
+
+    return {
+      accordionItems,
+      expandAccordion,
+      accordionWidth,
+      expandedIndex,
+      randomImages,
+    };
   },
 });
 </script>
 
 <style scoped>
-.container {
-  padding: 75px 0;
-  margin: 0 auto;
-  width: 1140px;
-}
-
-h1 {
-  position: relative;
-  margin-bottom: 45px;
-  font-family: 'Oswald', sans-serif;
-  font-size: 44px;
-  text-transform: uppercase;
-  color: #424242;
-}
-
-.gallery-wrap {
+.accordion-gallery {
   display: flex;
-  flex-direction: row;
   width: 100%;
-  height: 70vh;
+  height: 100%;
+  overflow: hidden;
 }
 
-.item {
-  flex: 1;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  background-repeat: none;
-  transition: flex 0.8s ease;
+.accordion-item {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-decoration: none;
+  background-color: #f5f5f5;
+  transition: width 0.5s;
+  overflow: hidden;
+  position: relative;
+}
+
+.item-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
-  font-size: 24px;
-  font-family: 'Oswald', sans-serif;
-  text-transform: uppercase;
+  font-size: 14px;
 }
 
-.item:hover {
-  flex: 7;
-}
-
-h2 {
-  margin: 0;
+img {
+  width: 100%;
+  height: auto;
 }
 </style>
