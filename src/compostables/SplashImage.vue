@@ -72,7 +72,7 @@ import { ref, onMounted, watch, computed } from 'vue';
 import { useRandomImage } from '../composables/useRandomImage';
 
 const folderName = ref('splash');
-const borderColor = ref('000000');
+const borderColor = ref('#000000');
 const borderWidth = ref('2px');
 
 const { getRandomImage } = useRandomImage(folderName);

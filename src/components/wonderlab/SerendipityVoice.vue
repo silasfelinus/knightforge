@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import ButterflyHorde from '@/components/wonderlab/ButterflyHorde.vue';
 const butterflyCount = ref(50); // Initial count
 const transcript = ref('');
 const isRecording = ref(false);
@@ -16,6 +15,7 @@ const sr = new Recognition();
 onMounted(() => {
   // ... existing onMounted code ...
 });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CheckForCommand = (result) => {
   const t = result[0].transcript;
   if (t.includes('stop recording')) {

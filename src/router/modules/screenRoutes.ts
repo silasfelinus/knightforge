@@ -1,7 +1,5 @@
 //screenRoutes: main component screens
 import { RouteRecordRaw } from 'vue-router';
-const AccordionGallery = () =>
-  import('@/components/gamescreens/AccordionGallery.vue');
 const ChatInterface = () =>
   import('@/components/gamescreens/ChatInterface.vue');
 const LayerManager = () => import('@/components/gamescreens/LayerManager.vue');
@@ -13,11 +11,6 @@ const UnderConstruction = () =>
   import('@/components/gamescreens/UnderConstruction.vue');
 
 export const screenRoutes: RouteRecordRaw[] = [
-  {
-    path: '/accordion',
-    name: 'AccordionGallery',
-    component: AccordionGallery,
-  },
   {
     path: '/chat',
     name: 'ChatInterface',
