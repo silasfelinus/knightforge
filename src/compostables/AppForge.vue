@@ -11,22 +11,21 @@
       <q-toolbar>
         <TextMessage />
         <AccordionNav />
+        <AnimationTester />
       </q-toolbar>
     </q-header>
     <q-page-container> </q-page-container>
-    <q-footer>
-      <ButterflySolo />
-    </q-footer>
+    <q-footer> </q-footer>
   </q-layout>
 </template>
 
 <script lang="ts" setup>
-import SplashImage from './SplashImage.vue';
+import SplashImage from './SplashBackground.vue';
 import AccordionNav from './AccordionNav.vue';
 import NavBar from './NavBar.vue';
 import IconNav from './IconNav.vue';
 import TextMessage from './TextMessage.vue';
-import ButterflySolo from './ButterflySolo.vue';
+import AnimationTester from './AnimationTester.vue';
 
 defineExpose({
   components: {
@@ -35,7 +34,7 @@ defineExpose({
     NavBar,
     IconNav,
     TextMessage,
-    ButterflySolo,
+    AnimationTester,
   },
 });
 </script>

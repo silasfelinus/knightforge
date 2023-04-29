@@ -12,14 +12,25 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch } from 'vue';
+import { defineProps, defineEmits, onMounted, watch, ref } from 'vue';
 import { useRandomColor } from '@/composables/useRandomColor';
 import { useSpeedDirection } from '@/composables/useSpeedDirection';
 import { useButterflyState } from '@/composables/useButterflyState';
 import { useButterflyPosition } from '@/composables/useButterflyPosition';
 
+// Define component props
+const props = defineProps<{
+  color: string;
+  targetPosition?: { x: number; y: number };
+}>();
+
+// Define component emits
+const emit = defineEmits<{
+  (e: 'updatePosition', position: { x: number; y: number }): void;
+}>();
+
 // Generate a random color for the wings
-const wingColor = useRandomColor().randomColor;
+const wingColor = ref(props.color || useRandomColor().randomColor);
 
 // Use the speed and direction composables
 const { randomSpeed, randomDirection } = useSpeedDirection();
@@ -33,7 +44,6 @@ const { x, y, updatePosition } = useButterflyPosition(
   randomSpeed,
   randomDirection
 );
-
 // Watch for changes in butterfly state and trigger animations accordingly
 watch(butterflyState, () => {
   // Handle animations or transitions based on the newVal
@@ -42,6 +52,21 @@ watch(butterflyState, () => {
 // Animate the butterfly's movement and wings
 function animate() {
   updatePosition();
+
+  // If a target position is provided, update the butterfly's direction
+  if (props.targetPosition) {
+    const dx = props.targetPosition.x - x.value;
+    const dy = props.targetPosition.y - y.value;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance > 10) {
+      randomDirection.value = Math.atan2(dy, dx);
+    }
+  }
+
+  // Emit the updated position
+  emit('updatePosition', { x: x.value, y: y.value });
+
   requestAnimationFrame(animate);
 }
 

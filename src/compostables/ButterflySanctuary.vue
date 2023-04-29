@@ -1,7 +1,7 @@
 <template>
   <div
     class="butterfly-sanctuary"
-    :style="{ backgroundImage: `url(${backgroundImage})` }"
+    :style="{ backgroundImage: `url(${splashImageSrc})` }"
   >
     <ButtonWithLight :color="'white'" :onColor="'yellow'" />
     <ButterflyFeeder :x="300" :y="300" />
@@ -9,40 +9,33 @@
     <ButterflyAnimation
       v-for="butterfly in butterflies"
       :key="butterfly.id"
-      :x="butterfly.x"
-      :y="butterfly.y"
-      :butterflyState="butterfly.state"
-      @stateChanged="handleButterflyStateChange(butterfly.id, $event)"
+      :color="#000000"
+      :targetPosition="{ x: butterfly.x, y: butterfly.y }"
+      @updatePosition="handleButterflyPositionChange(butterfly.id, $event)"
     />
     <voice-control
       :initial-butterfly-count="50"
       @more-butterflies="addButterflies"
       @change-picture="changePicture"
     ></voice-control>
+    <splash-image @image-changed="updateSplashImageSrc"></splash-image>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import ButtonWithLight from './ButtonWithLight.vue';
 import ButterflyFeeder from './ButterflyFeeder.vue';
 import PathingComponent from './PathingComponent.vue';
 import ButterflyAnimation from './ButterflyAnimation.vue';
-import VoiceControl from './SerendipityVoice.vue';
-import { useRandomImage } from '@/composables/useRandomImage';
+import VoiceControl from './VoiceControl.vue';
+import SplashImage from './SplashBackground.vue';
 
-const folderName = ref('background');
-const { getRandomImage } = useRandomImage(folderName);
-const backgroundImage = ref('');
+const splashImageSrc = ref('');
 
-async function fetchBackgroundImage() {
-  const image = await getRandomImage();
-  if (image) {
-    backgroundImage.value = image;
-  }
+function updateSplashImageSrc(newImageUrl: string) {
+  splashImageSrc.value = newImageUrl;
 }
-
-onMounted(fetchBackgroundImage);
 
 const butterflies = ref([
   { id: 1, x: 100, y: 200, state: 'flap' },
@@ -50,10 +43,14 @@ const butterflies = ref([
   { id: 3, x: 400, y: 400, state: 'flap' },
 ]);
 
-function handleButterflyStateChange(id: number, newState: string) {
+function handleButterflyPositionChange(
+  id: number,
+  newPosition: { x: number; y: number }
+) {
   const index = butterflies.value.findIndex((butterfly) => butterfly.id === id);
   if (index !== -1) {
-    butterflies.value[index].state = newState;
+    butterflies.value[index].x = newPosition.x;
+    butterflies.value[index].y = newPosition.y;
   }
 }
 
@@ -68,8 +65,12 @@ function addButterflies() {
   butterflies.value = [...butterflies.value, ...newButterflies];
 }
 
-async function changePicture() {
-  await fetchBackgroundImage();
+function changePicture() {
+  // Emit an event in the SplashImage component to change the picture
+  const splashImageComponent = document.querySelector('splash-image');
+  if (splashImageComponent) {
+    splashImageComponent.dispatchEvent(new CustomEvent('change-image'));
+  }
 }
 </script>
 
