@@ -1,82 +1,74 @@
 <template>
-  <div class="project-management">
-    <header class="header-overlay">
-      <h2>Project Management</h2>
-      <div class="project-selector">
-        <label for="project-dropdown">Select a Project:</label>
-        <select
-          id="project-dropdown"
-          v-model="selectedProject"
-          @change="loadProject"
-        >
-          <option v-for="title in projectTitles" :key="title" :value="title">
-            {{ title }}
-          </option>
-        </select>
-      </div>
-    </header>
-    <div class="project-info-container" v-if="projectInfo">
-      <hr class="separator" />
-      <div class="project-info">
-        <section>
-          <h3>{{ projectInfo.title }}</h3>
-          <p>{{ projectInfo.blurb }}</p>
-        </section>
-        <section>
-          <h4>Tags:</h4>
-          <ul>
-            <li v-for="(tag, index) in projectInfo.tags" :key="index">
-              {{ tag }}
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h4>Description:</h4>
-          <p>{{ projectInfo.description }}</p>
-        </section>
-        <section>
-          <h4>Gallery Folder:</h4>
-          <p>{{ projectInfo.galleryFolder }}</p>
-        </section>
-        <section>
-          <h4>Creator Name:</h4>
-          <p>{{ projectsData?.global.creatorName }}</p>
-        </section>
+  <div class="project-manager">
+    <select v-model="selectedTitle" @change="onTitleChange">
+      <option disabled value="">Select a project</option>
+      <option v-for="title in projectTitles" :key="title">{{ title }}</option>
+    </select>
+
+    <div v-if="selectedProject" class="project-info">
+      <splash-background :folder-name="selectedProject.gallery" />
+
+      <div class="project-details">
+        <h2>{{ selectedProject.title }}</h2>
+        <p>{{ selectedProject.blurb }}</p>
+        <h3>Tags</h3>
+        <ul>
+          <li v-for="tag in selectedProject.tags" :key="tag">{{ tag }}</li>
+        </ul>
+        <h3>Description</h3>
+        <p>{{ selectedProject.description }}</p>
+        <h3>Creator</h3>
+        <p>{{ selectedProject.creator }}</p>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useProjectsData, ProjectInfo } from '@/composables/useProjectsData';
+<script lang="ts">
+import { ref, Ref } from 'vue';
+import useProjectData from '@/composables/useProjectData';
+import SplashBackground from './SplashBackground.vue';
+import { Project } from '@/types/project';
 
-const { projectsData, getProjectsData, getProjectTitles } = useProjectsData();
-const projectTitles = ref<string[]>([]);
-const selectedProject = ref('');
-const projectInfo = ref<ProjectInfo | null>(null);
+export default {
+  components: {
+    SplashBackground,
+  },
+  setup() {
+    const { projectTitles, getProjectByTitle } = useProjectData();
+    const selectedTitle = ref('');
+    const selectedProject: Ref<Project | null> = ref(null);
 
-async function fetchProjects() {
-  await getProjectsData();
-  if (projectsData.value) {
-    projectTitles.value = getProjectTitles();
-    selectedProject.value = projectTitles.value[0];
-    loadProject();
-  }
-}
+    const onTitleChange = () => {
+      selectedProject.value = getProjectByTitle(selectedTitle.value);
+    };
 
-function loadProject() {
-  if (selectedProject.value && projectsData.value) {
-    projectInfo.value =
-      projectsData.value.projects.find(
-        (project) => project.title === selectedProject.value
-      ) ?? null;
-  }
-}
-
-watch(selectedProject, () => {
-  loadProject();
-});
-
-fetchProjects();
+    return {
+      projectTitles,
+      selectedTitle,
+      selectedProject,
+      onTitleChange,
+    };
+  },
+};
 </script>
+
+<style scoped>
+.project-manager {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.project-details {
+  text-align: center;
+  max-width: 600px;
+}
+</style>

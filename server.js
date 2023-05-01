@@ -66,31 +66,16 @@ app.get('/wildcards/:listName', (req, res) => {
     }
   });
 });
-app.get('/projects', (req, res) => {
-  fs.readdir(path.join(__dirname, 'src/assets/projects'), (err, files) => {
-    if (err) {
-      console.error('Error in fs.readdir:', err);
-      res.status(500).send({ error: 'Error reading project files' });
-    } else {
-      const projectList = files.map((file) => file.replace('.yaml', ''));
-      res.status(200).send({ projects: projectList });
-    }
-  });
-});
-app.get('/projects/:projectName', (req, res) => {
-  const projectName = req.params.projectName;
-  const filePath = path.join(
-    __dirname,
-    'src/assets/projects',
-    `${projectName}.yaml`
-  );
+app.get('/project-list', (req, res) => {
+  const filePath = path.resolve(__dirname, 'src/assets/projects.json');
 
   fs.readFile(filePath, 'utf-8', (err, data) => {
-    if (err) {
-      console.error('Error in fs.readFile:', err); // Log the error
-      res.status(500).send({ error: 'Error reading project info' });
-    } else {
-      res.status(200).send({ info: data });
+    try {
+      if (err) throw err;
+      res.status(200).header('Content-Type', 'application/json').send(data);
+    } catch (err) {
+      console.error('Error reading project list:', err);
+      res.status(500).send({ error: 'Error reading project list' });
     }
   });
 });

@@ -54,4 +54,219 @@ Any page will have an image display, a short text, a large text, and at least on
 Large images and intuitive navigation menu, left right arrows and a pop-out accordion gallery attached below it highlighting each main section.
 Selecting a main section creates a sublink gallery, of left-aligned vertically stacked avatar circles that expand with extended descriptions when clicked or highlighted. Each has a link or expands to another submenu. Any link that opens a new window should open in a containered iframe below our navigator.
 
-Please, give five different ideas to evolve and meet this concept
+
+
+[SERVER.JS]
+app.get('/project-list', (req, res) => {
+  const filePath = path.resolve(__dirname, 'src/assets/projects.json');
+
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+    try {
+      if (err) throw err;
+      res.status(200).header('Content-Type', 'application/json').send(data);
+    } catch (err) {
+      console.error('Error reading project list:', err);
+      res.status(500).send({ error: 'Error reading project list' });
+    }
+  });
+});
+
+
+[project.ts]
+export interface Project {
+  id: string;
+  title: string;
+  blurb: string;
+  tags: string[];
+  description: string;
+  galleryFolder: string;
+}
+
+
+[useProjectsData]
+import { ref } from 'vue';
+import { Project } from '@/types/project';
+
+interface GlobalInfo {
+  creatorName: string;
+}
+
+interface ProjectsData {
+  global: GlobalInfo;
+  projects: Project[];
+}
+
+export function useProjectsData() {
+  const projectsData = ref<ProjectsData | null>(null);
+  const serverAddress = 'http://localhost:3000';
+
+  async function getProjectsData() {
+    try {
+      const response = await fetch(`${serverAddress}/projects.json`);
+
+      if (!response.ok) {
+        console.error(await response.text());
+        return;
+      }
+
+      const data = await response.json();
+      projectsData.value = data;
+    } catch (error) {
+      console.error('Error fetching projects data:', error);
+    }
+  }
+
+  function getProjectTitles(): { id: string; title: string }[] {
+    if (projectsData.value) {
+      return projectsData.value.projects.map((project) => ({
+        id: project.id,
+        title: project.title,
+      }));
+    }
+    return [];
+  }
+
+  return {
+    projectsData,
+    getProjectsData,
+    getProjectTitles,
+  };
+}
+
+[ProjectManager]
+<template>
+  <div class="project-manager">
+    <select v-model="selectedProjectId">
+      <option value="">-- Select a project --</option>
+      <option
+        v-for="project in projectTitles"
+        :key="project.id"
+        :value="project.id"
+      >
+        {{ project.title }}
+      </option>
+    </select>
+    <div v-if="selectedProject">
+      <h2>{{ selectedProject.title }}</h2>
+      <p>{{ selectedProject.blurb }}</p>
+      <div>
+        <h3>Tags</h3>
+        <ul>
+          <li v-for="tag in selectedProject.tags" :key="tag">{{ tag }}</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Description</h3>
+        <p>{{ selectedProject.description }}</p>
+      </div>
+      <div>
+        <h3>Gallery</h3>
+        <ul>
+          <li v-for="image in selectedProject.gallery" :key="image">
+            <img :src="image" :alt="selectedProject.title" />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, onMounted, ref, watch } from 'vue';
+import { Project } from '@/types/project';
+import { useProjectsData } from '@/composables/useProjectsData';
+
+declare const require: {
+  context(
+    path: string,
+    deep?: boolean,
+    filter?: RegExp
+  ): {
+    keys(): string[];
+    <T>(id: string): T;
+  };
+};
+
+interface ProjectDisplay {
+  id: string;
+  title: string;
+  blurb: string;
+  tags: string[];
+  description: string;
+  gallery: string[];
+}
+
+const { projectsData, getProjectsData, getProjectTitles } = useProjectsData();
+
+const projectDisplays = computed<ProjectDisplay[]>(() => {
+  if (projectsData.value) {
+    return projectsData.value.projects.map((project) => {
+      const galleryImages = project.galleryFolder
+        ? (
+            require.context(
+              '@/assets/projects',
+              true,
+              /\.(png|jpe?g|gif)$/i
+            ) as {
+              keys(): string[];
+              <T>(id: string): T;
+            }
+          )
+            .keys()
+            .map((key: string) => require('@/assets/projects/' + key))
+        : [];
+
+      return {
+        id: project.id,
+        title: project.title,
+        blurb: project.blurb,
+        tags: project.tags,
+        description: project.description,
+        gallery: galleryImages,
+      };
+    });
+  }
+  return [];
+});
+
+const projectTitles = computed<{ id: string; title: string }[]>(() =>
+  getProjectTitles()
+);
+
+const selectedProjectId = ref<string>('');
+
+const selectedProject = computed<Project | null>(() => {
+  if (selectedProjectId.value && projectsData.value) {
+    return (
+      projectsData.value.projects.find(
+        (project) => project.id === selectedProjectId.value
+      ) || null
+    );
+  }
+  return null;
+});
+
+// Fetch projects data on mount
+onMounted(getProjectsData);
+
+// Watch for changes in selected project ID and update selected project
+watch(selectedProjectId, () => {
+  if (selectedProject.value) {
+    const project = projectsData.value?.projects.find(
+      (project) => project.id === selectedProject.value.id
+    );
+    selectedProject.value = project || null;
+  }
+});
+</script>
+
+
+[Notes]
+ProjectManager is still throwing 4 errors:
+*Property 'gallery' does not exist on type 'Project'.
+*This expression is not callable.
+  Type '{ context(path: string, deep?: boolean | undefined, filter?: RegExp | undefined): { <T>(id: string): T; keys(): string[]; }; }' has no call signatures.
+*'selectedProject.value' is possibly 'null'.
+*Cannot assign to 'value' because it is a read-only property.
+
+1 warning: 'projectDisplays' is assigned a value but never used.
