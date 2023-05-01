@@ -1,0 +1,42 @@
+{
+  "global": {
+    "creatorName": "silasfelinus"
+  },
+  "projects": [
+    {
+      "title": "Acrocat Ranch",
+      "blurb": "About Us",
+      "tags": ["acrocat-ranch", "about-us", "team"],
+      "description": "Meet the creative minds behind our projects at Acrocat Ranch. Our talented team of artists and developers work together to bring you the most innovative and visually stunning experiences.",
+      "galleryFolder": "wondercat"
+    },
+    {
+      "title": "Cafe Purr",
+      "blurb": "Humboldt County's Next-Generation Art Gallery",
+      "tags": ["main", "default", "home", "gallery"],
+      "description": "Robots and Humans making art together. Welcome to the future, in the middle of the magical northern coast of Humboldt County, California.",
+      "galleryFolder": "wonderchest"
+    },
+    {
+      "title": "Wonder Chat",
+      "blurb": "Social and Community",
+      "tags": ["wonder-chat", "social", "community"],
+      "description": "Connect with fellow art enthusiasts and creators in our Wonder Chat. Share your thoughts, ideas, and experiences, and become a part of our thriving community.",
+      "galleryFolder": "wonderbot"
+    },
+    {
+      "title": "Wonder Forge",
+      "blurb": "Coding and Development",
+      "tags": ["wonder-forge", "coding", "development"],
+      "description": "Discover the world of code and development at Wonder Forge. Explore the latest technologies and dive into the creative process of building beautiful and functional applications.",
+      "galleryFolder": "wondershed"
+    },
+    {
+      "title": "Wonder Gallery",
+      "blurb": "Web5 AI-Generated Art Gallery",
+      "tags": ["wonder-gallery", "ai-generated", "art"],
+      "description": "Explore our fascinating collection of AI-generated artwork in the Wonder Gallery. Each piece is a unique creation that showcases the power of combining art and technology.",
+      "galleryFolder": "splash"
+    }
+  ]
+}

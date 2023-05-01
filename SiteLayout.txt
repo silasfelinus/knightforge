@@ -1,0 +1,57 @@
+
+Create a layout that is mobile-first and responsive.
+Make use of large images and attractive styling.
+Incorporate a large primary image and a small rectangular image gallery.
+Use the useRandomImage function to display a variety of images from the provided wealth of images.
+Pitch
+Cafe Purr is a next-generation Web5 art studio and vue.js design firm that focuses on creating visually stunning and innovative digital experiences. Our website launch page showcases our expertise in mobile-first design, seamless integration of images, and a user-friendly interface that makes our clients fall in love with our work.
+
+Outline
+Page Structure
+
+Full-screen container with no header or footer
+Large primary image as a background (useRandomImage)
+Small rectangular image gallery
+Call-to-action button (Learn More or Contact Us)
+Styling
+
+Use attractive and modern fonts
+Choose a color scheme that complements the images and represents Cafe Purr's brand identity
+Add subtle animations and transitions to enhance user experience
+Responsiveness
+
+Use CSS Flexbox or CSS Grid for the layout to ensure responsiveness
+Employ media queries to optimize the design for different screen sizes
+Test the design on various mobile devices to ensure compatibility and optimal user experience
+Vue 3 Composition API
+
+Use the Composition API to manage the useRandomImage function
+Create reusable components for the image gallery and call-to-action button
+Once you've completed the plan, pitch, and outline, you can proceed with designing the launch page for Cafe Purr using Vue 3 Composition API. Keep the mobile-first design as your top priority and test the page on various devices to ensure a seamless user experience.
+
+
+Website Pitch:
+Website: Cafe Purr
+Framework: Vue 3 Composition API
+
+Goal: A front page for our website that establishes a consistent, visually appealing and user interactive experience that holds throughout our website with a consistent, modular design.
+
+Current project: build a vue 3 typescript composition api component that takes an array of strings and returns a dynmically generated website.
+
+Usage:
+<script setup lang="ts">
+<style lang="scss">
+
+
+Notes:
+We are starting from a mobile-focused layout (though I am testing often on an ubuntu website). Most of the people looking at this site will likely be on a mobile device with a touchscreen. This is our main user experience to focus on.
+
+Everything should be explicitly typed. We have a types file but it is not currently implemented.
+Eventually we will tie this into user logins, but we need a base experience first.
+
+Any page will have an image display, a short text, a large text, and at least one interactible flexible mobile-first design. It should be visually focused, and offer users a choice of where to go next. We will have a section Welcoming, About Cafe Purr (subsections: Kitten Rescue, Pokestop, Employees, homelab), Art Gallery (subsections: gift shop, redbubble), WonderForge(make art), WonderLab(projects), WonderChat (contact us, Livechat)
+
+Large images and intuitive navigation menu, left right arrows and a pop-out accordion gallery attached below it highlighting each main section.
+Selecting a main section creates a sublink gallery, of left-aligned vertically stacked avatar circles that expand with extended descriptions when clicked or highlighted. Each has a link or expands to another submenu. Any link that opens a new window should open in a containered iframe below our navigator.
+
+Please, give five different ideas to evolve and meet this concept

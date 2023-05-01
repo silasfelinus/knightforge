@@ -110,3 +110,17 @@ export function useSillyNameGenerator() {
     generateAndSetSillyName,
   };
 }
+export function useRandomName() {
+  const sillyName = ref('');
+
+  function generateAndSetSillyName() {
+    sillyName.value = generateSillyName();
+  }
+
+  generateAndSetSillyName();
+
+  return {
+    value: sillyName.value,
+    generateAndSetSillyName,
+  };
+}

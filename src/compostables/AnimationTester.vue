@@ -1,7 +1,9 @@
 <template>
   <div class="page-container">
     <div class="options-container">
-      <button class="add-button" @click="addButterfly">Create New Butterfly</button>
+      <button class="add-button" @click="addButterfly">
+        Create New Butterfly
+      </button>
     </div>
     <div class="butterflies-container">
       <div
@@ -17,17 +19,13 @@
         />
         <div class="settings-container">
           <label for="color">Color:</label>
-          <input
-            id="color"
-            type="color"
-            v-model="butterfly.color"
-          />
+          <input id="color" type="color" v-model="butterfly.color" />
           <label for="targetPosition">Target Position:</label>
           <input
             id="targetPosition"
             type="text"
             placeholder="x, y"
-            @input="updateTargetPosition(butterfly.id, $event.target.value)"
+            @input="updateTargetPosition(butterfly.id, $event)"
           />
         </div>
         <button class="delete-button" @click="deleteButterfly(index)">
@@ -39,11 +37,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { reactive } from 'vue';
 import ButterflyAnimation from './ButterflyAnimation.vue';
 import { useRandomName } from '@/composables/useRandomName';
 
-const butterflies = reactive<Array<{ id: number; name: string; color: string; targetPosition: { x: number; y: number }; }>>([]);
+const butterflies = reactive<
+  Array<{
+    id: number;
+    name: string;
+    color: string;
+    targetPosition: { x: number; y: number };
+  }>
+>([]);
 let nextButterflyId = 0;
 
 function addButterfly() {
@@ -61,16 +66,21 @@ function deleteButterfly(index: number) {
   butterflies.splice(index, 1);
 }
 
-function updatePosition(butterflyId: number, position: { x: number; y: number }) {
-  const butterfly = butterflies.find(b => b.id === butterflyId);
+function updatePosition(
+  butterflyId: number,
+  position: { x: number; y: number }
+) {
+  const butterfly = butterflies.find((b) => b.id === butterflyId);
   if (butterfly) {
     butterfly.targetPosition = position;
   }
 }
 
-function updateTargetPosition(butterflyId: number, value: string) {
+function updateTargetPosition(butterflyId: number, event: Event) {
+  const target = event.target as HTMLInputElement;
+  const value = target.value;
   const [x, y] = value.split(',').map(Number);
-  const butterfly = butterflies.find(b => b.id === butterflyId);
+  const butterfly = butterflies.find((b) => b.id === butterflyId);
   if (butterfly) {
     butterfly.targetPosition = { x, y };
   }
@@ -78,14 +88,12 @@ function updateTargetPosition(butterflyId: number, value: string) {
 </script>
 
 <style scoped>
-
 .settings-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
 
-<style scoped>
 .page-container {
   display: flex;
   flex-direction: column;

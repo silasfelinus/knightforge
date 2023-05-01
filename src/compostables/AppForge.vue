@@ -5,13 +5,13 @@
         <div class="q-pa-sm q-gutter-sm">
           <SplashImage />
           <NavBar />
-          <IconNav />
         </div>
       </q-toolbar>
       <q-toolbar>
         <TextMessage />
         <AccordionNav />
         <AnimationTester />
+        <WildcardViewer />
       </q-toolbar>
     </q-header>
     <q-page-container> </q-page-container>
@@ -23,7 +23,7 @@
 import SplashImage from './SplashBackground.vue';
 import AccordionNav from './AccordionNav.vue';
 import NavBar from './NavBar.vue';
-import IconNav from './IconNav.vue';
+import WildcardViewer from './WildcardViewer.vue';
 import TextMessage from './TextMessage.vue';
 import AnimationTester from './AnimationTester.vue';
 
@@ -32,7 +32,7 @@ defineExpose({
     SplashImage,
     AccordionNav,
     NavBar,
-    IconNav,
+    WildcardViewer,
     TextMessage,
     AnimationTester,
   },

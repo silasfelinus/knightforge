@@ -46,6 +46,80 @@ app.get('/gallery-folders', (req, res) => {
   });
 });
 
+// GET /wildcards/:listName endpoint to fetch a random item from a specified text file
+app.get('/wildcards/:listName', (req, res) => {
+  const listName = req.params.listName;
+  const filePath = path.join(
+    __dirname,
+    'src/assets/wildcards',
+    `${listName}.txt`
+  );
+
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+    if (err) {
+      console.error(`Error reading file ${filePath}:`, err);
+      res.status(500).send('Error: Unable to fetch random item');
+    } else {
+      const lines = data.trim().split('\n');
+      const randomLine = lines[Math.floor(Math.random() * lines.length)];
+      res.send(randomLine);
+    }
+  });
+});
+app.get('/projects', (req, res) => {
+  fs.readdir(path.join(__dirname, 'src/assets/projects'), (err, files) => {
+    if (err) {
+      console.error('Error in fs.readdir:', err);
+      res.status(500).send({ error: 'Error reading project files' });
+    } else {
+      const projectList = files.map((file) => file.replace('.yaml', ''));
+      res.status(200).send({ projects: projectList });
+    }
+  });
+});
+app.get('/projects/:projectName', (req, res) => {
+  const projectName = req.params.projectName;
+  const filePath = path.join(
+    __dirname,
+    'src/assets/projects',
+    `${projectName}.yaml`
+  );
+
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+    if (err) {
+      console.error('Error in fs.readFile:', err); // Log the error
+      res.status(500).send({ error: 'Error reading project info' });
+    } else {
+      res.status(200).send({ info: data });
+    }
+  });
+});
+
+// GET /wildcards endpoint to fetch the list of wildcard text files
+app.get('/wildcards', (req, res) => {
+  const wildcardsPath = path.join(__dirname, 'src/assets/wildcards');
+
+  fs.readdir(wildcardsPath, (err, files) => {
+    if (err) {
+      res.status(500).send(`Error reading folder: ${err.message}`);
+      return;
+    }
+
+    try {
+      // Filter out the text files and return their names without the extension
+      const txtFiles = files
+        .filter((file) => path.extname(file) === '.txt')
+        .map((file) => path.basename(file, '.txt'));
+      res.json(txtFiles);
+    } catch (error) {
+      console.error('Error while sending JSON response:', error);
+      res
+        .status(500)
+        .send(`Error while sending JSON response: ${error.message}`);
+    }
+  });
+});
+
 // GET /images endpoint to fetch the list of images in a specified folder
 app.get('/images', (req, res) => {
   const folderName = req.query.folderName || 'splash';

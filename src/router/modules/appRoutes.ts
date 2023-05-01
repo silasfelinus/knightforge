@@ -4,6 +4,7 @@ const AccordionNav = () => import('@/compostables/AccordionNav.vue');
 const AnimationTester = () => import('@/compostables/AnimationTester.vue');
 const ButterflySanctuary = () =>
   import('@/compostables/ButterflySanctuary.vue');
+const ProjectManager = () => import('@/compostables/ProjectManager.vue');
 
 export const appRoutes: RouteRecordRaw[] = [
   {
@@ -25,6 +26,11 @@ export const appRoutes: RouteRecordRaw[] = [
     path: '/animator',
     name: 'AnimationTester',
     component: AnimationTester,
+  },
+  {
+    path: '/manager',
+    name: 'ProjectManager',
+    component: ProjectManager,
   },
   // Add more routes as needed
 ];

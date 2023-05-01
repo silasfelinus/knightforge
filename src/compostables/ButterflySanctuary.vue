@@ -9,7 +9,7 @@
     <ButterflyAnimation
       v-for="butterfly in butterflies"
       :key="butterfly.id"
-      :color="#000000"
+      :color="'#000000'"
       :targetPosition="{ x: butterfly.x, y: butterfly.y }"
       @updatePosition="handleButterflyPositionChange(butterfly.id, $event)"
     />
@@ -75,7 +75,7 @@ function changePicture() {
 </script>
 
 <style scoped>
-.butterfly-sanctuary {
+butterfly-sanctuary {
   width: 100vw;
   height: 100vh;
   background-size: cover;
