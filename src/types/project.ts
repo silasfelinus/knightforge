@@ -3,6 +3,5 @@ export interface Project {
   blurb: string;
   tags: string[];
   description: string;
-  gallery: string;
-  creator: string;
+  galleryFolder: string;
 }

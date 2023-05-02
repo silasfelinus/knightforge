@@ -1,0 +1,79 @@
+PopUpVideo.vue. A video player, with a pop up component that displays custom text at select intervals. Options for customized playbacks. json. vue 3 compsotion api. chatgpt.
+We need a display screen, a video player, a popup manager, a popup styler (possibly same as vdeo screen styler), a remote control, an interface for chatgpt settings including api key, and a plugin manager, including plex support
+
+ChatGPT
+To create a Vue 3 application using the Composition API, you can follow these steps:
+
+Project setup:
+Create a new Vue 3 project using Vue CLI or Vite. To create a project using Vue CLI, run the following commands:
+sh
+Copy code
+npm install -g @vue/cli
+vue create popup-video
+Choose Vue 3 when prompted, and navigate into the project folder:
+
+sh
+Copy code
+cd popup-video
+Install required packages:
+sh
+Copy code
+npm install video.js
+Create the necessary components:
+Create the following components in the src/components folder:
+DisplayScreen.vue
+VideoPlayer.vue
+PopUpManager.vue
+PopUpStyler.vue
+RemoteControl.vue
+ChatGPTSettings.vue
+PluginManager.vue
+Populate the components:
+Here's a basic outline for the VideoPlayer.vue component:
+
+vue
+Copy code
+<template>
+  <div>
+    <video ref="videoPlayer" class="video-js vjs-default-skin"></video>
+  </div>
+</template>
+
+<script>
+import videojs from 'video.js';
+import 'video.js/dist/video-js.css';
+
+export default {
+  props: {
+    videoSrc: String,
+    customOptions: Object,
+  },
+  setup(props) {
+    const videoPlayer = ref(null);
+
+    onMounted(() => {
+      videojs(videoPlayer.value, {
+        ...props.customOptions,
+        sources: [{ src: props.videoSrc }],
+      });
+    });
+
+    onUnmounted(() => {
+      if (videoPlayer.value) {
+        videoPlayer.value.dispose();
+      }
+    });
+
+    return { videoPlayer };
+  },
+};
+</script>
+You can follow a similar approach for the other components. For the ChatGPTSettings.vue component, create a form that captures the API key and other settings. In the PluginManager.vue component, implement support for Plex and other desired plugins.
+
+Assemble the application:
+In the src/App.vue file, import and use the created components. Make sure to pass necessary props and handle events as needed.
+
+Run the application:
+sh
+Copy code
+npm run serve

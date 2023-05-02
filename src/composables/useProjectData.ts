@@ -1,39 +1,36 @@
-// useProjectData.ts
-import { ref, onMounted } from 'vue';
-import { Project } from '@/types/project';
+import { ref, computed } from 'vue';
 
-interface ProjectData {
-  projectTitles: string[];
-  getProjectByTitle: (title: string) => Project | null;
+export interface Project {
+  title: string;
+  blurb: string;
+  tags: string[];
+  description: string;
+  galleryFolder: string;
 }
 
-export default function useProjectData(): ProjectData {
+export default function useProjectData() {
   const projects = ref<Project[]>([]);
-  const projectTitles = ref<string[]>([]);
-  const serverAddress = 'http://localhost:3000';
+  const projectTitles = computed(() =>
+    projects.value.map((project) => project.title)
+  );
 
-  onMounted(async () => {
+  async function fetchProjects() {
     try {
-      const response = await fetch(`${serverAddress}/project-list`);
+      const response = await fetch('http://localhost:3000/project-list');
       const data = await response.json();
       projects.value = data.projects;
-      projectTitles.value = data.projects.map(
-        (project: Project) => project.title
-      );
     } catch (error) {
       console.error('Error fetching project data:', error);
     }
-  });
-
-  function getProjectByTitle(title: string): Project | null {
-    const project = projects.value.find(
-      (project: Project) => project.title === title
-    );
-    return project ? { ...project } : null;
+  }
+  function getProjectData(title: string) {
+    return projects.value.find((project) => project.title === title) || null;
   }
 
   return {
-    projectTitles: projectTitles.value,
-    getProjectByTitle,
+    projects,
+    projectTitles,
+    fetchProjects,
+    getProjectData,
   };
 }
