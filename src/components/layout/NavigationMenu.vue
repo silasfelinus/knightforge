@@ -12,13 +12,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { getActiveProjects } from '@/stores/useProjectComponents';
+import { gameScreenRoutes } from '@/router';
 
 export default defineComponent({
   name: 'NavigationMenu',
   setup() {
-    const allProjects = getActiveProjects();
-
     return {
       gameScreenRoutes,
     };
