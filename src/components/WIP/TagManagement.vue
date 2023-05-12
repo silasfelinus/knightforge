@@ -17,8 +17,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
-import { TagManager } from '@/TagManager';
-import { IDManager } from '@/IDManager';
+import { TagManager } from '@/components/WIP/TagManager.js';
+import { IDManager } from '@/components/WIP/IDManager.js';
 
 const tagManager = new TagManager();
 const idManager = new IDManager();

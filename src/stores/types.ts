@@ -1,8 +1,3 @@
-// Data is our base operating unit for anything tracked by id
-export interface Data {
-  id: number;
-}
-
 // Tags are our high-level concept organization, id + name
 export interface Tag {
   name: string;
@@ -68,28 +63,8 @@ export interface Gallery {
   modelers?: Modeler[];
 }
 
-// Define the Component interface, which represents the structure of a single component in a project
-export interface Component {
-  projectName: string;
-  componentName: string;
-  fileName: string;
-  isActive: boolean;
-  path: string;
-  alias: string;
-  importPath: string;
-  icon?: string;
-}
-
-// Define the Project interface, which represents the structure of a single project
-export interface Project {
-  name: string;
-  isActive?: boolean;
-  icon?: string;
-  // An array of component names as strings
-  componentStrings: string[];
-}
-
+// Define GameScreen export interface
 export interface GameScreen {
-  id: number;
-  photoset?: string;
+  id: string;
+  preset: string;
 }

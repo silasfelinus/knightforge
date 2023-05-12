@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header>
+    <q-header elevated>
       <q-toolbar>
         <q-btn
           flat
@@ -37,19 +37,23 @@
       show-if-above
       class="butterfly__sidebar--right"
       ><ButterflyMascot></ButterflyMascot>
+      <ChatInterface />
     </q-drawer>
 
     <q-page-container>
-      <q-page class="flex flex-center game-screen-container">
-        <router-view></router-view>
-      </q-page>
+      <MagicFrame
+        ><MagicRemote>
+          <MagicScreen> <router-view /></MagicScreen
+        ></MagicRemote>
+      </MagicFrame>
     </q-page-container>
 
-    <q-footer>
+    <q-footer elevated>
       <q-toolbar>
         <q-toolbar-title>
           &copy; {{ new Date().getFullYear() }} AI Wonderforge
         </q-toolbar-title>
+        <SplashMessage />
       </q-toolbar>
     </q-footer>
   </q-layout>
@@ -60,7 +64,11 @@ import { defineComponent, ref } from 'vue';
 import NavigationMenu from './NavigationMenu.vue';
 import TitleBar from '@/components/layout/TitleBar.vue';
 import SplashMessage from '@/components/layout/SplashMessage.vue';
-import ButterflyMascot from '@/components/screenfx/ButterflyMascot.vue';
+import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
+import MagicFrame from '@/components/layout/MagicFrame.vue';
+import MagicScreen from '@/components/layout/MagicScreen.vue';
+import MagicRemote from '@/components/layout/MagicRemote.vue';
+import ChatInterface from '@/components/layout/ChatInterface.vue';
 
 export default defineComponent({
   components: {
@@ -68,6 +76,10 @@ export default defineComponent({
     TitleBar,
     SplashMessage,
     ButterflyMascot,
+    MagicFrame,
+    MagicRemote,
+    ChatInterface,
+    MagicScreen,
   },
   setup() {
     const leftDrawerOpen = ref(false);

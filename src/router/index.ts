@@ -1,68 +1,63 @@
-// src/router/index.ts
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { getActiveProjects } from '@/stores/useProjectComponents';
 import HomePage from '@/components/layout/HomePage.vue';
-import ErrorScreen from '@/components/layout/ErrorScreen.vue';
-import MagicRemote from '@/components/MagicRemote.vue';
+import ButterflyMascot from '@/components/layout/ButterflyMascot.vue';
 import MagicFrame from '@/components/layout/MagicFrame.vue';
 import NavigationMenu from '@/components/layout/NavigationMenu.vue';
+import SplashMessage from '@/components/layout/SplashMessage.vue';
+import TitleBar from '@/components/layout/TitleBar.vue';
 
-interface Project {
-  name: string;
-  isActive?: boolean;
-  icon?: string;
-  // An array of component names as strings
-  componentStrings: string[];
-}
+export const gameScreenRoutes: RouteRecordRaw[] = [
+  {
+    path: 'accordion-gallery',
+    component: () => import('@/components/gamescreens/AccordionGallery.vue'),
+  },
+  {
+    path: 'error-screen',
+    component: () => import('@/components/gamescreens/ErrorScreen.vue'),
+  },
+  {
+    path: 'game-screen',
+    component: () => import('@/components/gamescreens/GameScreen.vue'),
+  },
+  {
+    path: 'lava-lamp',
+    component: () => import('@/components/gamescreens/LavaLamp.vue'),
+  },
 
-// Generate routes for each component
-function generateRoutesFromProjects(projects: Project[]): RouteRecordRaw[] {
-  const routes: RouteRecordRaw[] = [];
-
-  projects.forEach((project) => {
-    project.componentStrings.forEach((componentString) => {
-      const route: RouteRecordRaw = {
-        path: `/${componentString.toLowerCase()}`,
-        name: componentString,
-        component: () =>
-          import(
-            /* @vite-ignore */
-            /* webpackChunkName: "[request]" */
-            `../components/${project.id}/${componentString}.vue`
-          ),
-      };
-      routes.push(route);
-    });
-  });
-
-  return routes;
-}
+  {
+    path: 'magic-remote',
+    component: () => import('@/components/layout/MagicRemote.vue'),
+  },
+  {
+    path: 'rain-effect',
+    component: () => import('@/components/gamescreens/RainEffect.vue'),
+  },
+  {
+    path: 'soap-bubbles',
+    component: () => import('@/components/gamescreens/SoapBubbles.vue'),
+  },
+  {
+    path: 'splash-image',
+    component: () => import('@/components/gamescreens/SplashImage.vue'),
+  },
+  {
+    path: 'under-construction',
+    component: () => import('@/components/gamescreens/UnderConstruction.vue'),
+  },
+];
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'HomePage',
     component: HomePage,
     children: [
-      {
-        path: 'navigationmenu',
-        component: NavigationMenu,
-      },
-      {
-        path: 'magicframe',
-        component: MagicFrame,
-      },
-      {
-        path: 'magicremote',
-        component: MagicRemote,
-      },
+      { path: 'butterfly-mascot', component: ButterflyMascot },
+      { path: 'magic-frame', component: MagicFrame },
+      { path: 'navigation-menu', component: NavigationMenu },
+      { path: 'splash-message', component: SplashMessage },
+      { path: 'title-bar', component: TitleBar },
+      ...gameScreenRoutes,
     ],
-  },
-  ...generateRoutesFromProjects(getActiveProjects()),
-  {
-    path: '/:catchAll(.*)',
-    name: 'ErrorScreen',
-    component: ErrorScreen,
   },
 ];
 

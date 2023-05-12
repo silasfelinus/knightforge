@@ -1,0 +1,75 @@
+[PROJECT]
+🔧 WonderForge: A Modern GUI sandbox for interfacing with Natural Language Processors.
+
+[FRAMEWORK]
+💻 Vue3 SPA, Composition API, Typescript, Quasar, Vue-Router, Interactjs, ESLint, Prettier, SCSS
+
+[REFERENCE]
+Vue3 (https://vuejs.org/guide/introduction.html)
+Vue-Router (https://router.vuejs.org/guide/)
+Typescript (https://www.typescriptlang.org/)
+Quasar CLI (https://quasar.dev/start/quasar-cli)
+
+[MODULES]
+eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs
+
+[PRINCIPLES]
+Visualize. Plan. Outline. Act.
+Kaizen: Make consistent, iterative improvements towards the goal.
+DRY Principle: Use composables and modular code to reduce future work.
+Best Practices are good; Wise practices are better.
+
+[CONCEPT]
+I'm building towards an interface to mix chatgpt messages and stable diffusion webui image modeller outputs, with some pythonic programming. We have a web business making print-on-demand art, and a large untapped component is our massive networking infrastructure, and my programming skills, and some basic mental roadblocks. I'm hitting walls due to an "artists don't do it for the money" mentality that is truly holding us back, and keeping me from just doing the project, hence this write-up. Replying to me as a human trying to get this project underway and completed would be very helpful.
+For now, I just want to see pictures on the website again, with good structure. I want something solid. I'm using Vue3. I am building to a composition api, but I'm still trying to understand it.
+I have App.vue opening a router opening homepage (is all that necessary and in the right order?).
+The website has three distinct sections, a header which just controls sidebars and a titlebar, a main area with two sidebars and a center flex container, and a footer. The header and footer exist to test and set boundaries, and allow  what I think are fun 4th wall breaking effects when I jump around, but I'm still thinking in old modalities and I want to be creative and not constrained by bad patterns.
+The left sidebar holds a navigationmenu which has our gamescreen routes.
+
+[BASE FILES]
+quasar.config.js, main.ts, App.vue, index.html, tsconfig postcss.config.js, .eslintrc.js, .prettierrc, package.json, router/index.ts, css/app.scss, quasar.variables.scss, router/index.ts, stores/types.ts
+
+[ASSETS/]
+/assets/galleries/*.json
+/assets/photosets/{photoset.id}/[Image.fileName].webp
+
+[LAUNCH ORDER]
+main.ts > App.vue > router/index.ts > HomePage.vue
+HomePage > [routes]
+MagicFrame > GameScreen > [gameScreenRoutes]
+
+[GLOBAL TYPES]
+Tag {name: string}
+
+FilePath {filePath: string}
+
+Image {fileName: string;filePath: string;tags?: Tag[]; positivePrompt?: string;negativePrompt?: string;photoset?: string;modeler?: string;height?: number; width?: number; steps?: number; cfg?: number; sampler?: string; seed?: number;}
+
+Modeler {hash?: string; tags?: Tag[]; localPath?: string; infoUrl?: string; images: Image[];}
+
+GameScreen { id: number; route: string}
+
+
+[routes]
+ButterflyMascot //right sidebar, website mascot interactible
+ChatInterface //right sidebar, container for chat windows
+HomePage  //base layout with header, footer, two sidebars, and flex center
+MagicFrame //handler of css color consistency between sidebars and center panel for flared butterfly transparent effect
+MagicScreen //display for NavigationMenu and MagicRemote Layers
+MagicRemote //select MagicScreen layer, change layer component
+NavigationMenu //left sidebar, MagicScreen links
+SplashMessage //header, random splash text
+TitleBar //q-header, stylized title
+
+[gameScreenRoutes]
+AccordionGallery //visual menu interface
+ErrorScreen //error handling
+GameScreenInterface //interface for interactjs resizable screens that displays components based on routing presets
+LavaLamp //lava lamp screen effect
+RainEffect //raindrop screen effect
+SoapBubbles //soapbubbles screen effect
+SplashImage //random image
+UnderConstruction //under construction screen
+Browser //iframe browser
+
+
