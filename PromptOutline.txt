@@ -59,7 +59,7 @@ Kaizen, DRY Principle, "Best practices are good; Wise practices are best."
 │ ├── views/
 │ ├── router/index.ts
 │ └── stores/componentsGenerator.ts
-│ └── stores/projects.ts
+│ └── stores/useProjectComponents.ts
 │ └── stores/types.ts
 └── public/images/
 

@@ -21,12 +21,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { getAllProjects } from '@/stores/useProjectComponents';
+import { getActiveProjects } from '@/stores/useProjectComponents';
 
 export default defineComponent({
   name: 'NavigationMenu',
   setup() {
-    const allProjects = getAllProjects();
+    const allProjects = getActiveProjects();
 
     return {
       allProjects,
