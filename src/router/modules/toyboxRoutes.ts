@@ -2,8 +2,9 @@
 import { RouteRecordRaw } from 'vue-router';
 const ButterflyHorde = () =>
   import('@/components/gamescreens/ButterflyHorde.vue');
-const ButterflySingle = () =>
-  import('@/components/wonderlab/ButterflySolo.vue');
+const ButterflyPage = () => import('@/sanctuary/ButterflyPage.vue');
+const ButterflyGroup = () => import('@/sanctuary/ButterflyGroup.vue');
+const ButterflySingle = () => import('@/sanctuary/ButterflySingle.vue');
 const DraggableComponent = () =>
   import('@/components/wonderlab/DraggableComponent.vue');
 const ButterflyChest = () =>
@@ -30,9 +31,19 @@ export const toyboxRoutes: RouteRecordRaw[] = [
     component: ButterflyHorde,
   },
   {
+    path: '/butterfly2',
+    name: 'Butterfly2',
+    component: ButterflyGroup,
+  },
+  {
+    path: '/butterfly3',
+    name: 'Butterfly3',
+    component: ButterflySingle,
+  },
+  {
     path: '/butterfly',
     name: 'Butterfly',
-    component: ButterflySingle,
+    component: ButterflyPage,
   },
   {
     path: '/magicbox',
