@@ -8,7 +8,7 @@ const ComingSoon = () => import('@/components/wonderlab/ComingSoon.vue');
 
 export const mainRoutes: RouteRecordRaw[] = [
   {
-    path: '/',
+    path: '/h',
     alias: '/home1',
     name: 'HomePage',
     component: HomePage1,

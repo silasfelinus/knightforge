@@ -9,25 +9,28 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "dev": "quasar dev",
     "server": "node server.js",
-    "ignite": "concurrently \"npm run dev\" \"npm run server\"",
+    "ignite": "NODE_ENV=development concurrently \"npm run dev\" \"npm run server\"",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.3",
-    "animejs": "^3.2.1",
     "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
+    "https": "^1.0.0",
     "js-yaml": "^4.1.0",
+    "jsonwebtoken": "^9.0.0",
     "magic-string": "^0.30.0",
-    "mariadb": "^3.1.1",
     "nanoid": "^4.0.2",
-    "pinia": "^2.0.35",
     "png-metadata": "^1.0.2",
+    "sqlite3": "^5.1.6",
     "vue": "^3.2.47",
-    "vue-resizable": "^2.1.7"
+    "vue-resizable": "^2.1.7",
+    "vue3-markdown-it": "^1.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

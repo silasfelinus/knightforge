@@ -1,0 +1,32 @@
+[
+  {
+    "id": "livechat",
+    "name": "LiveChat",
+    "avatar": "splash",
+    "intro": "Welcome to LiveChat! I'm here to chat with you in real-time."
+  },
+  {
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "avatar": "wondershed",
+    "intro": "Hi! I'm ChatGPT, your friendly AI language model. Let's talk!"
+  },
+  {
+    "id": "serendipity",
+    "name": "Serendipity",
+    "avatar": "wondercat",
+    "intro": "Hello! I'm Serendipity, your AI assistant for all things creative and artistic."
+  },
+  {
+    "id": "humboldt_himbo",
+    "name": "Humboldt Himbo",
+    "avatar": "wonderbot",
+    "intro": "Hey there! I'm Humboldt Himbo, your go-to AI for fun and interesting conversations."
+  },
+  {
+    "id": "fortune_teller",
+    "name": "Fortune Teller",
+    "avatar": "background",
+    "intro": "Greetings! I'm the Fortune Teller, an AI bot with a penchant for predicting the future. What would you like to know?"
+  }
+]

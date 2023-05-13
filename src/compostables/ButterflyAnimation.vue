@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, onMounted, watch, ref } from 'vue';
+import { onMounted, watch, ref } from 'vue';
 import { useRandomColor } from '@/composables/useRandomColor';
 import { useSpeedDirection } from '@/composables/useSpeedDirection';
 import { useButterflyState } from '@/composables/useButterflyState';

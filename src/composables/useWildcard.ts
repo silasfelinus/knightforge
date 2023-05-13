@@ -9,7 +9,7 @@ export default function useWildcard(): UseWildcard {
   const randomItem = ref('');
 
   async function getRandomItem(listName: string) {
-    const serverAddress = 'http://localhost:3000';
+    const serverAddress = 'https://localhost:3000';
 
     try {
       const response = await fetch(`${serverAddress}/wildcards/${listName}`);

@@ -59,7 +59,11 @@ module.exports = configure(function (/* ctx */) {
       manifestFilename: 'manifest.json',
       useCredentialsForManifestTag: false,
     },
-
+    env: {
+      API_URL: 'https://api.cafepurr.com',
+      BASE_URL: 'https://cafepurr.com',
+      NODE_ENV: process.env.NODE_ENV || 'development',
+    },
     // Cordova settings
     cordova: {},
 
