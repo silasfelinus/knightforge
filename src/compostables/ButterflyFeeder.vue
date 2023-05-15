@@ -8,7 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import ButterflyNectar from './ButterflyNectar.vue';
 
 const props = defineProps<{
