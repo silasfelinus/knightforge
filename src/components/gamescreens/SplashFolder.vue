@@ -33,7 +33,7 @@ export default defineComponent({
     let imagesList: string[] = [];
     let timerId: number | null = null;
 
-    const serverAddress = 'http://localhost:3000';
+    const serverAddress = 'https://localhost:3000';
 
     const getRandomImageUrl = () => {
       if (imagesList.length === 0) {

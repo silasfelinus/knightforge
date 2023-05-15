@@ -9,7 +9,7 @@ export default function useWildcardFiles(): UseWildcardFiles {
   const files = ref<string[]>([]);
 
   async function fetchFiles() {
-    const serverAddress = 'http://localhost:3000';
+    const serverAddress = 'https://localhost:3000';
 
     try {
       const response = await fetch(`${serverAddress}/wildcards`);

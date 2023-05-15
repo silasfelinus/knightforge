@@ -1,7 +1,7 @@
 import { Ref } from 'vue';
 
 export function useRandomImage(folderName: Ref<string>) {
-  const serverAddress = 'http://localhost:3000';
+  const serverAddress = 'https://api.cafepurr.com';
 
   const getRandomImage = async (): Promise<string | null> => {
     try {

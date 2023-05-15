@@ -18,7 +18,7 @@ Quasar CLI (https://quasar.dev/start/quasar-cli)`
 Pinia (https://pinia.vuejs.org/)
 
 [MODULES]
-📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs nanoid axios @types/js-yaml open-simplex-noise
+📦 npm install --save-dev eslint eslint-plugin-prettier prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin @vue/eslint-config-typescript @vue/eslint-config-prettier eslint-plugin-vue @vue/compiler-sfc vue-tsc vue-router pinia quasar sass magic-string@latest npm-check-updates interactjs nanoid axios @types/js-yaml sqlite3 bcrypt jsonwebtoken dotenv https
 
 [COMMANDS]
 "npm run lint -- --fix" //auto-fix prettier
@@ -26,7 +26,7 @@ Pinia (https://pinia.vuejs.org/)
 🚀 "quasar dev"  //launch dev mode
 
 [STANDARDS]
-🌟 Prettier, SCSS, Pinia, TypeScript
+🌟 Prettier, SCSS, TypeScript
 
 [PRINCIPLES]
 Kaizen, DRY Principle, "Best practices are good; Wise practices are best."

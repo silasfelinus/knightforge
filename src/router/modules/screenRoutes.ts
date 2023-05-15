@@ -1,7 +1,5 @@
 //screenRoutes: main component screens
 import { RouteRecordRaw } from 'vue-router';
-const ChatInterface = () =>
-  import('@/components/gamescreens/ChatInterface.vue');
 const LayerManager = () => import('@/components/gamescreens/LayerManager.vue');
 const LayerMenu = () => import('@/components/gamescreens/LayerMenu.vue');
 const SplashFolder = () => import('@/components/gamescreens/SplashFolder.vue');
@@ -11,11 +9,6 @@ const UnderConstruction = () =>
   import('@/components/gamescreens/UnderConstruction.vue');
 
 export const screenRoutes: RouteRecordRaw[] = [
-  {
-    path: '/chat',
-    name: 'ChatInterface',
-    component: ChatInterface,
-  },
   {
     path: '/layermanager',
     name: 'LayerManager',

@@ -18,7 +18,7 @@ export default defineComponent({
     const randomImageUrl = ref<string | null>(null);
     let imagesList: string[] = [];
 
-    const serverAddress = 'http://localhost:3000';
+    const serverAddress = 'https://localhost:3000';
 
     const getRandomImageUrl = () => {
       if (imagesList.length === 0) {

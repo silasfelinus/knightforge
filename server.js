@@ -2,11 +2,50 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const bodyParser = require('body-parser');
+const auth = require('./database/auth');
+require('dotenv').config();
+const https = require('https');
 
 const app = express();
 
 // Enable CORS for all routes
-app.use(cors());
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || process.env.NODE_ENV === 'development') {
+        // Allow all origins in development mode
+        callback(null, true);
+      } else if (
+        origin === 'https://cafepurr.com' ||
+        origin === 'http://192.168.5.231:9000'
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+  })
+);
+app.use(bodyParser.json());
+
+// Middleware for token verification
+function isAuthenticated(req, res, next) {
+  const token = req.headers.authorization?.split(' ')[1];
+
+  if (token) {
+    const decoded = auth.verifyToken(token);
+    if (decoded) {
+      req.user = decoded;
+      next();
+    } else {
+      res.status(401).json({ message: 'Invalid token' });
+    }
+  } else {
+    res.status(401).json({ message: 'No token provided' });
+  }
+}
 
 const userData = {
   name: 'Silas the Amazing',
@@ -15,6 +54,47 @@ const userData = {
 
 app.get('/userData', (req, res) => {
   res.json(userData);
+});
+
+// Sample data for demonstration purposes
+const messages = [
+  {
+    id: 1,
+    username: 'serendipity',
+    content: 'Hello!',
+    timestamp: '2023-05-02T10:00:00Z',
+  },
+  {
+    id: 2,
+    username: 'silasfelinus',
+    content: 'Hi, User1!',
+    timestamp: '2023-05-02T10:01:00Z',
+  },
+];
+
+// Function to generate a unique ID for new messages
+function generateMessageId() {
+  return Math.max(...messages.map((message) => message.id)) + 1;
+}
+
+// GET /messages endpoint to fetch all messages
+app.get('/messages', isAuthenticated, (req, res) => {
+  res.json(messages);
+});
+
+// POST /messages endpoint to send a new message
+app.post('/messages', isAuthenticated, (req, res) => {
+  const newMessage = {
+    id: generateMessageId(),
+    username: req.body.username,
+    content: req.body.content,
+    timestamp: new Date().toISOString(),
+  };
+
+  messages.push(newMessage);
+  res
+    .status(201)
+    .json({ message: 'Message sent successfully', data: newMessage });
 });
 
 // Serve static files from the "src/assets" directory
@@ -44,6 +124,26 @@ app.get('/gallery-folders', (req, res) => {
         .send(`Error while sending JSON response: ${error.message}`);
     }
   });
+});
+
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+  const result = await auth.authenticate(username, password);
+  if (result) {
+    res.status(200).json({ user: result.user, token: result.token });
+  } else {
+    res.status(401).json({ message: 'Invalid username or password' });
+  }
+});
+
+app.post('/api/register', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    const result = await auth.register(username, email, password);
+    res.status(200).json({ user: result.user, token: result.token });
+  } catch (error) {
+    res.status(500).json({ message: 'Error registering user' });
+  }
 });
 
 // GET /wildcards/:listName endpoint to fetch a random item from a specified text file
@@ -135,7 +235,18 @@ app.get('/images', (req, res) => {
   });
 });
 
+// Read the SSL certificate files
+const privateKey = fs.readFileSync('./keys/privkey4.pem', 'utf8');
+const certificate = fs.readFileSync('./keys/fullchain4.pem', 'utf8');
+
+// Create a passphrase for your private key (use the one you entered when generating the key)
+const passphrase = process.env.SECRET_KEY;
+
+// Create an HTTPS service with the provided credentials
+const credentials = { key: privateKey, cert: certificate, passphrase };
+const httpsServer = https.createServer(credentials, app);
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+httpsServer.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
