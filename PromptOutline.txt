@@ -22,8 +22,10 @@ Pinia (https://pinia.vuejs.org/)
 
 [COMMANDS]
 "npm run lint -- --fix" //auto-fix prettier
+"sass-migrator division node_modules/quasar/dist/quasar.sass" //division outside of calc is deprecated
 "ncu" && "ncu -u" //update node modules
 🚀 "quasar dev"  //launch dev mode
+"npm run ignite" //launch dev plus server
 
 [STANDARDS]
 🌟 Prettier, SCSS, TypeScript
