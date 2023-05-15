@@ -1,31 +1,42 @@
 <template>
   <div
-    class="butterfly-zone"
-    @mousemove="updateZone"
-    :style="{
-      background: 'linear-gradient(' + gradientDirection + 'deg, red, yellow)',
-    }"
+    class="page-container"
+    style="
+      background-image: url('https://server.cafepurr.com/assets/utility/backtree.webp');
+    "
   >
-    <ButterflyGroup />
+    <ButterflyCage />
+    <header>
+      <h1>Welcome to Cafe Purr</h1>
+    </header>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import ButterflyGroup from './ButterflyGroup.vue';
-
-const gradientDirection = ref(45);
-
-function updateZone(event: MouseEvent) {
-  gradientDirection.value = (event.clientX / window.innerWidth) * 360;
-}
+import ButterflyCage from './ButterflyCage.vue';
 </script>
 
 <style scoped>
-.butterfly-zone {
-  width: 100vw;
+.page-container {
   height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-size: cover;
+  background-position: center;
   overflow: hidden;
-  position: relative;
+  padding-top: 2em;
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  padding: 0.5em 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
 }
 </style>

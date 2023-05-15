@@ -6,7 +6,6 @@ import { layerRoutes } from './modules/layerRoutes';
 import { adminRoutes } from './modules/adminRoutes';
 import { homeRoutes } from './modules/homeRoutes';
 import { toyboxRoutes } from './modules/toyboxRoutes';
-import { userRoutes } from './modules/userRoutes';
 import { appRoutes } from './modules/appRoutes';
 
 const routes: RouteRecordRaw[] = [
@@ -16,7 +15,6 @@ const routes: RouteRecordRaw[] = [
   ...adminRoutes,
   ...homeRoutes,
   ...toyboxRoutes,
-  ...userRoutes,
   ...appRoutes,
   {
     path: '/:catchAll(.*)', // Catch-all route
